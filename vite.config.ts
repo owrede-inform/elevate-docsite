@@ -58,7 +58,7 @@ export default defineConfig({
   
   // Environment variables
   define: {
-    __GITHUB_TOKEN__: JSON.stringify(process.env.GITHUB_TOKEN || ''),
+    __ELEVATE_DOCSITE__: JSON.stringify(process.env.ELEVATE_DOCSITE || ''),
     __VERSION__: JSON.stringify(process.env.npm_package_version || '1.0.0'),
   },
   
@@ -70,7 +70,7 @@ export default defineConfig({
       'lit',
       '@mdx-js/react',
     ],
-    exclude: ['@inform-design/elevate-core-ui', '@inform-design/elevate-design-tokens', '@inform-design/elevate-icons']
+    exclude: ['@inform-elevate/elevate-core-ui', '@inform-elevate/elevate-design-tokens', '@inform-elevate/elevate-icons']
   },
   
   // CSS processing

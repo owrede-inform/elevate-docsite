@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ElevateShowcase from '../components/examples/ElevateShowcase'
 
 const HomePage: React.FC = () => {
   return (
@@ -113,6 +114,11 @@ npm install @inform-design/elevate-icons`}</code></pre>
               <div className="stat-label">Support</div>
             </div>
           </div>
+        </section>
+
+        {/* ELEVATE Integration Showcase */}
+        <section className="elevate-integration">
+          <ElevateShowcase />
         </section>
 
         {/* Features List */}
@@ -369,9 +375,15 @@ npm install @inform-design/elevate-icons`}</code></pre>
         }
 
         /* Features Detailed */
+        .elevate-integration {
+          padding: 3rem 0;
+          border-top: 1px solid var(--elevate-color-border-light, #e9ecef);
+          border-bottom: 1px solid var(--elevate-color-border-light, #e9ecef);
+          background: var(--elevate-color-background-secondary, #f8f9fa);
+        }
+
         .features-detailed {
           padding: 4rem 0;
-          border-top: 1px solid var(--elevate-color-border-light, #e9ecef);
         }
 
         .features-detailed h2 {

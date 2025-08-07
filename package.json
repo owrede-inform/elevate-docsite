@@ -22,7 +22,11 @@
     "prismjs": "^1.29.0",
     "fuse.js": "^7.0.0",
     "clsx": "^2.0.0",
-    "@headlessui/react": "^1.7.0"
+    "@headlessui/react": "^1.7.0",
+    "@inform-elevate/elevate-core-ui": "latest",
+    "@inform-elevate/elevate-design-tokens": "latest",
+    "@inform-elevate/elevate-icons": "latest",
+    "@inform-elevate/elevate-storybook-addons": "latest"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

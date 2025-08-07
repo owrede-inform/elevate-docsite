@@ -65,15 +65,21 @@ elevate-docsite/
 
 2. Set up environment variables:
    ```bash
-   echo "GITHUB_TOKEN=your_github_token_here" > .env.local
+   echo "ELEVATE_DOCSITE=your_github_token_here" > .env.local
    ```
 
-3. Install dependencies:
+3. Configure npm for ELEVATE packages:
+   ```bash
+   npm config set @inform-elevate:registry https://npm.pkg.github.com
+   npm login --scope=@inform-elevate --auth-type=legacy --registry=https://npm.pkg.github.com
+   ```
+
+4. Install dependencies:
    ```bash
    npm install
    ```
 
-4. Start development server:
+5. Start development server:
    ```bash
    npm run dev
    ```
@@ -110,9 +116,10 @@ The site provides role-based navigation with two levels:
 
 This site integrates with the ELEVATE Design System packages:
 
-- **@inform-design/elevate-core-ui**: Core component library
-- **@inform-design/elevate-design-tokens**: Design tokens and theming
-- **@inform-design/elevate-icons**: Icon library + Material Design Icons
+- **@inform-elevate/elevate-core-ui**: Core component library
+- **@inform-elevate/elevate-design-tokens**: Design tokens and theming
+- **@inform-elevate/elevate-icons**: Icon library + Material Design Icons
+- **@inform-elevate/elevate-storybook-addons**: Storybook integration tools
 
 ## Contributing
 

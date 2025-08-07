@@ -1,0 +1,228 @@
+/**
+ * ELEVATE Design System Integration
+ * 
+ * This file bridges ELEVATE design tokens with the documentation site's CSS variables.
+ * It maps ELEVATE tokens to custom properties for consistent theming.
+ */
+
+/* Import ELEVATE design tokens - these will be available after package installation */
+:root {
+  /* 
+   * ELEVATE Color Tokens Integration
+   * These will be replaced with actual ELEVATE design token values
+   * when the @inform-elevate/elevate-design-tokens package is available
+   */
+  
+  /* Primary Colors */
+  --elevate-color-primary: var(--elevate-primary-500, #0066cc);
+  --elevate-color-primary-hover: var(--elevate-primary-600, #0052a3);
+  --elevate-color-primary-light: var(--elevate-primary-100, #e3f2fd);
+  --elevate-color-primary-dark: var(--elevate-primary-700, #004494);
+  
+  /* Neutral Colors */
+  --elevate-color-text-primary: var(--elevate-neutral-900, #1a1a1a);
+  --elevate-color-text-secondary: var(--elevate-neutral-700, #4a4a4a);
+  --elevate-color-text-tertiary: var(--elevate-neutral-500, #6c757d);
+  
+  /* Background Colors */
+  --elevate-color-background-primary: var(--elevate-neutral-0, #ffffff);
+  --elevate-color-background-secondary: var(--elevate-neutral-50, #f8f9fa);
+  --elevate-color-background-tertiary: var(--elevate-neutral-100, #f1f3f4);
+  --elevate-color-background-code: var(--elevate-neutral-50, #f8f9fa);
+  
+  /* Border Colors */
+  --elevate-color-border-light: var(--elevate-neutral-200, #e9ecef);
+  --elevate-color-border-medium: var(--elevate-neutral-300, #dee2e6);
+  --elevate-color-border-hover: var(--elevate-neutral-400, #cbd5e0);
+  
+  /* Semantic Colors */
+  --elevate-color-success: var(--elevate-green-500, #28a745);
+  --elevate-color-warning: var(--elevate-yellow-500, #ffc107);
+  --elevate-color-danger: var(--elevate-red-500, #dc3545);
+  --elevate-color-info: var(--elevate-blue-500, #17a2b8);
+  
+  /* Focus and Interactive States */
+  --elevate-color-focus: var(--elevate-blue-400, #4285f4);
+  --elevate-color-text-accent: var(--elevate-pink-600, #d63384);
+  
+  /* 
+   * ELEVATE Typography Tokens
+   */
+  
+  /* Font Families */
+  --elevate-font-family-primary: var(--elevate-font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  --elevate-font-family-mono: var(--elevate-font-mono, 'Roboto Mono', 'Monaco', 'Consolas', 'Courier New', monospace);
+  
+  /* Font Sizes */
+  --elevate-font-size-xs: var(--elevate-text-xs, 0.75rem);
+  --elevate-font-size-sm: var(--elevate-text-sm, 0.875rem);
+  --elevate-font-size-base: var(--elevate-text-base, 1rem);
+  --elevate-font-size-lg: var(--elevate-text-lg, 1.125rem);
+  --elevate-font-size-xl: var(--elevate-text-xl, 1.25rem);
+  --elevate-font-size-2xl: var(--elevate-text-2xl, 1.5rem);
+  --elevate-font-size-3xl: var(--elevate-text-3xl, 2rem);
+  --elevate-font-size-4xl: var(--elevate-text-4xl, 2.5rem);
+  
+  /* Font Weights */
+  --elevate-font-weight-light: var(--elevate-weight-light, 300);
+  --elevate-font-weight-normal: var(--elevate-weight-normal, 400);
+  --elevate-font-weight-medium: var(--elevate-weight-medium, 500);
+  --elevate-font-weight-semibold: var(--elevate-weight-semibold, 600);
+  --elevate-font-weight-bold: var(--elevate-weight-bold, 700);
+  
+  /* Line Heights */
+  --elevate-line-height-tight: var(--elevate-leading-tight, 1.25);
+  --elevate-line-height-normal: var(--elevate-leading-normal, 1.5);
+  --elevate-line-height-relaxed: var(--elevate-leading-relaxed, 1.6);
+  
+  /*
+   * ELEVATE Spacing Tokens
+   */
+  --elevate-spacing-xs: var(--elevate-space-1, 0.25rem);
+  --elevate-spacing-sm: var(--elevate-space-2, 0.5rem);
+  --elevate-spacing-md: var(--elevate-space-4, 1rem);
+  --elevate-spacing-lg: var(--elevate-space-6, 1.5rem);
+  --elevate-spacing-xl: var(--elevate-space-8, 2rem);
+  --elevate-spacing-2xl: var(--elevate-space-12, 3rem);
+  --elevate-spacing-3xl: var(--elevate-space-16, 4rem);
+  
+  /*
+   * ELEVATE Border Radius Tokens
+   */
+  --elevate-radius-sm: var(--elevate-rounded-sm, 0.25rem);
+  --elevate-radius-md: var(--elevate-rounded-md, 0.375rem);
+  --elevate-radius-lg: var(--elevate-rounded-lg, 0.5rem);
+  --elevate-radius-xl: var(--elevate-rounded-xl, 0.75rem);
+  
+  /*
+   * ELEVATE Shadow Tokens
+   */
+  --elevate-shadow-sm: var(--elevate-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  --elevate-shadow-md: var(--elevate-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  --elevate-shadow-lg: var(--elevate-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  --elevate-shadow-xl: var(--elevate-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
+}
+
+/* Dark theme overrides - activated when ELEVATE dark theme is applied */
+[data-theme="dark"] {
+  --elevate-color-text-primary: var(--elevate-neutral-100, #f8f9fa);
+  --elevate-color-text-secondary: var(--elevate-neutral-300, #dee2e6);
+  --elevate-color-text-tertiary: var(--elevate-neutral-400, #cbd5e0);
+  
+  --elevate-color-background-primary: var(--elevate-neutral-900, #1a1a1a);
+  --elevate-color-background-secondary: var(--elevate-neutral-800, #2d3748);
+  --elevate-color-background-tertiary: var(--elevate-neutral-700, #4a5568);
+  --elevate-color-background-code: var(--elevate-neutral-800, #2d3748);
+  
+  --elevate-color-border-light: var(--elevate-neutral-700, #4a5568);
+  --elevate-color-border-medium: var(--elevate-neutral-600, #718096);
+  --elevate-color-border-hover: var(--elevate-neutral-500, #a0aec0);
+}
+
+/* High contrast mode integration */
+@media (prefers-contrast: high) {
+  :root {
+    --elevate-color-border-light: var(--elevate-neutral-900, #1a1a1a);
+    --elevate-color-border-medium: var(--elevate-neutral-900, #1a1a1a);
+  }
+  
+  [data-theme="dark"] {
+    --elevate-color-border-light: var(--elevate-neutral-100, #f8f9fa);
+    --elevate-color-border-medium: var(--elevate-neutral-100, #f8f9fa);
+  }
+}
+
+/* 
+ * ELEVATE Component Integration
+ * 
+ * These styles ensure ELEVATE components blend seamlessly with the documentation site
+ */
+
+/* Ensure ELEVATE components inherit site typography */
+elevate-button,
+elevate-input,
+elevate-card,
+elevate-modal {
+  font-family: var(--elevate-font-family-primary);
+}
+
+/* Documentation-specific component styling */
+.elevate-docs-example {
+  padding: var(--elevate-spacing-lg);
+  border: 1px solid var(--elevate-color-border-light);
+  border-radius: var(--elevate-radius-lg);
+  background: var(--elevate-color-background-primary);
+  margin: var(--elevate-spacing-lg) 0;
+}
+
+.elevate-docs-example + .elevate-docs-example {
+  margin-top: var(--elevate-spacing-md);
+}
+
+/* Component showcase styling */
+.component-showcase elevate-button {
+  margin: var(--elevate-spacing-sm);
+}
+
+.component-showcase elevate-card {
+  margin-bottom: var(--elevate-spacing-md);
+}
+
+/* Pattern examples */
+.pattern-example {
+  border: 2px solid var(--elevate-color-border-light);
+  border-radius: var(--elevate-radius-lg);
+  overflow: hidden;
+  margin: var(--elevate-spacing-lg) 0;
+}
+
+.pattern-example .pattern-preview {
+  padding: var(--elevate-spacing-xl);
+  background: var(--elevate-color-background-secondary);
+  border-bottom: 1px solid var(--elevate-color-border-light);
+}
+
+.pattern-example .pattern-code {
+  background: var(--elevate-color-background-code);
+}
+
+/*
+ * Responsive Design with ELEVATE Breakpoints
+ * These will be replaced with actual ELEVATE breakpoint tokens when available
+ */
+@media (max-width: 640px) {
+  .elevate-docs-example {
+    padding: var(--elevate-spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .component-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*
+ * Print styles with ELEVATE tokens
+ */
+@media print {
+  * {
+    color: var(--elevate-neutral-900, #1a1a1a) !important;
+    background: var(--elevate-neutral-0, #ffffff) !important;
+  }
+  
+  .elevate-docs-example {
+    border: 2px solid var(--elevate-neutral-900, #1a1a1a);
+  }
+}
+
+/*
+ * Utility classes using ELEVATE tokens
+ */
+.elevate-text-primary { color: var(--elevate-color-text-primary); }
+.elevate-text-secondary { color: var(--elevate-color-text-secondary); }
+.elevate-bg-primary { background-color: var(--elevate-color-background-primary); }
+.elevate-bg-secondary { background-color: var(--elevate-color-background-secondary); }
+.elevate-border-light { border-color: var(--elevate-color-border-light); }
+.elevate-rounded { border-radius: var(--elevate-radius-lg); }
+.elevate-shadow { box-shadow: var(--elevate-shadow-md); }
