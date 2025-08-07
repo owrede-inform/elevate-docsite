@@ -73,13 +73,14 @@ pids
 # parcel-bundler cache (https://parceljs.org/)
 .parcel-cache
 
-# Next.js build output
-.next
-out
+# Build outputs
+dist/
+build/
+.vite/
 
-# Nuxt.js build / generate output
-.nuxt
-dist
+# Next.js (removed)
+.next/
+out/
 
 # Storybook build outputs
 .out

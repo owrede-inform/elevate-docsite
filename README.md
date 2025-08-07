@@ -15,7 +15,7 @@ A comprehensive documentation site for the ELEVATE Design System by INFORM, buil
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 with static export
+- **Framework**: Vite + React 18 with static generation
 - **Language**: TypeScript
 - **Components**: Lit WebComponents + React wrappers
 - **Styling**: ELEVATE Design Tokens + CSS
@@ -45,7 +45,7 @@ elevate-docsite/
 │       └── fonts.css       # Typography
 ├── public/
 │   └── assets/             # Static assets
-└── out/                    # Generated static site
+└── dist/                   # Generated static site
 ```
 
 ## Getting Started
@@ -84,7 +84,13 @@ elevate-docsite/
 npm run build
 ```
 
-The static site will be generated in the `out/` directory.
+The static site will be generated in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
 
 ## Navigation Structure
 
