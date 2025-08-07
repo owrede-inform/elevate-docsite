@@ -267,6 +267,15 @@ export class ESDSNavigation extends LitElement {
         transition: none !important;
       }
     }
+
+    /* Icon rendering */
+    .icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      display: inline-block;
+      vertical-align: middle;
+      fill: currentColor;
+    }
   `
 
   private toggleMobileMenu() {
@@ -317,7 +326,7 @@ export class ESDSNavigation extends LitElement {
                 href=${item.href} 
                 class=${classMap({ active: this.isActiveLink(item.href) })}
               >
-                ${item.icon ? html`<span>${item.icon}</span>` : ''}
+                ${item.icon ? this.renderIcon(item.icon) : ''}
                 ${item.label}
               </a>
             </li>
@@ -365,6 +374,7 @@ export class ESDSNavigation extends LitElement {
                   href=${item.href}
                   class=${classMap({ active: this.isActiveLink(item.href) })}
                 >
+                  ${item.icon ? this.renderIcon(item.icon) : ''}
                   ${item.label}
                 </a>
               </li>
@@ -392,13 +402,22 @@ export class ESDSNavigation extends LitElement {
                 class=${classMap({ active: this.isActiveLink(item.href) })}
                 @click=${() => this.mobileMenuOpen = false}
               >
-                ${item.icon ? html`<span>${item.icon}</span> ` : ''}
+                ${item.icon ? this.renderIcon(item.icon) : ''}
                 ${item.label}
               </a>
             </li>
           `)}
         </ul>
       </div>
+    `
+  }
+
+  /** Render an SVG icon from a path string (24x24 viewBox expected) */
+  private renderIcon(pathData: string) {
+    return html`
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d=${pathData}></path>
+      </svg>
     `
   }
 
