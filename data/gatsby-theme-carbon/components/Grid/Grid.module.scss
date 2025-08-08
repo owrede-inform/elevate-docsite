@@ -1,0 +1,5 @@
+.column {
+  @include breakpoint-down('lg') {
+    margin-bottom: var(--space);
+  }
+}

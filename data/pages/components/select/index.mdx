@@ -1,0 +1,371 @@
+---
+title: Select
+description: Select components allow users to choose from a list of options. They save space while providing clear choices and supporting search functionality for larger option sets.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Select components provide efficient option selection through dropdown interfaces that save screen space while offering clear choices. The ELEVATE Select component helps designers and developers create consistent, accessible selection interfaces that work well for both simple and complex option sets.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Select
+- **Limited screen space**: When radio buttons would take too much vertical space
+- **Many options**: Lists with 7+ options that need to be scannable
+- **Familiar patterns**: Standard form fields like country, state, category selection
+- **Optional selection**: When users don't need to see all options immediately
+- **Searchable content**: Large option lists that benefit from type-ahead filtering
+
+### When NOT to Use Select
+- **2-3 options**: Use Radio buttons for few mutually exclusive choices
+- **Multiple selection**: Use Checkbox groups for selecting multiple items
+- **Boolean choices**: Use Switch component for simple on/off states
+- **Primary actions**: Use Button component for actions that trigger processes
+- **Always visible options**: When users need to see all choices without interaction
+
+## Variations
+
+### Basic Select
+
+Standard dropdown selection for choosing one option from a list.
+
+<LiveExample 
+  title="Basic Select Options" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+  <elvt-select name="country" placeholder="Select country">
+    <label slot="label">Country</label>
+    <elvt-option value="us">United States</elvt-option>
+    <elvt-option value="ca">Canada</elvt-option>
+    <elvt-option value="uk">United Kingdom</elvt-option>
+    <elvt-option value="de">Germany</elvt-option>
+    <elvt-option value="fr">France</elvt-option>
+  </elvt-select>
+  
+  <elvt-select name="priority" value="medium">
+    <label slot="label">Priority Level</label>
+    <elvt-option value="low">Low Priority</elvt-option>
+    <elvt-option value="medium">Medium Priority</elvt-option>
+    <elvt-option value="high">High Priority</elvt-option>
+    <elvt-option value="urgent">Urgent</elvt-option>
+  </elvt-select>
+</div>`}
+/>
+
+### Select with Search
+
+Searchable select for large option lists with type-ahead functionality.
+
+<LiveExample 
+  title="Searchable Select" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+  <elvt-select name="timezone" searchable placeholder="Search timezone...">
+    <label slot="label">Time Zone</label>
+    <elvt-option value="est">Eastern Standard Time (EST)</elvt-option>
+    <elvt-option value="cst">Central Standard Time (CST)</elvt-option>
+    <elvt-option value="mst">Mountain Standard Time (MST)</elvt-option>
+    <elvt-option value="pst">Pacific Standard Time (PST)</elvt-option>
+    <elvt-option value="gmt">Greenwich Mean Time (GMT)</elvt-option>
+    <elvt-option value="cet">Central European Time (CET)</elvt-option>
+    <elvt-option value="jst">Japan Standard Time (JST)</elvt-option>
+  </elvt-select>
+</div>`}
+/>
+
+### Select with Helper Text and Validation
+
+Select with additional context and validation feedback.
+
+<LiveExample 
+  title="Select with Helper Text" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+  <elvt-select name="plan" required>
+    <label slot="label">Subscription Plan *</label>
+    <span slot="help-text">Choose the plan that best fits your needs</span>
+    <elvt-option value="">Choose a plan</elvt-option>
+    <elvt-option value="basic">Basic - $9/month</elvt-option>
+    <elvt-option value="pro">Pro - $19/month</elvt-option>
+    <elvt-option value="enterprise">Enterprise - $49/month</elvt-option>
+  </elvt-select>
+  
+  <elvt-select name="department" disabled>
+    <label slot="label">Department</label>
+    <span slot="help-text">This field is disabled based on your role</span>
+    <elvt-option value="engineering">Engineering</elvt-option>
+    <elvt-option value="design">Design</elvt-option>
+    <elvt-option value="marketing">Marketing</elvt-option>
+  </elvt-select>
+</div>`}
+/>
+
+## Design Principles
+
+### Clarity Principle
+**Options should be immediately understandable and mutually exclusive.** Users should be able to quickly scan options and understand what each choice means without additional explanation or context.
+
+### Efficiency Principle  
+**Select components should minimize the steps required to make a choice.** Well-organized options with logical ordering and search capabilities help users find their preferred option quickly.
+
+### Predictability Principle
+**Select behavior should match user expectations from other web forms.** Consistent interaction patterns and familiar option presentations reduce cognitive load and improve form completion rates.
+
+### Scalability Principle
+**Select components should work well with both small and large option sets.** Whether displaying 5 or 500 options, the component should maintain usability through appropriate features like search and grouping.
+
+## Best Practices
+
+### Writing Clear Option Labels
+
+**Why this matters:** Ambiguous or inconsistent option labels force users to guess what they're selecting, leading to form errors and abandonment. Clear labels improve completion rates and user confidence.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Use specific, descriptive labels that clearly differentiate options">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem'}}>
+  <div style={{width: '200px'}}>
+    <label style={{display: 'block', marginBottom: '0.25rem', fontWeight: '500', fontSize: '0.875rem'}}>Shipping Method</label>
+    <select style={{width: '100%', padding: '0.5rem', border: '1px solid #8d8d8d', borderRadius: '4px', background: 'white'}}>
+      <option>Standard (5-7 days) - Free</option>
+      <option>Express (2-3 days) - $9.99</option>
+      <option>Overnight (1 day) - $24.99</option>
+    </select>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't use vague or ambiguous labels that require interpretation">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem'}}>
+  <div style={{width: '200px'}}>
+    <label style={{display: 'block', marginBottom: '0.25rem', fontWeight: '500', fontSize: '0.875rem'}}>Shipping</label>
+    <select style={{width: '100%', padding: '0.5rem', border: '1px solid #8d8d8d', borderRadius: '4px', background: 'white'}}>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+### Organizing Large Option Lists
+
+**Why this matters:** Poorly organized long lists make it difficult for users to find their desired option. Logical grouping and search functionality improve usability with extensive option sets.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Group related options and provide search for large lists">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem'}}>
+  <div style={{width: '220px'}}>
+    <label style={{display: 'block', marginBottom: '0.25rem', fontWeight: '500', fontSize: '0.875rem'}}>Location</label>
+    <select style={{width: '100%', padding: '0.5rem', border: '1px solid #8d8d8d', borderRadius: '4px', background: 'white'}}>
+      <optgroup label="North America">
+        <option>United States</option>
+        <option>Canada</option>
+        <option>Mexico</option>
+      </optgroup>
+      <optgroup label="Europe">
+        <option>United Kingdom</option>
+        <option>Germany</option>
+        <option>France</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't present long, unorganized lists without structure or search">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem'}}>
+  <div style={{width: '220px'}}>
+    <label style={{display: 'block', marginBottom: '0.25rem', fontWeight: '500', fontSize: '0.875rem'}}>Country</label>
+    <select style={{width: '100%', padding: '0.5rem', border: '1px solid #8d8d8d', borderRadius: '4px', background: 'white', fontSize: '0.875rem'}}>
+      <option>Afghanistan</option>
+      <option>Albania</option>
+      <option>Algeria</option>
+      <option>...195 more countries...</option>
+    </select>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/select/select.js';
+```
+
+### Common Usage Patterns
+
+```html
+<!-- Basic select -->
+<elvt-select name="category" placeholder="Choose category">
+  <label slot="label">Category</label>
+  <elvt-option value="electronics">Electronics</elvt-option>
+  <elvt-option value="clothing">Clothing</elvt-option>
+  <elvt-option value="books">Books</elvt-option>
+</elvt-select>
+
+<!-- Select with default value -->
+<elvt-select name="status" value="active">
+  <label slot="label">Status</label>
+  <elvt-option value="active">Active</elvt-option>
+  <elvt-option value="inactive">Inactive</elvt-option>
+  <elvt-option value="pending">Pending</elvt-option>
+</elvt-select>
+
+<!-- Required select with validation -->
+<elvt-select name="priority" required>
+  <label slot="label">Priority Level *</label>
+  <span slot="help-text">Please select a priority level</span>
+  <elvt-option value="">Select priority</elvt-option>
+  <elvt-option value="low">Low</elvt-option>
+  <elvt-option value="high">High</elvt-option>
+  <elvt-option value="urgent">Urgent</elvt-option>
+</elvt-select>
+
+<!-- Searchable select for large lists -->
+<elvt-select name="country" searchable placeholder="Search countries...">
+  <label slot="label">Country</label>
+  <elvt-option value="us">United States</elvt-option>
+  <elvt-option value="ca">Canada</elvt-option>
+  <elvt-option value="uk">United Kingdom</elvt-option>
+  <!-- Many more options -->
+</elvt-select>
+
+<!-- Disabled select -->
+<elvt-select name="department" disabled>
+  <label slot="label">Department</label>
+  <span slot="help-text">This field is not available for your role</span>
+  <elvt-option value="engineering">Engineering</elvt-option>
+  <elvt-option value="design">Design</elvt-option>
+</elvt-select>
+```
+
+### Key Properties
+
+<PageTable>
+
+| Property | Options | Description |
+|----------|---------|-------------|
+| `name` | String | Form field name for data submission |
+| `value` | String | Currently selected option value |
+| `placeholder` | String | Placeholder text shown when no option selected |
+| `required` | `true`, `false` (default) | Whether selection is required for form submission |
+| `disabled` | `true`, `false` (default) | Whether the select can be interacted with |
+| `searchable` | `true`, `false` (default) | Enable type-ahead search functionality |
+| `clearable` | `true`, `false` (default) | Allow clearing the selected value |
+| `size` | `small`, `medium` (default), `large` | Physical size of the select field |
+
+</PageTable>
+
+**Slots:** Use `slot="label"` for labels, `slot="help-text"` for helper text. Options are added as `<elvt-option>` child elements.
+
+*For complete API reference including all properties, events, and methods, see the [Storybook documentation](https://elevate-core-ui.inform-cloud.io/?path=/docs/components-forms-select--docs).*
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Proper labeling is critical:**
+```html
+<!-- Good: Clear label association -->
+<elvt-select name="country" required>
+  <label slot="label">Country *</label>
+  <span slot="help-text">Select your country of residence</span>
+  <elvt-option value="">Choose a country</elvt-option>
+  <elvt-option value="us">United States</elvt-option>
+</elvt-select>
+
+<!-- Bad: Missing or unclear labels -->
+<elvt-select name="country">
+  <elvt-option value="us">United States</elvt-option>
+</elvt-select>
+```
+
+**Keyboard navigation works automatically:**
+- Up/Down arrows navigate through options
+- Enter or Space opens/closes the dropdown
+- Escape closes dropdown without selection
+- Tab moves focus to next form element
+- Type-ahead search works when searchable is enabled
+
+**Screen reader support:**
+- Selected values are announced clearly
+- Option lists are properly identified
+- Required fields are communicated to assistive technology
+- Search functionality is announced when available
+
+**Focus management:**
+- Clear focus indicators that meet WCAG contrast requirements
+- Focus remains on select during option navigation
+- Focus moves logically when dropdown opens/closes
+
+**Provide meaningful option text:**
+- Options should be self-explanatory without additional context
+- Use consistent formatting across related selects
+- Include helpful information in option labels when needed
+
+## Changelog
+
+### Version 0.0.26-alpha (July 16, 2025)
+- Current version in active development
+
+### Version 0.0.24-alpha (July 3, 2025)  
+- **Enhanced**: Select component styling and interaction improvements
+
+### Version 0.0.22-alpha (June 25, 2025)
+- **New**: Add Select Component focus() method
+- **Enhanced**: Improved keyboard navigation and accessibility
+
+### Version 0.0.20-alpha (June 18, 2025)
+- **Enhanced**: Apply Design Tokens to Select Component
+
+### Version 0.0.19-alpha (June 12, 2025)
+- **Enhanced**: Select component form integration improvements
+
+### Version 0.0.16-alpha (May 30, 2025)
+- **New**: Add Select Component (initial implementation)
+- **New**: Support for option groups and search functionality
+
+### Version 0.0.1-alpha (March 14, 2025)
+- **New**: Add Select Component foundation

@@ -1,0 +1,292 @@
+---
+title: Empty State
+description: Empty states guide users when no content is available. They provide context, explanation, and next steps to help users understand and proceed with their tasks.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Empty states transform potentially confusing moments into helpful guidance. The ELEVATE Empty State component helps designers and developers create consistent, encouraging experiences that guide users toward productive actions when content is unavailable.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Empty States
+- **First-time use**: When users haven't created any content yet
+- **Search results**: When searches return no matching items
+- **Data tables**: When filters exclude all data or no data exists
+- **Error states**: When content failed to load or isn't available
+- **Completed tasks**: When all items are processed or cleared
+
+### When NOT to Use Empty States
+- **Loading content**: Use skeleton screens or loading indicators instead
+- **Temporary states**: For brief moments between content updates
+- **Partial content**: When some content exists but more is loading
+- **Navigation errors**: Use proper error pages for 404s and similar issues
+
+## Variations
+
+
+### Context Types
+
+**First Use** welcomes new users and guides them toward creating their first content.
+
+<LiveExample 
+  title="First Use Empty State" 
+  htmlCode={`<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:plus-circle" style="font-size: 4rem; color: #6f6f6f; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">Get started with your first project</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">Create your first project to start organizing your work and collaborating with your team.</p>
+  <elvt-button tone="primary">
+    <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+    Create Project
+  </elvt-button>
+</div>`}
+/>
+
+**No Results** explains when searches or filters return empty results with suggestions for refinement.
+
+<LiveExample 
+  title="No Results Empty State" 
+  htmlCode={`<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:magnify" style="font-size: 4rem; color: #6f6f6f; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">No results found</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">Try adjusting your search terms or filters to find what you're looking for.</p>
+  <div style="display: flex; gap: 0.75rem; justify-content: center;">
+    <elvt-button>Clear Filters</elvt-button>
+    <elvt-button tone="subtle">Browse All</elvt-button>
+  </div>
+</div>`}
+/>
+
+**Error State** communicates when content is unavailable due to problems with helpful recovery actions.
+
+<LiveExample 
+  title="Error State Empty State" 
+  htmlCode={`<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:alert-circle" style="font-size: 4rem; color: #da1e28; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">Unable to load content</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">We're having trouble connecting to our servers. Please check your internet connection and try again.</p>
+  <elvt-button tone="primary">
+    <elvt-icon slot="prefix" icon="mdi:refresh"></elvt-icon>
+    Try Again
+  </elvt-button>
+</div>`}
+/>
+
+**Completed** celebrates when users have finished all tasks or processed all items.
+
+<LiveExample 
+  title="Completed State Empty State" 
+  htmlCode={`<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:check-circle" style="font-size: 4rem; color: #24a148; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">All caught up!</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">You've completed all your tasks. Great work! Take a break or start something new.</p>
+  <div style="display: flex; gap: 0.75rem; justify-content: center;">
+    <elvt-button tone="primary">New Task</elvt-button>
+    <elvt-button tone="subtle">View Archive</elvt-button>
+  </div>
+</div>`}
+/>
+
+### Visual Elements
+
+**Illustration Focus** uses meaningful graphics to communicate context and mood.
+
+**Text Focus** emphasizes clear messaging with minimal visual elements.
+
+**Action Focus** highlights primary actions users should take next.
+
+**Educational Focus** provides learning resources and guidance for new users.
+
+## Design Principles
+
+
+### Empathy Principle
+**Acknowledge user emotions and provide encouragement.** Empty states can feel disappointing or confusing. Good empty states validate user feelings and provide positive, helpful guidance rather than blame or confusion.
+
+### Clarity Principle  
+**Explain what happened and why in simple terms.** Users encountering empty states need to understand the situation quickly. Technical jargon or vague explanations increase confusion and frustration.
+
+### Action Orientation Principle
+**Guide users toward productive next steps.** Empty states should not be dead ends. They should suggest clear, actionable ways for users to move forward with their goals.
+
+### Context Relevance Principle
+**Tailor messaging and actions to the specific situation.** Generic empty states miss opportunities to provide relevant, helpful guidance based on what users were trying to accomplish.
+
+## Best Practices
+
+
+### Writing Helpful Messaging
+
+**Why this matters:** Confusing or blame-focused messaging makes users feel lost or frustrated. Clear, encouraging messaging helps users understand the situation and feel confident about next steps.
+
+### Providing Relevant Actions
+
+**Why this matters:** Empty states without clear next steps become dead ends in user workflows. Relevant actions help users continue toward their goals rather than abandoning tasks.
+
+### Using Appropriate Visual Tone
+
+**Why this matters:** Visual mood affects user emotional response to empty states. Overly negative or overly playful visuals can create inappropriate emotional context for the situation.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+```
+
+### Common Usage Patterns
+
+Empty states can be created using a combination of ELEVATE components and styling:
+
+```html
+<!-- First use state -->
+<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:folder-plus" style="font-size: 4rem; color: #6f6f6f; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">Create your first project</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">Projects help you organize your work and collaborate with your team.</p>
+  <elvt-button tone="primary">
+    <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+    Create Project
+  </elvt-button>
+</div>
+
+<!-- No results state -->
+<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:magnify" style="font-size: 4rem; color: #6f6f6f; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">No results found</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">Try adjusting your search terms or filters.</p>
+  <div style="display: flex; gap: 0.75rem; justify-content: center;">
+    <elvt-button>Clear Filters</elvt-button>
+    <elvt-button tone="subtle">Browse All</elvt-button>
+  </div>
+</div>
+
+<!-- Error state -->
+<div style="text-align: center; padding: 3rem 1rem; max-width: 400px; margin: 0 auto;">
+  <elvt-icon icon="mdi:cloud-off" style="font-size: 4rem; color: #da1e28; margin-bottom: 1rem;"></elvt-icon>
+  <h3 style="margin: 0 0 0.5rem 0; font-size: 1.5rem; color: #161616;">Unable to load content</h3>
+  <p style="margin: 0 0 1.5rem 0; color: #6f6f6f;">Check your connection and try again.</p>
+  <elvt-button tone="primary">
+    <elvt-icon slot="prefix" icon="mdi:refresh"></elvt-icon>
+    Retry
+  </elvt-button>
+</div>
+```
+
+### Key Properties
+
+The most commonly used patterns for empty state implementations:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-icon` | Icons with MDI library | Visual illustrations using Material Design Icons |
+| `elvt-button` | Primary actions | Call-to-action buttons with tone variants |  
+| Standard HTML | Content structure | Headings, paragraphs, and containers for layout |
+| CSS Styling | Visual presentation | Text alignment, spacing, colors, and positioning |
+
+</PageTable>
+
+*Empty states are currently implemented using a combination of ELEVATE components and custom styling until a dedicated empty state component is available.*
+
+## Interactive Examples
+
+### Empty State Patterns in Context
+
+<LiveExample 
+  title="Dashboard Empty State Example" 
+  htmlCode={`<div style="background: #f4f4f4; padding: 2rem; border-radius: 8px;">
+  <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0;">
+      <h2 style="margin: 0; font-size: 1.5rem;">Project Dashboard</h2>
+      <div style="display: flex; gap: 0.5rem;">
+        <elvt-button size="small">Filter</elvt-button>
+        <elvt-button tone="primary" size="small">
+          <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+          New Project
+        </elvt-button>
+      </div>
+    </div>
+    
+    <!-- Empty state -->
+    <div style="text-align: center; padding: 4rem 2rem;">
+      <elvt-icon icon="mdi:folder-plus-outline" style="font-size: 5rem; color: #6f6f6f; margin-bottom: 1.5rem;"></elvt-icon>
+      <h3 style="margin: 0 0 0.75rem 0; font-size: 1.75rem; color: #161616;">Start your first project</h3>
+      <p style="margin: 0 0 2rem 0; color: #6f6f6f; font-size: 1.125rem; max-width: 480px; margin-left: auto; margin-right: auto;">Create projects to organize your work, collaborate with your team, and track progress toward your goals.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <elvt-button tone="primary">
+          <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+          Create Project
+        </elvt-button>
+        <elvt-button tone="subtle">Browse Templates</elvt-button>
+      </div>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Semantic structure:**
+- Use proper heading hierarchy for empty state titles
+- Provide descriptive text that explains the situation
+- Include alternative text for illustrations and icons
+- Structure content logically for screen reader navigation
+
+**Focus management:**
+- Primary action buttons should be keyboard accessible
+- Logical tab order through empty state elements
+- Clear focus indicators on interactive elements
+- Don't trap focus unless in modal contexts
+
+**Screen reader support:**
+- Announce empty state changes when content updates
+- Use appropriate ARIA labels for context
+- Provide clear action descriptions
+- Communicate loading states during content refresh
+
+**Visual accessibility:**
+- Ensure sufficient contrast for text and illustrations
+- Don't rely solely on color to convey state meaning
+- Use clear, readable typography
+- Provide alternative text for decorative illustrations
+
+## Changelog
+
+<ChangeLog component="empty-state" />

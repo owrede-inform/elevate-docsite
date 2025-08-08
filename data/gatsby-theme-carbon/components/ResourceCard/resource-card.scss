@@ -1,0 +1,127 @@
+// carbon--breakpoint
+@use '~@carbon/react/scss/breakpoint' as *;
+// $carbon--white-0
+@use '~@carbon/react/scss/colors' as *;
+// $spacing-0X
+@use '~@carbon/react/scss/spacing' as *;
+// carbon--type-style
+@use '~@carbon/react/scss/type' as *;
+// $standard-easing $transition-x
+@use '~@carbon/react/scss/motion' as *;
+// color tokens
+@use '~@carbon/react/scss/compat/theme' as *;
+
+.cds--resource-card .cds--tile {
+  background: $ui-01;
+  height: 100%;
+  padding: $spacing-05 25% $spacing-05 $spacing-05;
+  position: relative;
+  transition: background $duration-fast-01;
+  text-decoration: none;
+}
+
+// Dark
+.cds--resource-card--dark .cds--tile {
+  background: $gray-90; //$ui-background for gray 90 theme
+}
+
+.cds--resource-card .cds--tile:hover {
+  background: $hover-ui;
+}
+
+.cds--resource-card__title {
+  @include type-style('productive-heading-03');
+  text-decoration: none;
+  color: $text-01;
+}
+
+.cds--resource-card__subtitle {
+  @include type-style('heading-01');
+  font-weight: 400;
+  text-decoration: none;
+  color: $text-01;
+}
+
+.cds--resource-card__icon--img {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  gap: $spacing-05;
+  align-items: flex-end;
+}
+
+.cds--resource-card__icon--img .gatsby-resp-image-wrapper,
+.cds--resource-card__icon--img img[src*='gif'],
+.cds--resource-card__icon--img img[src*='svg'] {
+  margin-bottom: 0;
+}
+
+.cds--resource-card__icon--img .gatsby-resp-image-wrapper {
+  position: static !important; //important needed to override inline style added by Gatsby
+}
+
+.cds--resource-card__icon--action {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 20px;
+  height: 20px;
+}
+
+.cds--resource-card .cds--resource-card__icon--action svg {
+  fill: $icon-01;
+}
+
+.cds--resource-card--dark .cds--tile:hover {
+  background: $gray-80; //$hover-ui for gray 90 theme
+}
+
+.cds--resource-card--dark .cds--resource-card__title,
+.cds--resource-card--dark .cds--resource-card__subtitle {
+  color: $text-04;
+}
+
+.cds--resource-card--dark .cds--resource-card__icon--action svg {
+  fill: $gray-10;
+}
+
+// Disabled
+.cds--resource-card--disabled .cds--tile:hover {
+  background: $ui-01;
+  cursor: not-allowed;
+}
+
+.cds--resource-card--disabled .cds--resource-card__title,
+.cds--resource-card--disabled .cds--resource-card__subtitle {
+  color: $disabled-03;
+}
+
+.cds--resource-card--disabled .cds--resource-card__icon--action svg {
+  fill: $disabled-02;
+}
+
+.cds--resource-card--disabled .cds--resource-card__icon--img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+// Disabled dark
+.cds--resource-card--disabled.cds--resource-card--dark .cds--tile:hover {
+  background: $gray-90; //$ui-background for gray 90 theme
+}
+
+.cds--resource-card--disabled.cds--resource-card--dark
+  .cds--resource-card__title,
+.cds--resource-card--disabled.cds--resource-card--dark
+  .cds--resource-card__subtitle {
+  color: $gray-50; //$disabled-03 for gray 90
+}
+
+.cds--resource-card--disabled.cds--resource-card--dark
+  .cds--resource-card__icon--action
+  svg {
+  fill: $gray-70; //$disabled-02 for gray 90
+}

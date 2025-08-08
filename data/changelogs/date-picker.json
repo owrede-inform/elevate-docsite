@@ -1,0 +1,100 @@
+{
+  "componentName": "Date Picker",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "July 16, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "Enhanced",
+          "description": "Date picker patterns now use functional HTML inputs and ELEVATE components"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations with native HTML date inputs and elvt-icon components"
+        },
+        {
+          "type": "New",
+          "description": "Calendar interface patterns using elvt-button components"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples for booking and scheduling workflows"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with HTML date input patterns and CSS styling"
+        },
+        {
+          "type": "Updated",
+          "description": "Documentation reflects functional date picker interface combinations"
+        }
+      ],
+      "notes": "Current version in active development"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Date Picker component implementation"
+        },
+        {
+          "type": "New",
+          "description": "Single date and date range selection with visual indicators"
+        },
+        {
+          "type": "New",
+          "description": "Calendar popup and inline display modes with animations"
+        },
+        {
+          "type": "New",
+          "description": "Internationalization and localization support"
+        },
+        {
+          "type": "New",
+          "description": "Advanced features like disabled dates, date validation, and custom formatting"
+        },
+        {
+          "type": "New",
+          "description": "Integration with form libraries and accessibility enhancements"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Date input patterns using HTML date inputs",
+      "status": "functional"
+    },
+    {
+      "feature": "Calendar interface patterns with elvt-button and elvt-icon",
+      "status": "functional"
+    },
+    {
+      "feature": "Date range selection with validation constraints",
+      "status": "working"
+    },
+    {
+      "feature": "LiveExample demonstrations for booking and scheduling use cases",
+      "status": "functional"
+    },
+    {
+      "feature": "CSS-based styling patterns for custom calendar interfaces",
+      "status": "functional"
+    },
+    {
+      "feature": "Integration with ELEVATE design tokens and styling",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated date picker component with advanced features",
+      "status": "planning"
+    }
+  ]
+}

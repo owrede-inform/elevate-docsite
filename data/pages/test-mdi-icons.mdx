@@ -1,0 +1,60 @@
+---
+title: Test MDI Icons
+description: Test page for MDI icon functionality in ELEVATE components
+---
+
+import LiveExample from '../gatsby-theme-carbon/components/LiveExample/LiveExample';
+
+# MDI Icons Test
+
+This page tests whether MDI icons are working correctly in ELEVATE components.
+
+## Test Cases
+
+<LiveExample
+title="MDI Icons in ELEVATE Components"
+htmlCode={`
+<!-- Basic Button with MDI icon -->
+<elvt-button>
+  <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+  Add Item
+</elvt-button>
+
+<!-- Different MDI icons -->
+<elvt-button>
+  <elvt-icon slot="prefix" icon="mdi:delete"></elvt-icon>
+  Delete
+</elvt-button>
+
+<elvt-button>
+  <elvt-icon slot="prefix" icon="mdi:edit"></elvt-icon>
+  Edit
+</elvt-button>
+
+<elvt-button>
+  <elvt-icon slot="prefix" icon="mdi:search"></elvt-icon>
+  Search
+</elvt-button>
+
+<!-- Test standalone icons -->
+<div style="margin-top: 2rem;">
+  <h4>Standalone Icons:</h4>
+  <elvt-icon icon="mdi:plus" style="margin-right: 1rem;"></elvt-icon>
+  <elvt-icon icon="mdi:delete" style="margin-right: 1rem;"></elvt-icon>  
+  <elvt-icon icon="mdi:edit" style="margin-right: 1rem;"></elvt-icon>
+  <elvt-icon icon="mdi:search" style="margin-right: 1rem;"></elvt-icon>
+  <elvt-icon icon="mdi:settings" style="margin-right: 1rem;"></elvt-icon>
+  <elvt-icon icon="mdi:download" style="margin-right: 1rem;"></elvt-icon>
+</div>
+`}
+/>
+
+## Debug Information
+
+The console should show:
+- ✅ Local Inter fonts loaded from static directory
+- ✅ ELEVATE components loaded without CSS  
+- ✅ X MDI icons registered with ELEVATE icon registry in 'mdi' library
+- ✅ MDI icon system initialized: 21 icons available
+
+If icons are not displaying, check the browser console for any registration errors.

@@ -1,0 +1,112 @@
+{
+  "componentName": "Icon Button",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "August 7, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Icon Button documentation with comprehensive size and tone variations"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations for icon button sizes, tones, and states"
+        },
+        {
+          "type": "New", 
+          "description": "Icon button groups and toolbar patterns for efficient space usage"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples showing button states and toggle behaviors"
+        },
+        {
+          "type": "New",
+          "description": "Floating Action Button (FAB) patterns with primary and mini variations"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with accessibility-focused button labeling"
+        },
+        {
+          "type": "Updated",
+          "description": "CSS styling patterns for consistent icon button presentation and interactions"
+        }
+      ],
+      "notes": "Initial documentation release emphasizing accessibility and space-efficient icon interactions"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Icon Button web component with automatic sizing and accessibility"
+        },
+        {
+          "type": "New",
+          "description": "Built-in tooltip management with configurable positioning and timing"
+        },
+        {
+          "type": "New",
+          "description": "Advanced button states with loading, success, and error indicators"
+        },
+        {
+          "type": "New",
+          "description": "Icon button group coordination with toggle and radio behaviors"
+        },
+        {
+          "type": "New",
+          "description": "Enhanced keyboard navigation with arrow key support for grouped buttons"
+        },
+        {
+          "type": "New",
+          "description": "Responsive sizing with automatic touch target optimization"
+        },
+        {
+          "type": "New",
+          "description": "High contrast mode support with enhanced visual differentiation"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Icon button size variations (small, medium, large) with proper touch targets",
+      "status": "functional"
+    },
+    {
+      "feature": "Icon button tone variations with hover and focus states",
+      "status": "working"
+    },
+    {
+      "feature": "Icon button groups and toolbar layouts for related actions",
+      "status": "functional"
+    },
+    {
+      "feature": "Interactive button states with toggle and loading behaviors",
+      "status": "demonstrated"
+    },
+    {
+      "feature": "Floating Action Button (FAB) patterns with proper positioning",
+      "status": "functional"
+    },
+    {
+      "feature": "Accessibility implementation with ARIA labels and keyboard support",
+      "status": "functional"
+    },
+    {
+      "feature": "LiveExample demonstrations for various icon button use cases",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated Icon Button web component with advanced features",
+      "status": "planning"
+    }
+  ]
+}

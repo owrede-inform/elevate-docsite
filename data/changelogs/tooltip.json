@@ -1,0 +1,112 @@
+{
+  "componentName": "Tooltip",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "July 16, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "Enhanced",
+          "description": "Tooltip patterns now use functional HTML title attributes and CSS implementations"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations with HTML title tooltips and custom CSS tooltips"
+        },
+        {
+          "type": "New", 
+          "description": "Rich content tooltip patterns with keyboard shortcuts and status information"
+        },
+        {
+          "type": "New",
+          "description": "Contextual help system patterns for forms and settings"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples showing tooltip positioning and styling"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with CSS-based tooltip patterns and animations"
+        },
+        {
+          "type": "Updated",
+          "description": "Documentation reflects functional tooltip implementations using available components"
+        }
+      ],
+      "notes": "Current version in active development"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Tooltip component implementation"
+        },
+        {
+          "type": "New",
+          "description": "Multiple trigger methods (hover, focus, click, manual)"
+        },
+        {
+          "type": "New",
+          "description": "Smart positioning with viewport awareness and collision detection"
+        },
+        {
+          "type": "New",
+          "description": "Rich content support with slots and custom styling"
+        },
+        {
+          "type": "New",
+          "description": "Animation controls and transition options"
+        },
+        {
+          "type": "New",
+          "description": "Advanced positioning options and offset controls"
+        },
+        {
+          "type": "New",
+          "description": "Integration with accessibility standards and screen readers"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "HTML title attribute tooltips",
+      "status": "functional"
+    },
+    {
+      "feature": "CSS-based custom tooltip patterns with animations",
+      "status": "working"
+    },
+    {
+      "feature": "Rich content tooltips with multiple elements",
+      "status": "functional"
+    },
+    {
+      "feature": "Form field help tooltips with elvt-icon components",
+      "status": "functional"
+    },
+    {
+      "feature": "Contextual help system patterns",
+      "status": "demonstrated"
+    },
+    {
+      "feature": "Keyboard accessibility and focus management patterns",
+      "status": "functional"
+    },
+    {
+      "feature": "LiveExample demonstrations for various tooltip use cases",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated tooltip component with advanced features",
+      "status": "planning"
+    }
+  ]
+}

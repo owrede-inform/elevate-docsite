@@ -1,0 +1,327 @@
+---
+title: Badge
+description: Badges highlight important information with small, prominent labels. They indicate status, counts, categories, or draw attention to specific content.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Badges are small visual indicators that help users quickly understand status, counts, and categories. The ELEVATE Badge component helps designers and developers create consistent, accessible interfaces that communicate important information without overwhelming the user.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Badges
+- **Status indication**: Online/offline, active/inactive, approval states
+- **Notifications**: Unread counts, new items, urgent alerts
+- **Categorization**: Tags, labels, content classification
+- **Metadata**: Version numbers, types, feature flags
+- **Highlighting**: Important or featured content that needs attention
+
+### When NOT to Use Badges
+- **Primary actions**: Use Button component for main interactions
+- **Navigation**: Use Link or navigation components for page transitions
+- **Large text content**: Use appropriate text components for substantial information
+- **Complex information**: Use Cards or other layout components for detailed data
+
+## Variations
+
+
+### Status Badges
+
+Status badges communicate states using semantic colors and clear language.
+
+<LiveExample 
+  title="Status Badge Variations" 
+  htmlCode={`<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+  <elvt-badge>Default</elvt-badge>
+  <elvt-badge tone="success">Active</elvt-badge>
+  <elvt-badge tone="warning">Pending</elvt-badge>
+  <elvt-badge tone="danger">Failed</elvt-badge>
+  <elvt-badge tone="primary">New</elvt-badge>
+</div>`}
+/>
+
+### Shape Variations
+
+Badge shape controls the corner radius - pill for rounded edges or box for square corners.
+
+<LiveExample 
+  title="Badge Shape Examples" 
+  htmlCode={`<div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+  <elvt-badge tone="primary" shape="pill">Pill Shape</elvt-badge>
+  <elvt-badge tone="success" shape="box">Box Shape</elvt-badge>
+  <elvt-badge tone="warning" shape="pill">Default</elvt-badge>
+</div>`}
+/>
+
+### Pulse Animation
+
+Pulse animation draws attention to important badges.
+
+<LiveExample 
+  title="Badge Pulse Animation" 
+  htmlCode={`<div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+  <elvt-badge>Normal Badge</elvt-badge>
+  <elvt-badge pulse tone="danger">Alert</elvt-badge>
+  <elvt-badge pulse tone="success">New</elvt-badge>
+  <elvt-badge pulse tone="primary">Important</elvt-badge>
+</div>`}
+/>
+
+## Design Principles
+
+
+Understanding these core principles will help you make better design decisions and avoid interface patterns that create visual noise or confusion.
+
+### Semantic Communication Principle
+**Visual design should match functional meaning.** Badge colors and styles should intuitively communicate the type of information being presented. Misleading visual cues break user expectations and reduce system trust.
+
+### Visual Hierarchy Principle  
+**Badges should support, not compete with primary content.** They provide supplementary information without overwhelming the main interface. Overusing badges creates visual clutter and reduces their effectiveness.
+
+### Cognitive Load Principle
+**Keep badge content concise and scannable.** Users should be able to quickly understand badge meaning without stopping their workflow. Complex or lengthy badge content defeats their purpose as quick indicators.
+
+### Consistency Principle
+**Similar information should use similar badge treatments across your product.** Consistent badge usage creates predictable patterns that users can learn and rely on throughout the interface.
+
+## Best Practices
+
+
+### Using Semantic Colors Appropriately
+
+**Why this matters:** Overusing status colors creates "alert fatigue" where users become desensitized to important signals. Misusing semantic colors breaks user expectations about what different states mean.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Use semantic colors for their intended meaning">
+
+<div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexWrap: 'wrap'}}>
+  <span style={{padding: '0.25rem 0.75rem', background: '#24a148', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Active</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#f1c21b', color: '#161616', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Pending</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#da1e28', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Failed</span>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't use semantic colors for non-status information">
+
+<div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexWrap: 'wrap'}}>
+  <span style={{padding: '0.25rem 0.75rem', background: '#da1e28', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>JavaScript</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#f1c21b', color: '#161616', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>React</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#24a148', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>CSS</span>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+### Writing Effective Badge Content
+
+**Why this matters:** Verbose or unclear badge text forces users to spend mental energy decoding meaning instead of quickly scanning information. This breaks the primary purpose of badges as rapid visual indicators.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Keep badge text concise and descriptive">
+
+<div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexDirection: 'column'}}>
+  <span style={{padding: '0.25rem 0.75rem', background: '#0066cc', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>New</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#6f6f6f', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>v2.1</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#24a148', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Verified</span>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't use lengthy or vague badge text">
+
+<div style={{display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexDirection: 'column'}}>
+  <span style={{padding: '0.25rem 0.75rem', background: '#0066cc', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Recently Added Item</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#6f6f6f', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Current Version</span>
+  <span style={{padding: '0.25rem 0.75rem', background: '#24a148', color: 'white', borderRadius: '16px', fontSize: '0.875rem', fontWeight: '500'}}>Status: OK</span>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+## Implementation
+
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/badge/badge.js';
+```
+
+### Common Usage Patterns
+
+```html
+<!-- Status indicators -->
+<elvt-badge tone="success">Active</elvt-badge>
+<elvt-badge tone="warning">Pending</elvt-badge>
+<elvt-badge tone="danger">Failed</elvt-badge>
+
+<!-- Different shapes -->
+<elvt-badge shape="pill" tone="primary">Rounded</elvt-badge>
+<elvt-badge shape="box" tone="neutral">Square</elvt-badge>
+
+<!-- Category tags -->
+<elvt-badge>JavaScript</elvt-badge>
+<elvt-badge>React</elvt-badge>
+
+<!-- Metadata -->
+<elvt-badge tone="neutral">v2.1.0</elvt-badge>
+<elvt-badge>Beta</elvt-badge>
+
+<!-- Attention-getting badges -->
+<elvt-badge pulse tone="danger">Alert</elvt-badge>
+```
+
+### Key Properties
+
+The most commonly used properties for design and development:
+
+<PageTable>
+
+| Property | Options | Description |
+|----------|---------|-------------|
+| `tone` | `neutral` (default), `primary`, `success`, `warning`, `danger` | Visual style that communicates meaning |
+| `shape` | `pill` (default), `box` | Shape of the badge - pill (rounded) or box (square corners) |  
+| `padding` | Padding string or object | Custom padding using design tokens (e.g., "s", "m l", etc.) |
+| `pulse` | `true`, `false` (default) | Adds pulsing animation to draw attention |
+
+</PageTable>
+
+*For complete API reference including all properties, events, and methods, see the [Storybook documentation](https://elevate-core-ui.inform-cloud.io/?path=/docs/components-badge--docs).*
+
+## Interactive Examples
+
+
+### Live Badge Playground
+
+Experience how badges behave in realistic contexts. All examples use actual ELEVATE components.
+
+<LiveExample 
+  title="Badges in Context" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 2rem; max-width: 500px;">
+  <!-- User profile with status -->
+  <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 8px;">
+    <div style="width: 48px; height: 48px; border-radius: 50%; background: #0066cc; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500;">JD</div>
+    <div>
+      <h4 style="margin: 0; font-size: 1rem;">John Doe</h4>
+      <elvt-badge tone="success">Online</elvt-badge>
+    </div>
+  </div>
+  
+  <!-- Navigation with counts -->
+  <div style="display: flex; gap: 2rem; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 8px;">
+    <div style="position: relative; cursor: pointer;">
+      <span>Messages</span>
+      <elvt-badge tone="danger" style="margin-left: 0.5rem;">5</elvt-badge>
+    </div>
+    <div style="position: relative; cursor: pointer;">
+      <span>Notifications</span>
+      <elvt-badge tone="primary" style="margin-left: 0.5rem;">12</elvt-badge>
+    </div>
+  </div>
+  
+  <!-- Content with tags -->
+  <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 8px;">
+    <h4 style="margin-top: 0;">Component Library Guide</h4>
+    <p style="margin: 0.5rem 0; color: #6f6f6f;">Learn how to use ELEVATE components in your projects</p>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <elvt-badge>Tutorial</elvt-badge>
+      <elvt-badge>React</elvt-badge>
+      <elvt-badge>Design System</elvt-badge>
+      <elvt-badge tone="primary">New</elvt-badge>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Number badges need descriptive context:**
+```html
+<!-- Good: Screen readers understand what the number represents -->
+<elvt-badge aria-label="5 unread messages">5</elvt-badge>
+
+<!-- Better: Provide context with surrounding text -->
+<span>Unread messages: <elvt-badge tone="danger">5</elvt-badge></span>
+```
+
+**Status badges should include text, not just color:**
+- ✅ "Active", "Pending", "Failed" with semantic colors
+- ⛔️ Color-only indicators without text labels
+
+**Ensure sufficient contrast:**
+- Badge text must meet 4.5:1 contrast ratio minimum
+- All badge variants are designed to meet WCAG requirements
+
+**Interactive badges need proper focus:**
+- Dismissible badges have clear focus indicators
+- Space and Enter activate dismissible badges
+- Tab navigation works without additional code
+
+**Don't use badges for primary actions:**
+- Badges are informational, not interactive elements
+- Use Button component for actions users need to take
+
+## Changelog
+
+
+### Version 0.0.26-alpha (July 16, 2025)
+- Current version in active development
+
+### Version 0.0.22-alpha (June 25, 2025)
+- **New**: Add Badge Pulse Animation
+- **New**: Add Optional Badge Padding
+- **Fixed**: Fix Badge Minimum Width (Same as Height)
+
+### Version 0.0.21-alpha (June 18, 2025)
+- **Enhanced**: Apply Tokens To Badge
+
+### Version 0.0.20-alpha (June 18, 2025)
+- **Enhanced**: Console Generic Shape (Box|Pill), Badge is Pill by Default
+
+### Version 0.0.15-alpha (May 23, 2025)
+- **Fixed**: Update Design Tokens, Higher Contrast for Badges/Chips
+
+### Version 0.0.11-alpha (May 9, 2025)
+- **New**: Elevate Badge (major implementation)
+
+### Version 0.0.1-alpha (March 14, 2025)
+- **New**: Add Badge Component (initial implementation)

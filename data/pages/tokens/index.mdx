@@ -1,0 +1,155 @@
+---
+title: Design Tokens
+description: ELEVATE Design Tokens provide a 3-tier system of Primitives, Aliases, and Component tokens that ensure consistent design implementation across all INFORM applications.
+---
+
+<PageDescription>
+
+ELEVATE Design Tokens are built on a sophisticated 3-tier architecture that provides flexibility, maintainability, and consistency. The system uses JSON-based tokens that compile to SCSS variables and CSS custom properties, ensuring seamless integration across web technologies.
+
+</PageDescription>
+
+## ELEVATE Token Architecture
+
+### 3-Tier Token System
+ELEVATE uses a sophisticated 3-tier architecture for maximum flexibility and maintainability:
+
+#### 1. Primitives
+**Raw design values** - The foundation of the system
+- `color-blue-600: #2563eb`
+- `font-weight-400: 400`
+- `size-16: 16px`
+
+Primitives are context-agnostic raw values that rarely change.
+
+#### 2. Aliases
+**Semantic tokens** - Purpose-driven references to primitives
+- `action.strong-neutral-fill-default: {primitives.color-gray-100}`
+- `content.text-color-default: {primitives.color-gray-900}`
+- `layout.spacing-m: {measures.spacing-m}`
+
+Aliases provide semantic meaning and enable theme switching.
+
+#### 3. Component Tokens
+**Component-specific values** - Tokens for individual components
+- `button.background-color-primary: {alias.action.strong-primary-fill-default}`
+- `input.border-color-default: {alias.content.border-color-default}`
+- `card.padding-default: {alias.layout.spacing-l}`
+
+Component tokens ensure consistent implementation across all components.
+
+### Token Categories
+- **Colors** - Complete color palette with semantic aliases
+- **Type Alias** - Typography scales and font properties
+- **Measures** - Spacing, sizing, and layout dimensions
+- **Component** - Component-specific design properties
+
+## Implementation
+
+ELEVATE Design Tokens are distributed as:
+- **JSON files** - Source of truth for all token values
+- **SCSS files** - For Sass-based applications
+- **CSS Custom Properties** - For runtime theming
+
+## Getting Started
+
+### Installation
+
+```bash
+npm install @inform-elevate/elevate-design-tokens
+```
+
+### SCSS Usage
+
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/tokens';
+
+.my-component {
+  background-color: var(--elvt-alias-action-strong-primary-fill-default);
+  color: var(--elvt-primitives-color-white);
+  padding: var(--elvt-measures-spacing-m);
+}
+```
+
+### CSS Custom Properties
+
+```css
+:root {
+  /* Primitives */
+  --elvt-primitives-color-blue-600: #2563eb;
+  --elvt-primitives-font-weight-400: 400;
+  
+  /* Aliases */
+  --elvt-alias-action-strong-primary-fill-default: var(--elvt-primitives-color-blue-600);
+  --elvt-alias-content-text-color-default: var(--elvt-primitives-color-gray-900);
+  
+  /* Components */
+  --elvt-component-button-background-color-primary: var(--elvt-alias-action-strong-primary-fill-default);
+}
+```
+
+### Token Naming Convention
+
+All ELEVATE tokens follow the pattern:
+```
+--elvt-{tier}-{category}-{property}-{variant}-{state}
+```
+
+**Examples:**
+- `--elvt-primitives-color-blue-600`
+- `--elvt-alias-action-strong-primary-fill-hover`
+- `--elvt-component-button-background-color-primary-disabled`
+
+## Usage Guidelines
+
+### Token Selection Hierarchy
+1. **Component tokens first** - Use if available for your component
+2. **Alias tokens second** - Use semantic aliases for general purposes  
+3. **Primitives last** - Only when no alias exists
+4. **Never hard-code** - Always use tokens instead of raw values
+
+### Best Practices
+- **Follow the tier system** - Don't skip tiers unnecessarily
+- **Use semantic names** - Choose tokens that match your intent
+- **Test across themes** - Verify tokens work in light and dark modes
+- **Stay consistent** - Use the same tokens for similar purposes
+- **Document extensions** - When creating custom tokens, follow naming conventions
+
+### Theme Support
+ELEVATE tokens support multiple themes:
+- **Light theme** - Default INFORM branding
+- **Dark theme** - High contrast dark mode
+- **Custom themes** - Override token values for brand variations
+
+```scss
+// Light theme (default)
+/* TODO: Re-enable when private packages are accessible
+@import '@inform-elevate/elevate-design-tokens/dist/scss/light';
+
+// Dark theme
+@import '@inform-elevate/elevate-design-tokens/dist/scss/dark'; */
+```
+
+## Token Reference
+
+Explore the complete ELEVATE token system:
+
+- [Color Tokens](/tokens/color) - Primitives, semantic colors, and component-specific colors
+- [Typography Tokens](/tokens/typography) - Font families, type scales, and text properties  
+- [Spacing Tokens](/tokens/spacing) - Layout dimensions, component spacing, and measures
+
+### Live Documentation
+For interactive token exploration and real-time values:
+- [ELEVATE Storybook](https://elevate-core-ui.inform-cloud.io) - Live token browser
+- [GitHub Repository](https://github.com/inform-elevate/elevate-design-tokens) - Source code and releases
+
+### Version Information
+**Current Version**: 1.0.0  
+**Package**: `@inform-elevate/elevate-design-tokens`  
+**Last Updated**: 2025
+
+<InlineNotification>
+
+**Pro tip:** Always start with component tokens, fall back to aliases, and only use primitives when necessary. This ensures your implementations are semantic and maintainable.
+
+</InlineNotification>

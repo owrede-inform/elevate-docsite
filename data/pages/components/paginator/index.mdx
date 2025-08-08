@@ -1,0 +1,589 @@
+---
+title: Paginator
+description: Paginator components enable users to navigate through large sets of data or content. The ELEVATE Paginator provides accessible page navigation with consistent styling and behavior.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Paginator components help users navigate through large datasets by breaking content into manageable pages. The ELEVATE Paginator ensures accessible, intuitive navigation patterns that scale from simple previous/next controls to complex numbered pagination systems.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Paginators
+- **Large datasets**: Breaking up long lists or tables into manageable pages
+- **Search results**: Navigating through multiple pages of search results  
+- **Product catalogs**: Browsing through extensive product listings
+- **Data tables**: Managing large data tables with many rows
+- **Content archives**: Navigating through chronological content like blogs or news
+
+### When NOT to Use Paginators
+- **Short lists**: Small datasets that fit comfortably on one page
+- **Infinite scroll contexts**: Where continuous scrolling is more appropriate
+- **Single-page content**: When all content should remain visible together
+- **Real-time data**: Dynamic data where pagination boundaries would be unstable
+
+## Variations
+
+### Basic Paginator Types
+
+**Simple Navigation** provides essential previous and next controls for linear browsing.
+
+<LiveExample 
+  title="Basic ELEVATE Paginator" 
+  htmlCode={`<div style="padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <div style="margin-bottom: 2rem;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem;">Search Results</h3>
+    <p style="margin: 0; color: #6f6f6f;">Showing results 21-40 of 1,247</p>
+  </div>
+  
+  <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+      <h4 style="margin: 0 0 0.5rem 0;">Result Item 21</h4>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f;">Description of search result item...</p>
+    </div>
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+      <h4 style="margin: 0 0 0.5rem 0;">Result Item 22</h4>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f;">Description of search result item...</p>
+    </div>
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+      <h4 style="margin: 0 0 0.5rem 0;">Result Item 23</h4>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f;">Description of search result item...</p>
+    </div>
+  </div>
+  
+  <elvt-paginator 
+    current-page="2" 
+    total-pages="63" 
+    total-items="1247" 
+    page-size="20"
+    show-info="true"
+    variant="simple">
+  </elvt-paginator>
+</div>`}
+/>
+
+**Numbered Pagination** shows specific page numbers for direct navigation to any page.
+
+<LiveExample 
+  title="Numbered ELEVATE Paginator" 
+  htmlCode={`<div style="padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <div style="margin-bottom: 2rem;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem;">Product Catalog</h3>
+    <p style="margin: 0; color: #6f6f6f;">Showing products 51-75 of 432</p>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px; text-align: center;">
+      <div style="width: 100%; height: 120px; background: #f0f0f0; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+      <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem;">Product 51</h4>
+      <p style="margin: 0; font-size: 0.75rem; color: #6f6f6f;">$29.99</p>
+    </div>
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px; text-align: center;">
+      <div style="width: 100%; height: 120px; background: #f0f0f0; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+      <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem;">Product 52</h4>
+      <p style="margin: 0; font-size: 0.75rem; color: #6f6f6f;">$39.99</p>
+    </div>
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px; text-align: center;">
+      <div style="width: 100%; height: 120px; background: #f0f0f0; border-radius: 4px; margin-bottom: 0.5rem;"></div>
+      <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem;">Product 53</h4>
+      <p style="margin: 0; font-size: 0.75rem; color: #6f6f6f;">$19.99</p>
+    </div>
+  </div>
+  
+  <elvt-paginator 
+    current-page="3" 
+    total-pages="18" 
+    total-items="432" 
+    page-size="25"
+    show-info="true"
+    show-page-numbers="true"
+    max-visible-pages="5">
+  </elvt-paginator>
+</div>`}
+/>
+
+**Compact Paginator** provides space-efficient navigation for smaller layouts.
+
+<LiveExample 
+  title="Compact Paginator Layout" 
+  htmlCode={`<div style="padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <div style="margin-bottom: 2rem;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.25rem;">Comments</h3>
+  </div>
+  
+  <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div style="width: 32px; height: 32px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500; font-size: 0.875rem;">JD</div>
+        <div>
+          <div style="font-weight: 500; font-size: 0.875rem;">John Doe</div>
+          <div style="font-size: 0.75rem; color: #6f6f6f;">2 hours ago</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 0.875rem;">This is a great article! Thanks for sharing.</p>
+    </div>
+    
+    <div style="padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div style="width: 32px; height: 32px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500; font-size: 0.875rem;">SM</div>
+        <div>
+          <div style="font-weight: 500; font-size: 0.875rem;">Sarah Miller</div>
+          <div style="font-size: 0.75rem; color: #6f6f6f;">4 hours ago</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 0.875rem;">I found this very helpful. Looking forward to more content like this.</p>
+    </div>
+  </div>
+  
+  <elvt-paginator 
+    current-page="1" 
+    total-pages="12" 
+    total-items="47" 
+    page-size="4"
+    variant="compact"
+    show-info="false">
+  </elvt-paginator>
+</div>`}
+/>
+
+### Size Variations
+
+**Different Paginator Sizes** accommodate various layout requirements and visual hierarchy.
+
+<LiveExample 
+  title="Paginator Size Variants" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 3rem;">
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">Small Paginator</h4>
+    <elvt-paginator 
+      current-page="5" 
+      total-pages="20" 
+      total-items="200" 
+      page-size="10"
+      size="small"
+      show-page-numbers="true"
+      max-visible-pages="3">
+    </elvt-paginator>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">Medium Paginator (Default)</h4>
+    <elvt-paginator 
+      current-page="5" 
+      total-pages="20" 
+      total-items="200" 
+      page-size="10"
+      show-page-numbers="true"
+      max-visible-pages="5">
+    </elvt-paginator>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">Large Paginator</h4>
+    <elvt-paginator 
+      current-page="5" 
+      total-pages="20" 
+      total-items="200" 
+      page-size="10"
+      size="large"
+      show-page-numbers="true"
+      max-visible-pages="7">
+    </elvt-paginator>
+  </div>
+</div>`}
+/>
+
+### Information Display Options
+
+**Paginator with Different Information Displays** shows various ways to communicate pagination status.
+
+<LiveExample 
+  title="Pagination Information Variants" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 3rem;">
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">With Range Information</h4>
+    <elvt-paginator 
+      current-page="3" 
+      total-pages="15" 
+      total-items="147" 
+      page-size="10"
+      show-info="true"
+      info-format="range"
+      show-page-numbers="true">
+    </elvt-paginator>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">With Page Information</h4>
+    <elvt-paginator 
+      current-page="8" 
+      total-pages="25" 
+      total-items="245" 
+      page-size="10"
+      show-info="true"
+      info-format="page"
+      show-page-numbers="true">
+    </elvt-paginator>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0;">With Total Information</h4>
+    <elvt-paginator 
+      current-page="2" 
+      total-pages="8" 
+      total-items="75" 
+      page-size="10"
+      show-info="true"
+      info-format="total"
+      show-page-numbers="true">
+    </elvt-paginator>
+  </div>
+</div>`}
+/>
+
+## Design Principles
+
+### Clarity Principle
+**Pagination controls should clearly indicate current position and available navigation options.** Users need to understand where they are and how to move through the data.
+
+### Efficiency Principle
+**Pagination should minimize the number of clicks needed to reach desired content.** Efficient navigation patterns reduce user frustration and improve task completion.
+
+### Consistency Principle
+**Pagination behavior and appearance should be consistent across the application.** Predictable pagination patterns help users build mental models for navigation.
+
+### Accessibility Principle
+**Pagination controls must be fully accessible to keyboard and screen reader users.** All navigation options should be reachable and understandable through assistive technology.
+
+## Best Practices
+
+### Choosing Pagination Types
+
+**Why this matters:** The right pagination type depends on dataset size and user needs. Simple navigation works for linear browsing, while numbered pagination enables direct access to specific pages.
+
+### Managing Page Size
+
+**Why this matters:** Appropriate page sizes balance loading performance with user convenience. Too few items per page creates excessive clicking, while too many items hurt performance.
+
+### Providing Clear Feedback
+
+**Why this matters:** Users need to understand their current position and available options. Clear pagination feedback prevents confusion and supports efficient navigation.
+
+## Implementation
+
+### Getting Started
+
+```bash
+yarn add @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import ELEVATE components
+import '@inform-elevate/elevate-core-ui';
+```
+
+### Basic Paginator Usage
+
+```html
+<!-- Simple paginator -->
+<elvt-paginator 
+  current-page="2" 
+  total-pages="10" 
+  total-items="100" 
+  page-size="10">
+</elvt-paginator>
+
+<!-- Paginator with page numbers -->
+<elvt-paginator 
+  current-page="5" 
+  total-pages="20" 
+  total-items="200" 
+  page-size="10"
+  show-page-numbers="true"
+  max-visible-pages="5">
+</elvt-paginator>
+
+<!-- Compact paginator -->
+<elvt-paginator 
+  current-page="3" 
+  total-pages="15" 
+  variant="compact"
+  show-info="false">
+</elvt-paginator>
+
+<!-- Paginator with information -->
+<elvt-paginator 
+  current-page="1" 
+  total-pages="25" 
+  total-items="245" 
+  page-size="10"
+  show-info="true"
+  info-format="range">
+</elvt-paginator>
+```
+
+### Paginator Attributes
+
+<PageTable>
+
+| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `current-page` | number | 1 | Currently active page number |
+| `total-pages` | number | - | Total number of available pages |
+| `total-items` | number | - | Total number of items across all pages |
+| `page-size` | number | 10 | Number of items displayed per page |
+| `show-page-numbers` | boolean | false | Shows numbered page buttons |
+| `max-visible-pages` | number | 5 | Maximum page numbers to show at once |
+| `show-info` | boolean | true | Shows pagination information text |
+| `info-format` | string | range | Information format: range, page, total |
+| `variant` | string | default | Visual variant: default, simple, compact |
+| `size` | string | medium | Size variant: small, medium, large |
+| `disabled` | boolean | false | Disables all pagination controls |
+
+</PageTable>
+
+### JavaScript Paginator Control
+
+```javascript
+// Get paginator element
+const paginator = document.querySelector('elvt-paginator');
+
+// Listen for page changes
+paginator.addEventListener('page-change', (event) => {
+  const { currentPage, pageSize } = event.detail;
+  console.log(`Navigate to page ${currentPage}, showing ${pageSize} items`);
+  
+  // Load new page data
+  loadPageData(currentPage, pageSize);
+});
+
+// Update paginator programmatically
+paginator.currentPage = 5;
+paginator.totalPages = 25;
+paginator.totalItems = 247;
+
+// Navigate to specific page
+paginator.goToPage(10);
+
+// Navigate relative to current page
+paginator.goToNextPage();
+paginator.goToPreviousPage();
+```
+
+### Key Components Used
+
+Components commonly used with Paginator:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Navigation controls | Previous, next, and page number buttons |
+| `elvt-select` | Page size selector | Dropdown for choosing items per page |
+| `elvt-input` | Direct page input | Text input for jumping to specific page |
+| `elvt-icon` | Navigation icons | Chevron icons for previous/next navigation |
+
+</PageTable>
+
+## Interactive Examples
+
+### Data Table Pagination Pattern
+
+<LiveExample 
+  title="Data Table with Pagination" 
+  htmlCode={`<div style="max-width: 800px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h3 style="margin: 0; font-size: 1.25rem;">User Management</h3>
+    <elvt-button tone="primary">
+      <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+      Add User
+    </elvt-button>
+  </div>
+  
+  <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #e0e0e0;">
+      <thead style="background: #f8f9fa;">
+        <tr>
+          <th style="text-align: left; padding: 0.75rem; border-bottom: 1px solid #e0e0e0; font-weight: 600; font-size: 0.875rem;">Name</th>
+          <th style="text-align: left; padding: 0.75rem; border-bottom: 1px solid #e0e0e0; font-weight: 600; font-size: 0.875rem;">Email</th>
+          <th style="text-align: left; padding: 0.75rem; border-bottom: 1px solid #e0e0e0; font-weight: 600; font-size: 0.875rem;">Role</th>
+          <th style="text-align: left; padding: 0.75rem; border-bottom: 1px solid #e0e0e0; font-weight: 600; font-size: 0.875rem;">Status</th>
+          <th style="text-align: left; padding: 0.75rem; border-bottom: 1px solid #e0e0e0; font-weight: 600; font-size: 0.875rem;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">John Smith</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">john@example.com</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">Admin</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <span style="padding: 0.25rem 0.5rem; background: #d4edda; color: #155724; border-radius: 12px; font-size: 0.75rem;">Active</span>
+          </td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <elvt-button tone="subtle" size="small">
+              <elvt-icon icon="mdi:pencil"></elvt-icon>
+            </elvt-button>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">Sarah Johnson</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">sarah@example.com</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">Editor</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <span style="padding: 0.25rem 0.5rem; background: #d4edda; color: #155724; border-radius: 12px; font-size: 0.75rem;">Active</span>
+          </td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <elvt-button tone="subtle" size="small">
+              <elvt-icon icon="mdi:pencil"></elvt-icon>
+            </elvt-button>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">Mike Davis</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">mike@example.com</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0; font-size: 0.875rem;">Viewer</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <span style="padding: 0.25rem 0.5rem; background: #f8d7da; color: #721c24; border-radius: 12px; font-size: 0.75rem;">Inactive</span>
+          </td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #f0f0f0;">
+            <elvt-button tone="subtle" size="small">
+              <elvt-icon icon="mdi:pencil"></elvt-icon>
+            </elvt-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span style="font-size: 0.875rem; color: #6f6f6f;">Show</span>
+      <select style="padding: 0.25rem 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem;">
+        <option>10</option>
+        <option selected>25</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+      <span style="font-size: 0.875rem; color: #6f6f6f;">entries</span>
+    </div>
+    
+    <elvt-paginator 
+      current-page="1" 
+      total-pages="42" 
+      total-items="1047" 
+      page-size="25"
+      show-info="true"
+      info-format="range"
+      show-page-numbers="true"
+      max-visible-pages="5">
+    </elvt-paginator>
+  </div>
+</div>`}
+/>
+
+### Search Results Pagination Pattern
+
+<LiveExample 
+  title="Search Results with Advanced Pagination" 
+  htmlCode={`<div style="max-width: 700px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <div style="margin-bottom: 2rem;">
+    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.25rem;">Search Results</h3>
+    <p style="margin: 0; color: #6f6f6f;">Found 1,284 results for "javascript tutorials"</p>
+  </div>
+  
+  <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+      <h4 style="margin: 0 0 0.5rem 0; color: #007bff;">JavaScript Tutorial: Complete Beginner's Guide</h4>
+      <div style="font-size: 0.75rem; color: #28a745; margin-bottom: 0.5rem;">tutorial-site.com/js-guide</div>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f; line-height: 1.5;">
+        Learn JavaScript from scratch with this comprehensive tutorial covering variables, functions, objects, and modern ES6+ features...
+      </p>
+    </div>
+    
+    <div style="padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+      <h4 style="margin: 0 0 0.5rem 0; color: #007bff;">Advanced JavaScript Patterns and Best Practices</h4>
+      <div style="font-size: 0.75rem; color: #28a745; margin-bottom: 0.5rem;">developer-blog.com/js-patterns</div>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f; line-height: 1.5;">
+        Explore advanced JavaScript patterns including module patterns, observer pattern, and functional programming concepts...
+      </p>
+    </div>
+    
+    <div style="padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 6px;">
+      <h4 style="margin: 0 0 0.5rem 0; color: #007bff;">Interactive JavaScript Exercises and Challenges</h4>
+      <div style="font-size: 0.75rem; color: #28a745; margin-bottom: 0.5rem;">code-practice.com/js-exercises</div>
+      <p style="margin: 0; font-size: 0.875rem; color: #6f6f6f; line-height: 1.5;">
+        Practice your JavaScript skills with interactive coding challenges ranging from beginner to expert level...
+      </p>
+    </div>
+  </div>
+  
+  <div style="display: flex; justify-content: center;">
+    <elvt-paginator 
+      current-page="3" 
+      total-pages="86" 
+      total-items="1284" 
+      page-size="15"
+      show-info="true"
+      info-format="range"
+      show-page-numbers="true"
+      max-visible-pages="7"
+      size="large">
+    </elvt-paginator>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Features
+
+**Keyboard accessibility:**
+- All pagination controls are fully keyboard accessible
+- Tab key moves through pagination controls in logical order
+- Arrow keys can navigate between page numbers
+- Enter and Space keys activate pagination buttons
+- Focus indicators are clearly visible on all interactive elements
+
+**Screen reader support:**
+- Pagination controls use proper ARIA roles and labels
+- Current page is clearly announced to screen readers
+- Page changes are announced when navigation occurs
+- Total pages and current position are communicated
+- Disabled states are properly conveyed to assistive technology
+
+**Clear navigation feedback:**
+- Current page is visually distinct from other page options
+- Disabled navigation buttons are clearly indicated
+- Loading states are communicated during page transitions
+- Error states provide clear feedback and recovery options
+
+**Predictable behavior:**
+- Pagination controls behave consistently across the application
+- Navigation results match user expectations
+- Page changes don't cause unexpected focus changes
+- Pagination state is preserved during page updates
+
+## Changelog
+
+<ChangeLog component="paginator" />

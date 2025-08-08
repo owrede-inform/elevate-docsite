@@ -1,0 +1,789 @@
+---
+title: Expansion Panel Group
+description: Expansion Panel Group manages collections of expandable panels, controlling their behavior, coordination, and visual presentation as a unified set of related content sections.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+The Expansion Panel Group component orchestrates multiple expansion panels, providing coordinated behavior, consistent visual presentation, and efficient space management. It enables complex information architectures while maintaining usability and visual coherence across related content sections.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Expansion Panel Groups
+
+- **FAQ sections**: Organize frequently asked questions with collapsible answers
+- **Settings categories**: Group related configuration options by category
+- **Product specifications**: Present detailed information in organized, expandable sections
+- **Multi-step processes**: Break complex workflows into manageable, expandable steps
+- **Content organization**: Structure large amounts of information hierarchically
+
+### When NOT to Use Expansion Panel Groups
+
+- **Critical information**: Don't hide essential information that users need immediately
+- **Short content**: Simple content that doesn't benefit from collapse/expand behavior
+- **Navigation menus**: Use dedicated navigation components instead
+- **Single items**: Use individual expansion panels for standalone expandable content
+
+## Variations
+
+### Panel Group Behaviors
+
+**Accordion Mode** allows only one panel to be open at a time, automatically closing others when a new panel is expanded.
+
+<LiveExample 
+  title="Accordion Expansion Panel Group" 
+  htmlCode={`<div style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+  <style>
+    .accordion-group {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .accordion-panel {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .accordion-panel:last-child {
+      border-bottom: none;
+    }
+    
+    .panel-header {
+      background: #f8f9fa;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    
+    .panel-header:hover {
+      background: #e9ecef;
+    }
+    
+    .panel-header.active {
+      background: #007bff;
+      color: white;
+    }
+    
+    .panel-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+    }
+    
+    .panel-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .panel-content.expanded {
+      max-height: 300px;
+      padding: 1.5rem;
+    }
+    
+    .expand-icon {
+      transition: transform 0.2s ease;
+    }
+    
+    .panel-header.active .expand-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+
+  <div class="accordion-group">
+    <div class="accordion-panel">
+      <button class="panel-header" onclick="toggleAccordionPanel(this, 'panel1')">
+        <h3 class="panel-title">Account Information</h3>
+        <elvt-icon class="expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="panel-content" id="panel1">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">Manage your account details, password, and personal information.</p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem;">Email Address</label>
+            <input type="email" value="user@example.com" style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;" />
+          </div>
+          <div>
+            <label style="display: block; font-weight: 500; margin-bottom: 0.25rem;">Display Name</label>
+            <input type="text" value="John Doe" style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="accordion-panel">
+      <button class="panel-header" onclick="toggleAccordionPanel(this, 'panel2')">
+        <h3 class="panel-title">Privacy & Security</h3>
+        <elvt-icon class="expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="panel-content" id="panel2">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">Configure your privacy settings and security preferences.</p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" checked />
+            <span>Enable two-factor authentication</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" />
+            <span>Make profile public</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" checked />
+            <span>Receive security notifications</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="accordion-panel">
+      <button class="panel-header" onclick="toggleAccordionPanel(this, 'panel3')">
+        <h3 class="panel-title">Notification Preferences</h3>
+        <elvt-icon class="expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="panel-content" id="panel3">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">Choose how and when you want to receive notifications.</p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <label style="font-weight: 500; margin-bottom: 0.5rem; display: block;">Email Notifications</label>
+            <select style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+              <option>All notifications</option>
+              <option selected>Important only</option>
+              <option>None</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-weight: 500; margin-bottom: 0.5rem; display: block;">Push Notifications</label>
+            <select style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+              <option selected>Enabled</option>
+              <option>Disabled</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function toggleAccordionPanel(header, panelId) {
+      // Close all panels
+      const allHeaders = document.querySelectorAll('.panel-header');
+      const allPanels = document.querySelectorAll('.panel-content');
+      
+      allHeaders.forEach(h => h.classList.remove('active'));
+      allPanels.forEach(p => p.classList.remove('expanded'));
+      
+      // Open clicked panel if it wasn't already active
+      const panel = document.getElementById(panelId);
+      if (!header.classList.contains('was-active')) {
+        header.classList.add('active');
+        panel.classList.add('expanded');
+      }
+      
+      // Toggle was-active class for next click
+      allHeaders.forEach(h => h.classList.remove('was-active'));
+      if (header.classList.contains('active')) {
+        header.classList.add('was-active');
+      }
+    }
+  </script>
+</div>`}
+/>
+
+**Multi-Expand Mode** allows multiple panels to be open simultaneously, giving users control over information visibility.
+
+<LiveExample 
+  title="Multi-Expand Panel Group" 
+  htmlCode={`<div style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+  <style>
+    .multi-expand-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .multi-panel {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+    
+    .multi-panel:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .multi-header {
+      background: #ffffff;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+    
+    .multi-header:hover {
+      background: #f8f9fa;
+    }
+    
+    .multi-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      color: #2d2d2d;
+    }
+    
+    .multi-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: #f8f9fa;
+    }
+    
+    .multi-content.expanded {
+      max-height: 400px;
+      padding: 1.5rem;
+    }
+    
+    .multi-expand-icon {
+      transition: transform 0.2s ease;
+      color: #6f6f6f;
+    }
+    
+    .multi-header[data-expanded="true"] .multi-expand-icon {
+      transform: rotate(180deg);
+      color: #007bff;
+    }
+  </style>
+
+  <div class="multi-expand-group">
+    <div class="multi-panel">
+      <button class="multi-header" onclick="toggleMultiPanel(this, 'multi1')">
+        <h3 class="multi-title">
+          <elvt-icon icon="mdi:folder-outline" style="margin-right: 0.5rem; color: #007bff;"></elvt-icon>
+          Project Files
+        </h3>
+        <elvt-icon class="multi-expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="multi-content" id="multi1">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">Manage your project files and documents.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+          <div style="padding: 1rem; background: white; border-radius: 6px; text-align: center;">
+            <elvt-icon icon="mdi:file-document" style="font-size: 2rem; color: #007bff; margin-bottom: 0.5rem;"></elvt-icon>
+            <div style="font-size: 0.875rem; color: #2d2d2d;">Document.pdf</div>
+          </div>
+          <div style="padding: 1rem; background: white; border-radius: 6px; text-align: center;">
+            <elvt-icon icon="mdi:image" style="font-size: 2rem; color: #28a745; margin-bottom: 0.5rem;"></elvt-icon>
+            <div style="font-size: 0.875rem; color: #2d2d2d;">Image.jpg</div>
+          </div>
+          <div style="padding: 1rem; background: white; border-radius: 6px; text-align: center;">
+            <elvt-icon icon="mdi:file-code" style="font-size: 2rem; color: #ffc107; margin-bottom: 0.5rem;"></elvt-icon>
+            <div style="font-size: 0.875rem; color: #2d2d2d;">Code.js</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="multi-panel">
+      <button class="multi-header" onclick="toggleMultiPanel(this, 'multi2')">
+        <h3 class="multi-title">
+          <elvt-icon icon="mdi:account-group" style="margin-right: 0.5rem; color: #28a745;"></elvt-icon>
+          Team Members
+        </h3>
+        <elvt-icon class="multi-expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="multi-content" id="multi2">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">View and manage team member access and roles.</p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 6px;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <elvt-icon icon="mdi:account-circle" style="font-size: 1.5rem; color: #007bff;"></elvt-icon>
+              <div>
+                <div style="font-weight: 500; color: #2d2d2d;">John Doe</div>
+                <div style="font-size: 0.875rem; color: #6f6f6f;">Admin</div>
+              </div>
+            </div>
+            <elvt-button tone="ghost" style="font-size: 0.875rem;">Edit</elvt-button>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 6px;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <elvt-icon icon="mdi:account-circle" style="font-size: 1.5rem; color: #28a745;"></elvt-icon>
+              <div>
+                <div style="font-weight: 500; color: #2d2d2d;">Jane Smith</div>
+                <div style="font-size: 0.875rem; color: #6f6f6f;">Editor</div>
+              </div>
+            </div>
+            <elvt-button tone="ghost" style="font-size: 0.875rem;">Edit</elvt-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="multi-panel">
+      <button class="multi-header" onclick="toggleMultiPanel(this, 'multi3')">
+        <h3 class="multi-title">
+          <elvt-icon icon="mdi:chart-line" style="margin-right: 0.5rem; color: #dc3545;"></elvt-icon>
+          Analytics
+        </h3>
+        <elvt-icon class="multi-expand-icon" icon="mdi:chevron-down"></elvt-icon>
+      </button>
+      <div class="multi-content" id="multi3">
+        <p style="margin: 0 0 1rem 0; color: #2d2d2d;">View project analytics and performance metrics.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+          <div style="text-align: center; padding: 1rem; background: white; border-radius: 6px;">
+            <div style="font-size: 1.5rem; font-weight: 600; color: #007bff; margin-bottom: 0.25rem;">24</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">Active Users</div>
+          </div>
+          <div style="text-align: center; padding: 1rem; background: white; border-radius: 6px;">
+            <div style="font-size: 1.5rem; font-weight: 600; color: #28a745; margin-bottom: 0.25rem;">87%</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">Completion</div>
+          </div>
+          <div style="text-align: center; padding: 1rem; background: white; border-radius: 6px;">
+            <div style="font-size: 1.5rem; font-weight: 600; color: #ffc107; margin-bottom: 0.25rem;">15</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">Pending</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function toggleMultiPanel(header, panelId) {
+      const panel = document.getElementById(panelId);
+      const isExpanded = header.getAttribute('data-expanded') === 'true';
+      
+      if (isExpanded) {
+        header.setAttribute('data-expanded', 'false');
+        panel.classList.remove('expanded');
+      } else {
+        header.setAttribute('data-expanded', 'true');
+        panel.classList.add('expanded');
+      }
+    }
+  </script>
+</div>`}
+/>
+
+**Controlled Group** provides programmatic control over panel states with external controls.
+
+### Visual Variations
+
+**Compact Group** uses minimal spacing and visual styling for dense information presentation.
+
+**Card-Based Group** presents each panel as a distinct card with enhanced visual separation.
+
+**Inline Group** integrates seamlessly with surrounding content without strong visual borders.
+
+### Group Behaviors
+
+**Default Open Panels** specify which panels should be expanded by default on page load.
+
+**Disabled Panels** prevent certain panels from being expanded while maintaining visual consistency.
+
+**Nested Panel Groups** support hierarchical content organization with multiple levels of expansion.
+
+## Design Principles
+
+### Organization Principle
+**Information should be logically grouped and easily discoverable.** Panel groups should organize related content in a way that matches users' mental models and makes finding specific information intuitive.
+
+### Control Principle  
+**Users need appropriate control over information visibility.** The choice between accordion and multi-expand modes should align with user needs—accordion for guided exploration, multi-expand for comparison and research tasks.
+
+### Consistency Principle
+**Panel behavior should be predictable and consistent.** Users should understand how panels will behave based on visual cues and previous interactions within the group.
+
+### Performance Principle
+**Groups should load and respond efficiently.** Large amounts of content should be handled gracefully, with appropriate loading states and smooth animations.
+
+## Best Practices
+
+### Content Organization Strategy
+
+**Why this matters:** Poor content organization leads to user confusion and inefficient information discovery. Well-structured panel groups help users navigate complex information hierarchies effectively.
+
+### Panel State Management
+
+**Why this matters:** Inconsistent or confusing panel states create frustrating user experiences. Clear state management ensures users understand what content is available and accessible.
+
+### Performance Considerations
+
+**Why this matters:** Slow or jerky animations and poor loading performance undermine the user experience. Optimized panel groups feel responsive and professional.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/expansion-panel-group/expansion-panel-group.js';
+import '@inform-elevate/elevate-core-ui/dist/components/expansion-panel/expansion-panel.js';
+```
+
+### Basic Panel Group Setup
+
+Expansion Panel Groups coordinate multiple panels with unified behavior:
+
+```html
+<!-- Accordion-style panel group -->
+<elvt-expansion-panel-group mode="accordion">
+  <elvt-expansion-panel>
+    <h3 slot="header">Account Settings</h3>
+    <div slot="content">
+      <!-- Account configuration content -->
+    </div>
+  </elvt-expansion-panel>
+  
+  <elvt-expansion-panel>
+    <h3 slot="header">Privacy Settings</h3>
+    <div slot="content">
+      <!-- Privacy configuration content -->
+    </div>
+  </elvt-expansion-panel>
+  
+  <elvt-expansion-panel>
+    <h3 slot="header">Notification Settings</h3>
+    <div slot="content">
+      <!-- Notification configuration content -->
+    </div>
+  </elvt-expansion-panel>
+</elvt-expansion-panel-group>
+
+<!-- Multi-expand panel group -->
+<elvt-expansion-panel-group mode="multi-expand">
+  <elvt-expansion-panel expanded>
+    <h3 slot="header">Project Files</h3>
+    <div slot="content">
+      <!-- File management interface -->
+    </div>
+  </elvt-expansion-panel>
+  
+  <elvt-expansion-panel>
+    <h3 slot="header">Team Members</h3>
+    <div slot="content">
+      <!-- Team management interface -->
+    </div>
+  </elvt-expansion-panel>
+</elvt-expansion-panel-group>
+
+<!-- Controlled panel group -->
+<elvt-expansion-panel-group controlled>
+  <elvt-expansion-panel id="panel1">
+    <h3 slot="header">Controlled Panel</h3>
+    <div slot="content">Content controlled programmatically</div>
+  </elvt-expansion-panel>
+</elvt-expansion-panel-group>
+```
+
+### CSS Styling
+
+```css
+/* Panel group container */
+elvt-expansion-panel-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--elvt-spacing-md);
+}
+
+/* Accordion mode styling */
+elvt-expansion-panel-group[mode="accordion"] {
+  border: 1px solid var(--elvt-color-border);
+  border-radius: var(--elvt-border-radius);
+  overflow: hidden;
+}
+
+elvt-expansion-panel-group[mode="accordion"] elvt-expansion-panel {
+  border-bottom: 1px solid var(--elvt-color-border);
+}
+
+elvt-expansion-panel-group[mode="accordion"] elvt-expansion-panel:last-child {
+  border-bottom: none;
+}
+
+/* Multi-expand mode styling */
+elvt-expansion-panel-group[mode="multi-expand"] elvt-expansion-panel {
+  border: 1px solid var(--elvt-color-border);
+  border-radius: var(--elvt-border-radius);
+  box-shadow: var(--elvt-shadow-sm);
+}
+
+/* Compact variant */
+elvt-expansion-panel-group[variant="compact"] {
+  gap: var(--elvt-spacing-xs);
+}
+
+/* Card variant */
+elvt-expansion-panel-group[variant="card"] elvt-expansion-panel {
+  background: var(--elvt-color-surface);
+  box-shadow: var(--elvt-shadow-md);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  elvt-expansion-panel-group {
+    gap: var(--elvt-spacing-sm);
+  }
+}
+```
+
+### Key Components Used
+
+Components commonly used in Expansion Panel Groups:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-expansion-panel-group` | Container | Coordinates multiple expansion panels with unified behavior |
+| `elvt-expansion-panel` | Individual panels | Expandable content sections within the group |  
+| `elvt-button` | Panel headers | Interactive headers for triggering panel expansion |
+| `elvt-icon` | Visual indicators | Expand/collapse indicators and content icons |
+| `elvt-card` | Content structure | Organized content presentation within panels |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### FAQ Expansion Panel Group
+
+<LiveExample 
+  title="FAQ-Style Panel Group" 
+  htmlCode={`<div style="max-width: 700px; margin: 0 auto; padding: 2rem;">
+  <style>
+    .faq-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .faq-panel {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    
+    .faq-panel:hover {
+      border-color: #007bff;
+      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+    }
+    
+    .faq-header {
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+    
+    .faq-header:hover {
+      background: #f8f9fa;
+    }
+    
+    .faq-question {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      color: #2d2d2d;
+      line-height: 1.4;
+      padding-right: 1rem;
+    }
+    
+    .faq-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: #f8f9fa;
+    }
+    
+    .faq-content.expanded {
+      max-height: 500px;
+      padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .faq-answer {
+      margin: 0;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    
+    .faq-expand-icon {
+      transition: transform 0.2s ease;
+      color: #6f6f6f;
+      flex-shrink: 0;
+    }
+    
+    .faq-header[data-expanded="true"] .faq-expand-icon {
+      transform: rotate(180deg);
+      color: #007bff;
+    }
+  </style>
+
+  <div style="margin-bottom: 2rem;">
+    <h2 style="margin: 0 0 0.5rem 0; color: #2d2d2d;">Frequently Asked Questions</h2>
+    <p style="margin: 0; color: #6f6f6f;">Find answers to common questions about our platform and services.</p>
+  </div>
+
+  <div class="faq-group">
+    <div class="faq-panel">
+      <button class="faq-header" onclick="toggleFAQPanel(this, 'faq1')">
+        <h3 class="faq-question">How do I create a new account?</h3>
+        <elvt-icon class="faq-expand-icon" icon="mdi:plus"></elvt-icon>
+      </button>
+      <div class="faq-content" id="faq1">
+        <p class="faq-answer">Creating a new account is easy! Click the "Sign Up" button in the top right corner of any page, then fill out the registration form with your email address and choose a secure password. You'll receive a confirmation email to verify your account.</p>
+      </div>
+    </div>
+    
+    <div class="faq-panel">
+      <button class="faq-header" onclick="toggleFAQPanel(this, 'faq2')">
+        <h3 class="faq-question">What payment methods do you accept?</h3>
+        <elvt-icon class="faq-expand-icon" icon="mdi:plus"></elvt-icon>
+      </button>
+      <div class="faq-content" id="faq2">
+        <p class="faq-answer">We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. For enterprise customers, we also offer invoice-based billing with NET 30 terms.</p>
+      </div>
+    </div>
+    
+    <div class="faq-panel">
+      <button class="faq-header" onclick="toggleFAQPanel(this, 'faq3')">
+        <h3 class="faq-question">Can I change my subscription plan later?</h3>
+        <elvt-icon class="faq-expand-icon" icon="mdi:plus"></elvt-icon>
+      </button>
+      <div class="faq-content" id="faq3">
+        <p class="faq-answer">Yes! You can upgrade or downgrade your subscription at any time from your account settings. Changes take effect immediately for upgrades, or at the next billing cycle for downgrades. Any unused time is prorated automatically.</p>
+      </div>
+    </div>
+    
+    <div class="faq-panel">
+      <button class="faq-header" onclick="toggleFAQPanel(this, 'faq4')">
+        <h3 class="faq-question">Do you offer customer support?</h3>
+        <elvt-icon class="faq-expand-icon" icon="mdi:plus"></elvt-icon>
+      </button>
+      <div class="faq-content" id="faq4">
+        <p class="faq-answer">We provide 24/7 customer support through multiple channels:</p>
+        <ul style="margin: 1rem 0 0 0; padding-left: 1.5rem; color: #2d2d2d;">
+          <li>Live chat (available in-app)</li>
+          <li>Email support (support@example.com)</li>
+          <li>Phone support for premium customers</li>
+          <li>Comprehensive help documentation</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="faq-panel">
+      <button class="faq-header" onclick="toggleFAQPanel(this, 'faq5')">
+        <h3 class="faq-question">Is my data secure and private?</h3>
+        <elvt-icon class="faq-expand-icon" icon="mdi:plus"></elvt-icon>
+      </button>
+      <div class="faq-content" id="faq5">
+        <p class="faq-answer">Security and privacy are our top priorities. We use industry-standard encryption, regular security audits, and comply with GDPR, CCPA, and SOC 2 standards. Your data is never shared with third parties without your explicit consent, and you have full control over your information.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function toggleFAQPanel(header, panelId) {
+      const panel = document.getElementById(panelId);
+      const isExpanded = header.getAttribute('data-expanded') === 'true';
+      
+      // Close all panels first (accordion behavior)
+      document.querySelectorAll('.faq-header').forEach(h => {
+        h.setAttribute('data-expanded', 'false');
+        const icon = h.querySelector('.faq-expand-icon');
+        icon.setAttribute('icon', 'mdi:plus');
+      });
+      document.querySelectorAll('.faq-content').forEach(p => {
+        p.classList.remove('expanded');
+      });
+      
+      // Open clicked panel if it wasn't already open
+      if (!isExpanded) {
+        header.setAttribute('data-expanded', 'true');
+        panel.classList.add('expanded');
+        const icon = header.querySelector('.faq-expand-icon');
+        icon.setAttribute('icon', 'mdi:minus');
+      }
+    }
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Keyboard navigation:**
+- Support Tab key navigation through panel headers
+- Use Enter or Space keys to expand/collapse panels
+- Provide clear focus indicators for all interactive elements
+- Ensure focus moves logically through expanded content
+
+**Screen reader support:**
+- Use proper heading structure within panel headers
+- Implement ARIA attributes (aria-expanded, aria-controls, aria-labelledby)
+- Provide clear announcements when panels expand or collapse
+- Ensure panel content is properly associated with headers
+
+**Focus management:**
+- Maintain focus on panel headers during expand/collapse actions
+- Provide skip links for lengthy panel groups
+- Ensure focus doesn't get trapped within expanded panels
+- Support Escape key to collapse panels when appropriate
+
+**Content structure:**
+- Use semantic HTML for panel headers (h2, h3, etc.)
+- Ensure proper heading hierarchy throughout the group
+- Provide alternative access to essential information
+- Test panel groups with screen readers and keyboard navigation
+
+## Changelog
+
+<ChangeLog component="expansion-panel-group" />

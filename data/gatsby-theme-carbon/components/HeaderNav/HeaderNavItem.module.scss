@@ -1,0 +1,53 @@
+// Overrides the style from upstream Carbon for non-accordion menu items
+.currentPage :global(.cds--header__menu-item--current) {
+  color: $white-0;
+}
+
+.currentPage :global(.cds--header__menu-item--current)::after {
+  border-bottom: 3px solid $blue-60;
+  width: calc(100% + 4px);
+  left: -2px;
+}
+
+// Creates the blue line under the active accordion menu item
+.currentPageAccordion::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 3px solid $blue-60;
+  content: '';
+}
+
+// Removes the blue line that sits under an active item in menu.
+.currentPageAccordion :global(.cds--header__menu-item--current)::after {
+  display: none;
+}
+
+// Changes style of an items in an accordion menu.
+.menuItem::after {
+  position: absolute;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  content: '';
+  border-bottom: 1px solid $gray-80;
+}
+
+.menuItem:hover::after {
+  display: none;
+}
+
+.menuItem:last-child::after {
+  display: none;
+}
+
+.menuItem.border::after {
+  display: none;
+}
+
+.menuItem :global(.cds--header__menu-item--current) {
+  background-color: $gray-80;
+  color: $white-0;
+}

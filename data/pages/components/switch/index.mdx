@@ -1,0 +1,316 @@
+---
+title: Switch
+description: Switches allow users to toggle between two states instantly. They provide immediate visual feedback for binary choices and settings activation.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Switches provide intuitive binary control with immediate visual feedback. The ELEVATE Switch component helps designers and developers create consistent, accessible toggle interfaces that clearly communicate state changes and system responses.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Switches
+- **Settings and preferences**: Enable/disable features and system options
+- **Instant state changes**: Controls that take effect immediately when toggled
+- **Binary choices**: On/off, enabled/disabled, public/private selections
+- **Feature toggles**: Activate or deactivate functionality within interfaces
+- **Notification controls**: Manage alert preferences and communication settings
+
+### When NOT to Use Switches
+- **Form submissions**: Use checkboxes for options that require form submission
+- **Multiple related options**: Use checkbox groups for selecting multiple items
+- **Temporary states**: Use buttons for actions that trigger processes
+- **Destructive actions**: Use buttons with confirmation for irreversible changes
+
+## Variations
+
+
+### Visual Styles
+
+**Standard Switches** provide clear on/off states with standard sizing and contrast.
+
+<LiveExample 
+  title="Basic Switch States" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
+  <elvt-switch>
+    <label slot="label">Enable notifications</label>
+  </elvt-switch>
+  
+  <elvt-switch checked>
+    <label slot="label">Dark mode</label>
+  </elvt-switch>
+  
+  <elvt-switch disabled>
+    <label slot="label">Maintenance mode</label>
+  </elvt-switch>
+</div>`}
+/>
+
+**Compact Switches** offer smaller size for dense interfaces and space-constrained layouts.
+
+**Emphasized Switches** use enhanced styling for important or prominent settings.
+
+### Label Positions
+
+**Right Labels** place descriptive text to the right of the switch control.
+
+<LiveExample 
+  title="Switch Label Positions" 
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+  <elvt-switch>
+    <label slot="label">Auto-save documents</label>
+    <span slot="help-text">Automatically save changes every 30 seconds</span>
+  </elvt-switch>
+  
+  <elvt-switch checked>
+    <label slot="label">Email notifications</label>
+    <span slot="help-text">Receive email alerts for important updates</span>
+  </elvt-switch>
+  
+  <elvt-switch size="small">
+    <label slot="label">Compact view</label>
+  </elvt-switch>
+</div>`}
+/>
+
+**Left Labels** position labels to the left for alternative layout needs.
+
+**Inline Labels** integrate switch and label as a unified interactive element.
+
+### State Indicators
+
+**Simple Toggle** shows basic on/off states with color and position changes.
+
+**Icon Integration** includes icons within switch handles to reinforce meaning.
+
+**Text Indicators** display "ON/OFF" or custom text within the switch track.
+
+## Design Principles
+
+
+### Immediate Feedback Principle
+**State changes should be instantly visible and clear.** Users need immediate confirmation that their toggle action has been registered and applied without requiring form submission or page refresh.
+
+### Predictable Behavior Principle  
+**Switch appearance should clearly indicate current state and expected behavior.** Users should be able to predict what will happen when they toggle a switch based on its visual design and context.
+
+### Semantic Clarity Principle
+**Switch states should have obvious meanings that align with user expectations.** On/off, enabled/disabled meanings should be culturally appropriate and contextually clear.
+
+### Reversibility Principle
+**Users should understand that switch actions are immediately reversible.** Switches are for temporary, easily changed states rather than permanent or destructive actions.
+
+## Best Practices
+
+
+### Providing Clear Labels
+
+**Why this matters:** Ambiguous switch labels leave users uncertain about what they're controlling. Clear, descriptive labels help users understand the impact of their toggle actions.
+
+### Indicating Current State
+
+**Why this matters:** Users need to understand whether a switch is currently on or off before they interact with it. Poor state indication leads to confusion and unintended actions.
+
+### Choosing Appropriate Context
+
+**Why this matters:** Switches work best for immediate, reversible state changes. Using switches for actions that require confirmation or have delayed effects creates misleading user expectations.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/switch/switch.js';
+```
+
+### Common Usage Patterns
+
+```html
+<!-- Basic switch -->
+<elvt-switch>
+  <label slot="label">Enable notifications</label>
+</elvt-switch>
+
+<!-- Pre-checked switch -->
+<elvt-switch checked>
+  <label slot="label">Dark mode</label>
+</elvt-switch>
+
+<!-- Disabled switch -->
+<elvt-switch disabled>
+  <label slot="label">Maintenance mode</label>
+</elvt-switch>
+
+<!-- Switch with description -->
+<elvt-switch>
+  <label slot="label">Auto-save</label>
+  <span slot="help-text">Automatically save changes every 30 seconds</span>
+</elvt-switch>
+
+<!-- Compact switch -->
+<elvt-switch size="small">
+  <label slot="label">Compact view</label>
+</elvt-switch>
+
+<!-- Switch with change handler -->
+<elvt-switch onchange="handleNotificationToggle(event)">
+  <label slot="label">Email alerts</label>
+</elvt-switch>
+
+<!-- Switch group -->
+<fieldset>
+  <legend>Privacy Settings</legend>
+  <elvt-switch checked>
+    <label slot="label">Profile visibility</label>
+  </elvt-switch>
+  <elvt-switch>
+    <label slot="label">Show online status</label>
+  </elvt-switch>
+  <elvt-switch checked>
+    <label slot="label">Allow direct messages</label>
+  </elvt-switch>
+</fieldset>
+```
+
+### Key Properties
+
+The most commonly planned properties for design and development:
+
+<PageTable>
+
+| Property | Options | Description |
+|----------|---------|-------------|
+| `checked` | `true`, `false` (default) | Whether switch is in on state |
+| `disabled` | `true`, `false` (default) | Whether switch can be toggled |  
+| `label` | String | Descriptive text for the switch |
+| `description` | String | Additional context or help text |
+| `size` | `small`, `medium` (default), `large` | Physical size of switch |
+| `label-position` | `right` (default), `left` | Position of label relative to switch |
+
+</PageTable>
+
+*For complete API reference including all properties, events, and methods, see the [Storybook documentation](https://elevate-core-ui.inform-cloud.io/?path=/docs/components-switch--docs).*
+
+## Interactive Examples
+
+### Live Switch Demonstrations
+
+<LiveExample 
+  title="Settings Panel Example" 
+  htmlCode={`<div style="max-width: 400px; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h3 style="margin-top: 0;">Account Settings</h3>
+  
+  <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <elvt-switch checked>
+      <label slot="label">Email notifications</label>
+      <span slot="help-text">Receive important updates and alerts</span>
+    </elvt-switch>
+    
+    <elvt-switch>
+      <label slot="label">SMS notifications</label>
+      <span slot="help-text">Get text messages for urgent notifications</span>
+    </elvt-switch>
+    
+    <elvt-switch checked>
+      <label slot="label">Profile visibility</label>
+      <span slot="help-text">Allow others to find and view your profile</span>
+    </elvt-switch>
+    
+    <elvt-switch disabled>
+      <label slot="label">Location sharing</label>
+      <span slot="help-text">Currently unavailable - upgrade required</span>
+    </elvt-switch>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Keyboard interaction:**
+- Space key toggles switch state
+- Tab navigation moves between switches
+- Clear focus indicators show current focus
+- Enter key can also activate switches
+
+**Screen reader support:**
+- Use proper ARIA roles (switch or checkbox)
+- Announce current state (on/off, checked/unchecked)
+- Associate labels with switch controls
+- Provide descriptions for complex switches
+
+**Visual accessibility:**
+- Ensure sufficient color contrast for all states
+- Don't rely solely on color to indicate state
+- Provide clear visual differences between on/off states
+- Include text or icons alongside color changes
+
+**State communication:**
+- Announce state changes to assistive technology
+- Provide immediate feedback for user actions
+- Use consistent language for similar switches
+- Include context about what the switch controls
+
+## Changelog
+
+
+### Version 0.0.26-alpha (July 16, 2025)
+- **New**: Switch component fully implemented and functional
+- **New**: Multiple size variants (small, medium, large) 
+- **New**: Slot-based label and help text support
+- **Enhanced**: Comprehensive accessibility support with proper ARIA attributes
+- **Enhanced**: Keyboard navigation (Space and Enter key support)
+- **Enhanced**: Disabled state support for switches
+- Current version in active development
+
+### Switch Component Features
+- ✅ Basic switch with on/off toggle functionality
+- ✅ Label and help text slots for descriptive content
+- ✅ Multiple size variants for different contexts
+- ✅ Disabled state for unavailable options
+- ✅ Checked state control for pre-configured switches
+- ✅ Comprehensive accessibility features
+- ✅ Keyboard navigation support
+
+### Available Components
+- `SwitchComponent`: Main switch toggle with label and help text slots
+- Full integration with form systems and data binding
+- Event handling for state change notifications
+
+### Implementation Status
+- ✅ Core switch functionality operational
+- ✅ Label and help text integration working properly
+- ✅ Size variants and styling functional
+- ✅ Accessibility features implemented
+- ✅ Form integration working

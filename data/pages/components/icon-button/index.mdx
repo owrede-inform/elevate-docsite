@@ -1,0 +1,1099 @@
+---
+title: Icon Button
+description: Icon Button components provide compact, visually clear interactive controls using iconography alone, optimizing space while maintaining accessibility and clear user intent.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Icon Button components deliver focused actions through clear iconography, maximizing space efficiency while maintaining accessibility. They provide immediate recognition of common actions and support consistent interaction patterns across applications.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Icon Buttons
+
+- **Space-constrained interfaces**: Toolbars, headers, and compact layouts
+- **Common actions**: Save, edit, delete, share, and other universally understood actions
+- **Secondary actions**: Supporting actions that don't require primary emphasis
+- **Repeated actions**: Actions that appear multiple times in lists or grids
+- **Quick access**: Frequently used functions that benefit from single-click access
+
+### When NOT to Use Icon Buttons
+
+- **Unclear actions**: Functions without universally recognized icons
+- **Primary calls-to-action**: Main actions should typically use text buttons
+- **Complex actions**: Multi-step or complex operations need descriptive text
+- **First-time users**: Unfamiliar interfaces may need text labels initially
+
+## Variations
+
+### Icon Button Sizes
+
+**Standard Icon Buttons** provide the default size for most interface uses.
+
+<LiveExample 
+  title="Icon Button Sizes" 
+  htmlCode={`<div style="padding: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+  <style>
+    .icon-btn {
+      border: 1px solid #e0e0e0;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: #2d2d2d;
+    }
+    
+    .icon-btn:hover {
+      background: #f8f9fa;
+      border-color: #007bff;
+      color: #007bff;
+    }
+    
+    .icon-btn:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+    
+    .icon-btn:active {
+      background: #e9ecef;
+      transform: translateY(1px);
+    }
+    
+    .icon-btn.small {
+      width: 28px;
+      height: 28px;
+      font-size: 0.875rem;
+    }
+    
+    .icon-btn.medium {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+    
+    .icon-btn.large {
+      width: 44px;
+      height: 44px;
+      font-size: 1.25rem;
+    }
+    
+    .size-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .size-label {
+      font-size: 0.75rem;
+      color: #6f6f6f;
+      text-align: center;
+    }
+  </style>
+
+  <div class="size-group">
+    <button class="icon-btn small" title="Small icon button">
+      <elvt-icon icon="mdi:heart"></elvt-icon>
+    </button>
+    <div class="size-label">Small (28px)</div>
+  </div>
+  
+  <div class="size-group">
+    <button class="icon-btn medium" title="Medium icon button">
+      <elvt-icon icon="mdi:heart"></elvt-icon>
+    </button>
+    <div class="size-label">Medium (36px)</div>
+  </div>
+  
+  <div class="size-group">
+    <button class="icon-btn large" title="Large icon button">
+      <elvt-icon icon="mdi:heart"></elvt-icon>
+    </button>
+    <div class="size-label">Large (44px)</div>
+  </div>
+  
+  <!-- Common actions in medium size -->
+  <div style="margin-left: 2rem; display: flex; gap: 0.5rem;">
+    <button class="icon-btn medium" title="Edit">
+      <elvt-icon icon="mdi:pencil"></elvt-icon>
+    </button>
+    <button class="icon-btn medium" title="Delete">
+      <elvt-icon icon="mdi:trash-can-outline"></elvt-icon>
+    </button>
+    <button class="icon-btn medium" title="Share">
+      <elvt-icon icon="mdi:share-variant"></elvt-icon>
+    </button>
+    <button class="icon-btn medium" title="Download">
+      <elvt-icon icon="mdi:download"></elvt-icon>
+    </button>
+    <button class="icon-btn medium" title="More options">
+      <elvt-icon icon="mdi:dots-vertical"></elvt-icon>
+    </button>
+  </div>
+</div>`}
+/>
+
+**Compact Icon Buttons** save maximum space for dense interfaces and mobile layouts.
+
+**Large Icon Buttons** provide better touch targets and increased visibility for important actions.
+
+### Icon Button Tones
+
+**Primary Icon Buttons** emphasize important actions with brand color treatment.
+
+<LiveExample 
+  title="Icon Button Tones and States" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
+  <style>
+    .tone-group {
+      display: flex; 
+      align-items: center; 
+      gap: 1rem; 
+      flex-wrap: wrap;
+    }
+    
+    .tone-label {
+      font-weight: 600;
+      color: #2d2d2d;
+      min-width: 80px;
+    }
+    
+    .icon-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+      border: 1px solid;
+    }
+    
+    .icon-button:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+    
+    .icon-button:active {
+      transform: translateY(1px);
+    }
+    
+    /* Primary */
+    .icon-button.primary {
+      background: #007bff;
+      border-color: #007bff;
+      color: white;
+    }
+    
+    .icon-button.primary:hover {
+      background: #0056b3;
+      border-color: #0056b3;
+    }
+    
+    /* Secondary */
+    .icon-button.secondary {
+      background: white;
+      border-color: #007bff;
+      color: #007bff;
+    }
+    
+    .icon-button.secondary:hover {
+      background: #007bff;
+      color: white;
+    }
+    
+    /* Ghost */
+    .icon-button.ghost {
+      background: transparent;
+      border-color: transparent;
+      color: #2d2d2d;
+    }
+    
+    .icon-button.ghost:hover {
+      background: #f8f9fa;
+      border-color: #e0e0e0;
+      color: #007bff;
+    }
+    
+    /* Subtle */
+    .icon-button.subtle {
+      background: #f8f9fa;
+      border-color: #e0e0e0;
+      color: #2d2d2d;
+    }
+    
+    .icon-button.subtle:hover {
+      background: #e9ecef;
+      border-color: #007bff;
+      color: #007bff;
+    }
+    
+    /* Danger */
+    .icon-button.danger {
+      background: #dc3545;
+      border-color: #dc3545;
+      color: white;
+    }
+    
+    .icon-button.danger:hover {
+      background: #c82333;
+      border-color: #c82333;
+    }
+    
+    /* Success */
+    .icon-button.success {
+      background: #28a745;
+      border-color: #28a745;
+      color: white;
+    }
+    
+    .icon-button.success:hover {
+      background: #218838;
+      border-color: #218838;
+    }
+    
+    /* Disabled */
+    .icon-button.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+
+  <div class="tone-group">
+    <div class="tone-label">Primary:</div>
+    <button class="icon-button primary" title="Primary action">
+      <elvt-icon icon="mdi:plus"></elvt-icon>
+    </button>
+    <button class="icon-button primary" title="Save">
+      <elvt-icon icon="mdi:content-save"></elvt-icon>
+    </button>
+    <button class="icon-button primary" title="Send">
+      <elvt-icon icon="mdi:send"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Secondary:</div>
+    <button class="icon-button secondary" title="Edit">
+      <elvt-icon icon="mdi:pencil"></elvt-icon>
+    </button>
+    <button class="icon-button secondary" title="Settings">
+      <elvt-icon icon="mdi:cog"></elvt-icon>
+    </button>
+    <button class="icon-button secondary" title="Info">
+      <elvt-icon icon="mdi:information-outline"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Ghost:</div>
+    <button class="icon-button ghost" title="Close">
+      <elvt-icon icon="mdi:close"></elvt-icon>
+    </button>
+    <button class="icon-button ghost" title="Minimize">
+      <elvt-icon icon="mdi:window-minimize"></elvt-icon>
+    </button>
+    <button class="icon-button ghost" title="Maximize">
+      <elvt-icon icon="mdi:window-maximize"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Subtle:</div>
+    <button class="icon-button subtle" title="Archive">
+      <elvt-icon icon="mdi:archive-outline"></elvt-icon>
+    </button>
+    <button class="icon-button subtle" title="Star">
+      <elvt-icon icon="mdi:star-outline"></elvt-icon>
+    </button>
+    <button class="icon-button subtle" title="Bookmark">
+      <elvt-icon icon="mdi:bookmark-outline"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Danger:</div>
+    <button class="icon-button danger" title="Delete">
+      <elvt-icon icon="mdi:trash-can-outline"></elvt-icon>
+    </button>
+    <button class="icon-button danger" title="Remove">
+      <elvt-icon icon="mdi:close"></elvt-icon>
+    </button>
+    <button class="icon-button danger" title="Block">
+      <elvt-icon icon="mdi:block-helper"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Success:</div>
+    <button class="icon-button success" title="Approve">
+      <elvt-icon icon="mdi:check"></elvt-icon>
+    </button>
+    <button class="icon-button success" title="Accept">
+      <elvt-icon icon="mdi:check-circle"></elvt-icon>
+    </button>
+    <button class="icon-button success" title="Complete">
+      <elvt-icon icon="mdi:check-all"></elvt-icon>
+    </button>
+  </div>
+  
+  <div class="tone-group">
+    <div class="tone-label">Disabled:</div>
+    <button class="icon-button subtle disabled" title="Disabled action">
+      <elvt-icon icon="mdi:heart"></elvt-icon>
+    </button>
+    <button class="icon-button primary disabled" title="Disabled primary">
+      <elvt-icon icon="mdi:plus"></elvt-icon>
+    </button>
+    <button class="icon-button danger disabled" title="Disabled danger">
+      <elvt-icon icon="mdi:trash-can-outline"></elvt-icon>
+    </button>
+  </div>
+</div>`}
+/>
+
+### Icon Button Groups
+
+**Toolbar Icon Buttons** group related actions in compact, efficient layouts.
+
+<LiveExample 
+  title="Icon Button Groups and Toolbars" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
+  <style>
+    .toolbar {
+      display: flex;
+      align-items: center;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 0.5rem;
+      gap: 0.25rem;
+    }
+    
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .toolbar-divider {
+      width: 1px;
+      height: 24px;
+      background: #e0e0e0;
+      margin: 0 0.5rem;
+    }
+    
+    .toolbar-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: #2d2d2d;
+      font-size: 0.875rem;
+    }
+    
+    .toolbar-btn:hover {
+      background: #f8f9fa;
+      color: #007bff;
+    }
+    
+    .toolbar-btn:focus {
+      outline: none;
+      background: #e3f2fd;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+    }
+    
+    .toolbar-btn.active {
+      background: #007bff;
+      color: white;
+    }
+    
+    .toolbar-btn.active:hover {
+      background: #0056b3;
+    }
+    
+    .icon-group {
+      display: flex;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    
+    .icon-group .group-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: white;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: #2d2d2d;
+      border-right: 1px solid #e0e0e0;
+    }
+    
+    .icon-group .group-btn:last-child {
+      border-right: none;
+    }
+    
+    .icon-group .group-btn:hover {
+      background: #f8f9fa;
+      color: #007bff;
+    }
+    
+    .icon-group .group-btn:focus {
+      outline: none;
+      z-index: 1;
+      box-shadow: inset 0 0 0 2px #007bff;
+    }
+    
+    .floating-actions {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-end;
+    }
+    
+    .fab {
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .fab:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    .fab.mini {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      background: white;
+      color: #2d2d2d;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .fab.mini:hover {
+      background: #f8f9fa;
+      color: #007bff;
+      transform: scale(1.05);
+    }
+  </style>
+
+  <!-- Document editing toolbar -->
+  <div>
+    <h3 style="margin: 0 0 1rem 0; color: #2d2d2d; font-size: 1rem;">Document Editing Toolbar</h3>
+    <div class="toolbar">
+      <div class="toolbar-group">
+        <button class="toolbar-btn" title="Undo">
+          <elvt-icon icon="mdi:undo"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="Redo">
+          <elvt-icon icon="mdi:redo"></elvt-icon>
+        </button>
+      </div>
+      
+      <div class="toolbar-divider"></div>
+      
+      <div class="toolbar-group">
+        <button class="toolbar-btn active" title="Bold">
+          <elvt-icon icon="mdi:format-bold"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="Italic">
+          <elvt-icon icon="mdi:format-italic"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="Underline">
+          <elvt-icon icon="mdi:format-underline"></elvt-icon>
+        </button>
+      </div>
+      
+      <div class="toolbar-divider"></div>
+      
+      <div class="toolbar-group">
+        <button class="toolbar-btn" title="Align left">
+          <elvt-icon icon="mdi:format-align-left"></elvt-icon>
+        </button>
+        <button class="toolbar-btn active" title="Align center">
+          <elvt-icon icon="mdi:format-align-center"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="Align right">
+          <elvt-icon icon="mdi:format-align-right"></elvt-icon>
+        </button>
+      </div>
+      
+      <div class="toolbar-divider"></div>
+      
+      <div class="toolbar-group">
+        <button class="toolbar-btn" title="Insert link">
+          <elvt-icon icon="mdi:link"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="Insert image">
+          <elvt-icon icon="mdi:image"></elvt-icon>
+        </button>
+        <button class="toolbar-btn" title="More options">
+          <elvt-icon icon="mdi:dots-horizontal"></elvt-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- File actions group -->
+  <div>
+    <h3 style="margin: 0 0 1rem 0; color: #2d2d2d; font-size: 1rem;">File Actions Group</h3>
+    <div class="icon-group">
+      <button class="group-btn" title="Preview">
+        <elvt-icon icon="mdi:eye"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Edit">
+        <elvt-icon icon="mdi:pencil"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Download">
+        <elvt-icon icon="mdi:download"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Share">
+        <elvt-icon icon="mdi:share-variant"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Delete">
+        <elvt-icon icon="mdi:trash-can-outline"></elvt-icon>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Media controls group -->
+  <div>
+    <h3 style="margin: 0 0 1rem 0; color: #2d2d2d; font-size: 1rem;">Media Controls Group</h3>
+    <div class="icon-group">
+      <button class="group-btn" title="Previous">
+        <elvt-icon icon="mdi:skip-previous"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Play">
+        <elvt-icon icon="mdi:play"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Next">
+        <elvt-icon icon="mdi:skip-next"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Shuffle">
+        <elvt-icon icon="mdi:shuffle"></elvt-icon>
+      </button>
+      <button class="group-btn" title="Repeat">
+        <elvt-icon icon="mdi:repeat"></elvt-icon>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Note: Floating Action Buttons would be positioned fixed in real implementation -->
+  <div style="position: relative; height: 120px; background: #f8f9fa; border-radius: 8px; padding: 1rem;">
+    <h3 style="margin: 0 0 1rem 0; color: #2d2d2d; font-size: 1rem;">Floating Action Buttons (Demo)</h3>
+    <div style="position: absolute; bottom: 1rem; right: 1rem; display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end;">
+      <button class="fab mini" title="Share">
+        <elvt-icon icon="mdi:share"></elvt-icon>
+      </button>
+      <button class="fab mini" title="Edit">
+        <elvt-icon icon="mdi:pencil"></elvt-icon>
+      </button>
+      <button class="fab" title="Add new">
+        <elvt-icon icon="mdi:plus"></elvt-icon>
+      </button>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Design Principles
+
+### Recognition Principle
+**Icons should communicate their function immediately.** Choose universally recognized icons that clearly represent their intended actions without requiring explanation.
+
+### Consistency Principle  
+**Icon usage should be predictable across the interface.** The same icon should always represent the same action, and similar actions should use visually related icons.
+
+### Accessibility Principle
+**Icon buttons must be accessible to all users.** Provide appropriate labels, tooltips, and alternative text to ensure screen reader users understand button functions.
+
+### Touch Friendliness Principle
+**Icon buttons should accommodate both mouse and touch interaction.** Ensure adequate touch targets (minimum 44px) and appropriate spacing for mobile interfaces.
+
+## Best Practices
+
+### Icon Selection and Consistency
+
+**Why this matters:** Poorly chosen or inconsistent icons create confusion and reduce usability. Users rely on visual patterns to predict functionality.
+
+### Accessibility Implementation
+
+**Why this matters:** Icon-only buttons can be completely inaccessible to screen reader users without proper labeling. Accessibility ensures all users can interact with your interface effectively.
+
+### Touch Target Optimization
+
+**Why this matters:** Small touch targets lead to frustrating user experiences on mobile devices. Properly sized buttons improve usability and reduce user errors.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+```
+
+### Basic Icon Button Setup
+
+Icon buttons combine button functionality with icon-only presentation:
+
+```html
+<!-- Basic icon button -->
+<elvt-button tone="ghost" aria-label="Edit item">
+  <elvt-icon icon="mdi:pencil"></elvt-icon>
+</elvt-button>
+
+<!-- Primary action icon button -->
+<elvt-button tone="primary" aria-label="Add new item">
+  <elvt-icon icon="mdi:plus"></elvt-icon>
+</elvt-button>
+
+<!-- Danger action icon button -->
+<elvt-button tone="danger" aria-label="Delete item">
+  <elvt-icon icon="mdi:trash-can-outline"></elvt-icon>
+</elvt-button>
+
+<!-- Icon button with tooltip -->
+<elvt-button tone="subtle" aria-label="Save document" title="Save document">
+  <elvt-icon icon="mdi:content-save"></elvt-icon>
+</elvt-button>
+
+<!-- Disabled icon button -->
+<elvt-button tone="subtle" disabled aria-label="Feature unavailable">
+  <elvt-icon icon="mdi:lock"></elvt-icon>
+</elvt-button>
+
+<!-- Icon button group -->
+<div class="icon-button-group" role="group" aria-label="Text formatting">
+  <elvt-button tone="ghost" aria-label="Bold" aria-pressed="false">
+    <elvt-icon icon="mdi:format-bold"></elvt-icon>
+  </elvt-button>
+  <elvt-button tone="ghost" aria-label="Italic" aria-pressed="true">
+    <elvt-icon icon="mdi:format-italic"></elvt-icon>
+  </elvt-button>
+  <elvt-button tone="ghost" aria-label="Underline" aria-pressed="false">
+    <elvt-icon icon="mdi:format-underline"></elvt-icon>
+  </elvt-button>
+</div>
+```
+
+### CSS Styling
+
+```css
+/* Icon button base styles */
+elvt-button[aria-label] elvt-icon {
+  font-size: var(--elvt-icon-size, 1rem);
+}
+
+/* Size variations */
+.icon-button-small {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+.icon-button-small elvt-icon {
+  font-size: 0.875rem;
+}
+
+.icon-button-large {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+.icon-button-large elvt-icon {
+  font-size: 1.25rem;
+}
+
+/* Icon button groups */
+.icon-button-group {
+  display: flex;
+  border: 1px solid var(--elvt-color-border);
+  border-radius: var(--elvt-border-radius);
+  overflow: hidden;
+}
+
+.icon-button-group elvt-button {
+  border: none;
+  border-radius: 0;
+  border-right: 1px solid var(--elvt-color-border);
+}
+
+.icon-button-group elvt-button:last-child {
+  border-right: none;
+}
+
+/* Toolbar styles */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--elvt-spacing-xs);
+  padding: var(--elvt-spacing-sm);
+  background: var(--elvt-color-surface);
+  border: 1px solid var(--elvt-color-border);
+  border-radius: var(--elvt-border-radius);
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--elvt-color-border);
+  margin: 0 var(--elvt-spacing-sm);
+}
+
+/* Floating Action Button */
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: var(--elvt-shadow-lg);
+  position: fixed;
+  bottom: var(--elvt-spacing-xl);
+  right: var(--elvt-spacing-xl);
+  z-index: 1000;
+}
+
+.fab.mini {
+  width: 40px;
+  height: 40px;
+}
+
+/* Touch-friendly sizing */
+@media (max-width: 768px) {
+  elvt-button[aria-label] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  elvt-button[aria-label] {
+    border: 2px solid;
+  }
+}
+```
+
+### Key Components Used
+
+Components commonly used for Icon Buttons:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Button container | Interactive button element with tone and state management |
+| `elvt-icon` | Visual indicator | MDI icons providing clear visual communication of button function |  
+| `aria-label` attribute | Accessibility | Essential for screen reader users to understand button purpose |
+| `title` attribute | Tooltips | Additional context for users on hover interactions |
+| Button groups | Organization | Related icon buttons grouped for efficient space usage |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### Interactive Icon Button States
+
+<LiveExample 
+  title="Icon Button Interaction States" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
+  <style>
+    .state-demo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 6px;
+    }
+    
+    .state-label {
+      font-weight: 600;
+      color: #2d2d2d;
+      min-width: 100px;
+    }
+    
+    .interactive-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #e0e0e0;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: #2d2d2d;
+      font-size: 1.125rem;
+    }
+    
+    .interactive-btn:hover {
+      background: #f8f9fa;
+      border-color: #007bff;
+      color: #007bff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .interactive-btn:active {
+      background: #e9ecef;
+      transform: translateY(0);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .interactive-btn:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+    
+    .interactive-btn.pressed {
+      background: #007bff;
+      border-color: #007bff;
+      color: white;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .interactive-btn.pressed:hover {
+      background: #0056b3;
+      border-color: #0056b3;
+    }
+    
+    .loading-btn {
+      position: relative;
+    }
+    
+    .loading-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #e0e0e0;
+      border-top: 2px solid #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .tooltip-demo {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .custom-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2d2d2d;
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      z-index: 1000;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none;
+    }
+    
+    .tooltip-demo:hover .custom-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+
+  <div class="state-demo">
+    <div class="state-label">Default:</div>
+    <button class="interactive-btn" title="Default state">
+      <elvt-icon icon="mdi:heart-outline"></elvt-icon>
+    </button>
+    <span style="color: #6f6f6f; font-size: 0.875rem;">Hover to see interaction</span>
+  </div>
+  
+  <div class="state-demo">
+    <div class="state-label">Pressed:</div>
+    <button class="interactive-btn pressed" title="Active/pressed state" onclick="togglePressed(this)">
+      <elvt-icon icon="mdi:heart"></elvt-icon>
+    </button>
+    <span style="color: #6f6f6f; font-size: 0.875rem;">Click to toggle</span>
+  </div>
+  
+  <div class="state-demo">
+    <div class="state-label">Loading:</div>
+    <button class="interactive-btn loading-btn" title="Loading state" onclick="simulateLoading(this)">
+      <div class="loading-spinner"></div>
+    </button>
+    <span style="color: #6f6f6f; font-size: 0.875rem;">Click to simulate action</span>
+  </div>
+  
+  <div class="state-demo">
+    <div class="state-label">With Tooltip:</div>
+    <div class="tooltip-demo">
+      <button class="interactive-btn" title="Custom tooltip demo">
+        <elvt-icon icon="mdi:help-circle-outline"></elvt-icon>
+      </button>
+      <div class="custom-tooltip">This is helpful information</div>
+    </div>
+    <span style="color: #6f6f6f; font-size: 0.875rem;">Hover for custom tooltip</span>
+  </div>
+  
+  <div class="state-demo">
+    <div class="state-label">Icon States:</div>
+    <button class="interactive-btn" title="Toggle bookmark" onclick="toggleBookmark(this)">
+      <elvt-icon icon="mdi:bookmark-outline"></elvt-icon>
+    </button>
+    <button class="interactive-btn" title="Toggle star" onclick="toggleStar(this)">
+      <elvt-icon icon="mdi:star-outline"></elvt-icon>
+    </button>
+    <button class="interactive-btn" title="Toggle visibility" onclick="toggleVisibility(this)">
+      <elvt-icon icon="mdi:eye"></elvt-icon>
+    </button>
+    <span style="color: #6f6f6f; font-size: 0.875rem;">Click to toggle states</span>
+  </div>
+  
+  <script>
+    function togglePressed(btn) {
+      btn.classList.toggle('pressed');
+    }
+    
+    function simulateLoading(btn) {
+      const icon = btn.querySelector('elvt-icon, .loading-spinner');
+      const originalContent = icon.outerHTML;
+      
+      btn.innerHTML = '<div class="loading-spinner"></div>';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.innerHTML = '<elvt-icon icon="mdi:check"></elvt-icon>';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.innerHTML = originalContent;
+        }, 1000);
+      }, 2000);
+    }
+    
+    function toggleBookmark(btn) {
+      const icon = btn.querySelector('elvt-icon');
+      const isOutline = icon.getAttribute('icon').includes('outline');
+      icon.setAttribute('icon', isOutline ? 'mdi:bookmark' : 'mdi:bookmark-outline');
+      btn.classList.toggle('pressed');
+    }
+    
+    function toggleStar(btn) {
+      const icon = btn.querySelector('elvt-icon');
+      const isOutline = icon.getAttribute('icon').includes('outline');
+      icon.setAttribute('icon', isOutline ? 'mdi:star' : 'mdi:star-outline');
+      btn.classList.toggle('pressed');
+    }
+    
+    function toggleVisibility(btn) {
+      const icon = btn.querySelector('elvt-icon');
+      const isVisible = icon.getAttribute('icon') === 'mdi:eye';
+      icon.setAttribute('icon', isVisible ? 'mdi:eye-off' : 'mdi:eye');
+      btn.title = isVisible ? 'Show' : 'Hide';
+    }
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Button labeling:**
+- Always provide aria-label or aria-labelledby for icon-only buttons
+- Use descriptive labels that clearly explain the button's function
+- Don't rely on tooltips alone for accessibility - screen readers may not announce them
+- Ensure button labels are consistent with their visual iconography
+
+**Keyboard interaction:**
+- Support Tab key navigation to reach all icon buttons
+- Use Enter or Space keys to activate buttons
+- Provide clear focus indicators that meet contrast requirements
+- Ensure focus order follows logical interaction patterns
+
+**Screen reader support:**
+- Use appropriate ARIA attributes (aria-pressed for toggle buttons)
+- Announce state changes when button states change
+- Group related icon buttons with role="group" and appropriate labels
+- Test with actual screen reader software to verify experience
+
+**Touch accessibility:**
+- Ensure minimum 44px touch targets for mobile interfaces
+- Provide adequate spacing between adjacent icon buttons
+- Consider larger touch targets for users with motor impairments
+- Test with assistive touch technologies
+
+## Changelog
+
+<ChangeLog component="icon-button" />

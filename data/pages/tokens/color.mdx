@@ -1,0 +1,373 @@
+---
+title: Color Tokens
+description: ELEVATE color tokens provide a comprehensive palette system with primitives, semantic aliases, and component-specific colors for consistent interface design.
+---
+
+<PageDescription>
+
+ELEVATE color system uses a 3-tier architecture where primitive colors form the foundation, aliases provide semantic meaning, and component tokens ensure consistent implementation across all interface elements.
+
+</PageDescription>
+
+## Color Architecture
+
+### Primitive Colors
+Raw color values that form the foundation of the ELEVATE color system. These are context-agnostic and rarely change.
+
+#### Color Scales
+Each color family includes multiple shades from 50 (lightest) to 900 (darkest):
+
+**Blue Scale**
+<Row>
+  <Column colMd={8} colLg={10}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '2px', marginBottom: '1rem'}}>
+      <div style={{backgroundColor: '#eff6ff', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#1e3a8a', textAlign: 'center', borderRadius: '4px'}}>50</div>
+      <div style={{backgroundColor: '#dbeafe', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#1e3a8a', textAlign: 'center', borderRadius: '4px'}}>100</div>
+      <div style={{backgroundColor: '#bfdbfe', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#1e3a8a', textAlign: 'center', borderRadius: '4px'}}>200</div>
+      <div style={{backgroundColor: '#93c5fd', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#1e3a8a', textAlign: 'center', borderRadius: '4px'}}>300</div>
+      <div style={{backgroundColor: '#60a5fa', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>400</div>
+      <div style={{backgroundColor: '#3b82f6', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>500</div>
+      <div style={{backgroundColor: '#2563eb', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>600</div>
+      <div style={{backgroundColor: '#1d4ed8', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>700</div>
+      <div style={{backgroundColor: '#1e40af', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>800</div>
+      <div style={{backgroundColor: '#1e3a8a', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>900</div>
+    </div>
+  </Column>
+</Row>
+
+```css
+--elvt-primitives-color-blue-50: #eff6ff
+--elvt-primitives-color-blue-100: #dbeafe
+--elvt-primitives-color-blue-200: #bfdbfe
+--elvt-primitives-color-blue-300: #93c5fd
+--elvt-primitives-color-blue-400: #60a5fa
+--elvt-primitives-color-blue-500: #3b82f6
+--elvt-primitives-color-blue-600: #2563eb
+--elvt-primitives-color-blue-700: #1d4ed8
+--elvt-primitives-color-blue-800: #1e40af
+--elvt-primitives-color-blue-900: #1e3a8a
+```
+
+**Gray Scale**
+<Row>
+  <Column colMd={8} colLg={10}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '2px', marginBottom: '1rem'}}>
+      <div style={{backgroundColor: '#f9fafb', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#111827', textAlign: 'center', borderRadius: '4px', border: '1px solid #e5e7eb'}}>50</div>
+      <div style={{backgroundColor: '#f3f4f6', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#111827', textAlign: 'center', borderRadius: '4px'}}>100</div>
+      <div style={{backgroundColor: '#e5e7eb', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#111827', textAlign: 'center', borderRadius: '4px'}}>200</div>
+      <div style={{backgroundColor: '#d1d5db', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: '#111827', textAlign: 'center', borderRadius: '4px'}}>300</div>
+      <div style={{backgroundColor: '#9ca3af', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>400</div>
+      <div style={{backgroundColor: '#6b7280', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>500</div>
+      <div style={{backgroundColor: '#4b5563', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>600</div>
+      <div style={{backgroundColor: '#374151', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>700</div>
+      <div style={{backgroundColor: '#1f2937', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>800</div>
+      <div style={{backgroundColor: '#111827', padding: '1rem', fontSize: '0.75rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '4px'}}>900</div>
+    </div>
+  </Column>
+</Row>
+
+```css
+--elvt-primitives-color-gray-50: #f9fafb
+--elvt-primitives-color-gray-100: #f3f4f6
+--elvt-primitives-color-gray-200: #e5e7eb
+--elvt-primitives-color-gray-300: #d1d5db
+--elvt-primitives-color-gray-400: #9ca3af
+--elvt-primitives-color-gray-500: #6b7280
+--elvt-primitives-color-gray-600: #4b5563
+--elvt-primitives-color-gray-700: #374151
+--elvt-primitives-color-gray-800: #1f2937
+--elvt-primitives-color-gray-900: #111827
+```
+
+**Additional Color Families**
+
+<Row>
+  <Column colMd={3} colLg={3}>
+    <div style={{marginBottom: '1rem'}}>
+      <h5 style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', fontWeight: '600'}}>Red Scale</h5>
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px'}}>
+        <div style={{backgroundColor: '#fef2f2', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#7f1d1d', textAlign: 'center', borderRadius: '2px'}}>50</div>
+        <div style={{backgroundColor: '#fee2e2', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#7f1d1d', textAlign: 'center', borderRadius: '2px'}}>100</div>
+        <div style={{backgroundColor: '#dc2626', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>600</div>
+        <div style={{backgroundColor: '#b91c1c', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>700</div>
+        <div style={{backgroundColor: '#7f1d1d', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>900</div>
+      </div>
+      <p style={{fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0 0 0'}}>Error states and destructive actions</p>
+    </div>
+  </Column>
+  <Column colMd={3} colLg={3}>
+    <div style={{marginBottom: '1rem'}}>
+      <h5 style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', fontWeight: '600'}}>Orange Scale</h5>
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px'}}>
+        <div style={{backgroundColor: '#fff7ed', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#9a3412', textAlign: 'center', borderRadius: '2px'}}>50</div>
+        <div style={{backgroundColor: '#fed7aa', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#9a3412', textAlign: 'center', borderRadius: '2px'}}>100</div>
+        <div style={{backgroundColor: '#ea580c', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>600</div>
+        <div style={{backgroundColor: '#c2410c', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>700</div>
+        <div style={{backgroundColor: '#9a3412', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>900</div>
+      </div>
+      <p style={{fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0 0 0'}}>Warning states and attention</p>
+    </div>
+  </Column>
+  <Column colMd={3} colLg={3}>
+    <div style={{marginBottom: '1rem'}}>
+      <h5 style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', fontWeight: '600'}}>Green Scale</h5>
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px'}}>
+        <div style={{backgroundColor: '#f0fdf4', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#14532d', textAlign: 'center', borderRadius: '2px'}}>50</div>
+        <div style={{backgroundColor: '#dcfce7', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#14532d', textAlign: 'center', borderRadius: '2px'}}>100</div>
+        <div style={{backgroundColor: '#16a34a', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>600</div>
+        <div style={{backgroundColor: '#15803d', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>700</div>
+        <div style={{backgroundColor: '#14532d', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>900</div>
+      </div>
+      <p style={{fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0 0 0'}}>Success states and positive feedback</p>
+    </div>
+  </Column>
+  <Column colMd={3} colLg={3}>
+    <div style={{marginBottom: '1rem'}}>
+      <h5 style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', fontWeight: '600'}}>Purple Scale</h5>
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px'}}>
+        <div style={{backgroundColor: '#faf5ff', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#581c87', textAlign: 'center', borderRadius: '2px'}}>50</div>
+        <div style={{backgroundColor: '#e9d5ff', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: '#581c87', textAlign: 'center', borderRadius: '2px'}}>100</div>
+        <div style={{backgroundColor: '#9333ea', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>600</div>
+        <div style={{backgroundColor: '#7c3aed', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>700</div>
+        <div style={{backgroundColor: '#581c87', padding: '0.5rem', fontSize: '0.625rem', fontWeight: '500', color: 'white', textAlign: 'center', borderRadius: '2px'}}>900</div>
+      </div>
+      <p style={{fontSize: '0.75rem', color: '#6b7280', margin: '0.25rem 0 0 0'}}>Information and brand accents</p>
+    </div>
+  </Column>
+</Row>
+
+### Alias Tokens
+Semantic color tokens that reference primitives and provide meaning-based naming.
+
+#### Action Colors
+For interactive elements like buttons, links, and controls:
+
+```css
+/* Primary Actions */
+--elvt-alias-action-strong-primary-fill-default: {primitives.color-blue-600}
+--elvt-alias-action-strong-primary-fill-hover: {primitives.color-blue-700}
+--elvt-alias-action-strong-primary-fill-active: {primitives.color-blue-800}
+--elvt-alias-action-strong-primary-fill-disabled: {primitives.color-gray-300}
+
+/* Neutral Actions */
+--elvt-alias-action-strong-neutral-fill-default: {primitives.color-gray-100}
+--elvt-alias-action-strong-neutral-fill-hover: {primitives.color-gray-200}
+--elvt-alias-action-strong-neutral-fill-active: {primitives.color-gray-400}
+
+/* Destructive Actions */
+--elvt-alias-action-strong-danger-fill-default: {primitives.color-red-600}
+--elvt-alias-action-strong-danger-fill-hover: {primitives.color-red-700}
+--elvt-alias-action-strong-danger-fill-active: {primitives.color-red-800}
+```
+
+#### Content Colors
+For text, borders, and content elements:
+
+```css
+/* Text Colors */
+--elvt-alias-content-text-color-default: {primitives.color-gray-900}
+--elvt-alias-content-text-color-secondary: {primitives.color-gray-600}
+--elvt-alias-content-text-color-tertiary: {primitives.color-gray-500}
+--elvt-alias-content-text-color-inverse: {primitives.color-white}
+--elvt-alias-content-text-color-disabled: {primitives.color-gray-400}
+
+/* Border Colors */
+--elvt-alias-content-border-color-default: {primitives.color-gray-200}
+--elvt-alias-content-border-color-strong: {primitives.color-gray-300}
+--elvt-alias-content-border-color-subtle: {primitives.color-gray-100}
+
+/* Background Colors */
+--elvt-alias-content-background-color-default: {primitives.color-white}
+--elvt-alias-content-background-color-subtle: {primitives.color-gray-50}
+--elvt-alias-content-background-color-strong: {primitives.color-gray-100}
+```
+
+#### Feedback Colors
+For system feedback and status communication:
+
+<Row>
+  <Column colMd={6} colLg={8}>
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '1.5rem'}}>
+      <div style={{backgroundColor: '#dcfce7', border: '2px solid #86efac', borderRadius: '8px', padding: '1rem'}}>
+        <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '0.5rem'}}>
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="#15803d"/>
+          </svg>
+          <span style={{fontSize: '0.875rem', fontWeight: '600', color: '#15803d'}}>Success</span>
+        </div>
+        <p style={{fontSize: '0.75rem', color: '#166534', margin: 0}}>Fill: green-100, Border: green-300, Text: green-800</p>
+      </div>
+      
+      <div style={{backgroundColor: '#fed7aa', border: '2px solid #fdba74', borderRadius: '8px', padding: '1rem'}}>
+        <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '0.5rem'}}>
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="#c2410c"/>
+          </svg>
+          <span style={{fontSize: '0.875rem', fontWeight: '600', color: '#c2410c'}}>Warning</span>
+        </div>
+        <p style={{fontSize: '0.75rem', color: '#9a3412', margin: 0}}>Fill: orange-100, Border: orange-300, Text: orange-800</p>
+      </div>
+      
+      <div style={{backgroundColor: '#fee2e2', border: '2px solid #fca5a5', borderRadius: '8px', padding: '1rem'}}>
+        <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '0.5rem'}}>
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" fill="#dc2626"/>
+          </svg>
+          <span style={{fontSize: '0.875rem', fontWeight: '600', color: '#dc2626'}}>Error</span>
+        </div>
+        <p style={{fontSize: '0.75rem', color: '#991b1b', margin: 0}}>Fill: red-100, Border: red-300, Text: red-800</p>
+      </div>
+      
+      <div style={{backgroundColor: '#dbeafe', border: '2px solid #93c5fd', borderRadius: '8px', padding: '1rem'}}>
+        <div style={{display: 'flex', alignItems: 'center', marginBottom: '0.5rem'}}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{marginRight: '0.5rem'}}>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="#2563eb"/>
+          </svg>
+          <span style={{fontSize: '0.875rem', fontWeight: '600', color: '#2563eb'}}>Information</span>
+        </div>
+        <p style={{fontSize: '0.75rem', color: '#1d4ed8', margin: 0}}>Fill: blue-100, Border: blue-300, Text: blue-800</p>
+      </div>
+    </div>
+  </Column>
+</Row>
+
+```css
+/* Success */
+--elvt-alias-feedback-success-fill-default: {primitives.color-green-100}
+--elvt-alias-feedback-success-border-default: {primitives.color-green-300}
+--elvt-alias-feedback-success-text-default: {primitives.color-green-800}
+
+/* Warning */
+--elvt-alias-feedback-warning-fill-default: {primitives.color-orange-100}
+--elvt-alias-feedback-warning-border-default: {primitives.color-orange-300}
+--elvt-alias-feedback-warning-text-default: {primitives.color-orange-800}
+
+/* Error */
+--elvt-alias-feedback-error-fill-default: {primitives.color-red-100}
+--elvt-alias-feedback-error-border-default: {primitives.color-red-300}
+--elvt-alias-feedback-error-text-default: {primitives.color-red-800}
+
+/* Information */
+--elvt-alias-feedback-info-fill-default: {primitives.color-blue-100}
+--elvt-alias-feedback-info-border-default: {primitives.color-blue-300}
+--elvt-alias-feedback-info-text-default: {primitives.color-blue-800}
+```
+
+### Component Colors
+Component-specific color tokens that reference aliases for consistent implementation.
+
+#### Button Colors
+```css
+/* Primary Button */
+--elvt-component-button-background-color-primary: {alias.action.strong-primary-fill-default}
+--elvt-component-button-background-color-primary-hover: {alias.action.strong-primary-fill-hover}
+--elvt-component-button-text-color-primary: {primitives.color-white}
+
+/* Secondary Button */
+--elvt-component-button-background-color-secondary: {alias.action.strong-neutral-fill-default}
+--elvt-component-button-background-color-secondary-hover: {alias.action.strong-neutral-fill-hover}
+--elvt-component-button-text-color-secondary: {alias.content.text-color-default}
+
+/* Danger Button */
+--elvt-component-button-background-color-danger: {alias.action.strong-danger-fill-default}
+--elvt-component-button-background-color-danger-hover: {alias.action.strong-danger-fill-hover}
+--elvt-component-button-text-color-danger: {primitives.color-white}
+```
+
+#### Input Colors
+```css
+--elvt-component-input-background-color-default: {alias.content.background-color-default}
+--elvt-component-input-border-color-default: {alias.content.border-color-default}
+--elvt-component-input-border-color-focus: {alias.action.focus-border-color-default}
+--elvt-component-input-text-color-default: {alias.content.text-color-default}
+--elvt-component-input-text-color-placeholder: {alias.content.text-color-tertiary}
+```
+
+#### Card Colors
+```css
+--elvt-component-card-background-color-default: {alias.content.background-color-default}
+--elvt-component-card-border-color-default: {alias.content.border-color-default}
+--elvt-component-card-background-color-elevated: {primitives.color-white}
+--elvt-component-card-shadow-color-elevated: rgba(0, 0, 0, 0.1)
+```
+
+## Usage Examples
+
+### Using Color Tokens in CSS
+
+```css
+/* Use component tokens first */
+.my-button {
+  background-color: var(--elvt-component-button-background-color-primary);
+  color: var(--elvt-component-button-text-color-primary);
+}
+
+/* Fall back to alias tokens for general purposes */
+.my-text {
+  color: var(--elvt-alias-content-text-color-default);
+}
+
+/* Use primitives only when no alias exists */
+.custom-element {
+  border-color: var(--elvt-primitives-color-blue-200);
+}
+```
+
+### Using Color Tokens in SCSS
+
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/tokens';
+
+.alert {
+  &--success {
+    background-color: var(--elvt-alias-feedback-success-fill-default);
+    border: 1px solid var(--elvt-alias-feedback-success-border-default);
+    color: var(--elvt-alias-feedback-success-text-default);
+  }
+  
+  &--error {
+    background-color: var(--elvt-alias-feedback-error-fill-default);
+    border: 1px solid var(--elvt-alias-feedback-error-border-default);
+    color: var(--elvt-alias-feedback-error-text-default);
+  }
+}
+```
+
+## Theme Support
+
+ELEVATE color tokens support light and dark themes through token value overrides:
+
+### Light Theme (Default)
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/light';
+```
+
+### Dark Theme
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/dark';
+```
+
+In dark theme, alias tokens automatically map to appropriate dark primitives while maintaining the same semantic meaning.
+
+## Accessibility
+
+All ELEVATE color tokens are designed with accessibility in mind:
+
+- **Contrast ratios** meet WCAG 2.1 AA standards (4.5:1 for normal text, 3:1 for large text)
+- **Color blindness** considered with sufficient luminance differences
+- **Focus indicators** use high-contrast colors for keyboard navigation
+- **Status colors** don't rely solely on color but include additional visual cues
+
+## Best Practices
+
+1. **Follow the hierarchy**: Component → Alias → Primitive
+2. **Use semantic naming**: Choose tokens that match your intent
+3. **Test in both themes**: Verify colors work in light and dark modes
+4. **Consider accessibility**: Ensure sufficient contrast ratios
+5. **Document custom colors**: When extending the system, follow naming conventions
+
+<InlineNotification>
+
+**Remember:** Always prefer semantic alias tokens over primitives. This ensures your colors adapt properly across different themes and contexts.
+
+</InlineNotification>

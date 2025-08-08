@@ -1,0 +1,474 @@
+---
+title: Table
+description: Tables organize structured data in rows and columns for easy comparison and analysis. They support sorting, filtering, and selection for complex data interactions.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Tables transform complex datasets into scannable, interactive interfaces that support user decision-making. The ELEVATE Table component helps designers and developers create consistent, accessible data presentations that handle large datasets efficiently while maintaining usability.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Tables
+- **Data comparison**: Comparing multiple items across different attributes
+- **Structured datasets**: Financial data, inventory, user lists, and reports
+- **Sortable information**: Content that benefits from multiple sort orders
+- **Bulk operations**: Selecting multiple items for batch actions
+- **Detailed listings**: Product catalogs, search results, and directory listings
+
+### When NOT to Use Tables
+- **Simple lists**: Use List component for basic item listings
+- **Card layouts**: Use Card component for rich content with multiple data types
+- **Mobile-first content**: Consider alternative layouts for small screens
+- **Few data points**: Don't use tables for 2-3 columns of simple data
+
+## Variations
+
+
+### Basic Table
+
+Simple data presentation with clean rows and columns for easy scanning.
+
+<LiveExample 
+  title="Basic Table" 
+  htmlCode={`<elvt-table>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header">Name</elvt-table-cell>
+    <elvt-table-cell type="header">Email</elvt-table-cell>
+    <elvt-table-cell type="header">Role</elvt-table-cell>
+    <elvt-table-cell type="header">Status</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>John Doe</elvt-table-cell>
+    <elvt-table-cell>john.doe@company.com</elvt-table-cell>
+    <elvt-table-cell>Administrator</elvt-table-cell>
+    <elvt-table-cell><elvt-badge variant="success">Active</elvt-badge></elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>Jane Smith</elvt-table-cell>
+    <elvt-table-cell>jane.smith@company.com</elvt-table-cell>
+    <elvt-table-cell>Developer</elvt-table-cell>
+    <elvt-table-cell><elvt-badge variant="warning">Pending</elvt-badge></elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>Mike Johnson</elvt-table-cell>
+    <elvt-table-cell>mike.johnson@company.com</elvt-table-cell>
+    <elvt-table-cell>Designer</elvt-table-cell>
+    <elvt-table-cell><elvt-badge>Inactive</elvt-badge></elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>`}
+/>
+
+### Sortable Table
+
+Table with sortable columns for organizing data by different attributes.
+
+<LiveExample 
+  title="Sortable Table" 
+  htmlCode={`<elvt-table sortable>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header" sortable>Product Name</elvt-table-cell>
+    <elvt-table-cell type="header" sortable>Price</elvt-table-cell>
+    <elvt-table-cell type="header" sortable>Stock</elvt-table-cell>
+    <elvt-table-cell type="header">Actions</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>Wireless Headphones</elvt-table-cell>
+    <elvt-table-cell>$79.99</elvt-table-cell>
+    <elvt-table-cell>23</elvt-table-cell>
+    <elvt-table-cell>
+      <elvt-button size="small" tone="subtle">
+        <elvt-icon slot="prefix" icon="mdi:pencil"></elvt-icon>
+        Edit
+      </elvt-button>
+    </elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>Bluetooth Speaker</elvt-table-cell>
+    <elvt-table-cell>$49.99</elvt-table-cell>
+    <elvt-table-cell>8</elvt-table-cell>
+    <elvt-table-cell>
+      <elvt-button size="small" tone="subtle">
+        <elvt-icon slot="prefix" icon="mdi:pencil"></elvt-icon>
+        Edit
+      </elvt-button>
+    </elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>`}
+/>
+
+### Visual Styles
+
+**Striped Rows** alternate row colors to improve scanning and readability.
+
+**Bordered Tables** use borders to clearly separate cells and improve data clarity.
+
+**Compact Tables** reduce spacing for dense data presentation.
+
+**Card-Style Tables** use card-like styling for a softer, more modern appearance.
+
+### Interactive Features
+
+**Column Sorting** enables users to sort data by clicking column headers.
+
+**Row Selection** provides checkboxes for selecting individual or multiple rows.
+
+**Inline Editing** allows direct data editing within table cells.
+
+**Column Filtering** includes filter controls for narrowing displayed data.
+
+## Design Principles
+
+
+### Scannability Principle
+**Users should be able to quickly scan and compare data across rows and columns.** Visual design should support rapid information processing without creating fatigue or confusion.
+
+### Data Integrity Principle  
+**Information presentation should accurately reflect data relationships and hierarchies.** Misleading alignments, groupings, or visual treatments can cause users to misinterpret data.
+
+### Progressive Complexity Principle
+**Start with essential data, provide access to details when needed.** Tables should not overwhelm users with all available data but should make additional information accessible when relevant.
+
+### Responsive Adaptation Principle
+**Tables should remain functional across different screen sizes and interaction methods.** Large data tables need thoughtful responsive strategies that preserve usability on mobile devices.
+
+## Best Practices
+
+
+### Organizing Column Information
+
+**Why this matters:** Poor column organization makes data comparison difficult and increases cognitive load. Logical column ordering and appropriate data types improve user efficiency.
+
+### Managing Large Datasets
+
+**Why this matters:** Large tables can overwhelm users and create performance issues. Proper pagination, filtering, and progressive loading maintain usability with extensive data.
+
+### Providing Clear Data Hierarchy
+
+**Why this matters:** Users need to understand data relationships and importance. Visual hierarchy through typography, spacing, and emphasis guides attention to key information.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/table/table.js';
+```
+
+### Common Usage Patterns
+
+```html
+<!-- Basic data table -->
+<elvt-table>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header">Name</elvt-table-cell>
+    <elvt-table-cell type="header">Email</elvt-table-cell>
+    <elvt-table-cell type="header">Role</elvt-table-cell>
+    <elvt-table-cell type="header">Status</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>John Doe</elvt-table-cell>
+    <elvt-table-cell>john@company.com</elvt-table-cell>
+    <elvt-table-cell>Admin</elvt-table-cell>
+    <elvt-table-cell>Active</elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>
+
+<!-- Table with sortable columns -->
+<elvt-table sortable>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header" sortable>Product Name</elvt-table-cell>
+    <elvt-table-cell type="header" sortable>Price</elvt-table-cell>
+    <elvt-table-cell type="header" sortable>Stock</elvt-table-cell>
+    <elvt-table-cell type="header">Actions</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>Wireless Headphones</elvt-table-cell>
+    <elvt-table-cell>$79.99</elvt-table-cell>
+    <elvt-table-cell>23</elvt-table-cell>
+    <elvt-table-cell>
+      <elvt-button size="small" tone="subtle">Edit</elvt-button>
+    </elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>
+
+<!-- Table with selection checkboxes -->
+<elvt-table>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header">
+      <elvt-checkbox aria-label="Select all items"></elvt-checkbox>
+    </elvt-table-cell>
+    <elvt-table-cell type="header">Item</elvt-table-cell>
+    <elvt-table-cell type="header">Price</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>
+      <elvt-checkbox aria-label="Select this item"></elvt-checkbox>
+    </elvt-table-cell>
+    <elvt-table-cell>Product Name</elvt-table-cell>
+    <elvt-table-cell>$29.99</elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>
+
+<!-- Responsive table with badges and icons -->
+<elvt-table responsive>
+  <elvt-table-row slot="header">
+    <elvt-table-cell type="header">User</elvt-table-cell>
+    <elvt-table-cell type="header">Department</elvt-table-cell>
+    <elvt-table-cell type="header">Status</elvt-table-cell>
+    <elvt-table-cell type="header">Actions</elvt-table-cell>
+  </elvt-table-row>
+  
+  <elvt-table-row>
+    <elvt-table-cell>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <elvt-avatar initials="JD" size="small"></elvt-avatar>
+        John Doe
+      </div>
+    </elvt-table-cell>
+    <elvt-table-cell>Engineering</elvt-table-cell>
+    <elvt-table-cell>
+      <elvt-badge variant="success">Active</elvt-badge>
+    </elvt-table-cell>
+    <elvt-table-cell>
+      <elvt-button size="small" tone="subtle">
+        <elvt-icon slot="prefix" icon="mdi:pencil"></elvt-icon>
+        Edit
+      </elvt-button>
+    </elvt-table-cell>
+  </elvt-table-row>
+</elvt-table>
+```
+
+### Key Properties
+
+<PageTable>
+
+| Property | Options | Description |
+|----------|---------|-------------|
+| `sortable` | `true`, `false` (default) | Enable column sorting functionality |
+| `responsive` | `true` (default), `false` | Enable responsive table behavior |  
+| `striped` | `true`, `false` (default) | Alternate row background colors for better scanning |
+| `bordered` | `true`, `false` (default) | Add borders around table cells |
+| `compact` | `true`, `false` (default) | Reduce padding for dense data presentation |
+| `scroll-mode` | `virtual`, `normal` (default) | Enable virtual scrolling for large datasets |
+
+</PageTable>
+
+**Table Cell Properties:**
+- `type`: `header` or `data` (default) - Defines cell type for accessibility
+- `sortable`: Enable sorting for specific header columns
+- `alignment`: `left` (default), `center`, `right` - Text alignment within cells
+
+*For complete API reference including all properties, events, and methods, see the [Storybook documentation](https://elevate-core-ui.inform-cloud.io/?path=/docs/components-data-table--docs).*
+
+## Interactive Examples
+
+### Live Table with Interactive Features
+
+<LiveExample 
+  title="Interactive Data Table" 
+  htmlCode={`<div style="max-width: 800px;">
+  <elvt-table sortable responsive>
+    <elvt-table-row slot="header">
+      <elvt-table-cell type="header">
+        <elvt-checkbox aria-label="Select all employees"></elvt-checkbox>
+      </elvt-table-cell>
+      <elvt-table-cell type="header" sortable>Employee</elvt-table-cell>
+      <elvt-table-cell type="header" sortable>Department</elvt-table-cell>
+      <elvt-table-cell type="header" sortable>Start Date</elvt-table-cell>
+      <elvt-table-cell type="header">Status</elvt-table-cell>
+      <elvt-table-cell type="header">Actions</elvt-table-cell>
+    </elvt-table-row>
+    
+    <elvt-table-row>
+      <elvt-table-cell>
+        <elvt-checkbox aria-label="Select John Doe"></elvt-checkbox>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <elvt-avatar initials="JD" size="small"></elvt-avatar>
+          <div>
+            <div style="font-weight: 500;">John Doe</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">john@company.com</div>
+          </div>
+        </div>
+      </elvt-table-cell>
+      <elvt-table-cell>Engineering</elvt-table-cell>
+      <elvt-table-cell>Jan 15, 2022</elvt-table-cell>
+      <elvt-table-cell>
+        <elvt-badge variant="success">Active</elvt-badge>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; gap: 0.5rem;">
+          <elvt-button size="small" tone="subtle" title="Edit employee">
+            <elvt-icon icon="mdi:pencil"></elvt-icon>
+          </elvt-button>
+          <elvt-button size="small" tone="subtle" title="Delete employee">
+            <elvt-icon icon="mdi:delete"></elvt-icon>
+          </elvt-button>
+        </div>
+      </elvt-table-cell>
+    </elvt-table-row>
+    
+    <elvt-table-row>
+      <elvt-table-cell>
+        <elvt-checkbox aria-label="Select Sarah Wilson"></elvt-checkbox>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <elvt-avatar initials="SW" size="small"></elvt-avatar>
+          <div>
+            <div style="font-weight: 500;">Sarah Wilson</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">sarah@company.com</div>
+          </div>
+        </div>
+      </elvt-table-cell>
+      <elvt-table-cell>Design</elvt-table-cell>
+      <elvt-table-cell>Mar 8, 2021</elvt-table-cell>
+      <elvt-table-cell>
+        <elvt-badge variant="warning">On Leave</elvt-badge>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; gap: 0.5rem;">
+          <elvt-button size="small" tone="subtle" title="Edit employee">
+            <elvt-icon icon="mdi:pencil"></elvt-icon>
+          </elvt-button>
+          <elvt-button size="small" tone="subtle" title="Delete employee">
+            <elvt-icon icon="mdi:delete"></elvt-icon>
+          </elvt-button>
+        </div>
+      </elvt-table-cell>
+    </elvt-table-row>
+    
+    <elvt-table-row>
+      <elvt-table-cell>
+        <elvt-checkbox aria-label="Select Mike Chen"></elvt-checkbox>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <elvt-avatar initials="MC" size="small"></elvt-avatar>
+          <div>
+            <div style="font-weight: 500;">Mike Chen</div>
+            <div style="font-size: 0.875rem; color: #6f6f6f;">mike@company.com</div>
+          </div>
+        </div>
+      </elvt-table-cell>
+      <elvt-table-cell>Marketing</elvt-table-cell>
+      <elvt-table-cell>Nov 22, 2023</elvt-table-cell>
+      <elvt-table-cell>
+        <elvt-badge>Inactive</elvt-badge>
+      </elvt-table-cell>
+      <elvt-table-cell>
+        <div style="display: flex; gap: 0.5rem;">
+          <elvt-button size="small" tone="subtle" title="Edit employee">
+            <elvt-icon icon="mdi:pencil"></elvt-icon>
+          </elvt-button>
+          <elvt-button size="small" tone="subtle" title="Delete employee">
+            <elvt-icon icon="mdi:delete"></elvt-icon>
+          </elvt-button>
+        </div>
+      </elvt-table-cell>
+    </elvt-table-row>
+  </elvt-table>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Proper table structure:**
+- Use semantic table elements (table, thead, tbody, th, td)
+- Include table captions that describe table purpose
+- Use proper heading hierarchy for table structure
+- Associate data cells with appropriate headers
+
+**Screen reader support:**
+- Provide clear column headers with scope attributes
+- Use aria-labels for complex table relationships
+- Announce sorting states and selection changes
+- Include summary information for large datasets
+
+**Keyboard navigation:**
+- Arrow keys navigate between table cells
+- Tab moves through interactive elements within table
+- Space/Enter activates buttons and checkboxes in cells
+- Provide keyboard shortcuts for common table actions
+
+**Visual accessibility:**
+- Ensure sufficient contrast for table text and borders
+- Use clear focus indicators for keyboard navigation
+- Don't rely solely on color for data meaning
+- Provide alternative text for data visualizations within tables
+
+## Changelog
+
+### Version 0.0.26-alpha (July 16, 2025)
+- **New**: Table component fully implemented and functional
+- **New**: Table, TableRow, and TableCell components available
+- **New**: Sortable column functionality with header controls
+- **Enhanced**: Responsive table behavior with mobile optimization
+- **Enhanced**: Integration with other ELEVATE components (Badge, Avatar, Icon, Button)
+- **Enhanced**: Comprehensive accessibility support with proper ARIA attributes
+- Current version in active development
+
+### Table Component Features
+- ✅ Basic table structure with header and data rows
+- ✅ Sortable columns with interactive headers
+- ✅ Responsive design that adapts to different screen sizes
+- ✅ Integration with selection components (Checkbox)
+- ✅ Support for complex cell content (Avatars, Badges, Buttons, Icons)
+- ✅ Virtual scrolling support for large datasets
+- ✅ Comprehensive accessibility features
+
+### Available Components
+- `TableComponent`: Main table container
+- `TableRowComponent`: Individual table rows
+- `TableCellComponent`: Table cells with header/data types
+- `TableColumnComponent`: Column definitions for advanced tables
+- Data provider components for large datasets
+
+### Implementation Status
+- ✅ Core table functionality operational
+- ✅ Component integration working properly
+- ✅ Accessibility features implemented
+- ✅ Responsive behavior functional

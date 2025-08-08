@@ -1,0 +1,406 @@
+---
+title: Spacing Tokens
+description: ELEVATE spacing tokens provide a systematic approach to layout dimensions, component spacing, and visual rhythm through measures and semantic aliases.
+---
+
+<PageDescription>
+
+ELEVATE spacing system uses measure tokens for raw dimensional values and alias tokens for semantic spacing that creates consistent rhythm and hierarchy across all interface layouts and components.
+
+</PageDescription>
+
+## Spacing Architecture
+
+### Measure Tokens
+Raw dimensional values that form the foundation of the ELEVATE spacing system.
+
+#### Base Spacing Scale
+Built on a 4px base unit with harmonic progression:
+
+```css
+/* Base Spacing Measures */
+--elvt-measures-spacing-3xs: 0.125rem  /* 2px */
+--elvt-measures-spacing-2xs: 0.25rem   /* 4px */
+--elvt-measures-spacing-xs: 0.5rem     /* 8px */
+--elvt-measures-spacing-s: 0.75rem     /* 12px */
+--elvt-measures-spacing-m: 1rem        /* 16px */
+--elvt-measures-spacing-l: 1.5rem      /* 24px */
+--elvt-measures-spacing-xl: 2rem       /* 32px */
+--elvt-measures-spacing-2xl: 3rem      /* 48px */
+--elvt-measures-spacing-3xl: 4rem      /* 64px */
+--elvt-measures-spacing-4xl: 6rem      /* 96px */
+--elvt-measures-spacing-5xl: 8rem      /* 128px */
+```
+
+#### Component Dimensions
+Specific sizing values for common component dimensions:
+
+```css
+/* Standard Dimensions */
+--elvt-measures-size-xs: 1rem          /* 16px */
+--elvt-measures-size-s: 1.5rem         /* 24px */
+--elvt-measures-size-m: 2rem           /* 32px */
+--elvt-measures-size-l: 2.5rem         /* 40px */
+--elvt-measures-size-xl: 3rem          /* 48px */
+--elvt-measures-size-2xl: 4rem         /* 64px */
+
+/* Border Dimensions */
+--elvt-measures-borderWidth-xs: 0.0625rem  /* 1px */
+--elvt-measures-borderWidth-s: 0.125rem    /* 2px */
+--elvt-measures-borderWidth-m: 0.25rem     /* 4px */
+--elvt-measures-borderWidth-l: 0.5rem      /* 8px */
+
+/* Border Radius */
+--elvt-measures-borderRadius-xs: 0.125rem  /* 2px */
+--elvt-measures-borderRadius-s: 0.25rem    /* 4px */
+--elvt-measures-borderRadius-m: 0.5rem     /* 8px */
+--elvt-measures-borderRadius-l: 0.75rem    /* 12px */
+--elvt-measures-borderRadius-xl: 1rem      /* 16px */
+--elvt-measures-borderRadius-full: 9999px  /* Fully rounded */
+```
+
+### Layout Alias Tokens
+Semantic spacing tokens that reference measures for layout purposes.
+
+#### Container Spacing
+For page layouts and content containers:
+
+```css
+/* Content Spacing */
+--elvt-alias-layout-content-spacing-s: {measures.spacing-l}      /* 24px */
+--elvt-alias-layout-content-spacing-m: {measures.spacing-xl}     /* 32px */
+--elvt-alias-layout-content-spacing-l: {measures.spacing-2xl}    /* 48px */
+--elvt-alias-layout-content-spacing-xl: {measures.spacing-3xl}   /* 64px */
+
+/* Section Spacing */
+--elvt-alias-layout-section-spacing-s: {measures.spacing-2xl}    /* 48px */
+--elvt-alias-layout-section-spacing-m: {measures.spacing-3xl}    /* 64px */
+--elvt-alias-layout-section-spacing-l: {measures.spacing-4xl}    /* 96px */
+--elvt-alias-layout-section-spacing-xl: {measures.spacing-5xl}   /* 128px */
+
+/* Grid Spacing */
+--elvt-alias-layout-grid-gap-s: {measures.spacing-s}            /* 12px */
+--elvt-alias-layout-grid-gap-m: {measures.spacing-m}            /* 16px */
+--elvt-alias-layout-grid-gap-l: {measures.spacing-l}            /* 24px */
+--elvt-alias-layout-grid-gap-xl: {measures.spacing-xl}          /* 32px */
+```
+
+#### Component Spacing
+For internal component spacing and relationships:
+
+```css
+/* Stack Spacing - For vertical layouts */
+--elvt-alias-layout-stack-spacing-3xs: {measures.spacing-3xs}    /* 2px */
+--elvt-alias-layout-stack-spacing-2xs: {measures.spacing-2xs}    /* 4px */
+--elvt-alias-layout-stack-spacing-xs: {measures.spacing-xs}      /* 8px */
+--elvt-alias-layout-stack-spacing-s: {measures.spacing-s}        /* 12px */
+--elvt-alias-layout-stack-spacing-m: {measures.spacing-m}        /* 16px */
+--elvt-alias-layout-stack-spacing-l: {measures.spacing-l}        /* 24px */
+--elvt-alias-layout-stack-spacing-xl: {measures.spacing-xl}      /* 32px */
+
+/* Inline Spacing - For horizontal layouts */
+--elvt-alias-layout-inline-spacing-3xs: {measures.spacing-3xs}   /* 2px */
+--elvt-alias-layout-inline-spacing-2xs: {measures.spacing-2xs}   /* 4px */
+--elvt-alias-layout-inline-spacing-xs: {measures.spacing-xs}     /* 8px */
+--elvt-alias-layout-inline-spacing-s: {measures.spacing-s}       /* 12px */
+--elvt-alias-layout-inline-spacing-m: {measures.spacing-m}       /* 16px */
+--elvt-alias-layout-inline-spacing-l: {measures.spacing-l}       /* 24px */
+--elvt-alias-layout-inline-spacing-xl: {measures.spacing-xl}     /* 32px */
+```
+
+### Component-Specific Spacing
+Individual component spacing tokens for consistent implementation.
+
+#### Button Spacing
+```css
+/* Button Padding */
+--elvt-component-button-padding-small: {measures.spacing-xs} {measures.spacing-s}     /* 8px 12px */
+--elvt-component-button-padding-medium: {measures.spacing-s} {measures.spacing-m}    /* 12px 16px */
+--elvt-component-button-padding-large: {measures.spacing-m} {measures.spacing-l}     /* 16px 24px */
+
+/* Button Group Spacing */
+--elvt-component-button-group-gap: {measures.spacing-xs}                             /* 8px */
+```
+
+#### Input Spacing
+```css
+/* Input Padding */
+--elvt-component-input-padding-small: {measures.spacing-xs} {measures.spacing-s}     /* 8px 12px */
+--elvt-component-input-padding-medium: {measures.spacing-s} {measures.spacing-m}    /* 12px 16px */
+--elvt-component-input-padding-large: {measures.spacing-m} {measures.spacing-l}     /* 16px 24px */
+
+/* Field Spacing */
+--elvt-component-field-label-spacing: {measures.spacing-2xs}                        /* 4px */
+--elvt-component-field-help-text-spacing: {measures.spacing-2xs}                    /* 4px */
+--elvt-component-field-group-spacing: {measures.spacing-m}                          /* 16px */
+```
+
+#### Card Spacing  
+```css
+/* Card Padding */
+--elvt-component-card-padding-small: {measures.spacing-m}                           /* 16px */
+--elvt-component-card-padding-medium: {measures.spacing-l}                          /* 24px */
+--elvt-component-card-padding-large: {measures.spacing-xl}                          /* 32px */
+
+/* Card Header/Footer Spacing */
+--elvt-component-card-header-padding: {measures.spacing-m} {measures.spacing-l}     /* 16px 24px */
+--elvt-component-card-footer-padding: {measures.spacing-m} {measures.spacing-l}     /* 16px 24px */
+--elvt-component-card-content-spacing: {measures.spacing-l}                         /* 24px */
+```
+
+#### Menu Spacing
+```css
+/* Menu Padding */
+--elvt-component-menu-padding: {measures.spacing-xs}                                /* 8px */
+--elvt-component-menu-item-padding: {measures.spacing-xs} {measures.spacing-s}      /* 8px 12px */
+--elvt-component-menu-separator-margin: {measures.spacing-xs}                       /* 8px */
+```
+
+#### Table Spacing
+```css
+/* Table Cell Padding */
+--elvt-component-table-cell-padding-compact: {measures.spacing-xs} {measures.spacing-s}     /* 8px 12px */
+--elvt-component-table-cell-padding-normal: {measures.spacing-s} {measures.spacing-m}      /* 12px 16px */
+--elvt-component-table-cell-padding-comfortable: {measures.spacing-m} {measures.spacing-l} /* 16px 24px */
+```
+
+## Usage Examples
+
+### Using Spacing Tokens in CSS
+
+```css
+/* Use component tokens for specific components */
+.my-button {
+  padding: var(--elvt-component-button-padding-medium);
+}
+
+/* Use alias tokens for layout purposes */
+.content-section {
+  margin-bottom: var(--elvt-alias-layout-section-spacing-m);
+  padding: var(--elvt-alias-layout-content-spacing-l);
+}
+
+/* Use measure tokens for custom spacing needs */
+.custom-element {
+  gap: var(--elvt-measures-spacing-m);
+  border-radius: var(--elvt-measures-borderRadius-s);
+}
+```
+
+### Using Spacing Tokens in SCSS
+
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/tokens';
+
+.layout {
+  &__container {
+    padding: var(--elvt-alias-layout-content-spacing-m);
+    gap: var(--elvt-alias-layout-grid-gap-l);
+  }
+  
+  &__section {
+    margin-bottom: var(--elvt-alias-layout-section-spacing-l);
+  }
+  
+  &__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--elvt-alias-layout-stack-spacing-m);
+  }
+  
+  &__inline {
+    display: flex;
+    gap: var(--elvt-alias-layout-inline-spacing-s);
+  }
+}
+```
+
+### Creating Responsive Spacing
+
+```css
+/* Mobile-first responsive spacing */
+.responsive-container {
+  padding: var(--elvt-alias-layout-content-spacing-s);
+}
+
+@media (min-width: 768px) {
+  .responsive-container {
+    padding: var(--elvt-alias-layout-content-spacing-m);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding: var(--elvt-alias-layout-content-spacing-l);
+  }
+}
+```
+
+## Spacing Scale Reference
+
+### Visual Scale Progression
+
+<Row>
+  <Column colMd={8} colLg={12}>
+    <div style={{padding: '2rem', backgroundColor: '#f9fafb', borderRadius: '8px', marginBottom: '2rem'}}>
+      <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1.5rem'}}>ELEVATE Spacing Scale</h4>
+      
+      <div style={{display: 'grid', gap: '1rem'}}>
+        {[
+          {token: '3xs', value: '0.125rem', pixels: '2px', color: '#dbeafe'},
+          {token: '2xs', value: '0.25rem', pixels: '4px', color: '#bfdbfe'},
+          {token: 'xs', value: '0.5rem', pixels: '8px', color: '#93c5fd'},
+          {token: 's', value: '0.75rem', pixels: '12px', color: '#60a5fa'},
+          {token: 'm', value: '1rem', pixels: '16px', color: '#3b82f6'},
+          {token: 'l', value: '1.5rem', pixels: '24px', color: '#2563eb'},
+          {token: 'xl', value: '2rem', pixels: '32px', color: '#1d4ed8'},
+          {token: '2xl', value: '3rem', pixels: '48px', color: '#1e40af'},
+          {token: '3xl', value: '4rem', pixels: '64px', color: '#1e3a8a'},
+          {token: '4xl', value: '6rem', pixels: '96px', color: '#312e81'},
+          {token: '5xl', value: '8rem', pixels: '128px', color: '#1e1b4b'}
+        ].map((item, index) => (
+          <div key={index} style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+            <div style={{
+              width: item.value, 
+              height: '24px', 
+              backgroundColor: item.color, 
+              borderRadius: '2px',
+              minWidth: item.value,
+              border: item.token === '3xs' || item.token === '2xs' ? '1px solid #9ca3af' : 'none'
+            }}></div>
+            <div style={{display: 'flex', gap: '1rem', alignItems: 'center', fontSize: '0.875rem'}}>
+              <code style={{
+                backgroundColor: '#374151', 
+                color: 'white', 
+                padding: '0.25rem 0.5rem', 
+                borderRadius: '4px', 
+                fontFamily: 'Roboto Mono, monospace',
+                fontSize: '0.75rem',
+                minWidth: '40px',
+                textAlign: 'center'
+              }}>{item.token}</code>
+              <span style={{color: '#6b7280', minWidth: '60px'}}>{item.value}</span>
+              <span style={{color: '#374151', minWidth: '40px'}}>{item.pixels}</span>
+              <span style={{color: '#9ca3af', fontSize: '0.75rem'}}>
+                {item.token === '3xs' && 'Micro adjustments, fine borders'}
+                {item.token === '2xs' && 'Tight spacing, labels'}
+                {item.token === 'xs' && 'Small gaps, form elements'}
+                {item.token === 's' && 'Compact layouts, buttons'}
+                {item.token === 'm' && 'Standard spacing, content'}
+                {item.token === 'l' && 'Generous spacing, cards'}
+                {item.token === 'xl' && 'Large spacing, sections'}
+                {item.token === '2xl' && 'Section breaks, headers'}
+                {item.token === '3xl' && 'Major sections, hero spacing'}
+                {item.token === '4xl' && 'Page sections, major breaks'}
+                {item.token === '5xl' && 'Hero sections, landing pages'}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div style={{marginTop: '2rem', padding: '1rem', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e5e7eb'}}>
+        <h5 style={{fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Spacing in Context</h5>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 'var(--elvt-measures-spacing-m, 1rem)'}}>
+          <div style={{padding: 'var(--elvt-measures-spacing-s, 0.75rem)', backgroundColor: '#dbeafe', borderRadius: '4px', fontSize: '0.875rem'}}>
+            Card with small padding (12px)
+          </div>
+          <div style={{padding: 'var(--elvt-measures-spacing-m, 1rem)', backgroundColor: '#bfdbfe', borderRadius: '4px', fontSize: '0.875rem'}}>
+            Card with medium padding (16px)
+          </div>
+          <div style={{padding: 'var(--elvt-measures-spacing-l, 1.5rem)', backgroundColor: '#93c5fd', borderRadius: '4px', fontSize: '0.875rem'}}>
+            Card with large padding (24px)
+          </div>
+        </div>
+      </div>
+    </div>
+  </Column>
+</Row>
+
+| Token | Value | Pixels | Usage |
+|-------|-------|--------|-------|
+| `3xs` | 0.125rem | 2px | Micro adjustments, fine borders |
+| `2xs` | 0.25rem | 4px | Tight spacing, labels |
+| `xs` | 0.5rem | 8px | Small gaps, form elements |
+| `s` | 0.75rem | 12px | Compact layouts, buttons |
+| `m` | 1rem | 16px | Standard spacing, content |
+| `l` | 1.5rem | 24px | Generous spacing, cards |
+| `xl` | 2rem | 32px | Large spacing, sections |
+| `2xl` | 3rem | 48px | Section breaks, headers |
+| `3xl` | 4rem | 64px | Major sections, hero spacing |
+| `4xl` | 6rem | 96px | Page sections, major breaks |
+| `5xl` | 8rem | 128px | Hero sections, landing pages |
+
+### Common Spacing Patterns
+
+#### Content Hierarchy
+```css
+/* Article content spacing */
+.article {
+  h1 { margin-bottom: var(--elvt-measures-spacing-l); }
+  h2 { margin: var(--elvt-measures-spacing-xl) 0 var(--elvt-measures-spacing-m); }
+  h3 { margin: var(--elvt-measures-spacing-l) 0 var(--elvt-measures-spacing-s); }
+  p { margin-bottom: var(--elvt-measures-spacing-m); }
+  ul, ol { margin-bottom: var(--elvt-measures-spacing-m); }
+  li { margin-bottom: var(--elvt-measures-spacing-xs); }
+}
+```
+
+#### Form Layouts
+```css
+/* Form field spacing */
+.form {
+  &__field {
+    margin-bottom: var(--elvt-component-field-group-spacing);
+  }
+  
+  &__label {
+    margin-bottom: var(--elvt-component-field-label-spacing);
+  }
+  
+  &__help-text {
+    margin-top: var(--elvt-component-field-help-text-spacing);
+  }
+  
+  &__actions {
+    margin-top: var(--elvt-alias-layout-section-spacing-s);
+    gap: var(--elvt-component-button-group-gap);
+  }
+}
+```
+
+#### Grid Layouts
+```css
+/* Card grid spacing */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--elvt-alias-layout-grid-gap-l);
+  padding: var(--elvt-alias-layout-content-spacing-m);
+}
+```
+
+## Best Practices
+
+1. **Follow the hierarchy**: Component → Alias → Measure tokens
+2. **Use consistent scales**: Stick to the defined spacing scale for harmony
+3. **Consider touch targets**: Ensure interactive elements have adequate spacing
+4. **Test responsively**: Verify spacing works across different screen sizes
+5. **Maintain rhythm**: Use consistent spacing patterns for visual cohesion
+6. **Group related elements**: Use smaller spacing for related items, larger for unrelated
+
+## Accessibility
+
+ELEVATE spacing tokens support accessibility by:
+
+- **Touch targets**: Minimum 44px touch target sizes for interactive elements
+- **Reading rhythm**: Appropriate line spacing and paragraph spacing for readability
+- **Focus indicators**: Adequate spacing around focus outlines
+- **Content separation**: Clear spacing between sections for screen reader navigation
+- **Responsive scaling**: Spacing adapts appropriately across different zoom levels
+
+<InlineNotification>
+
+**Spacing Harmony**: The ELEVATE spacing scale is based on a 4px base unit with harmonic progression, ensuring consistent visual rhythm across all interface elements.
+
+</InlineNotification>

@@ -1,0 +1,450 @@
+---
+title: Typography Tokens
+description: ELEVATE typography tokens provide a comprehensive type system with font families, scales, and properties that ensure consistent text rendering across all INFORM applications.
+---
+
+<PageDescription>
+
+ELEVATE typography system uses primitive font properties, type alias tokens for different text styles, and semantic scales to create a harmonious and accessible reading experience across all interface elements.
+
+</PageDescription>
+
+## Typography Architecture
+
+### Primitive Typography Tokens
+Raw typography values that form the foundation of the ELEVATE type system.
+
+#### Font Families
+```css
+--elvt-primitives-font-family-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+--elvt-primitives-font-family-mono: 'Roboto Mono', 'Fira Code', Monaco, 'Cascadia Code', monospace
+```
+
+#### Font Weights
+```css
+--elvt-primitives-font-weight-100: 100  /* Thin */
+--elvt-primitives-font-weight-200: 200  /* Extra Light */
+--elvt-primitives-font-weight-300: 300  /* Light */
+--elvt-primitives-font-weight-400: 400  /* Regular */
+--elvt-primitives-font-weight-500: 500  /* Medium */
+--elvt-primitives-font-weight-600: 600  /* Semi Bold */
+--elvt-primitives-font-weight-700: 700  /* Bold */
+--elvt-primitives-font-weight-800: 800  /* Extra Bold */
+--elvt-primitives-font-weight-900: 900  /* Black */
+```
+
+### Type Measures
+Scale-based sizing and spacing values for typography.
+
+#### Font Sizes
+```css
+/* Display Sizes - For large headings and hero text */
+--elvt-type-measures-display-size-l: 3rem      /* 48px */
+--elvt-type-measures-display-size-m: 2.5rem    /* 40px */
+--elvt-type-measures-display-size-s: 2rem      /* 32px */
+
+/* Headline Sizes - For section headers */
+--elvt-type-measures-headline-size-l: 1.75rem  /* 28px */
+--elvt-type-measures-headline-size-m: 1.5rem   /* 24px */
+--elvt-type-measures-headline-size-s: 1.25rem  /* 20px */
+
+/* Section Sizes - For subsection headers */
+--elvt-type-measures-section-size-l: 1.125rem  /* 18px */
+--elvt-type-measures-section-size-m: 1rem      /* 16px */
+--elvt-type-measures-section-size-s: 0.875rem  /* 14px */
+
+/* Label Sizes - For form labels and UI text */
+--elvt-type-measures-label-size-xl: 1rem       /* 16px */
+--elvt-type-measures-label-size-l: 0.875rem    /* 14px */
+--elvt-type-measures-label-size-m: 0.75rem     /* 12px */
+--elvt-type-measures-label-size-s: 0.6875rem   /* 11px */
+
+/* Content Sizes - For body text and paragraphs */
+--elvt-type-measures-content-size-xl: 1.125rem /* 18px */
+--elvt-type-measures-content-size-l: 1rem      /* 16px */
+--elvt-type-measures-content-size-m: 0.875rem  /* 14px */
+--elvt-type-measures-content-size-s: 0.75rem   /* 12px */
+```
+
+#### Line Heights
+```css
+/* Display Line Heights */
+--elvt-type-measures-display-lineHeight-l: 3.5rem   /* 56px */
+--elvt-type-measures-display-lineHeight-m: 3rem     /* 48px */
+--elvt-type-measures-display-lineHeight-s: 2.5rem   /* 40px */
+
+/* Headline Line Heights */
+--elvt-type-measures-headline-lineHeight-l: 2.25rem /* 36px */
+--elvt-type-measures-headline-lineHeight-m: 2rem    /* 32px */
+--elvt-type-measures-headline-lineHeight-s: 1.75rem /* 28px */
+
+/* Section Line Heights */
+--elvt-type-measures-section-lineHeight-l: 1.75rem  /* 28px */
+--elvt-type-measures-section-lineHeight-m: 1.5rem   /* 24px */
+--elvt-type-measures-section-lineHeight-s: 1.25rem  /* 20px */
+
+/* Label Line Heights */
+--elvt-type-measures-label-lineHeight-xl: 1.5rem    /* 24px */
+--elvt-type-measures-label-lineHeight-l: 1.25rem    /* 20px */
+--elvt-type-measures-label-lineHeight-m: 1rem       /* 16px */
+--elvt-type-measures-label-lineHeight-s: 0.875rem   /* 14px */
+
+/* Content Line Heights */
+--elvt-type-measures-content-lineHeight-xl: 1.75rem /* 28px */
+--elvt-type-measures-content-lineHeight-l: 1.5rem   /* 24px */
+--elvt-type-measures-content-lineHeight-m: 1.25rem  /* 20px */
+--elvt-type-measures-content-lineHeight-s: 1rem     /* 16px */
+```
+
+### Type Alias Tokens
+Semantic typography tokens that combine font properties for specific use cases.
+
+#### Display Text Styles
+For hero sections and large promotional text:
+
+```css
+/* Large Display */
+--elvt-type-alias-display-l: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.display-size-l}
+  font-weight: {primitives.font-weight-700}
+  line-height: {type-measures.display-lineHeight-l}
+}
+
+/* Medium Display */
+--elvt-type-alias-display-m: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.display-size-m}
+  font-weight: {primitives.font-weight-600}
+  line-height: {type-measures.display-lineHeight-m}
+}
+
+/* Small Display */
+--elvt-type-alias-display-s: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.display-size-s}
+  font-weight: {primitives.font-weight-600}
+  line-height: {type-measures.display-lineHeight-s}
+}
+```
+
+#### Headline Text Styles
+For main page and section headings:
+
+```css
+/* Large Headline (H1) */
+--elvt-type-alias-headline-l: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.headline-size-l}
+  font-weight: {primitives.font-weight-600}
+  line-height: {type-measures.headline-lineHeight-l}
+}
+
+/* Medium Headline (H2) */
+--elvt-type-alias-headline-m: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.headline-size-m}
+  font-weight: {primitives.font-weight-600}
+  line-height: {type-measures.headline-lineHeight-m}
+}
+
+/* Small Headline (H3) */
+--elvt-type-alias-headline-s: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.headline-size-s}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.headline-lineHeight-s}
+}
+```
+
+#### Section Text Styles
+For subsection headings and component titles:
+
+```css
+/* Large Section (H4) */
+--elvt-type-alias-section-l: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.section-size-l}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.section-lineHeight-l}
+}
+
+/* Medium Section (H5) */
+--elvt-type-alias-section-m: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.section-size-m}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.section-lineHeight-m}
+}
+
+/* Small Section (H6) */
+--elvt-type-alias-section-s: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.section-size-s}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.section-lineHeight-s}
+}
+```
+
+#### Label Text Styles
+For form labels, UI text, and small interface elements:
+
+```css
+/* Extra Large Label */
+--elvt-type-alias-label-xl: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.label-size-xl}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.label-lineHeight-xl}
+}
+
+/* Large Label */
+--elvt-type-alias-label-l: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.label-size-l}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.label-lineHeight-l}
+}
+
+/* Medium Label */
+--elvt-type-alias-label-m: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.label-size-m}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.label-lineHeight-m}
+}
+
+/* Small Label */
+--elvt-type-alias-label-s: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.label-size-s}
+  font-weight: {primitives.font-weight-500}
+  line-height: {type-measures.label-lineHeight-s}
+}
+```
+
+#### Content Text Styles
+For body text, paragraphs, and readable content:
+
+```css
+/* Extra Large Content */
+--elvt-type-alias-content-xl: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.content-size-xl}
+  font-weight: {primitives.font-weight-400}
+  line-height: {type-measures.content-lineHeight-xl}
+}
+
+/* Large Content */
+--elvt-type-alias-content-l: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.content-size-l}
+  font-weight: {primitives.font-weight-400}
+  line-height: {type-measures.content-lineHeight-l}
+}
+
+/* Medium Content */
+--elvt-type-alias-content-m: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.content-size-m}
+  font-weight: {primitives.font-weight-400}
+  line-height: {type-measures.content-lineHeight-m}
+}
+
+/* Small Content */
+--elvt-type-alias-content-s: {
+  font-family: {primitives.font-family-default}
+  font-size: {type-measures.content-size-s}
+  font-weight: {primitives.font-weight-400}
+  line-height: {type-measures.content-lineHeight-s}
+}
+```
+
+## Usage Examples
+
+### Using Typography Tokens in CSS
+
+```css
+/* Apply headline styles */
+h1 {
+  font-family: var(--elvt-primitives-font-family-default);
+  font-size: var(--elvt-type-measures-headline-size-l);
+  font-weight: var(--elvt-primitives-font-weight-600);
+  line-height: var(--elvt-type-measures-headline-lineHeight-l);
+}
+
+/* Apply content styles */
+p {
+  font-family: var(--elvt-primitives-font-family-default);
+  font-size: var(--elvt-type-measures-content-size-l);
+  font-weight: var(--elvt-primitives-font-weight-400);
+  line-height: var(--elvt-type-measures-content-lineHeight-l);
+}
+
+/* Apply label styles */
+label {
+  font-family: var(--elvt-primitives-font-family-default);
+  font-size: var(--elvt-type-measures-label-size-l);
+  font-weight: var(--elvt-primitives-font-weight-500);
+  line-height: var(--elvt-type-measures-label-lineHeight-l);
+}
+```
+
+### Using Typography Tokens in SCSS
+
+```scss
+@import '@inform-elevate/elevate-design-tokens/dist/scss/tokens';
+
+.hero-title {
+  font-family: var(--elvt-primitives-font-family-default);
+  font-size: var(--elvt-type-measures-display-size-l);
+  font-weight: var(--elvt-primitives-font-weight-700);
+  line-height: var(--elvt-type-measures-display-lineHeight-l);
+}
+
+.body-text {
+  font-family: var(--elvt-primitives-font-family-default);
+  font-size: var(--elvt-type-measures-content-size-l);
+  font-weight: var(--elvt-primitives-font-weight-400);
+  line-height: var(--elvt-type-measures-content-lineHeight-l);
+}
+
+.code-block {
+  font-family: var(--elvt-primitives-font-family-mono);
+  font-size: var(--elvt-type-measures-content-size-m);
+  font-weight: var(--elvt-primitives-font-weight-400);
+  line-height: var(--elvt-type-measures-content-lineHeight-m);
+}
+```
+
+### Inter Variable Font Features
+
+ELEVATE typography leverages Inter's variable font capabilities:
+
+```css
+/* Optimize for different text sizes using optical sizing */
+.large-text {
+  font-variation-settings: 'opsz' 32;
+  font-size: var(--elvt-type-measures-display-size-m);
+}
+
+.body-text {
+  font-variation-settings: 'opsz' 16;
+  font-size: var(--elvt-type-measures-content-size-l);
+}
+
+.small-ui-text {
+  font-variation-settings: 'opsz' 14;
+  font-size: var(--elvt-type-measures-label-size-m);
+}
+
+/* Use variable weight axis for smoother weight transitions */
+.interactive-text {
+  font-variation-settings: 'wght' 450;
+  transition: font-variation-settings 0.2s ease;
+}
+
+.interactive-text:hover {
+  font-variation-settings: 'wght' 500;
+}
+```
+
+## Typography Scale
+
+The ELEVATE typography scale provides a harmonious progression of sizes based on a 1.25 ratio:
+
+### Visual Type Specimens
+
+<Row>
+  <Column colMd={8} colLg={12}>
+    <div style={{padding: '2rem', backgroundColor: '#f9fafb', borderRadius: '8px', marginBottom: '2rem'}}>
+      
+      <div style={{marginBottom: '2rem'}}>
+        <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Display Sizes</h4>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 32', fontSize: '3rem', fontWeight: '700', lineHeight: '3.5rem', color: '#111827', marginBottom: '0.5rem'}}>Display Large 48px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 32', fontSize: '2.5rem', fontWeight: '600', lineHeight: '3rem', color: '#111827', marginBottom: '0.5rem'}}>Display Medium 40px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 28', fontSize: '2rem', fontWeight: '600', lineHeight: '2.5rem', color: '#111827'}}>Display Small 32px</div>
+      </div>
+      
+      <div style={{marginBottom: '2rem'}}>
+        <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Headlines</h4>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 24', fontSize: '1.75rem', fontWeight: '600', lineHeight: '2.25rem', color: '#111827', marginBottom: '0.5rem'}}>Headline Large 28px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 20', fontSize: '1.5rem', fontWeight: '600', lineHeight: '2rem', color: '#111827', marginBottom: '0.5rem'}}>Headline Medium 24px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 18', fontSize: '1.25rem', fontWeight: '500', lineHeight: '1.75rem', color: '#111827'}}>Headline Small 20px</div>
+      </div>
+      
+      <div style={{marginBottom: '2rem'}}>
+        <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Sections</h4>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 16', fontSize: '1.125rem', fontWeight: '500', lineHeight: '1.75rem', color: '#111827', marginBottom: '0.5rem'}}>Section Large 18px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 16', fontSize: '1rem', fontWeight: '500', lineHeight: '1.5rem', color: '#111827', marginBottom: '0.5rem'}}>Section Medium 16px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 14', fontSize: '0.875rem', fontWeight: '500', lineHeight: '1.25rem', color: '#111827'}}>Section Small 14px</div>
+      </div>
+      
+      <div style={{marginBottom: '2rem'}}>
+        <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Content Text</h4>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 16', fontSize: '1.125rem', fontWeight: '400', lineHeight: '1.75rem', color: '#111827', marginBottom: '0.5rem'}}>Content Extra Large 18px - Perfect for lead paragraphs and important body text that needs extra emphasis.</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 16', fontSize: '1rem', fontWeight: '400', lineHeight: '1.5rem', color: '#111827', marginBottom: '0.5rem'}}>Content Large 16px - Standard body text size for most content. Provides excellent readability across all devices and screen sizes.</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 14', fontSize: '0.875rem', fontWeight: '400', lineHeight: '1.25rem', color: '#111827', marginBottom: '0.5rem'}}>Content Medium 14px - Smaller body text for dense content areas and secondary information.</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 12', fontSize: '0.75rem', fontWeight: '400', lineHeight: '1rem', color: '#111827'}}>Content Small 12px - Captions, footnotes, and micro-copy.</div>
+      </div>
+      
+      <div>
+        <h4 style={{fontSize: '1rem', fontWeight: '600', color: '#374151', marginBottom: '1rem'}}>Labels & UI Text</h4>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 16', fontSize: '1rem', fontWeight: '500', lineHeight: '1.5rem', color: '#111827', marginBottom: '0.5rem'}}>Label Extra Large 16px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 14', fontSize: '0.875rem', fontWeight: '500', lineHeight: '1.25rem', color: '#111827', marginBottom: '0.5rem'}}>Label Large 14px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 12', fontSize: '0.75rem', fontWeight: '500', lineHeight: '1rem', color: '#111827', marginBottom: '0.5rem'}}>Label Medium 12px</div>
+        <div style={{fontFamily: 'Inter, sans-serif', fontVariationSettings: '"opsz" 11', fontSize: '0.6875rem', fontWeight: '500', lineHeight: '0.875rem', color: '#111827'}}>Label Small 11px</div>
+        
+        <div style={{fontFamily: 'Roboto Mono, monospace', fontSize: '0.875rem', fontWeight: '400', lineHeight: '1.25rem', color: '#111827', marginTop: '1rem', padding: '0.75rem', backgroundColor: '#111827', borderRadius: '4px'}}>
+          <span style={{color: '#10b981'}}>const</span> <span style={{color: '#3b82f6'}}>typeScale</span> <span style={{color: '#6b7280'}}>=</span> <span style={{color: '#f59e0b'}}>'Roboto Mono for code'</span><span style={{color: '#6b7280'}}>;</span>
+        </div>
+      </div>
+      
+    </div>
+  </Column>
+</Row>
+
+| Scale | Size | Usage |
+|-------|------|-------|
+| Display L | 48px | Hero headings, marketing |
+| Display M | 40px | Page titles, major sections |
+| Display S | 32px | Feature headings |
+| Headline L | 28px | H1, main headings |
+| Headline M | 24px | H2, section headings |
+| Headline S | 20px | H3, subsection headings |
+| Section L | 18px | H4, component titles |
+| Section M | 16px | H5, small headings |
+| Section S | 14px | H6, micro headings |
+| Content XL | 18px | Large body text, leads |
+| Content L | 16px | Standard body text |
+| Content M | 14px | Small body text |
+| Content S | 12px | Captions, footnotes |
+| Label XL | 16px | Large UI labels |
+| Label L | 14px | Standard UI labels |
+| Label M | 12px | Small UI labels |
+| Label S | 11px | Micro UI labels |
+
+## Accessibility
+
+ELEVATE typography tokens ensure accessibility through:
+
+- **Sufficient contrast**: All text meets WCAG 2.1 AA contrast requirements
+- **Readable line heights**: 1.4+ line height for body text, appropriate spacing for headings
+- **Scalable units**: Uses rem units for better user zoom support
+- **Clear hierarchy**: Distinct size and weight differences between heading levels
+- **Optimal reading**: Inter font optimized for screen reading at all sizes
+
+## Best Practices
+
+1. **Use semantic scales**: Choose sizes appropriate for content hierarchy
+2. **Maintain consistency**: Use the same token for similar content types
+3. **Consider reading distance**: Larger sizes for hero content, readable sizes for body text  
+4. **Test responsively**: Verify typography works across different screen sizes
+5. **Leverage variable fonts**: Use Inter's optical sizing for better rendering
+6. **Follow accessibility**: Ensure sufficient contrast and spacing
+
+<InlineNotification>
+
+**Inter Variable Font**: ELEVATE uses Inter's variable font features including optical sizing (opsz) and weight (wght) axes for optimal rendering at all sizes.
+
+</InlineNotification>

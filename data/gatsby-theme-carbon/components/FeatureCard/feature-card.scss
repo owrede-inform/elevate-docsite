@@ -1,0 +1,96 @@
+@use '~@carbon/react/scss/compat/theme' as *;
+// carbon--breakpoint
+@use '~@carbon/react/scss/breakpoint' as *;
+// $carbon--white-0
+@use '~@carbon/react/scss/colors' as *;
+// $spacing-0X
+@use '~@carbon/react/scss/spacing' as *;
+
+@use '~@carbon/react/scss/compat/theme' as *;
+
+.cds--feature-card {
+  position: relative;
+  --space: #{$spacing-07};
+}
+
+// #906
+.cds--feature-card .cds--feature-card__column {
+  --space: 0;
+}
+
+.cds--feature-card__row {
+  @include breakpoint('md') {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(
+      100% + 2rem
+    ); //needed to make the row the same width as other rows with the negative margins
+  }
+}
+
+.cds--feature-card__img {
+  position: relative;
+}
+
+.cds--feature-card:hover .cds--feature-card__link .cds--tile {
+  background: $hover-ui;
+}
+
+.cds--feature-card:hover
+  .cds--feature-card__link
+  .cds--resource-card--dark
+  .cds--tile {
+  background: $gray-80; //$hover-ui for gray 90 theme
+}
+
+.cds--feature-card__link:focus {
+  outline: none;
+
+  .cds--feature-background > * {
+    outline: 2px solid $focus;
+    outline-offset: 2px;
+  }
+}
+
+// Display image at square aspect ratio only on mobile
+.cds--feature-card__img.cds--aspect-ratio--1x1::before {
+  @include breakpoint('md') {
+    padding-top: 0;
+  }
+}
+
+.cds--feature-card__img .cds--aspect-ratio--object {
+  @include breakpoint('md') {
+    position: static;
+  }
+}
+
+@include breakpoint('sm') {
+  .cds--feature-card .gatsby-resp-image-wrapper {
+    position: relative;
+    display: block;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    max-width: 100%;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .cds--feature-card .gatsby-resp-image-background-image {
+    padding-bottom: 100%;
+  }
+
+  .cds--feature-card .gatsby-resp-image-image {
+    width: auto !important;
+    left: auto !important;
+    right: 0;
+    object-fit: cover;
+  }
+}
+
+// overrides for larger breakpoints
+.cds--feature-card .gatsby-resp-image-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+}

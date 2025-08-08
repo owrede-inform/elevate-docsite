@@ -1,0 +1,218 @@
+:global {
+  code {
+    font-family: 'Roboto Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  }
+
+  p > code,
+  li > code,
+  td > code {
+    @include type-style('code-01');
+    position: relative;
+    display: inline;
+    padding: 0 0.5em;
+    font-size: 0.875em;
+    bottom: 0.0625em;
+    border-radius: 4px;
+    background-color: $ui-03;
+    color: $text-01;
+  }
+
+  td > code {
+    font-size: 0.75rem;
+  }
+
+  // Add's additional length for scrolling under sidebar
+  .token:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.row {
+  position: relative;
+  color: $white-0;
+  @include type-style('code-02');
+  font-family: 'Roboto Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  width: 100% !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  @include breakpoint('lg') {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.row * {
+  scrollbar-width: none;
+}
+
+.row svg {
+  fill: $white-0;
+}
+
+li .row {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  overflow: visible !important;
+}
+
+.highlight {
+  padding: $spacing-06 $spacing-06 $spacing-06 $spacing-07;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  max-width: none;
+  text-wrap: wrap;
+  min-height: 4.5rem;
+  box-sizing: border-box;
+  border-radius: 0 0 8px 8px;
+  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sideBarMinHeight {
+  min-height: 96px;
+}
+
+// feedback tooltip adjustments
+.container :global(.cds--btn--copy__feedback) {
+  position: absolute;
+  overflow: visible !important;
+  &::before {
+    left: $spacing-07;
+  }
+  &::after {
+    left: $spacing-07;
+  }
+  &::before,
+  &::after {
+    z-index: 10000; /* old z('floating') #940 */
+  }
+}
+
+.path-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $spacing-09;
+  background: $ui-05;
+  padding-left: $spacing-05;
+  padding-right: $spacing-03;
+  border-bottom: 1px solid $gray-80;
+}
+
+.path-row.dark {
+  background: $gray-90;
+  border-bottom: 1px solid $gray-70;
+}
+
+.path {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.show-more-button {
+  @include type-style('body-short-01');
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: absolute;
+  right: $spacing-03;
+  bottom: $spacing-03;
+  background: $gray-100;
+  border: none;
+  color: $white-0;
+  cursor: pointer;
+  padding: $spacing-03;
+  padding-left: $spacing-05;
+  display: inline-flex;
+  transition: background-color $duration-fast-02;
+  &:hover {
+    background-color: $gray-80;
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+}
+
+.show-more-button.dark {
+  background: $gray-90;
+  &:hover {
+    background: $gray-80;
+  }
+}
+
+.show-more-button span {
+  margin-right: $spacing-03;
+}
+
+.sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 16px;
+  padding: 8px;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  background: linear-gradient(90deg, rgba(22, 22, 22, 0) 0%, $gray-100 24px);
+}
+
+.sidebar.dark {
+  background: linear-gradient(90deg, rgba(35, 35, 35, 0) 0%, $gray-90 24px);
+}
+
+// Copy button and src button
+.button,
+.copy-button.button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  transition: background $duration-fast-02;
+  outline-offset: -2px;
+  z-index: 1000;
+  font-size: 0;
+
+  svg {
+    fill: $icon-on-color;
+  }
+
+  &:hover {
+    background-color: $gray-80;
+  }
+}
+
+.path-row .button {
+  position: relative;
+  right: 0;
+  top: 0;
+}
+
+.sidebar .button {
+  position: relative;
+  margin-bottom: $spacing-01;
+  flex-shrink: 0;
+}

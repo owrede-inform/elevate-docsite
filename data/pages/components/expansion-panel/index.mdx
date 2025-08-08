@@ -1,0 +1,1040 @@
+---
+title: Expansion Panel
+description: Expansion panels provide collapsible content sections that help organize information hierarchically. They allow users to focus on relevant content while maintaining access to additional details.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Expansion panels organize complex information into manageable, progressive disclosure patterns. The ELEVATE Expansion Panel component helps designers and developers create consistent, accessible collapsible interfaces that help users navigate and consume information efficiently.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Expansion Panels
+- **FAQ sections**: Frequently asked questions with expandable answers
+- **Settings groups**: Organized configuration options by category
+- **Product details**: Specifications, features, and additional information
+- **Form sections**: Progressive form completion with logical groupings
+- **Content summaries**: Detailed content with overview and expandable details
+
+### When NOT to Use Expansion Panels
+- **Critical information**: Essential content should not be hidden by default
+- **Single items**: Use other disclosure patterns for individual collapsible items
+- **Navigation**: Use proper navigation components for site structure
+- **Short content**: Don't hide content that fits comfortably in available space
+
+## Variations
+
+
+### Panel Behaviors
+
+**Accordion Mode** allows only one panel to be expanded at a time, maintaining focus on single topics.
+
+<LiveExample 
+  title="FAQ Accordion Pattern" 
+  htmlCode={`<div style="max-width: 600px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+  <style>
+    .accordion-item {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+    
+    .accordion-header {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    
+    .accordion-header:hover {
+      background-color: #f4f4f4;
+    }
+    
+    .accordion-header:focus {
+      outline: 2px solid #007bff;
+      outline-offset: -2px;
+    }
+    
+    .accordion-content {
+      padding: 0 1.5rem 1rem 1.5rem;
+      background: #f9f9f9;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .accordion-content.expanded {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .expand-icon {
+      transition: transform 0.2s;
+    }
+    
+    .expand-icon.rotated {
+      transform: rotate(180deg);
+    }
+  </style>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAccordion(this, 'content1')">
+      How do I reset my password?
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="content1" class="accordion-content">
+      <p>To reset your password, click on the "Forgot Password" link on the login page. You'll receive an email with instructions to create a new password. If you don't see the email, check your spam folder.</p>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAccordion(this, 'content2')">
+      What payment methods do you accept?
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="content2" class="accordion-content">
+      <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. For enterprise customers, we also offer invoice billing with NET-30 terms.</p>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAccordion(this, 'content3')">
+      How can I cancel my subscription?
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="content3" class="accordion-content">
+      <p>You can cancel your subscription at any time from your account settings. Go to Billing → Manage Subscription → Cancel. Your account will remain active until the end of the current billing period.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleAccordion(header, contentId) {
+      // Close all other panels
+      document.querySelectorAll('.accordion-content').forEach(content => {
+        if (content.id !== contentId) {
+          content.classList.remove('expanded');
+          content.previousElementSibling.querySelector('.expand-icon').classList.remove('rotated');
+        }
+      });
+      
+      // Toggle current panel
+      const content = document.getElementById(contentId);
+      const icon = header.querySelector('.expand-icon');
+      
+      content.classList.toggle('expanded');
+      icon.classList.toggle('rotated');
+    }
+  </script>
+</div>`}
+/>
+
+**Independent Mode** lets multiple panels expand simultaneously for content comparison.
+
+<LiveExample 
+  title="Settings Panel Independent Mode" 
+  htmlCode={`<div style="max-width: 600px; display: flex; flex-direction: column; gap: 0.5rem;">
+  <style>
+    .settings-panel {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      overflow: hidden;
+    }
+    
+    .settings-header {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    
+    .settings-header:hover {
+      background-color: #f4f4f4;
+    }
+    
+    .settings-header:focus {
+      outline: 2px solid #007bff;
+      outline-offset: -2px;
+    }
+    
+    .settings-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      background: #f9f9f9;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+    
+    .settings-content.expanded {
+      max-height: 500px;
+      padding: 1rem 1.5rem;
+    }
+    
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    
+    .setting-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    .setting-description {
+      font-size: 0.75rem;
+      color: #6f6f6f;
+      margin: 0.25rem 0 0 0;
+    }
+  </style>
+
+  <div class="settings-panel">
+    <button class="settings-header" onclick="toggleSettings(this, 'notifications')">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <elvt-icon icon="mdi:bell-outline" style="font-size: 1.25rem; color: #007bff;"></elvt-icon>
+        Notifications
+      </div>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="notifications" class="settings-content">
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Email Notifications</div>
+          <p class="setting-description">Receive updates via email</p>
+        </div>
+        <elvt-switch checked>
+          <label slot="label" style="display: none;">Email notifications</label>
+        </elvt-switch>
+      </div>
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Push Notifications</div>
+          <p class="setting-description">Browser notifications</p>
+        </div>
+        <elvt-switch>
+          <label slot="label" style="display: none;">Push notifications</label>
+        </elvt-switch>
+      </div>
+    </div>
+  </div>
+  
+  <div class="settings-panel">
+    <button class="settings-header" onclick="toggleSettings(this, 'privacy')">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <elvt-icon icon="mdi:shield-outline" style="font-size: 1.25rem; color: #28a745;"></elvt-icon>
+        Privacy
+      </div>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="privacy" class="settings-content">
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Profile Visibility</div>
+          <p class="setting-description">Control who can see your profile</p>
+        </div>
+        <elvt-switch checked>
+          <label slot="label" style="display: none;">Profile visibility</label>
+        </elvt-switch>
+      </div>
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Data Analytics</div>
+          <p class="setting-description">Help improve our services</p>
+        </div>
+        <elvt-switch>
+          <label slot="label" style="display: none;">Data analytics</label>
+        </elvt-switch>
+      </div>
+    </div>
+  </div>
+  
+  <div class="settings-panel">
+    <button class="settings-header" onclick="toggleSettings(this, 'account')">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <elvt-icon icon="mdi:account-outline" style="font-size: 1.25rem; color: #dc3545;"></elvt-icon>
+        Account
+      </div>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="account" class="settings-content">
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Two-Factor Authentication</div>
+          <p class="setting-description">Add extra security to your account</p>
+        </div>
+        <elvt-button size="small" tone="primary">Enable</elvt-button>
+      </div>
+      <div class="setting-item">
+        <div>
+          <div class="setting-label">Delete Account</div>
+          <p class="setting-description">Permanently remove your account</p>
+        </div>
+        <elvt-button size="small" tone="subtle">Delete</elvt-button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSettings(header, contentId) {
+      const content = document.getElementById(contentId);
+      const icon = header.querySelector('.expand-icon');
+      
+      content.classList.toggle('expanded');
+      
+      if (content.classList.contains('expanded')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  </script>
+</div>`}
+/>
+
+**Nested Panels** provide hierarchical organization with panels inside other panels.
+
+### Visual Styles
+
+**Standard Panels** use clear headers with standard expand/collapse indicators.
+
+**Card-Style Panels** include borders and backgrounds for enhanced visual separation.
+
+**Minimal Panels** use subtle styling that integrates seamlessly with surrounding content.
+
+### Content Organization
+
+**Header-Only Panels** show just titles until expanded to reveal content.
+
+**Summary Panels** display preview text alongside headers for better context.
+
+**Icon-Enhanced Panels** include icons to help categorize and identify panel content.
+
+## Design Principles
+
+
+### Progressive Disclosure Principle
+**Reveal information in digestible stages that match user needs.** Expansion panels should help users find relevant information without overwhelming them with details they don't currently need.
+
+### Predictable Behavior Principle  
+**Panel expansion and collapse should behave consistently throughout the interface.** Users should learn interaction patterns once and apply them confidently across all expansion panels.
+
+### Context Preservation Principle
+**Users should maintain orientation when panels expand or collapse.** Animation and layout changes should feel natural and not disrupt the user's mental model of the interface.
+
+### Meaningful Hierarchy Principle
+**Panel organization should reflect logical information relationships.** Random or unclear groupings make expansion panels less effective at organizing complex content.
+
+## Best Practices
+
+
+### Writing Clear Panel Headers
+
+**Why this matters:** Vague or unclear headers force users to expand panels unnecessarily to find relevant content. Good headers let users predict content and make informed decisions about what to explore.
+
+### Managing Panel Content Length
+
+**Why this matters:** Overly long panel content defeats the organizational purpose of expansion panels. Content should be substantial enough to warrant collapsing but concise enough to remain focused.
+
+### Choosing Appropriate Default States
+
+**Why this matters:** Default expanded or collapsed states affect user workflow and information discovery. Wrong defaults can hide important information or overwhelm users with too much detail.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+import '@inform-elevate/elevate-core-ui/dist/components/switch/switch.js';
+```
+
+### Common Expansion Panel Patterns
+
+Expansion panels can be created using HTML, CSS, and JavaScript with ELEVATE components:
+
+```html
+<!-- Basic accordion pattern -->
+<div class="accordion-container">
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="togglePanel(this, 'panel1')">
+      <span>Account Settings</span>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="panel1" class="accordion-content">
+      <p>Manage your account preferences and profile information.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Settings panel with controls -->
+<div class="settings-panel">
+  <button class="settings-header" onclick="toggleSettings(this, 'notifications')">
+    <div class="header-content">
+      <elvt-icon icon="mdi:bell-outline" class="category-icon"></elvt-icon>
+      <span>Notifications</span>
+    </div>
+    <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+  </button>
+  <div id="notifications" class="settings-content">
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-label">Email Notifications</div>
+        <p class="setting-description">Receive updates via email</p>
+      </div>
+      <elvt-switch checked>
+        <label slot="label" style="display: none;">Email notifications</label>
+      </elvt-switch>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ accordion pattern -->
+<div class="faq-accordion">
+  <div class="faq-item">
+    <button class="faq-header" onclick="toggleFAQ(this, 'faq1')">
+      How do I reset my password?
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="faq1" class="faq-content">
+      <p>To reset your password, click on the "Forgot Password" link...</p>
+    </div>
+  </div>
+</div>
+```
+
+### CSS Styling
+
+```css
+/* Accordion container */
+.accordion-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Header styling */
+.accordion-header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+  background-color: #f4f4f4;
+}
+
+.accordion-header:focus {
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}
+
+/* Content styling */
+.accordion-content {
+  padding: 0 1.5rem 1rem 1.5rem;
+  background: #f9f9f9;
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.accordion-content.expanded {
+  display: block;
+}
+
+/* Icon animation */
+.expand-icon {
+  transition: transform 0.2s;
+}
+
+.expand-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Settings panel specific styles */
+.settings-panel {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.category-icon {
+  font-size: 1.25rem;
+}
+
+.settings-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #f9f9f9;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.settings-content.expanded {
+  max-height: 500px;
+  padding: 1rem 1.5rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.setting-description {
+  font-size: 0.75rem;
+  color: #6f6f6f;
+  margin: 0.25rem 0 0 0;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+```
+
+### JavaScript Functionality
+
+```javascript
+// Basic accordion toggle (only one panel open at a time)
+function toggleAccordion(header, contentId) {
+  // Close all other panels
+  document.querySelectorAll('.accordion-content').forEach(content => {
+    if (content.id !== contentId) {
+      content.classList.remove('expanded');
+      content.previousElementSibling.querySelector('.expand-icon').classList.remove('rotated');
+    }
+  });
+  
+  // Toggle current panel
+  const content = document.getElementById(contentId);
+  const icon = header.querySelector('.expand-icon');
+  
+  content.classList.toggle('expanded');
+  icon.classList.toggle('rotated');
+}
+
+// Independent panel toggle (multiple panels can be open)
+function toggleSettings(header, contentId) {
+  const content = document.getElementById(contentId);
+  const icon = header.querySelector('.expand-icon');
+  
+  content.classList.toggle('expanded');
+  
+  if (content.classList.contains('expanded')) {
+    icon.style.transform = 'rotate(180deg)';
+  } else {
+    icon.style.transform = 'rotate(0deg)';
+  }
+}
+```
+
+### Key Components Used
+
+Components commonly used to create expansion panel interfaces:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-icon` | Expand/collapse indicators, category icons | MDI icons for chevrons, category representations |
+| `elvt-switch` | Toggle controls within panels | Settings controls for preference management |  
+| `elvt-button` | Action buttons within panels | Primary and secondary actions in expanded content |
+| HTML `button` | Panel headers | Accessible clickable headers for panel expansion |
+| CSS Transitions | Panel animations | Smooth expand/collapse animations and icon rotation |
+| JavaScript | Panel behavior | Toggle functionality for accordion and independent modes |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### Advanced Accordion with Status Indicators
+
+<LiveExample 
+  title="FAQ Accordion with Status Indicators" 
+  htmlCode={`<div style="max-width: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+  <style>
+    .advanced-accordion-item {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .advanced-accordion-item:last-child {
+      border-bottom: none;
+    }
+    
+    .advanced-accordion-header {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    
+    .advanced-accordion-header:hover {
+      background-color: #f4f4f4;
+    }
+    
+    .advanced-accordion-header:focus {
+      outline: 2px solid #007bff;
+      outline-offset: -2px;
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .advanced-accordion-content {
+      padding: 0 1.5rem 1rem 1.5rem;
+      background: #f9f9f9;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .advanced-accordion-content.expanded {
+      display: block;
+    }
+    
+    .content-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+      color: #6f6f6f;
+    }
+    
+    .expand-icon {
+      transition: transform 0.2s;
+    }
+    
+    .expand-icon.rotated {
+      transform: rotate(180deg);
+    }
+  </style>
+
+  <div class="advanced-accordion-item">
+    <button class="advanced-accordion-header" onclick="toggleAdvancedAccordion(this, 'advanced1')">
+      <div class="header-content">
+        <elvt-icon icon="mdi:help-circle" style="color: #007bff; font-size: 1.25rem;"></elvt-icon>
+        <span>How do I integrate the design system with my project?</span>
+      </div>
+      <div class="status-indicator">
+        <elvt-icon icon="mdi:check-circle" style="color: #24a148; font-size: 1rem;"></elvt-icon>
+        <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+      </div>
+    </button>
+    <div id="advanced1" class="advanced-accordion-content">
+      <p>Integration is straightforward with our npm package. Install @inform-elevate/elevate-core-ui and import the components you need. The design system includes all necessary CSS and JavaScript dependencies.</p>
+      <div class="content-meta">
+        <span>Updated: Jan 10, 2025</span>
+        <elvt-button size="small" tone="subtle">
+          <elvt-icon slot="prefix" icon="mdi:thumb-up-outline"></elvt-icon>
+          Helpful
+        </elvt-button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="advanced-accordion-item">
+    <button class="advanced-accordion-header" onclick="toggleAdvancedAccordion(this, 'advanced2')">
+      <div class="header-content">
+        <elvt-icon icon="mdi:palette" style="color: #6f42c1; font-size: 1.25rem;"></elvt-icon>
+        <span>Can I customize the design tokens and themes?</span>
+      </div>
+      <div class="status-indicator">
+        <elvt-icon icon="mdi:star" style="color: #ffc107; font-size: 1rem;"></elvt-icon>
+        <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+      </div>
+    </button>
+    <div id="advanced2" class="advanced-accordion-content">
+      <p>Yes! The ELEVATE Design System is built with customization in mind. You can override design tokens, create custom themes, and extend components while maintaining consistency with the core system.</p>
+      <div class="content-meta">
+        <span>Updated: Jan 8, 2025</span>
+        <elvt-button size="small" tone="subtle">
+          <elvt-icon slot="prefix" icon="mdi:open-in-new"></elvt-icon>
+          View Guide
+        </elvt-button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="advanced-accordion-item">
+    <button class="advanced-accordion-header" onclick="toggleAdvancedAccordion(this, 'advanced3')">
+      <div class="header-content">
+        <elvt-icon icon="mdi:devices" style="color: #e91e63; font-size: 1.25rem;"></elvt-icon>
+        <span>Is the design system mobile-responsive?</span>
+      </div>
+      <div class="status-indicator">
+        <elvt-icon icon="mdi:information-outline" style="color: #17a2b8; font-size: 1rem;"></elvt-icon>
+        <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+      </div>
+    </button>
+    <div id="advanced3" class="advanced-accordion-content">
+      <p>All ELEVATE components are designed with mobile-first responsive principles. They automatically adapt to different screen sizes and touch interactions while maintaining usability and accessibility standards.</p>
+      <div class="content-meta">
+        <span>Updated: Jan 12, 2025</span>
+        <elvt-button size="small" tone="subtle">
+          <elvt-icon slot="prefix" icon="mdi:cellphone"></elvt-icon>
+          Test Mobile
+        </elvt-button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAdvancedAccordion(header, contentId) {
+      // Close all other panels
+      document.querySelectorAll('.advanced-accordion-content').forEach(content => {
+        if (content.id !== contentId) {
+          content.classList.remove('expanded');
+          content.previousElementSibling.querySelector('.expand-icon').classList.remove('rotated');
+        }
+      });
+      
+      // Toggle current panel
+      const content = document.getElementById(contentId);
+      const icon = header.querySelector('.expand-icon');
+      
+      content.classList.toggle('expanded');
+      icon.classList.toggle('rotated');
+    }
+  </script>
+</div>`}
+/>
+
+### Nested Expansion Panels Pattern
+
+<LiveExample 
+  title="Nested Settings Panels" 
+  htmlCode={`<div style="max-width: 600px; display: flex; flex-direction: column; gap: 0.5rem;">
+  <style>
+    .nested-panel {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      overflow: hidden;
+    }
+    
+    .nested-header {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    
+    .nested-header:hover {
+      background-color: #f4f4f4;
+    }
+    
+    .nested-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #f9f9f9;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+    
+    .nested-content.expanded {
+      max-height: 600px;
+      padding: 1rem 1.5rem;
+    }
+    
+    .sub-panel {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    
+    .sub-panel:last-child {
+      margin-bottom: 0;
+    }
+    
+    .sub-header {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    
+    .sub-header:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .sub-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #f8f9fa;
+      transition: max-height 0.25s ease-out, padding 0.25s ease-out;
+    }
+    
+    .sub-content.expanded {
+      max-height: 400px;
+      padding: 0.75rem 1rem;
+    }
+  </style>
+
+  <div class="nested-panel">
+    <button class="nested-header" onclick="toggleNested(this, 'account-settings')">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <elvt-icon icon="mdi:account-cog" style="font-size: 1.25rem; color: #007bff;"></elvt-icon>
+        Account Settings
+      </div>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="account-settings" class="nested-content">
+      <div class="sub-panel">
+        <button class="sub-header" onclick="toggleSub(this, 'profile-settings')">
+          <span>Profile Information</span>
+          <elvt-icon icon="mdi:chevron-down" class="expand-icon" style="font-size: 0.875rem;"></elvt-icon>
+        </button>
+        <div id="profile-settings" class="sub-content">
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <elvt-switch checked>
+              <label slot="label">Public profile</label>
+            </elvt-switch>
+            <elvt-switch>
+              <label slot="label">Show email address</label>
+            </elvt-switch>
+          </div>
+        </div>
+      </div>
+      
+      <div class="sub-panel">
+        <button class="sub-header" onclick="toggleSub(this, 'security-settings')">
+          <span>Security & Privacy</span>
+          <elvt-icon icon="mdi:chevron-down" class="expand-icon" style="font-size: 0.875rem;"></elvt-icon>
+        </button>
+        <div id="security-settings" class="sub-content">
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <elvt-switch checked>
+              <label slot="label">Two-factor authentication</label>
+            </elvt-switch>
+            <elvt-switch>
+              <label slot="label">Login notifications</label>
+            </elvt-switch>
+            <elvt-button size="small" tone="subtle">Change Password</elvt-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="nested-panel">
+    <button class="nested-header" onclick="toggleNested(this, 'app-preferences')">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <elvt-icon icon="mdi:tune" style="font-size: 1.25rem; color: #28a745;"></elvt-icon>
+        App Preferences
+      </div>
+      <elvt-icon icon="mdi:chevron-down" class="expand-icon"></elvt-icon>
+    </button>
+    <div id="app-preferences" class="nested-content">
+      <div class="sub-panel">
+        <button class="sub-header" onclick="toggleSub(this, 'display-settings')">
+          <span>Display & Theme</span>
+          <elvt-icon icon="mdi:chevron-down" class="expand-icon" style="font-size: 0.875rem;"></elvt-icon>
+        </button>
+        <div id="display-settings" class="sub-content">
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <elvt-switch>
+              <label slot="label">Dark mode</label>
+            </elvt-switch>
+            <elvt-switch checked>
+              <label slot="label">High contrast</label>
+            </elvt-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleNested(header, contentId) {
+      const content = document.getElementById(contentId);
+      const icon = header.querySelector('.expand-icon');
+      
+      content.classList.toggle('expanded');
+      
+      if (content.classList.contains('expanded')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+    
+    function toggleSub(header, contentId) {
+      const content = document.getElementById(contentId);
+      const icon = header.querySelector('.expand-icon');
+      
+      content.classList.toggle('expanded');
+      
+      if (content.classList.contains('expanded')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Keyboard navigation support:**
+- Space/Enter toggles panel expansion
+- Arrow keys navigate between panel headers in groups
+- Tab moves through interactive content within panels
+- Clear focus indicators on panel headers
+
+**Screen reader compatibility:**
+- Use proper ARIA attributes (aria-expanded, aria-controls)
+- Associate panel headers with content regions
+- Announce expansion state changes
+- Provide meaningful labels for panel purposes
+
+**Focus management:**
+- Maintain logical focus order when panels expand/collapse
+- Don't trap focus within expanded panels unless modal
+- Return focus appropriately after panel state changes
+- Ensure all interactive panel content is keyboard accessible
+
+**Content structure:**
+- Use proper heading hierarchy for panel headers
+- Ensure content within panels follows accessibility guidelines
+- Provide alternative ways to access hidden content if needed
+- Don't hide critical information behind collapsed panels
+
+## Changelog
+
+<ChangeLog component="expansion-panel" />

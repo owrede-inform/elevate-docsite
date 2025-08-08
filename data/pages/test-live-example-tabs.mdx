@@ -1,0 +1,36 @@
+---
+title: Test LiveExample with Tabs
+tabs: ['Tab 1', 'Tab 2']
+description: Test page to debug LiveExample issues within Tab components
+---
+
+import LiveExample from '../gatsby-theme-carbon/components/LiveExample';
+
+<PageDescription>
+
+This page tests LiveExample component behavior within Tab components to debug the "Failed to load interactive components" error.
+
+</PageDescription>
+
+## LiveExample in Tab 1
+
+This should work without issues:
+
+<LiveExample
+  title="Basic Button Test"
+  htmlCode={`<elvt-button variant="filled">Primary Action</elvt-button>
+<elvt-button variant="outlined">Secondary</elvt-button>
+<elvt-button variant="text">Tertiary</elvt-button>`}
+/>
+
+## Design Tokens Test
+
+Testing if ELEVATE design tokens (Inter font) are properly applied:
+
+<LiveExample
+  title="Typography Test"
+  htmlCode={`<elvt-button variant="filled">Inter Font Test</elvt-button>
+<p style="font-family: var(--elevate-font-family, 'Inter', sans-serif); padding: 1rem; background: #f0f0f0;">
+  This text should use Inter font from ELEVATE Design Tokens
+</p>`}
+/>

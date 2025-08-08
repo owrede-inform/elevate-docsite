@@ -1,0 +1,33 @@
+---
+title: Test LiveExample with Tabs
+tabs: ['Tab 1', 'Tab 2']
+description: Test page to debug LiveExample issues within Tab components
+---
+
+import LiveExample from '../../gatsby-theme-carbon/components/LiveExample';
+
+<PageDescription>
+
+This is Tab 2 of the LiveExample test - testing if the issue occurs specifically in Tab context.
+
+</PageDescription>
+
+## LiveExample in Tab 2
+
+This should demonstrate if the error occurs in Tab context:
+
+<LiveExample
+  title="Tab 2 Button Test"
+  htmlCode={`<elvt-button variant="filled">Tab 2 Test</elvt-button>
+<elvt-button variant="ghost">Ghost Button</elvt-button>`}
+/>
+
+## Font Test in Tab 2
+
+<LiveExample
+  title="Font Test Tab 2"
+  htmlCode={`<div style="font-family: var(--elevate-font-family, 'Inter', sans-serif); padding: 1rem; border: 1px solid #ccc;">
+  <elvt-button variant="outlined">Inter Font Check</elvt-button>
+  <p>This should use Inter font from design tokens.</p>
+</div>`}
+/>

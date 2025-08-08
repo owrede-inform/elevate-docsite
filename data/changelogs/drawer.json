@@ -1,0 +1,100 @@
+{
+  "componentName": "Drawer",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "July 16, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "Enhanced",
+          "description": "Drawer patterns now use functional ELEVATE components"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations with elvt-button, elvt-icon, elvt-checkbox, elvt-chip components"
+        },
+        {
+          "type": "New",
+          "description": "Mobile bottom drawer and settings drawer interactive examples"
+        },
+        {
+          "type": "New",
+          "description": "CSS implementation patterns for drawer layouts"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with functional component combinations"
+        },
+        {
+          "type": "Updated",
+          "description": "Documentation reflects available component usage patterns"
+        }
+      ],
+      "notes": "Current version in active development"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Drawer component implementation"
+        },
+        {
+          "type": "New",
+          "description": "Multi-position support with animation (left, right, top, bottom)"
+        },
+        {
+          "type": "New",
+          "description": "Modal and non-modal variants with overlay behavior"
+        },
+        {
+          "type": "New",
+          "description": "Responsive behavior and mobile optimization"
+        },
+        {
+          "type": "New",
+          "description": "Focus management and keyboard navigation"
+        },
+        {
+          "type": "New",
+          "description": "Built-in trigger and dismissal mechanisms"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Drawer patterns using ELEVATE components",
+      "status": "functional"
+    },
+    {
+      "feature": "Navigation drawer layouts with elvt-button components",
+      "status": "functional"
+    },
+    {
+      "feature": "Filter drawer patterns with elvt-checkbox and elvt-chip",
+      "status": "functional"
+    },
+    {
+      "feature": "Settings drawer patterns with elvt-switch components",
+      "status": "functional"
+    },
+    {
+      "feature": "Mobile bottom drawer layouts",
+      "status": "demonstrated"
+    },
+    {
+      "feature": "CSS-based positioning and layout patterns",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated drawer component with animations",
+      "status": "planning"
+    }
+  ]
+}

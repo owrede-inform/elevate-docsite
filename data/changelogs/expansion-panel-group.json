@@ -1,0 +1,112 @@
+{
+  "componentName": "Expansion Panel Group",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "August 7, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Expansion Panel Group documentation with accordion and multi-expand patterns"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations showing accordion behavior with single-panel expansion"
+        },
+        {
+          "type": "New", 
+          "description": "Multi-expand panel group examples allowing multiple simultaneous open panels"
+        },
+        {
+          "type": "New",
+          "description": "FAQ-style panel group pattern with smooth animations and interactions"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples with controlled panel state management"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with panel group coordination and CSS styling patterns"
+        },
+        {
+          "type": "Updated",
+          "description": "Accessibility documentation with ARIA attributes and keyboard navigation guidelines"
+        }
+      ],
+      "notes": "Initial documentation release focusing on panel group coordination patterns"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Expansion Panel Group web component with mode management"
+        },
+        {
+          "type": "New",
+          "description": "Built-in accordion and multi-expand behavior coordination"
+        },
+        {
+          "type": "New",
+          "description": "Programmatic panel state control with events and methods"
+        },
+        {
+          "type": "New",
+          "description": "Advanced animations with customizable timing and easing"
+        },
+        {
+          "type": "New",
+          "description": "Nested panel group support for hierarchical content organization"
+        },
+        {
+          "type": "New",
+          "description": "Performance optimization with lazy content loading for large groups"
+        },
+        {
+          "type": "New",
+          "description": "Enhanced accessibility with comprehensive ARIA implementation"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Accordion-style panel group with single expansion behavior",
+      "status": "functional"
+    },
+    {
+      "feature": "Multi-expand panel group allowing multiple open panels",
+      "status": "working"
+    },
+    {
+      "feature": "FAQ panel group with smooth animations and interactions",
+      "status": "functional"
+    },
+    {
+      "feature": "Panel state coordination with expand/collapse controls",
+      "status": "demonstrated"
+    },
+    {
+      "feature": "Responsive panel group layouts with mobile optimization",
+      "status": "functional"
+    },
+    {
+      "feature": "Keyboard navigation with proper focus management",
+      "status": "functional"
+    },
+    {
+      "feature": "LiveExample demonstrations for various group patterns",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated Expansion Panel Group web component",
+      "status": "planning"
+    }
+  ]
+}

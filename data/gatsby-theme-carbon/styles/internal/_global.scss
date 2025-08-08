@@ -1,0 +1,58 @@
+@use 'grid';
+@use '~@carbon/react/scss/type';
+@use '~@carbon/react/scss/colors' as *;
+@use '~@carbon/react/scss/compat/theme' as *;
+@use '~@carbon/react/scss/reset' as *;
+@use '~@carbon/react/scss/layer' as *;
+@use '~@carbon/react/scss/zone' as *;
+
+// Components
+@use '~@carbon/react/scss/components';
+
+@use 'plex';
+
+@include type.reset();
+
+//---------------------------------------
+// Global styles
+//---------------------------------------
+
+body {
+  background: $background;
+  color: $text-01;
+}
+
+// prevents jank while page hydrates
+.body--preload * {
+  transition: none !important;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+// Global links
+a:focus {
+  outline: 2px solid $focus;
+}
+
+//---------------------------------------
+// CSS reset overrides
+//---------------------------------------
+body em {
+  font-style: italic;
+}
+
+body button {
+  font-family: inherit;
+}
+
+// fix needed for v11 aspect ratio migration
+// to-do: refactor to use AspectRatio component in the future
+.cds--aspect-ratio--object {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

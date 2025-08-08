@@ -1,0 +1,226 @@
+---
+title: Notification
+description: Notifications provide important feedback to users about system events, user actions, and application states. They deliver timely information without disrupting workflow.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Notifications provide important feedback to users about system events, user actions, and application states. They deliver timely information without disrupting workflow while maintaining appropriate urgency and context.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Types</AnchorLink>
+  <AnchorLink>Usage</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+Notifications are essential for communicating important information to users in a timely and non-intrusive manner. ELEVATE notifications maintain consistency in design and behavior while providing flexibility for different message types and contexts.
+
+### When to Use Notifications
+- **System feedback**: Confirming actions, reporting errors, or status updates
+- **Important alerts**: Security warnings, system maintenance, or critical issues
+- **Progress updates**: Long-running operations or background processes
+- **Informational messages**: Tips, announcements, or contextual help
+
+## Types
+
+### Success Notifications
+Confirm successful completion of user actions or system processes.
+
+<LiveExample
+  title="Success Notifications"
+  htmlCode={`<elvt-notification type="success" title="Changes Saved">
+  Your profile updates have been successfully saved.
+</elvt-notification>
+
+<elvt-notification type="success" title="Upload Complete" dismissible>
+  All 5 files have been uploaded successfully.
+  <elvt-button slot="action" size="small">View Files</elvt-button>
+</elvt-notification>`}
+/>
+
+### Error Notifications
+Alert users to problems that require attention or corrective action.
+
+<LiveExample
+  title="Error Notifications"
+  htmlCode={`<elvt-notification type="error" title="Upload Failed">
+  Unable to upload file. Please check your internet connection and try again.
+</elvt-notification>
+
+<elvt-notification type="error" title="Authentication Error" dismissible>
+  Your session has expired. Please log in again to continue.
+  <elvt-button slot="action" size="small" variant="primary">Log In</elvt-button>
+</elvt-notification>`}
+/>
+
+### Warning Notifications
+Inform users about potential issues or situations requiring caution.
+
+<LiveExample
+  title="Warning Notifications"
+  htmlCode={`<elvt-notification type="warning" title="Storage Almost Full">
+  You're using 95% of your available storage space.
+</elvt-notification>
+
+<elvt-notification type="warning" title="Unsaved Changes" dismissible>
+  You have unsaved changes that will be lost if you leave this page.
+  <elvt-button slot="action" size="small">Save Changes</elvt-button>
+</elvt-notification>`}
+/>
+
+### Info Notifications
+Provide helpful information or updates that enhance user understanding.
+
+<LiveExample
+  title="Info Notifications"
+  htmlCode={`<elvt-notification type="info" title="New Feature Available">
+  We've added dark mode support. Check it out in your settings.
+</elvt-notification>
+
+<elvt-notification type="info" title="Maintenance Scheduled" dismissible>
+  System maintenance is scheduled for tonight from 2-4 AM EST.
+  <elvt-button slot="action" size="small">Learn More</elvt-button>
+</elvt-notification>`}
+/>
+
+## Usage
+
+### Notification Positioning
+Notifications can be positioned strategically based on context and importance:
+
+```html
+<!-- Inline notifications within content -->
+<elvt-notification type="info" title="Tip" inline>
+  Use keyboard shortcuts to work more efficiently.
+</elvt-notification>
+
+<!-- Toast notifications for immediate feedback -->
+<elvt-notification type="success" title="Saved" toast duration="3000">
+  Your changes have been saved automatically.
+</elvt-notification>
+
+<!-- Persistent notifications for important alerts -->
+<elvt-notification type="warning" title="Action Required" persistent>
+  Please verify your email address to continue using all features.
+</elvt-notification>
+```
+
+### Auto-Dismiss Behavior
+Configure automatic dismissal based on message importance:
+
+<LiveExample
+  title="Auto-Dismiss Notifications"
+  htmlCode={`<!-- Auto-dismiss after 5 seconds -->
+<elvt-notification type="success" title="Operation Complete" duration="5000">
+  The backup process finished successfully.
+</elvt-notification>
+
+<!-- Manual dismiss required -->
+<elvt-notification type="error" title="Critical Error" dismissible>
+  Unable to connect to server. Please contact support.
+</elvt-notification>
+
+<!-- No dismiss option (use sparingly) -->
+<elvt-notification type="warning" title="System Alert">
+  Scheduled maintenance in progress.
+</elvt-notification>`}
+/>
+
+### Actions and Interactions
+Include relevant actions to help users respond to notifications:
+
+<LiveExample
+  title="Notification Actions"
+  htmlCode={`<elvt-notification type="info" title="Update Available" dismissible>
+  A new version of the application is ready to install.
+  <div slot="action" style="display: flex; gap: 0.5rem;">
+    <elvt-button size="small" variant="primary">Update Now</elvt-button>
+    <elvt-button size="small" variant="secondary">Later</elvt-button>
+  </div>
+</elvt-notification>
+
+<elvt-notification type="warning" title="Connection Lost" dismissible>
+  Your internet connection appears to be unstable.
+  <elvt-button slot="action" size="small">Retry Connection</elvt-button>
+</elvt-notification>`}
+/>
+
+### Best Practices
+
+**DO:**
+- Keep messages concise and actionable
+- Use appropriate notification types for message urgency
+- Provide clear actions when user response is needed
+- Group related notifications to avoid overwhelming users
+- Test notifications with screen readers
+
+**DON'T:**
+- Overuse notifications for non-essential information
+- Use notifications for content that belongs in the main UI
+- Auto-dismiss error messages too quickly
+- Stack too many notifications simultaneously
+- Use notifications without clear dismiss mechanisms
+
+## Accessibility
+
+Notifications must be accessible to all users, including those using assistive technologies:
+
+### Screen Reader Announcements
+- Notifications are announced immediately when they appear
+- Message content and type are clearly communicated
+- Action buttons are properly labeled and accessible
+- Auto-dismiss timing allows sufficient reading time
+
+### Keyboard Navigation
+- All notification actions are keyboard accessible
+- Dismiss buttons can be activated with Enter or Space
+- Tab order flows logically through notification content
+- Focus management considers notification appearance and dismissal
+
+### Visual Accessibility
+- Sufficient color contrast for all notification types
+- Icons supplement color coding for accessibility
+- Text sizing meets accessibility guidelines
+- Motion and animations respect user preferences
+
+<LiveExample
+  title="Accessible Notification Features"
+  htmlCode={`<!-- Proper ARIA labeling -->
+<elvt-notification 
+  type="success" 
+  title="Form Submitted" 
+  role="alert"
+  aria-live="polite"
+  dismissible>
+  Your contact form has been submitted successfully. We'll respond within 24 hours.
+  <elvt-button 
+    slot="action" 
+    size="small"
+    aria-label="Close notification">
+    <elvt-icon icon="mdi:close" aria-hidden="true"></elvt-icon>
+  </elvt-button>
+</elvt-notification>
+
+<!-- High priority alert -->
+<elvt-notification 
+  type="error" 
+  title="Security Alert" 
+  role="alert"
+  aria-live="assertive"
+  persistent>
+  Suspicious login attempt detected from unknown device.
+  <elvt-button slot="action" size="small">Review Activity</elvt-button>
+</elvt-notification>`}
+/>

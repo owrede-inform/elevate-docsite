@@ -1,0 +1,28 @@
+@use '~@carbon/react/scss/type' as *;
+
+// Base global
+@use './internal/global';
+
+// Global stylesheet to inject global dependencies via shadowing
+@use 'global' as shadowGlobal;
+
+//---------------------------------------
+// Page styles
+//---------------------------------------
+
+@use './internal/page';
+// @use '../components/Homepage/homepage'; // Homepage component not shadowed
+@use '../components/PageTable/page-table';
+@use '../components/DoDontExample/do-dont-example';
+@use '../components/ResourceCard/resource-card';
+@use '../components/ResourceCard/resource-card-group';
+@use '../components/ArticleCard/article-card';
+@use '../components/FeatureCard/feature-card';
+@use '../components/ImageCard/image-card';
+
+//---------------------------------------
+// Included last to ensure that class
+// names take precedence over includes
+// inside component class names
+//---------------------------------------
+@include type-classes();

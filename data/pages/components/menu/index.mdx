@@ -1,0 +1,1374 @@
+---
+title: Menu
+description: Menu components provide organized lists of actions, options, and navigation items. They offer contextual choices through dropdown interfaces and navigation hierarchies.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Menu interfaces organize actions and navigation options into accessible, hierarchical lists. The ELEVATE Menu patterns help designers and developers create intuitive navigation systems with proper focus management, keyboard accessibility, and responsive behavior across all interaction methods.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Menus
+- **Action lists**: Present multiple related actions in organized lists
+- **Navigation options**: Provide hierarchical navigation choices
+- **Context menus**: Show relevant actions based on current context
+- **Settings panels**: Organize configuration options and preferences
+- **Multi-level navigation**: Handle complex navigation hierarchies
+
+### When NOT to Use Menus
+- **Single actions**: Use buttons for individual actions instead of single-item menus
+- **Primary navigation**: Consider tabs or navigation bars for main site navigation
+- **Form inputs**: Use select dropdowns for form field options
+- **Always-visible options**: Don't hide frequently used actions in menus
+
+## Variations
+
+### Dropdown Menu
+
+**Basic Dropdown** provides simple action lists triggered by button or link interactions.
+
+<LiveExample 
+  title="Basic Dropdown Menu Pattern" 
+  htmlCode={`<div style="padding: 3rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: start;">
+  <style>
+    .menu-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .menu-trigger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+      font-size: 0.875rem;
+    }
+    
+    .menu-trigger:hover {
+      background: #f8f9fa;
+    }
+    
+    .menu-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      min-width: 180px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      overflow: hidden;
+    }
+    
+    .menu-container.active .menu-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #343a40;
+      text-decoration: none;
+      font-size: 0.875rem;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .menu-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .menu-item:focus {
+      background: #e9ecef;
+      outline: none;
+    }
+    
+    .menu-divider {
+      height: 1px;
+      background: #e9ecef;
+      margin: 0.25rem 0;
+    }
+    
+    .menu-item.danger:hover {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+
+  <!-- User menu -->
+  <div class="menu-container">
+    <button class="menu-trigger" onclick="toggleMenu(this)">
+      <elvt-icon icon="mdi:account-circle" style="font-size: 1.25rem;"></elvt-icon>
+      John Doe
+      <elvt-icon icon="mdi:chevron-down" style="font-size: 1rem; transition: transform 0.2s;"></elvt-icon>
+    </button>
+    <div class="menu-dropdown">
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:account-outline"></elvt-icon>
+        Profile
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:cog-outline"></elvt-icon>
+        Settings
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:help-circle-outline"></elvt-icon>
+        Help & Support
+      </button>
+      <div class="menu-divider"></div>
+      <button class="menu-item danger" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:logout"></elvt-icon>
+        Sign Out
+      </button>
+    </div>
+  </div>
+
+  <!-- Actions menu -->
+  <div class="menu-container">
+    <elvt-button tone="primary" onclick="toggleMenu(this.parentElement)">
+      Actions
+      <elvt-icon slot="suffix" icon="mdi:chevron-down" style="font-size: 1rem; transition: transform 0.2s;"></elvt-icon>
+    </elvt-button>
+    <div class="menu-dropdown">
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:plus"></elvt-icon>
+        Create New
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:upload"></elvt-icon>
+        Upload File
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:folder-plus-outline"></elvt-icon>
+        New Folder
+      </button>
+      <div class="menu-divider"></div>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:import"></elvt-icon>
+        Import Data
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:export"></elvt-icon>
+        Export Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Options menu -->
+  <div class="menu-container">
+    <elvt-button tone="subtle" onclick="toggleMenu(this.parentElement)">
+      <elvt-icon icon="mdi:dots-vertical"></elvt-icon>
+    </elvt-button>
+    <div class="menu-dropdown" style="right: 0; left: auto;">
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:eye-outline"></elvt-icon>
+        View Details
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:pencil-outline"></elvt-icon>
+        Edit
+      </button>
+      <button class="menu-item" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:content-duplicate"></elvt-icon>
+        Duplicate
+      </button>
+      <div class="menu-divider"></div>
+      <button class="menu-item danger" onclick="closeMenu(this)">
+        <elvt-icon icon="mdi:delete-outline"></elvt-icon>
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu(container) {
+      // Close other menus first
+      document.querySelectorAll('.menu-container.active').forEach(menu => {
+        if (menu !== container) {
+          menu.classList.remove('active');
+        }
+      });
+      
+      container.classList.toggle('active');
+      
+      if (container.classList.contains('active')) {
+        const chevron = container.querySelector('[icon*="chevron"]');
+        if (chevron) {
+          chevron.style.transform = 'rotate(180deg)';
+        }
+      } else {
+        const chevron = container.querySelector('[icon*="chevron"]');
+        if (chevron) {
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      }
+    }
+    
+    function closeMenu(item) {
+      const container = item.closest('.menu-container');
+      container.classList.remove('active');
+      const chevron = container.querySelector('[icon*="chevron"]');
+      if (chevron) {
+        chevron.style.transform = 'rotate(0deg)';
+      }
+      
+      // Simulate action
+      const action = item.textContent.trim();
+      console.log('Action:', action);
+    }
+    
+    // Close menus when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.menu-container')) {
+        document.querySelectorAll('.menu-container.active').forEach(menu => {
+          menu.classList.remove('active');
+          const chevron = menu.querySelector('[icon*="chevron"]');
+          if (chevron) {
+            chevron.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
+    });
+  </script>
+</div>`}
+/>
+
+### Context Menu
+
+**Right-Click Context** provides contextual actions based on selected items or interface elements.
+
+<LiveExample 
+  title="Context Menu Pattern" 
+  htmlCode={`<div style="padding: 3rem; max-width: 600px; margin: 0 auto;">
+  <style>
+    .context-area {
+      background: #f8f9fa;
+      border: 2px dashed #dee2e6;
+      border-radius: 8px;
+      padding: 3rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    
+    .context-area:hover {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+    
+    .context-menu {
+      position: fixed;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      min-width: 160px;
+      z-index: 1000;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      transform-origin: top left;
+    }
+    
+    .context-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    
+    .context-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #343a40;
+      font-size: 0.875rem;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .context-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .context-item:focus {
+      background: #e9ecef;
+      outline: none;
+    }
+    
+    .context-divider {
+      height: 1px;
+      background: #e9ecef;
+      margin: 0.25rem 0;
+    }
+    
+    .context-item.danger:hover {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .file-item {
+      padding: 1rem;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .file-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .file-item.selected {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+    
+    .file-name {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      color: #495057;
+    }
+  </style>
+
+  <!-- Context area -->
+  <div class="context-area" oncontextmenu="showContextMenu(event, 'area')" onclick="clearSelection()">
+    <elvt-icon icon="mdi:folder-open-outline" style="font-size: 3rem; color: #6c757d; margin-bottom: 1rem;"></elvt-icon>
+    <div style="font-size: 1.125rem; margin-bottom: 0.5rem;">Project Files</div>
+    <div style="color: #6c757d; font-size: 0.875rem;">Right-click for options or click on files below</div>
+  </div>
+
+  <!-- File grid -->
+  <div class="file-grid">
+    <div class="file-item" onclick="selectFile(this)" oncontextmenu="showContextMenu(event, 'file', this)">
+      <elvt-icon icon="mdi:file-document" style="font-size: 2rem; color: #007bff;"></elvt-icon>
+      <div class="file-name">Document.pdf</div>
+    </div>
+    <div class="file-item" onclick="selectFile(this)" oncontextmenu="showContextMenu(event, 'file', this)">
+      <elvt-icon icon="mdi:image" style="font-size: 2rem; color: #28a745;"></elvt-icon>
+      <div class="file-name">Photo.jpg</div>
+    </div>
+    <div class="file-item" onclick="selectFile(this)" oncontextmenu="showContextMenu(event, 'file', this)">
+      <elvt-icon icon="mdi:video" style="font-size: 2rem; color: #dc3545;"></elvt-icon>
+      <div class="file-name">Video.mp4</div>
+    </div>
+    <div class="file-item" onclick="selectFile(this)" oncontextmenu="showContextMenu(event, 'file', this)">
+      <elvt-icon icon="mdi:folder" style="font-size: 2rem; color: #ffc107;"></elvt-icon>
+      <div class="file-name">Archive</div>
+    </div>
+  </div>
+
+  <!-- Context menu -->
+  <div class="context-menu" id="context-menu">
+    <!-- Dynamic content will be inserted here -->
+  </div>
+
+  <script>
+    let selectedFile = null;
+    let contextMenuType = null;
+    
+    function showContextMenu(event, type, fileElement = null) {
+      event.preventDefault();
+      
+      const contextMenu = document.getElementById('context-menu');
+      contextMenuType = type;
+      selectedFile = fileElement;
+      
+      let menuItems = '';
+      
+      if (type === 'area') {
+        menuItems = \`
+          <button class="context-item" onclick="executeAction('new-file')">
+            <elvt-icon icon="mdi:file-plus-outline"></elvt-icon>
+            New File
+          </button>
+          <button class="context-item" onclick="executeAction('new-folder')">
+            <elvt-icon icon="mdi-folder-plus-outline"></elvt-icon>
+            New Folder
+          </button>
+          <div class="context-divider"></div>
+          <button class="context-item" onclick="executeAction('paste')">
+            <elvt-icon icon="mdi:clipboard-outline"></elvt-icon>
+            Paste
+          </button>
+          <div class="context-divider"></div>
+          <button class="context-item" onclick="executeAction('refresh')">
+            <elvt-icon icon="mdi:refresh"></elvt-icon>
+            Refresh
+          </button>
+        \`;
+      } else if (type === 'file') {
+        menuItems = \`
+          <button class="context-item" onclick="executeAction('open')">
+            <elvt-icon icon="mdi:open-in-new"></elvt-icon>
+            Open
+          </button>
+          <button class="context-item" onclick="executeAction('rename')">
+            <elvt-icon icon="mdi:pencil-outline"></elvt-icon>
+            Rename
+          </button>
+          <button class="context-item" onclick="executeAction('copy')">
+            <elvt-icon icon="mdi:content-copy"></elvt-icon>
+            Copy
+          </button>
+          <button class="context-item" onclick="executeAction('cut')">
+            <elvt-icon icon="mdi:content-cut"></elvt-icon>
+            Cut
+          </button>
+          <div class="context-divider"></div>
+          <button class="context-item" onclick="executeAction('properties')">
+            <elvt-icon icon="mdi:information-outline"></elvt-icon>
+            Properties
+          </button>
+          <div class="context-divider"></div>
+          <button class="context-item danger" onclick="executeAction('delete')">
+            <elvt-icon icon="mdi:delete-outline"></elvt-icon>
+            Delete
+          </button>
+        \`;
+      }
+      
+      contextMenu.innerHTML = menuItems;
+      
+      // Position the context menu
+      const rect = contextMenu.getBoundingClientRect();
+      let x = event.clientX;
+      let y = event.clientY;
+      
+      // Adjust if menu would go off-screen
+      if (x + rect.width > window.innerWidth) {
+        x = window.innerWidth - rect.width - 10;
+      }
+      if (y + rect.height > window.innerHeight) {
+        y = window.innerHeight - rect.height - 10;
+      }
+      
+      contextMenu.style.left = x + 'px';
+      contextMenu.style.top = y + 'px';
+      contextMenu.classList.add('active');
+    }
+    
+    function hideContextMenu() {
+      const contextMenu = document.getElementById('context-menu');
+      contextMenu.classList.remove('active');
+    }
+    
+    function executeAction(action) {
+      let message = 'Action: ' + action;
+      
+      if (selectedFile) {
+        const fileName = selectedFile.querySelector('.file-name').textContent;
+        message += ' on ' + fileName;
+      }
+      
+      console.log(message);
+      hideContextMenu();
+      
+      // Show feedback
+      const feedback = document.createElement('div');
+      feedback.style.cssText = \`
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        z-index: 10000;
+        font-size: 0.875rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      \`;
+      feedback.textContent = message;
+      document.body.appendChild(feedback);
+      
+      setTimeout(() => {
+        feedback.style.transform = 'translateX(0)';
+      }, 10);
+      
+      setTimeout(() => {
+        feedback.style.transform = 'translateX(100%)';
+        setTimeout(() => feedback.remove(), 300);
+      }, 2000);
+    }
+    
+    function selectFile(fileElement) {
+      document.querySelectorAll('.file-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      fileElement.classList.add('selected');
+      selectedFile = fileElement;
+    }
+    
+    function clearSelection() {
+      document.querySelectorAll('.file-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      selectedFile = null;
+    }
+    
+    // Hide context menu when clicking elsewhere
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.context-menu')) {
+        hideContextMenu();
+      }
+    });
+    
+    // Prevent default context menu
+    document.addEventListener('contextmenu', function(event) {
+      if (event.target.closest('.context-area, .file-item')) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</div>`}
+/>
+
+### Navigation Menu
+
+**Multi-Level Navigation** provides hierarchical menu structures for complex site navigation.
+
+<LiveExample 
+  title="Multi-Level Navigation Menu" 
+  htmlCode={`<div style="padding: 3rem; max-width: 800px; margin: 0 auto;">
+  <style>
+    .nav-menu {
+      display: flex;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-item {
+      position: relative;
+    }
+    
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      color: #495057;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    
+    .nav-link:hover {
+      background: #f8f9fa;
+      color: #007bff;
+    }
+    
+    .nav-item.active .nav-link {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    
+    .nav-submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      min-width: 200px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      overflow: hidden;
+    }
+    
+    .nav-item:hover .nav-submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .submenu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #495057;
+      text-decoration: none;
+      font-size: 0.875rem;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    
+    .submenu-item:hover {
+      background: #f8f9fa;
+      color: #007bff;
+    }
+    
+    .submenu-divider {
+      height: 1px;
+      background: #e9ecef;
+      margin: 0.25rem 0;
+    }
+    
+    .submenu-header {
+      padding: 0.5rem 1rem;
+      color: #6c757d;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: #f8f9fa;
+    }
+    
+    .nav-badge {
+      background: #dc3545;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.125rem 0.375rem;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+    }
+  </style>
+
+  <nav class="nav-menu">
+    <!-- Dashboard -->
+    <div class="nav-item active">
+      <button class="nav-link">
+        <elvt-icon icon="mdi:view-dashboard"></elvt-icon>
+        Dashboard
+      </button>
+    </div>
+
+    <!-- Products with submenu -->
+    <div class="nav-item">
+      <button class="nav-link">
+        <elvt-icon icon="mdi:package-variant"></elvt-icon>
+        Products
+        <elvt-icon icon="mdi:chevron-down" style="font-size: 0.8rem; margin-left: auto;"></elvt-icon>
+      </button>
+      <div class="nav-submenu">
+        <div class="submenu-header">Catalog</div>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:view-list"></elvt-icon>
+          All Products
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:plus-circle-outline"></elvt-icon>
+          Add Product
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:tag-multiple"></elvt-icon>
+          Categories
+        </button>
+        <div class="submenu-divider"></div>
+        <div class="submenu-header">Inventory</div>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:warehouse"></elvt-icon>
+          Stock Levels
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:truck-delivery"></elvt-icon>
+          Shipments
+        </button>
+      </div>
+    </div>
+
+    <!-- Orders with badge -->
+    <div class="nav-item">
+      <button class="nav-link">
+        <elvt-icon icon="mdi:shopping"></elvt-icon>
+        Orders
+        <span class="nav-badge">12</span>
+        <elvt-icon icon="mdi:chevron-down" style="font-size: 0.8rem; margin-left: auto;"></elvt-icon>
+      </button>
+      <div class="nav-submenu">
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:clock-outline"></elvt-icon>
+          Pending Orders
+          <span style="margin-left: auto; color: #ffc107; font-weight: 500;">12</span>
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:check-circle-outline"></elvt-icon>
+          Completed
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:cancel"></elvt-icon>
+          Cancelled
+        </button>
+        <div class="submenu-divider"></div>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:chart-line"></elvt-icon>
+          Order Analytics
+        </button>
+      </div>
+    </div>
+
+    <!-- Analytics -->
+    <div class="nav-item">
+      <button class="nav-link">
+        <elvt-icon icon="mdi:chart-box"></elvt-icon>
+        Analytics
+        <elvt-icon icon="mdi:chevron-down" style="font-size: 0.8rem; margin-left: auto;"></elvt-icon>
+      </button>
+      <div class="nav-submenu">
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:chart-line"></elvt-icon>
+          Sales Report
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:account-group"></elvt-icon>
+          Customer Insights
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:trending-up"></elvt-icon>
+          Performance Metrics
+        </button>
+        <div class="submenu-divider"></div>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:download"></elvt-icon>
+          Export Data
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="nav-item">
+      <button class="nav-link">
+        <elvt-icon icon="mdi:cog"></elvt-icon>
+        Settings
+        <elvt-icon icon="mdi:chevron-down" style="font-size: 0.8rem; margin-left: auto;"></elvt-icon>
+      </button>
+      <div class="nav-submenu">
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:account-outline"></elvt-icon>
+          Profile
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:shield-check"></elvt-icon>
+          Security
+        </button>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:bell-outline"></elvt-icon>
+          Notifications
+        </button>
+        <div class="submenu-divider"></div>
+        <button class="submenu-item">
+          <elvt-icon icon="mdi:help-circle-outline"></elvt-icon>
+          Help & Support
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // Make nav items clickable for demo
+    document.querySelectorAll('.nav-link, .submenu-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all nav items
+        document.querySelectorAll('.nav-item').forEach(navItem => {
+          navItem.classList.remove('active');
+        });
+        
+        // Add active class to clicked nav item
+        const navItem = this.closest('.nav-item');
+        if (navItem) {
+          navItem.classList.add('active');
+        }
+        
+        console.log('Navigated to:', this.textContent.trim());
+      });
+    });
+  </script>
+</div>`}
+/>
+
+## Design Principles
+
+### Organization Principle
+**Menu items should be logically grouped and hierarchically structured.** Related actions should be clustered together, and complex navigation should follow clear information architecture patterns.
+
+### Discoverability Principle  
+**Users should be able to predict and find menu options intuitively.** Use familiar icons, clear labels, and conventional menu patterns that match user expectations.
+
+### Efficiency Principle
+**Frequent actions should be easily accessible while complex options remain organized.** Balance between showing too many options (overwhelming) and hiding too many (inefficient).
+
+### Consistency Principle
+**Similar menu patterns should behave consistently across the interface.** Menu triggers, interactions, and visual treatment should follow established patterns throughout the system.
+
+## Best Practices
+
+### Organizing Menu Content
+
+**Why this matters:** Poor menu organization leads to user confusion and inefficient task completion. Logical grouping and clear hierarchy help users find what they need quickly.
+
+### Implementing Proper Focus Management
+
+**Why this matters:** Keyboard users need predictable navigation through menu items. Proper focus management ensures accessibility and improves the experience for all interaction methods.
+
+### Choosing Appropriate Menu Types
+
+**Why this matters:** Different situations require different menu patterns. Context menus work well for contextual actions, while navigation menus serve different organizational needs.
+
+### Managing Menu Performance
+
+**Why this matters:** Large menus with many items can impact performance. Efficient rendering, lazy loading, and proper event handling ensure smooth interactions.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+```
+
+### Common Menu Patterns
+
+Menu interfaces can be created using button triggers and positioned dropdown containers:
+
+```html
+<!-- Basic dropdown menu -->
+<div class="menu-container">
+  <button class="menu-trigger" onclick="toggleMenu(this)">
+    Actions
+    <elvt-icon icon="mdi:chevron-down"></elvt-icon>
+  </button>
+  <div class="menu-dropdown">
+    <button class="menu-item">
+      <elvt-icon icon="mdi:plus"></elvt-icon>
+      Create New
+    </button>
+    <button class="menu-item">
+      <elvt-icon icon="mdi:upload"></elvt-icon>
+      Upload File
+    </button>
+    <div class="menu-divider"></div>
+    <button class="menu-item">
+      <elvt-icon icon="mdi:export"></elvt-icon>
+      Export Data
+    </button>
+  </div>
+</div>
+
+<!-- Context menu -->
+<div class="context-menu" id="context-menu">
+  <button class="context-item">
+    <elvt-icon icon="mdi:open-in-new"></elvt-icon>
+    Open
+  </button>
+  <button class="context-item">
+    <elvt-icon icon="mdi:pencil-outline"></elvt-icon>
+    Rename
+  </button>
+</div>
+
+<!-- Navigation menu with submenu -->
+<nav class="nav-menu">
+  <div class="nav-item">
+    <button class="nav-link">
+      <elvt-icon icon="mdi:package-variant"></elvt-icon>
+      Products
+      <elvt-icon icon="mdi:chevron-down"></elvt-icon>
+    </button>
+    <div class="nav-submenu">
+      <button class="submenu-item">
+        <elvt-icon icon="mdi:view-list"></elvt-icon>
+        All Products
+      </button>
+      <button class="submenu-item">
+        <elvt-icon icon="mdi:plus-circle-outline"></elvt-icon>
+        Add Product
+      </button>
+    </div>
+  </div>
+</nav>
+```
+
+### CSS Styling
+
+```css
+/* Menu container positioning */
+.menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Menu dropdown */
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+
+.menu-container.active .menu-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Menu items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #343a40;
+  text-decoration: none;
+  font-size: 0.875rem;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background: #f8f9fa;
+}
+
+.menu-item:focus {
+  background: #e9ecef;
+  outline: none;
+}
+
+/* Context menu */
+.context-menu {
+  position: fixed;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  transform-origin: top left;
+}
+
+.context-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.nav-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+}
+
+.nav-item:hover .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Menu separators */
+.menu-divider,
+.submenu-divider {
+  height: 1px;
+  background: #e9ecef;
+  margin: 0.25rem 0;
+}
+
+/* Danger items */
+.menu-item.danger:hover,
+.context-item.danger:hover {
+  background: #f8d7da;
+  color: #721c24;
+}
+```
+
+### Key Components Used
+
+Components commonly used to create menu interfaces:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Menu triggers | Buttons that activate dropdown and context menus |
+| `elvt-icon` | Visual indicators | Icons for menu items, chevrons, and visual hierarchy |  
+| Positioned containers | Menu dropdowns | Absolutely positioned containers for menu content |
+| CSS transitions | Smooth interactions | Fade and slide animations for menu appearance |
+| Event listeners | Interaction handling | Click, hover, and keyboard event management |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### Sidebar Navigation Menu
+
+<LiveExample 
+  title="Collapsible Sidebar Navigation" 
+  htmlCode={`<div style="display: flex; height: 400px; border: 1px solid #e9ecef; border-radius: 8px; overflow: hidden;">
+  <style>
+    .sidebar {
+      width: 250px;
+      background: #343a40;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .sidebar.collapsed {
+      width: 60px;
+    }
+    
+    .sidebar-header {
+      padding: 1rem;
+      border-bottom: 1px solid #495057;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .sidebar-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .sidebar.collapsed .sidebar-title {
+      opacity: 0;
+    }
+    
+    .collapse-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    
+    .collapse-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-menu {
+      flex: 1;
+      padding: 1rem 0;
+    }
+    
+    .menu-section {
+      margin-bottom: 2rem;
+    }
+    
+    .section-title {
+      padding: 0 1rem;
+      color: #adb5bd;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .sidebar.collapsed .section-title {
+      opacity: 0;
+    }
+    
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #e9ecef;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      white-space: nowrap;
+    }
+    
+    .sidebar-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    
+    .sidebar-item.active {
+      background: #007bff;
+      color: white;
+    }
+    
+    .sidebar-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .sidebar-text {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .sidebar.collapsed .sidebar-text {
+      opacity: 0;
+    }
+    
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      background: #f8f9fa;
+    }
+    
+    .page-title {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      color: #343a40;
+    }
+    
+    .page-content {
+      color: #6c757d;
+      line-height: 1.6;
+    }
+  </style>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Admin Panel</div>
+      <button class="collapse-btn" onclick="toggleSidebar()">
+        <elvt-icon icon="mdi:menu"></elvt-icon>
+      </button>
+    </div>
+    
+    <nav class="sidebar-menu">
+      <div class="menu-section">
+        <div class="section-title">Main</div>
+        <button class="sidebar-item active" onclick="switchPage(this, 'Dashboard')">
+          <elvt-icon icon="mdi:view-dashboard" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Dashboard</span>
+        </button>
+        <button class="sidebar-item" onclick="switchPage(this, 'Analytics')">
+          <elvt-icon icon="mdi:chart-line" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Analytics</span>
+        </button>
+        <button class="sidebar-item" onclick="switchPage(this, 'Reports')">
+          <elvt-icon icon="mdi:file-chart" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Reports</span>
+        </button>
+      </div>
+      
+      <div class="menu-section">
+        <div class="section-title">Content</div>
+        <button class="sidebar-item" onclick="switchPage(this, 'Products')">
+          <elvt-icon icon="mdi:package-variant" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Products</span>
+        </button>
+        <button class="sidebar-item" onclick="switchPage(this, 'Orders')">
+          <elvt-icon icon="mdi:shopping" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Orders</span>
+        </button>
+        <button class="sidebar-item" onclick="switchPage(this, 'Customers')">
+          <elvt-icon icon="mdi:account-group" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Customers</span>
+        </button>
+      </div>
+      
+      <div class="menu-section">
+        <div class="section-title">Settings</div>
+        <button class="sidebar-item" onclick="switchPage(this, 'Profile')">
+          <elvt-icon icon="mdi:account-circle" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Profile</span>
+        </button>
+        <button class="sidebar-item" onclick="switchPage(this, 'Settings')">
+          <elvt-icon icon="mdi:cog" class="sidebar-icon"></elvt-icon>
+          <span class="sidebar-text">Settings</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <h1 class="page-title" id="page-title">Dashboard</h1>
+    <div class="page-content">
+      <p>Welcome to the admin dashboard. Select an item from the sidebar navigation to view different sections.</p>
+      <p>The sidebar can be collapsed by clicking the menu button in the header for more content space.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+    
+    function switchPage(item, pageName) {
+      // Remove active class from all items
+      document.querySelectorAll('.sidebar-item').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Add active class to clicked item
+      item.classList.add('active');
+      
+      // Update page title
+      document.getElementById('page-title').textContent = pageName;
+      
+      console.log('Navigated to:', pageName);
+    }
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Keyboard navigation:**
+- Support arrow keys for menu item navigation
+- Use Enter and Space to activate menu items
+- Provide Escape key to close menus and return focus
+- Ensure proper tab order through menu hierarchies
+
+**Focus management:**
+- Keep focus within open menus until dismissed
+- Return focus to menu trigger when menu closes
+- Provide clear focus indicators for all interactive elements
+- Support focus trapping in modal-style menus
+
+**Screen reader support:**
+- Use appropriate ARIA roles (menu, menuitem, menubar)
+- Implement aria-expanded for menu triggers
+- Provide aria-haspopup to indicate submenu presence
+- Use aria-label for icon-only menu items
+
+**Menu structure:**
+- Group related items with logical hierarchy
+- Use dividers and headers to organize content sections
+- Provide consistent menu patterns across the interface
+- Ensure menu items have descriptive, actionable labels
+
+## Changelog
+
+<ChangeLog component="menu" />

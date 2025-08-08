@@ -1,0 +1,264 @@
+---
+title: LiveExample4 Complete Test
+description: Testing LiveExample4 with COMPLETE ELEVATE Design Tokens including all typography aliases
+---
+
+import LiveExample from '../gatsby-theme-carbon/components/LiveExample';
+
+<PageDescription>
+
+Testing LiveExample4 - the COMPLETE solution that includes ALL ELEVATE typography alias tokens, specifically the `--elvt-type-alias-emphasized-label-m-font-family` that the button component actually uses.
+
+</PageDescription>
+
+## LiveExample4 - COMPLETE Solution
+
+### Based on Component Analysis
+
+After analyzing the actual ELEVATE Button component source code, we discovered:
+
+- ✅ Button uses: `--elvt-type-alias-emphasized-label-m-font-family: var(--elvt-primitives-font-family-default, "Inter")`
+- ❌ Button does NOT use Shoelace tokens like `--sl-font-sans`
+- ✅ This maps to: `--elvt-primitives-font-family-default: Inter`
+
+### Font Test - SHOULD Show Inter Now
+
+<LiveExample
+  title="COMPLETE Typography Test"
+  htmlCode={`<div style="padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
+  <elvt-button tone="primary">ELEVATE Button</elvt-button>
+  <p style="margin-top: 1rem; font-size: 1rem; color: #333;">
+    This text AND the button should both display in Inter font.
+  </p>
+  <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #666;">
+    Button uses: --elvt-type-alias-emphasized-label-m-font-family
+  </p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #999; font-style: italic;">
+    LiveExample4 includes ALL typography alias tokens from the actual package.
+  </p>
+</div>`}
+/>
+
+### All Button Types Test
+
+<LiveExample
+  title="Complete Button Test with Proper Tokens"
+  htmlCode={`<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+  <elvt-button tone="primary">Primary</elvt-button>
+  <elvt-button tone="neutral">Neutral</elvt-button>
+  <elvt-button tone="success">Success</elvt-button>
+  <elvt-button tone="warning">Warning</elvt-button>
+  <elvt-button tone="danger">Danger</elvt-button>
+  <elvt-button tone="emphasized">Emphasized</elvt-button>
+  <elvt-button tone="subtle">Subtle</elvt-button>
+</div>`}
+/>
+
+### Tab Context Test (Complete Solution)
+
+<Tabs>
+<Tab label="First Tab - Complete">
+
+<LiveExample
+  title="Tab Context - First Tab (Complete Tokens)"
+  htmlCode={`<elvt-button tone="primary">Button with Complete Tokens</elvt-button>
+<elvt-button tone="success">Second Button</elvt-button>`}
+/>
+
+This should work without any errors and show Inter font.
+
+</Tab>
+<Tab label="Second Tab - Complete">
+
+<LiveExample
+  title="Tab Context - Second Tab (Complete Tokens)" 
+  htmlCode={`<elvt-button tone="warning">Warning Button</elvt-button>
+<elvt-button tone="danger">Danger Button</elvt-button>`}
+/>
+
+Both tabs should work identically with Inter font.
+
+</Tab>
+</Tabs>
+
+### Debug Information
+
+<LiveExample
+  title="Typography Token Debug"
+  htmlCode={`<div style="padding: 2rem; background: #e3f2fd; border-radius: 8px;">
+  <h4 style="margin: 0 0 1rem 0; color: #1976d2;">LiveExample Complete Debug Info</h4>
+  <elvt-button tone="primary">Test Component</elvt-button>
+  <div style="margin-top: 1rem; font-size: 0.9rem; color: #666; line-height: 1.5;">
+    <strong>Button Font Token:</strong> --elvt-type-alias-emphasized-label-m-font-family<br/>
+    <strong>Maps To:</strong> --elvt-primitives-font-family-default: Inter<br/>
+    <strong>Expected Result:</strong> Inter font in button text<br/>
+    <strong>Coverage:</strong> ALL typography alias tokens included<br/>
+    <strong>Component Tokens:</strong> Button height, padding, colors, etc.<br/>
+    <strong>Icons:</strong> ELEVATE icons package + MDI icons support
+  </div>
+</div>`}
+/>
+
+### Debug Information First
+
+<LiveExample
+  title="Debug: Component and Icon System Status"
+  htmlCode={`<div style="padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff3cd;">
+  <h4 style="margin: 0 0 1rem 0; color: #856404;">Debug: System Status</h4>
+  
+  <div style="margin-bottom: 1rem;">
+    <strong>Basic ELEVATE Button Test:</strong><br/>
+    <elvt-button tone="primary">Basic Button (should show Inter font)</elvt-button>
+  </div>
+  
+  <div style="margin-bottom: 1rem;">
+    <strong>Icon Component Test (no icon specified):</strong><br/>
+    <elvt-icon style="width: 24px; height: 24px; color: red; border: 1px solid red;"></elvt-icon>
+    <span style="margin-left: 0.5rem; font-size: 0.875rem; color: #666;">← Should show empty icon box</span>
+  </div>
+  
+  <div style="margin-bottom: 1rem;">
+    <strong>Simple Icon Test:</strong><br/>
+    <elvt-icon icon="plus" style="width: 24px; height: 24px; color: blue; border: 1px solid blue;"></elvt-icon>
+    <span style="margin-left: 0.5rem; font-size: 0.875rem; color: #666;">← Testing 'plus' (no prefix)</span>
+  </div>
+  
+  <div style="margin-bottom: 1rem;">
+    <strong>MDI Icon Test:</strong><br/>
+    <elvt-icon icon="mdi:plus" style="width: 24px; height: 24px; color: green; border: 1px solid green;"></elvt-icon>
+    <span style="margin-left: 0.5rem; font-size: 0.875rem; color: #666;">← Testing 'mdi:plus'</span>
+  </div>
+  
+  <div style="font-size: 0.875rem; color: #856404; background: #fff3cd; padding: 0.75rem; border-radius: 4px;">
+    <strong>Instructions:</strong> Check browser console for debug messages about icon registration and loading.
+  </div>
+  
+</div>`}
+/>
+
+### Icon Functionality Test
+
+<LiveExample
+  title="ELEVATE Icons + MDI Icons Test"
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 2rem; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0; color: #333;">Static File MDI Icons (should load from /icons/mdi/)</h4>
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+      <elvt-button tone="primary">
+        <elvt-icon slot="prefix" icon="mdi:plus"></elvt-icon>
+        Add Item
+      </elvt-button>
+      
+      <elvt-button tone="success">
+        <elvt-icon slot="prefix" icon="mdi:download"></elvt-icon>
+        Download
+      </elvt-button>
+      
+      <elvt-button tone="danger">
+        <elvt-icon slot="prefix" icon="mdi:delete"></elvt-icon>
+        Delete
+      </elvt-button>
+      
+      <elvt-button>
+        Continue
+        <elvt-icon slot="suffix" icon="mdi:chevron-right"></elvt-icon>
+      </elvt-button>
+      
+      <elvt-button tone="subtle">
+        Back
+        <elvt-icon slot="prefix" icon="mdi:chevron-left"></elvt-icon>
+      </elvt-button>
+    </div>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0; color: #333;">Static File Icon-Only Buttons</h4>
+    <div style="display: flex; gap: 0.75rem; align-items: center;">
+      <elvt-button tone="primary" title="Add" aria-label="Add">
+        <elvt-icon icon="mdi:plus"></elvt-icon>
+      </elvt-button>
+      
+      <elvt-button title="Edit" aria-label="Edit">
+        <elvt-icon icon="mdi:pencil"></elvt-icon>
+      </elvt-button>
+      
+      <elvt-button tone="danger" title="Delete" aria-label="Delete">
+        <elvt-icon icon="mdi:delete"></elvt-icon>
+      </elvt-button>
+      
+      <elvt-button title="More options" aria-label="More options">
+        <elvt-icon icon="mdi:dots-vertical"></elvt-icon>
+      </elvt-button>
+    </div>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0; color: #333;">Direct Icon Test (no buttons)</h4>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+      <elvt-icon icon="mdi:plus" style="width: 24px; height: 24px; color: #0066cc;"></elvt-icon>
+      <elvt-icon icon="mdi:delete" style="width: 24px; height: 24px; color: #da1e28;"></elvt-icon>
+      <elvt-icon icon="mdi:pencil" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:download" style="width: 24px; height: 24px; color: #24a148;"></elvt-icon>
+      <elvt-icon icon="mdi:chevron-right" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:chevron-left" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:dots-vertical" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:open-in-new" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+    </div>
+  </div>
+  
+  <div>
+    <h4 style="margin: 0 0 1rem 0; color: #333;">Fallback Inline Icons (for non-static icons)</h4>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+      <elvt-icon icon="mdi:search" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:eye" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:eye-off" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+      <elvt-icon icon="mdi:settings" style="width: 24px; height: 24px; color: #666;"></elvt-icon>
+    </div>
+  </div>
+  
+  <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem; line-height: 1.4;">
+    <strong>Test Status:</strong> Check browser console for icon loading messages.<br/>
+    <strong>Expected:</strong> Static file icons (plus, delete, pencil, etc.) should load from /icons/mdi/<br/>
+    <strong>Fallback:</strong> Other icons should use inline definitions
+  </div>
+  
+</div>`}
+/>
+
+## Technical Details
+
+LiveExample4 includes:
+
+### ✅ Typography Alias Tokens (What Components Actually Use)
+```css
+--elvt-type-alias-emphasized-label-m-font-family: var(--elvt-primitives-font-family-default, "Inter");
+--elvt-type-alias-default-label-m-font-family: var(--elvt-primitives-font-family-default, "Inter");
+--elvt-type-alias-important-label-m-font-family: var(--elvt-primitives-font-family-default, "Inter");
+```
+
+### ✅ Component-Specific Tokens (Button Styling)
+```css
+--elvt-component-button-height-m: 2.5rem;
+--elvt-component-button-fill-primary-default: rgb(11, 92, 223);
+--elvt-component-button-label-primary-default: rgb(255, 255, 255);
+```
+
+### ✅ Primitive Tokens (Foundation)
+```css
+--elvt-primitives-font-family-default: Inter;
+--elvt-primitives-font-weight-500: medium;
+```
+
+## Expected Results
+
+If LiveExample4 is working correctly:
+
+1. **✅ Inter Font in Buttons**: Button text should display in Inter font
+2. **✅ Inter Font in Content**: All text should use Inter font family
+3. **✅ No "Times New Roman"**: Should completely eliminate serif font fallbacks
+4. **✅ No Errors**: No undefined errors in any tab context
+5. **✅ Console Success**: "COMPLETE ELEVATE Design Tokens injected" message
+6. **✅ Proper Colors**: Buttons should have correct brand colors
+
+This is the **definitive solution** based on actual component source code analysis!

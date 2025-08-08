@@ -1,0 +1,1409 @@
+---
+title: Lightbox
+description: Lightbox components display images, videos, and media content in an overlay interface. They provide an immersive viewing experience with navigation and zoom controls.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Lightbox interfaces provide focused media viewing experiences through overlay presentations. The ELEVATE Lightbox patterns help designers and developers create immersive media galleries with intuitive navigation, zoom controls, and responsive presentation across all devices.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Lightbox
+- **Image galleries**: Display collections of images with smooth navigation
+- **Media preview**: Show larger versions of thumbnails without page navigation
+- **Document viewing**: Present PDFs, presentations, and documents in overlay
+- **Video playback**: Provide focused video viewing experience
+- **Product showcases**: Display detailed product images with zoom functionality
+
+### When NOT to Use Lightbox
+- **Primary content**: Don't hide essential content behind overlay interactions
+- **Mobile-first interfaces**: Consider native mobile image viewing patterns
+- **Accessibility concerns**: Ensure alternative navigation methods are available
+- **Simple single images**: Use inline images for basic display needs
+
+## Variations
+
+### Image Lightbox
+
+**Basic Image Lightbox** displays single images in an overlay interface with close controls.
+
+<LiveExample 
+  title="Basic Image Lightbox Pattern" 
+  htmlCode={`<div style="padding: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; max-width: 600px; margin: 0 auto;">
+  <style>
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .thumbnail-grid img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+    }
+    
+    .thumbnail-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-color: #007bff;
+    }
+  </style>
+
+  <!-- Thumbnail grid -->
+  <div class="thumbnail-grid" onclick="openLightbox(event)">
+    <img src="https://picsum.photos/300/200?random=1" alt="Landscape 1" data-lightbox="gallery">
+    <img src="https://picsum.photos/300/200?random=2" alt="Landscape 2" data-lightbox="gallery">
+    <img src="https://picsum.photos/300/200?random=3" alt="Landscape 3" data-lightbox="gallery">
+    <img src="https://picsum.photos/300/200?random=4" alt="Landscape 4" data-lightbox="gallery">
+    <img src="https://picsum.photos/300/200?random=5" alt="Landscape 5" data-lightbox="gallery">
+    <img src="https://picsum.photos/300/200?random=6" alt="Landscape 6" data-lightbox="gallery">
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <img class="lightbox-image" id="lightbox-image" alt="">
+      <button class="lightbox-close" onclick="closeLightbox(event)">
+        <elvt-icon icon="mdi:close"></elvt-icon>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(event) {
+      if (event.target.tagName === 'IMG') {
+        const img = event.target;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        
+        lightboxImage.src = img.src.replace('300/200', '800/600');
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    
+    function closeLightbox(event) {
+      if (event.target === event.currentTarget || event.target.closest('.lightbox-close')) {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeLightbox({ target: document.getElementById('lightbox'), currentTarget: document.getElementById('lightbox') });
+      }
+    });
+  </script>
+</div>`}
+/>
+
+### Gallery Lightbox
+
+**Gallery Navigation** provides previous/next controls for browsing through image collections.
+
+<LiveExample 
+  title="Gallery Lightbox with Navigation" 
+  htmlCode={`<div style="padding: 3rem; max-width: 600px; margin: 0 auto;">
+  <style>
+    .gallery-lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    
+    .gallery-lightbox-overlay.active {
+      display: flex;
+    }
+    
+    .gallery-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .gallery-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .gallery-nav:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .gallery-nav.prev {
+      left: -70px;
+    }
+    
+    .gallery-nav.next {
+      right: -70px;
+    }
+    
+    .gallery-close {
+      position: absolute;
+      top: -60px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .gallery-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .gallery-counter {
+      position: absolute;
+      top: -60px;
+      left: 0;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    
+    .portfolio-item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    
+    .portfolio-item:hover {
+      transform: scale(1.02);
+    }
+    
+    .portfolio-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    
+    .portfolio-title {
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+  </style>
+
+  <h3 style="margin-bottom: 1.5rem; text-align: center;">Portfolio Gallery</h3>
+
+  <!-- Portfolio grid -->
+  <div class="portfolio-grid">
+    <div class="portfolio-item" onclick="openGallery(0)">
+      <img src="https://picsum.photos/300/200?random=10" alt="Architecture 1">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Modern Architecture</div>
+      </div>
+    </div>
+    <div class="portfolio-item" onclick="openGallery(1)">
+      <img src="https://picsum.photos/300/200?random=11" alt="Architecture 2">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Urban Design</div>
+      </div>
+    </div>
+    <div class="portfolio-item" onclick="openGallery(2)">
+      <img src="https://picsum.photos/300/200?random=12" alt="Architecture 3">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Interior Space</div>
+      </div>
+    </div>
+    <div class="portfolio-item" onclick="openGallery(3)">
+      <img src="https://picsum.photos/300/200?random=13" alt="Architecture 4">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Landscape Design</div>
+      </div>
+    </div>
+    <div class="portfolio-item" onclick="openGallery(4)">
+      <img src="https://picsum.photos/300/200?random=14" alt="Architecture 5">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Structural Elements</div>
+      </div>
+    </div>
+    <div class="portfolio-item" onclick="openGallery(5)">
+      <img src="https://picsum.photos/300/200?random=15" alt="Architecture 6">
+      <div class="portfolio-overlay">
+        <div class="portfolio-title">Minimalist Design</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery lightbox -->
+  <div class="gallery-lightbox-overlay" id="gallery-lightbox" onclick="closeGallery(event)">
+    <div class="gallery-content">
+      <img class="gallery-image" id="gallery-image" alt="">
+      <button class="gallery-nav prev" onclick="prevImage(event)">
+        <elvt-icon icon="mdi:chevron-left"></elvt-icon>
+      </button>
+      <button class="gallery-nav next" onclick="nextImage(event)">
+        <elvt-icon icon="mdi:chevron-right"></elvt-icon>
+      </button>
+      <div class="gallery-counter" id="gallery-counter">1 of 6</div>
+      <button class="gallery-close" onclick="closeGallery(event)">
+        <elvt-icon icon="mdi:close"></elvt-icon>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const galleryImages = [
+      { src: 'https://picsum.photos/800/600?random=10', alt: 'Modern Architecture', title: 'Modern Architecture' },
+      { src: 'https://picsum.photos/800/600?random=11', alt: 'Urban Design', title: 'Urban Design' },
+      { src: 'https://picsum.photos/800/600?random=12', alt: 'Interior Space', title: 'Interior Space' },
+      { src: 'https://picsum.photos/800/600?random=13', alt: 'Landscape Design', title: 'Landscape Design' },
+      { src: 'https://picsum.photos/800/600?random=14', alt: 'Structural Elements', title: 'Structural Elements' },
+      { src: 'https://picsum.photos/800/600?random=15', alt: 'Minimalist Design', title: 'Minimalist Design' }
+    ];
+    
+    let currentImageIndex = 0;
+    
+    function openGallery(index) {
+      currentImageIndex = index;
+      showGalleryImage();
+      const lightbox = document.getElementById('gallery-lightbox');
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeGallery(event) {
+      if (event.target === event.currentTarget || event.target.closest('.gallery-close')) {
+        const lightbox = document.getElementById('gallery-lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    function showGalleryImage() {
+      const image = document.getElementById('gallery-image');
+      const counter = document.getElementById('gallery-counter');
+      const currentImage = galleryImages[currentImageIndex];
+      
+      image.src = currentImage.src;
+      image.alt = currentImage.alt;
+      counter.textContent = \`\${currentImageIndex + 1} of \${galleryImages.length}\`;
+    }
+    
+    function prevImage(event) {
+      event.stopPropagation();
+      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      showGalleryImage();
+    }
+    
+    function nextImage(event) {
+      event.stopPropagation();
+      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+      showGalleryImage();
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('gallery-lightbox');
+      if (lightbox.classList.contains('active')) {
+        switch(event.key) {
+          case 'Escape':
+            closeGallery({ target: lightbox, currentTarget: lightbox });
+            break;
+          case 'ArrowLeft':
+            prevImage(event);
+            break;
+          case 'ArrowRight':
+            nextImage(event);
+            break;
+        }
+      }
+    });
+  </script>
+</div>`}
+/>
+
+### Media Lightbox
+
+**Multi-Media Support** handles different content types including images, videos, and documents.
+
+<LiveExample 
+  title="Multi-Media Lightbox Interface" 
+  htmlCode={`<div style="padding: 3rem; max-width: 700px; margin: 0 auto;">
+  <style>
+    .media-lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    
+    .media-lightbox-overlay.active {
+      display: flex;
+    }
+    
+    .media-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .media-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .media-title {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #343a40;
+    }
+    
+    .media-close {
+      background: none;
+      border: none;
+      color: #6c757d;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    
+    .media-close:hover {
+      background: #e9ecef;
+    }
+    
+    .media-body {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+    
+    .media-image {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+    
+    .media-video {
+      width: 100%;
+      max-height: 70vh;
+    }
+    
+    .media-document {
+      width: 100%;
+      height: 70vh;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .media-card {
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .media-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .media-preview {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      font-size: 2rem;
+      color: #6c757d;
+    }
+    
+    .media-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    
+    .media-info {
+      padding: 1rem;
+    }
+    
+    .media-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      color: #343a40;
+    }
+    
+    .media-type {
+      font-size: 0.75rem;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+
+  <h3 style="margin-bottom: 1.5rem; text-align: center;">Media Collection</h3>
+
+  <!-- Media grid -->
+  <div class="media-grid">
+    <!-- Image items -->
+    <div class="media-card" onclick="openMedia('image', 'Product Photography', 'https://picsum.photos/800/600?random=20')">
+      <img src="https://picsum.photos/300/200?random=20" alt="Product Photo">
+      <div class="media-info">
+        <div class="media-name">Product Photography</div>
+        <div class="media-type">Image</div>
+      </div>
+    </div>
+
+    <!-- Video item -->
+    <div class="media-card" onclick="openMedia('video', 'Brand Introduction', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+      <div class="media-preview">
+        <elvt-icon icon="mdi:play-circle"></elvt-icon>
+      </div>
+      <div class="media-info">
+        <div class="media-name">Brand Introduction</div>
+        <div class="media-type">Video</div>
+      </div>
+    </div>
+
+    <!-- Document item -->
+    <div class="media-card" onclick="openMedia('document', 'User Manual', '#')">
+      <div class="media-preview">
+        <elvt-icon icon="mdi:file-document"></elvt-icon>
+      </div>
+      <div class="media-info">
+        <div class="media-name">User Manual</div>
+        <div class="media-type">PDF Document</div>
+      </div>
+    </div>
+
+    <!-- Another image -->
+    <div class="media-card" onclick="openMedia('image', 'Team Photo', 'https://picsum.photos/800/600?random=21')">
+      <img src="https://picsum.photos/300/200?random=21" alt="Team Photo">
+      <div class="media-info">
+        <div class="media-name">Team Photo</div>
+        <div class="media-type">Image</div>
+      </div>
+    </div>
+
+    <!-- Presentation item -->
+    <div class="media-card" onclick="openMedia('document', 'Q4 Results', '#')">
+      <div class="media-preview">
+        <elvt-icon icon="mdi:presentation"></elvt-icon>
+      </div>
+      <div class="media-info">
+        <div class="media-name">Q4 Results</div>
+        <div class="media-type">Presentation</div>
+      </div>
+    </div>
+
+    <!-- Another video -->
+    <div class="media-card" onclick="openMedia('video', 'Tutorial Series', 'https://www.w3schools.com/html/movie.mp4')">
+      <div class="media-preview">
+        <elvt-icon icon="mdi:play-circle"></elvt-icon>
+      </div>
+      <div class="media-info">
+        <div class="media-name">Tutorial Series</div>
+        <div class="media-type">Video</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media lightbox -->
+  <div class="media-lightbox-overlay" id="media-lightbox" onclick="closeMedia(event)">
+    <div class="media-content">
+      <div class="media-header">
+        <div class="media-title" id="media-title">Media Title</div>
+        <button class="media-close" onclick="closeMedia(event)">
+          <elvt-icon icon="mdi:close"></elvt-icon>
+        </button>
+      </div>
+      <div class="media-body" id="media-body">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMedia(type, title, src) {
+      const lightbox = document.getElementById('media-lightbox');
+      const titleElement = document.getElementById('media-title');
+      const bodyElement = document.getElementById('media-body');
+      
+      titleElement.textContent = title;
+      
+      let content = '';
+      switch(type) {
+        case 'image':
+          content = \`<img class="media-image" src="\${src}" alt="\${title}">\`;
+          break;
+        case 'video':
+          content = \`<video class="media-video" controls>
+                      <source src="\${src}" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>\`;
+          break;
+        case 'document':
+          content = \`<div class="media-document">
+                      <elvt-icon icon="mdi:file-document" style="font-size: 4rem; color: #007bff; margin-bottom: 1rem;"></elvt-icon>
+                      <h4 style="margin: 0 0 1rem 0; color: #343a40;">\${title}</h4>
+                      <p style="margin: 0 0 2rem 0; color: #6c757d;">This document would normally open in a PDF viewer or document preview.</p>
+                      <elvt-button tone="primary">
+                        <elvt-icon slot="prefix" icon="mdi:download"></elvt-icon>
+                        Download Document
+                      </elvt-button>
+                    </div>\`;
+          break;
+      }
+      
+      bodyElement.innerHTML = content;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMedia(event) {
+      if (event.target === event.currentTarget || event.target.closest('.media-close')) {
+        const lightbox = document.getElementById('media-lightbox');
+        const bodyElement = document.getElementById('media-body');
+        
+        // Stop any playing videos
+        const videos = bodyElement.querySelectorAll('video');
+        videos.forEach(video => {
+          video.pause();
+          video.currentTime = 0;
+        });
+        
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('media-lightbox');
+      if (lightbox.classList.contains('active') && event.key === 'Escape') {
+        closeMedia({ target: lightbox, currentTarget: lightbox });
+      }
+    });
+  </script>
+</div>`}
+/>
+
+## Design Principles
+
+### Focus Principle
+**Lightbox interfaces should eliminate distractions and create immersive viewing experiences.** The overlay should provide a clean, focused environment that allows users to concentrate on the media content without interface clutter.
+
+### Context Preservation Principle  
+**Users should always understand where they are and how to return.** Clear navigation cues, breadcrumbs, and escape routes help users maintain spatial awareness within the lightbox experience.
+
+### Performance Principle
+**Media should load quickly and display responsively across all devices.** Optimize images for different screen sizes, preload adjacent gallery images, and provide loading indicators for better perceived performance.
+
+### Control Principle
+**Users should have intuitive control over their viewing experience.** Provide familiar navigation patterns, zoom controls, and playback options that match user expectations from other media interfaces.
+
+## Best Practices
+
+### Optimizing Media Loading
+
+**Why this matters:** Large images and videos can cause performance issues and poor user experiences. Proper optimization ensures smooth lightbox interactions across all devices and connection speeds.
+
+### Implementing Accessible Navigation
+
+**Why this matters:** Keyboard users and screen reader users need alternative ways to navigate through lightbox content. Proper focus management and keyboard shortcuts ensure inclusive access to media content.
+
+### Managing Mobile Interactions
+
+**Why this matters:** Touch interfaces require different interaction patterns than desktop hover states. Consider native mobile gestures and ensure touch targets are appropriately sized for finger navigation.
+
+### Providing Alternative Content Access
+
+**Why this matters:** Not all users can or want to use overlay interfaces. Always provide alternative ways to access media content, such as direct links or inline viewing options.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+```
+
+### Common Lightbox Patterns
+
+Lightbox interfaces can be created using overlay containers and media elements:
+
+```html
+<!-- Basic image lightbox trigger -->
+<div class="thumbnail-grid" onclick="openLightbox(event)">
+  <img src="thumbnail.jpg" alt="Image description" data-lightbox="gallery">
+</div>
+
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <img class="lightbox-image" id="lightbox-image" alt="">
+    <button class="lightbox-close" onclick="closeLightbox(event)">
+      <elvt-icon icon="mdi:close"></elvt-icon>
+    </button>
+  </div>
+</div>
+
+<!-- Gallery navigation -->
+<button class="gallery-nav prev" onclick="prevImage(event)">
+  <elvt-icon icon="mdi:chevron-left"></elvt-icon>
+</button>
+<button class="gallery-nav next" onclick="nextImage(event)">
+  <elvt-icon icon="mdi:chevron-right"></elvt-icon>
+</button>
+
+<!-- Media lightbox with header -->
+<div class="media-lightbox-overlay">
+  <div class="media-content">
+    <div class="media-header">
+      <div class="media-title">Document Title</div>
+      <button class="media-close">
+        <elvt-icon icon="mdi:close"></elvt-icon>
+      </button>
+    </div>
+    <div class="media-body">
+      <!-- Dynamic content insertion -->
+    </div>
+  </div>
+</div>
+
+<!-- Video lightbox -->
+<video class="media-video" controls>
+  <source src="video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+```
+
+### CSS Styling
+
+```css
+/* Lightbox overlay */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+}
+
+/* Lightbox content */
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation controls */
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Gallery navigation */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.gallery-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.gallery-nav.prev { left: -70px; }
+.gallery-nav.next { right: -70px; }
+
+/* Media lightbox */
+.media-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.media-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .lightbox-overlay {
+    padding: 1rem;
+  }
+  
+  .gallery-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .gallery-nav.prev { left: -50px; }
+  .gallery-nav.next { right: -50px; }
+  
+  .media-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+/* Thumbnail hover effects */
+.thumbnail-grid img {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
+.thumbnail-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+```
+
+### JavaScript Functionality
+
+```javascript
+// Basic lightbox functionality
+function openLightbox(imageSrc, imageAlt) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  
+  lightboxImage.src = imageSrc;
+  lightboxImage.alt = imageAlt;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(event) {
+  if (event.target === event.currentTarget || event.target.closest('.lightbox-close')) {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+// Gallery navigation
+let currentImageIndex = 0;
+const galleryImages = []; // Array of image objects
+
+function showGalleryImage() {
+  const image = document.getElementById('gallery-image');
+  const counter = document.getElementById('gallery-counter');
+  const currentImage = galleryImages[currentImageIndex];
+  
+  image.src = currentImage.src;
+  image.alt = currentImage.alt;
+  counter.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  showGalleryImage();
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  showGalleryImage();
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(event) {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox.classList.contains('active')) {
+    switch(event.key) {
+      case 'Escape':
+        closeLightbox({ target: lightbox, currentTarget: lightbox });
+        break;
+      case 'ArrowLeft':
+        prevImage();
+        break;
+      case 'ArrowRight':
+        nextImage();
+        break;
+    }
+  }
+});
+```
+
+### Key Components Used
+
+Components commonly used to create lightbox interfaces:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Navigation controls | Close buttons, navigation arrows, and action buttons |
+| `elvt-icon` | Visual elements | Close icons, navigation arrows, media type indicators |  
+| Overlay containers | Lightbox backdrop | Full-screen overlay containers with backdrop blur |
+| Media elements | Content display | Images, videos, iframes, and document previews |
+| CSS animations | Smooth transitions | Fade-in effects, slide transitions, and loading animations |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### Advanced Image Viewer
+
+<LiveExample 
+  title="Advanced Image Viewer with Zoom and Info" 
+  htmlCode={`<div style="padding: 3rem; text-align: center;">
+  <style>
+    .advanced-lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      z-index: 9999;
+    }
+    
+    .advanced-lightbox-overlay.active {
+      display: block;
+    }
+    
+    .advanced-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .image-container {
+      position: relative;
+      max-width: 80vw;
+      max-height: 80vh;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    
+    .zoomable-image {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+      cursor: zoom-in;
+    }
+    
+    .zoomable-image.zoomed {
+      cursor: zoom-out;
+      transform: scale(2);
+    }
+    
+    .image-toolbar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.75rem;
+      border-radius: 25px;
+    }
+    
+    .toolbar-button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .toolbar-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .image-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    
+    .image-info.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .close-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .sample-image {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .sample-image:hover {
+      transform: scale(1.05);
+    }
+  </style>
+
+  <div>
+    <h3 style="margin-bottom: 1.5rem;">Photography Collection</h3>
+    <img class="sample-image" src="https://picsum.photos/600/400?random=30" alt="Nature Photography" onclick="openAdvancedLightbox('https://picsum.photos/1200/800?random=30', 'Nature Photography', 'Beautiful landscape captured during golden hour with natural lighting and composition.')">
+  </div>
+
+  <!-- Advanced lightbox -->
+  <div class="advanced-lightbox-overlay" id="advanced-lightbox">
+    <div class="advanced-content">
+      <div class="image-container" id="image-container">
+        <img class="zoomable-image" id="zoomable-image" alt="" onclick="toggleZoom()">
+      </div>
+      
+      <div class="image-info" id="image-info">
+        <h4 id="image-title" style="margin: 0 0 0.5rem 0; font-size: 1rem;"></h4>
+        <p id="image-description" style="margin: 0; font-size: 0.875rem; line-height: 1.4;"></p>
+        <div style="margin-top: 0.75rem; font-size: 0.75rem; color: #ccc;">
+          <div>Resolution: 1200×800</div>
+          <div>Format: JPEG</div>
+        </div>
+      </div>
+      
+      <div class="image-toolbar">
+        <button class="toolbar-button" onclick="toggleInfo()" title="Toggle Info">
+          <elvt-icon icon="mdi:information-outline"></elvt-icon>
+        </button>
+        <button class="toolbar-button" onclick="toggleZoom()" title="Zoom">
+          <elvt-icon icon="mdi:magnify"></elvt-icon>
+        </button>
+        <button class="toolbar-button" onclick="downloadImage()" title="Download">
+          <elvt-icon icon="mdi:download"></elvt-icon>
+        </button>
+        <button class="toolbar-button" onclick="shareImage()" title="Share">
+          <elvt-icon icon="mdi:share-variant"></elvt-icon>
+        </button>
+      </div>
+      
+      <button class="close-button" onclick="closeAdvancedLightbox()">
+        <elvt-icon icon="mdi:close"></elvt-icon>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let isZoomed = false;
+    let showInfo = false;
+    let currentImageData = {};
+    
+    function openAdvancedLightbox(src, title, description) {
+      currentImageData = { src, title, description };
+      
+      const lightbox = document.getElementById('advanced-lightbox');
+      const image = document.getElementById('zoomable-image');
+      const titleElement = document.getElementById('image-title');
+      const descElement = document.getElementById('image-description');
+      
+      image.src = src;
+      image.alt = title;
+      titleElement.textContent = title;
+      descElement.textContent = description;
+      
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAdvancedLightbox() {
+      const lightbox = document.getElementById('advanced-lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      
+      // Reset zoom
+      isZoomed = false;
+      const image = document.getElementById('zoomable-image');
+      image.classList.remove('zoomed');
+      
+      // Hide info
+      showInfo = false;
+      const info = document.getElementById('image-info');
+      info.classList.remove('visible');
+    }
+    
+    function toggleZoom() {
+      const image = document.getElementById('zoomable-image');
+      isZoomed = !isZoomed;
+      
+      if (isZoomed) {
+        image.classList.add('zoomed');
+      } else {
+        image.classList.remove('zoomed');
+      }
+    }
+    
+    function toggleInfo() {
+      const info = document.getElementById('image-info');
+      showInfo = !showInfo;
+      
+      if (showInfo) {
+        info.classList.add('visible');
+      } else {
+        info.classList.remove('visible');
+      }
+    }
+    
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.href = currentImageData.src;
+      link.download = currentImageData.title.replace(/\s+/g, '_') + '.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    
+    function shareImage() {
+      if (navigator.share) {
+        navigator.share({
+          title: currentImageData.title,
+          text: currentImageData.description,
+          url: currentImageData.src
+        });
+      } else {
+        navigator.clipboard.writeText(currentImageData.src);
+        alert('Image URL copied to clipboard!');
+      }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('advanced-lightbox');
+      if (lightbox.classList.contains('active')) {
+        switch(event.key) {
+          case 'Escape':
+            closeAdvancedLightbox();
+            break;
+          case 'i':
+          case 'I':
+            toggleInfo();
+            break;
+          case 'z':
+          case 'Z':
+            toggleZoom();
+            break;
+        }
+      }
+    });
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Keyboard navigation:**
+- Support standard keyboard shortcuts (Escape to close, arrow keys for navigation)
+- Ensure proper focus management within lightbox interfaces
+- Provide clear focus indicators for interactive elements
+- Support tab navigation through lightbox controls
+
+**Screen reader support:**
+- Use appropriate ARIA labels and descriptions for media content
+- Announce lightbox state changes to screen readers
+- Provide alternative text for all images and media
+- Use live regions for dynamic content updates
+
+**Focus management:**
+- Trap focus within the lightbox when open
+- Return focus to trigger element when lightbox closes
+- Ensure logical tab order through lightbox controls
+- Don't let background content receive focus when lightbox is active
+
+**Alternative access methods:**
+- Always provide direct links to media content as fallback
+- Consider that some users may not want or be able to use overlay interfaces
+- Ensure media content is accessible outside of lightbox context
+- Test lightbox functionality with keyboard-only navigation
+
+## Changelog
+
+<ChangeLog component="lightbox" />

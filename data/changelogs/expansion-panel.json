@@ -1,0 +1,100 @@
+{
+  "componentName": "Expansion Panel",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "July 16, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "Enhanced",
+          "description": "Expansion Panel patterns now use functional ELEVATE components"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations with accordion and independent panel modes"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples with status indicators and nested panels"
+        },
+        {
+          "type": "New",
+          "description": "Advanced accordion patterns with FAQ and settings implementations"
+        },
+        {
+          "type": "New",
+          "description": "CSS-based animations and transitions for smooth panel interactions"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation guide with HTML/CSS/JavaScript patterns"
+        },
+        {
+          "type": "Updated",
+          "description": "Documentation reflects functional expansion panel implementations using available components"
+        }
+      ],
+      "notes": "Current version in active development"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Expansion Panel component implementation"
+        },
+        {
+          "type": "New",
+          "description": "Enhanced accordion and independent expansion modes with built-in animations"
+        },
+        {
+          "type": "New",
+          "description": "Advanced nesting support with automatic indentation and styling"
+        },
+        {
+          "type": "New",
+          "description": "Customizable icons, transitions, and visual themes"
+        },
+        {
+          "type": "New",
+          "description": "Keyboard navigation and accessibility enhancements"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Accordion expansion panel patterns using HTML/CSS/JavaScript",
+      "status": "functional"
+    },
+    {
+      "feature": "Independent panel patterns with elvt-switch and elvt-button components",
+      "status": "working"
+    },
+    {
+      "feature": "Advanced accordion with status indicators and metadata",
+      "status": "functional"
+    },
+    {
+      "feature": "Nested expansion panels with sub-panel hierarchies",
+      "status": "working"
+    },
+    {
+      "feature": "CSS animations and smooth transitions",
+      "status": "implemented"
+    },
+    {
+      "feature": "LiveExample demonstrations for various expansion panel use cases",
+      "status": "functional"
+    },
+    {
+      "feature": "Dedicated expansion panel component with advanced features",
+      "status": "planning"
+    }
+  ]
+}

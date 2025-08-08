@@ -1,0 +1,176 @@
+---
+title: Link
+description: Links are navigational elements that allow users to move between pages, sections, or external resources. They provide clear paths for exploration and action.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Links are navigational elements that allow users to move between pages, sections, or external resources. They provide clear paths for exploration and action while maintaining visual hierarchy and accessibility standards.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variants</AnchorLink>
+  <AnchorLink>Usage</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+Links serve as the connective tissue of digital experiences, guiding users through content and enabling smooth navigation. ELEVATE links maintain consistency with design system principles while offering flexibility for different contexts and use cases.
+
+### When to Use Links
+- **Navigation**: Moving between pages, sections, or external resources
+- **Cross-references**: Connecting related content or documentation
+- **Actions**: Triggering downloads, opening external tools, or launching applications
+- **Content discovery**: Providing pathways to explore additional information
+
+## Variants
+
+### Text Links
+Standard links that appear within body text and content blocks.
+
+<LiveExample
+  title="Text Links"
+  htmlCode={`<elvt-link href="/getting-started">Getting Started Guide</elvt-link>
+
+<elvt-link href="https://example.com" target="_blank">
+  External Documentation
+</elvt-link>
+
+<elvt-link href="/download.pdf" download>
+  Download PDF
+</elvt-link>`}
+/>
+
+### Standalone Links
+Links that function as independent elements, often used in navigation or as prominent call-to-action items.
+
+<LiveExample
+  title="Standalone Links"
+  htmlCode={`<elvt-link href="/dashboard" variant="standalone">
+  View Dashboard
+</elvt-link>
+
+<elvt-link href="/reports" variant="standalone" disabled>
+  Reports (Coming Soon)
+</elvt-link>`}
+/>
+
+### Icon Links
+Links that combine text with icons for enhanced visual communication.
+
+<LiveExample
+  title="Icon Links"
+  htmlCode={`<elvt-link href="/settings">
+  <elvt-icon icon="mdi:settings" slot="prefix"></elvt-icon>
+  Settings
+</elvt-link>
+
+<elvt-link href="https://github.com" target="_blank">
+  GitHub Repository
+  <elvt-icon icon="mdi:open-in-new" slot="suffix"></elvt-icon>
+</elvt-link>`}
+/>
+
+## Usage
+
+### Link Targets
+Control how links open and handle external navigation:
+
+```html
+<!-- Internal navigation (default) -->
+<elvt-link href="/internal-page">Internal Link</elvt-link>
+
+<!-- External link (opens in new tab) -->
+<elvt-link href="https://external.com" target="_blank">
+  External Link
+</elvt-link>
+
+<!-- Download link -->
+<elvt-link href="/document.pdf" download>
+  Download Document
+</elvt-link>
+```
+
+### States and Interactions
+Links provide clear visual feedback for different interaction states:
+
+<LiveExample
+  title="Link States"
+  htmlCode={`<div style="display: flex; flex-direction: column; gap: 1rem;">
+  <elvt-link href="/example">Default Link</elvt-link>
+  <elvt-link href="/example" class="hover-state">Hover State</elvt-link>
+  <elvt-link href="/example" disabled>Disabled Link</elvt-link>
+  <elvt-link href="/example" class="visited">Visited Link</elvt-link>
+</div>`}
+/>
+
+### Best Practices
+
+**DO:**
+- Use descriptive link text that explains the destination
+- Indicate external links with icons or visual cues
+- Maintain consistent styling within the same context
+- Provide sufficient contrast for accessibility
+- Use proper semantic markup for screen readers
+
+**DON'T:**
+- Use "click here" or "read more" without context
+- Underline text that isn't a link
+- Make links too small for touch interactions
+- Use color alone to indicate link status
+- Break links across multiple lines unnecessarily
+
+## Accessibility
+
+Links are fundamental to web accessibility and must be properly implemented:
+
+### Semantic Structure
+- Links use proper `<a>` elements with valid `href` attributes
+- Link text clearly describes the destination or purpose
+- External links are indicated for screen reader users
+- Download links specify file type and size when relevant
+
+### Keyboard Navigation
+- All links are keyboard accessible using Tab and Enter
+- Focus indicators are clearly visible and meet contrast requirements
+- Skip links help users navigate efficiently through content
+- Tab order follows logical page structure
+
+### Screen Reader Support
+Links provide context and purpose through:
+- Descriptive link text that makes sense out of context
+- ARIA labels for complex interactions
+- Proper announcement of link states and destinations
+- Clear indication of external links and file downloads
+
+<LiveExample
+  title="Accessible Link Examples"
+  htmlCode={`<!-- Descriptive link text -->
+<elvt-link href="/user-guide.pdf">
+  Download User Guide (PDF, 2.3MB)
+</elvt-link>
+
+<!-- External link with indication -->
+<elvt-link href="https://external.com" target="_blank" aria-label="Visit external website (opens in new tab)">
+  External Resource
+  <elvt-icon icon="mdi:open-in-new" aria-hidden="true" slot="suffix"></elvt-icon>
+</elvt-link>
+
+<!-- Complex interaction with context -->
+<elvt-link href="/share" aria-describedby="share-help">
+  Share this page
+</elvt-link>
+<div id="share-help" class="sr-only">
+  Opens sharing options for current page
+</div>`}
+/>

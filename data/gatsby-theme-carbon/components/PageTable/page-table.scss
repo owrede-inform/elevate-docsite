@@ -1,0 +1,115 @@
+// carbon--breakpoint
+@use '~@carbon/react/scss/breakpoint' as *;
+// $spacing-0X
+@use '~@carbon/react/scss/spacing' as *;
+// carbon--type-style
+@use '~@carbon/react/scss/type' as *;
+// color tokens
+@use '~@carbon/react/scss/compat/theme' as *;
+
+.spacing-table td {
+  vertical-align: top;
+}
+
+.page-table,
+.component-docs table {
+  line-height: 1.25;
+  width: calc(100%);
+
+  @include breakpoint('md') {
+    min-width: calc(67.3%);
+  }
+
+  thead {
+    th {
+      @include type-style('heading-01');
+      color: $text-01;
+      padding: $spacing-05;
+      text-align: left;
+      white-space: nowrap;
+      background: $ui-01;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $ui-03;
+
+      td {
+        @include type-style('body-short-01');
+        color: $text-01;
+        padding: $spacing-05;
+
+        img[src$='checkmark--glyph.svg'] {
+          width: 16px;
+          height: 16px;
+          margin: 0;
+        }
+
+        strong {
+          font-weight: font-weight('semibold');
+        }
+
+        @include breakpoint('lg') {
+          min-width: 6.25rem;
+        }
+
+        @include breakpoint('xlg') {
+          min-width: 9.375rem;
+        }
+      }
+    }
+  }
+}
+
+// Specific styles for simple two-column tables (Slots, Events, Methods)
+// These tables need fixed layout for consistent Description column alignment
+// Target tables in smaller grid containers (2-column tables)
+.cds--col-lg-8 .page-table,
+.cds--col-md-6 .page-table {
+  table-layout: fixed;
+
+  th:first-child,
+  td:first-child {
+    width: 12rem;
+    min-width: 12rem;
+  }
+}
+
+// Align Properties table first column with Description column position
+// Properties table is in larger grid container (4-column table)
+.cds--col-lg-12 .page-table {
+  th:first-child,
+  td:first-child {
+    width: 12rem;
+    min-width: 12rem;
+  }
+}
+
+.component-docs p {
+  @include breakpoint('md') {
+    max-width: 85%;
+  }
+
+  @include breakpoint('lg') {
+    max-width: 70%;
+  }
+}
+
+.component-docs table {
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-top: 1rem;
+
+  @include breakpoint('md') {
+    max-width: 75%;
+  }
+
+  @include breakpoint('lg') {
+    max-width: 50%;
+  }
+}
+
+.page-table__container {
+  overflow-x: auto;
+}

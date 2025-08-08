@@ -1,0 +1,80 @@
+{
+  "componentName": "Empty State",
+  "currentVersion": "0.0.26-alpha",
+  "releases": [
+    {
+      "version": "0.0.26-alpha",
+      "date": "July 16, 2025",
+      "status": "in-development",
+      "changes": [
+        {
+          "type": "Enhanced",
+          "description": "Empty State patterns now use functional ELEVATE components"
+        },
+        {
+          "type": "New",
+          "description": "LiveExample demonstrations with elvt-icon and elvt-button components"
+        },
+        {
+          "type": "New",
+          "description": "Interactive examples showing empty states in realistic contexts"
+        },
+        {
+          "type": "Updated",
+          "description": "Implementation patterns using available ELEVATE components"
+        },
+        {
+          "type": "Updated",
+          "description": "Documentation reflects functional component combinations"
+        }
+      ],
+      "notes": "Current version in active development"
+    }
+  ],
+  "plannedReleases": [
+    {
+      "version": "0.1.0",
+      "status": "planned",
+      "changes": [
+        {
+          "type": "New",
+          "description": "Dedicated Empty State component implementation"
+        },
+        {
+          "type": "New",
+          "description": "Context-aware types (first-use, no-results, error, completed)"
+        },
+        {
+          "type": "New",
+          "description": "Flexible content slots for illustrations and actions"
+        },
+        {
+          "type": "New",
+          "description": "Responsive sizing and alignment options"
+        }
+      ]
+    }
+  ],
+  "implementationStatus": [
+    {
+      "feature": "Empty state patterns using ELEVATE components",
+      "status": "functional"
+    },
+    {
+      "feature": "elvt-icon with MDI library integration",
+      "status": "working"
+    },
+    {
+      "feature": "elvt-button with tone variants",
+      "status": "working"
+    },
+    {
+      "feature": "LiveExample demonstrations",
+      "status": "available"
+    },
+    {
+      "feature": "Dedicated empty state component",
+      "status": "planning"
+    }
+  ]
+}

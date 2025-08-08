@@ -1,0 +1,418 @@
+---
+title: Progress
+description: Progress components show completion status for tasks and operations. The ELEVATE Progress component provides consistent visual indicators for loading states, file uploads, and long-running processes.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Progress indicators help users understand system status during loading, processing, or multi-step operations. The ELEVATE Progress component provides accessible, customizable progress bars that communicate completion status effectively.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Progress
+- **File uploads**: Show completion percentage for file upload operations
+- **Data processing**: Indicate progress for long-running data operations
+- **Multi-step workflows**: Track completion across sequential steps
+- **Loading states**: Provide feedback during content loading or API calls
+- **Installation processes**: Show progress for software installations or updates
+
+### When NOT to Use Progress
+- **Instant operations**: Don't show progress for operations that complete immediately
+- **Unknown duration**: Use loading spinners for processes with unknown completion times
+- **Simple page loading**: Basic page transitions may not need progress indicators
+
+## Variations
+
+### Basic Progress Types
+
+**Determinate Progress** shows specific completion percentages for measured operations.
+
+<LiveExample 
+  title="Basic ELEVATE Progress Bars" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem; max-width: 400px;">
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">File Upload Progress</label>
+    <elvt-progress value="67" max="100" label="67% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">2.1 MB of 3.2 MB uploaded</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Installation Progress</label>
+    <elvt-progress value="23" max="100" variant="success" label="23% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Installing dependencies... (Step 2 of 5)</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Data Processing</label>
+    <elvt-progress value="89" max="100" variant="warning" label="89% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Processing 8,912 of 10,000 records</div>
+  </div>
+</div>`}
+/>
+
+**Indeterminate Progress** shows ongoing activity without specific completion information.
+
+<LiveExample 
+  title="Indeterminate Progress Indicators" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem; max-width: 400px;">
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Loading Content</label>
+    <elvt-progress indeterminate label="Loading..."></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Please wait while we fetch your data</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Connecting to Server</label>
+    <elvt-progress indeterminate variant="info" label="Connecting..."></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Establishing secure connection</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Processing Request</label>
+    <elvt-progress indeterminate variant="warning" label="Processing..."></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">This may take a few moments</div>
+  </div>
+</div>`}
+/>
+
+### Size Variations
+
+**Different Progress Bar Sizes** accommodate various layout requirements and visual hierarchy.
+
+<LiveExample 
+  title="Progress Bar Sizes" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem; max-width: 400px;">
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Small Progress</label>
+    <elvt-progress value="45" max="100" size="small" label="45% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Compact progress indicator</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Medium Progress (Default)</label>
+    <elvt-progress value="72" max="100" label="72% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Standard progress bar size</div>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Large Progress</label>
+    <elvt-progress value="31" max="100" size="large" label="31% complete"></elvt-progress>
+    <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">Prominent progress display</div>
+  </div>
+</div>`}
+/>
+
+### Color Variants
+
+**Progress Color Variants** provide semantic meaning and visual distinction.
+
+<LiveExample 
+  title="Progress Color Variants" 
+  htmlCode={`<div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem; max-width: 400px;">
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Primary (Default)</label>
+    <elvt-progress value="65" max="100" label="65% complete"></elvt-progress>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Success</label>
+    <elvt-progress value="85" max="100" variant="success" label="85% complete"></elvt-progress>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Warning</label>
+    <elvt-progress value="40" max="100" variant="warning" label="40% complete"></elvt-progress>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Error</label>
+    <elvt-progress value="15" max="100" variant="error" label="15% complete - Error occurred"></elvt-progress>
+  </div>
+  
+  <div>
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Info</label>
+    <elvt-progress value="55" max="100" variant="info" label="55% complete"></elvt-progress>
+  </div>
+</div>`}
+/>
+
+## Design Principles
+
+### Clarity Principle
+**Progress indicators should clearly communicate completion status and remaining work.** Ambiguous progress displays confuse users about system state and expected wait times.
+
+### Feedback Principle  
+**Progress should update frequently enough to feel responsive.** Too-infrequent updates make systems feel unresponsive, while too-frequent updates can be distracting.
+
+### Context Principle
+**Progress indicators should provide meaningful context about the operation.** Generic progress bars without explanation don't help users understand what's happening.
+
+### Accessibility Principle
+**Progress must be communicated to all users including those using assistive technology.** Screen readers need proper progress announcements and status updates.
+
+## Best Practices
+
+### Choosing Progress Types
+
+**Why this matters:** The right progress type depends on whether completion can be measured. Determinate progress works for file uploads, while indeterminate progress suits unknown-duration operations.
+
+### Providing Helpful Context
+
+**Why this matters:** Context helps users understand what's happening and how long they might wait. "Loading..." is less helpful than "Processing 150 of 500 records."
+
+### Managing User Expectations
+
+**Why this matters:** Clear progress communication reduces user anxiety and abandonment. Users tolerate longer waits when they understand system status.
+
+## Implementation
+
+### Getting Started
+
+```bash
+yarn add @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import ELEVATE components
+import '@inform-elevate/elevate-core-ui';
+```
+
+### Basic Progress Usage
+
+```html
+<!-- Basic determinate progress -->
+<elvt-progress value="50" max="100" label="50% complete"></elvt-progress>
+
+<!-- Indeterminate progress -->
+<elvt-progress indeterminate label="Loading..."></elvt-progress>
+
+<!-- Progress with variant -->
+<elvt-progress value="75" max="100" variant="success" label="75% complete"></elvt-progress>
+
+<!-- Progress with size -->
+<elvt-progress value="60" max="100" size="large" label="60% complete"></elvt-progress>
+
+<!-- Progress with custom max -->
+<elvt-progress value="150" max="200" label="150 of 200 files processed"></elvt-progress>
+```
+
+### Progress Attributes
+
+<PageTable>
+
+| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `value` | number | 0 | Current progress value |
+| `max` | number | 100 | Maximum progress value |
+| `indeterminate` | boolean | false | Shows indeterminate progress animation |
+| `variant` | string | primary | Color variant: primary, success, warning, error, info |
+| `size` | string | medium | Size variant: small, medium, large |
+| `label` | string | - | Accessible label for screen readers |
+| `show-value` | boolean | false | Shows numerical value in progress bar |
+
+</PageTable>
+
+### JavaScript Progress Control
+
+```javascript
+// Get progress element
+const progress = document.querySelector('elvt-progress');
+
+// Update progress value
+progress.value = 75;
+
+// Switch to indeterminate
+progress.indeterminate = true;
+
+// Change variant
+progress.variant = 'success';
+
+// Listen for progress complete event
+progress.addEventListener('progress-complete', (event) => {
+  console.log('Progress completed:', event.detail);
+});
+```
+
+### Key Components Used
+
+Components commonly used with Progress:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Progress controls | Start, pause, cancel buttons for progress operations |
+| `elvt-icon` | Status indicators | Visual icons to accompany progress states |
+| `elvt-card` | Progress containers | Wrapping progress in structured layouts |
+| `elvt-notification` | Progress alerts | Notifications for progress completion or errors |
+
+</PageTable>
+
+## Interactive Examples
+
+### File Upload Progress Pattern
+
+<LiveExample 
+  title="File Upload with Progress Tracking" 
+  htmlCode={`<div style="max-width: 500px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h3 style="margin: 0 0 2rem 0; color: #2d2d2d;">File Upload</h3>
+  
+  <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <div style="padding: 1.5rem; border: 2px dashed #d0d0d0; border-radius: 8px; text-align: center; background: #f8f9fa;">
+      <elvt-icon icon="mdi:cloud-upload" style="font-size: 3rem; color: #6f6f6f; margin-bottom: 1rem;"></elvt-icon>
+      <h4 style="margin: 0 0 0.5rem 0; color: #2d2d2d;">Upload Files</h4>
+      <p style="margin: 0 0 1rem 0; color: #6f6f6f;">Drag and drop files here or click to browse</p>
+      <elvt-button tone="primary">
+        <elvt-icon slot="prefix" icon="mdi:folder-open"></elvt-icon>
+        Choose Files
+      </elvt-button>
+    </div>
+    
+    <div style="border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <elvt-icon icon="mdi:file-document" style="color: #007bff; font-size: 1.5rem;"></elvt-icon>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; font-size: 0.875rem;">project-proposal.pdf</div>
+          <div style="font-size: 0.75rem; color: #6f6f6f;">2.1 MB of 3.2 MB uploaded</div>
+        </div>
+        <elvt-button tone="subtle" size="small">
+          <elvt-icon icon="mdi:close"></elvt-icon>
+        </elvt-button>
+      </div>
+      <elvt-progress value="67" max="100" variant="info" label="67% uploaded"></elvt-progress>
+    </div>
+    
+    <div style="border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <elvt-icon icon="mdi:file-image" style="color: #28a745; font-size: 1.5rem;"></elvt-icon>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; font-size: 0.875rem;">design-mockup.jpg</div>
+          <div style="font-size: 0.75rem; color: #6f6f6f;">Upload complete</div>
+        </div>
+        <elvt-icon icon="mdi:check-circle" style="color: #28a745; font-size: 1.25rem;"></elvt-icon>
+      </div>
+      <elvt-progress value="100" max="100" variant="success" label="Upload complete"></elvt-progress>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+      <elvt-button tone="secondary">Cancel All</elvt-button>
+      <elvt-button tone="primary">Continue</elvt-button>
+    </div>
+  </div>
+</div>`}
+/>
+
+### Multi-Step Process Pattern
+
+<LiveExample 
+  title="Multi-Step Process with Progress" 
+  htmlCode={`<div style="max-width: 600px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h3 style="margin: 0 0 2rem 0; color: #2d2d2d;">Account Setup Progress</h3>
+  
+  <div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+        <span style="font-weight: 500;">Overall Progress</span>
+        <span style="font-size: 0.875rem; color: #6f6f6f;">Step 3 of 5</span>
+      </div>
+      <elvt-progress value="60" max="100" size="large" label="60% complete"></elvt-progress>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div>
+        <h4 style="margin: 0 0 1rem 0; color: #2d2d2d; display: flex; align-items: center; gap: 0.5rem;">
+          <elvt-icon icon="mdi:check-circle" style="color: #28a745; font-size: 1.25rem;"></elvt-icon>
+          Personal Information
+        </h4>
+        <elvt-progress value="100" max="100" variant="success" size="small" label="Complete"></elvt-progress>
+        <div style="font-size: 0.75rem; color: #28a745; margin-top: 0.25rem;">✓ Completed</div>
+      </div>
+      
+      <div>
+        <h4 style="margin: 0 0 1rem 0; color: #2d2d2d; display: flex; align-items: center; gap: 0.5rem;">
+          <elvt-icon icon="mdi:check-circle" style="color: #28a745; font-size: 1.25rem;"></elvt-icon>
+          Account Preferences
+        </h4>
+        <elvt-progress value="100" max="100" variant="success" size="small" label="Complete"></elvt-progress>
+        <div style="font-size: 0.75rem; color: #28a745; margin-top: 0.25rem;">✓ Completed</div>
+      </div>
+      
+      <div>
+        <h4 style="margin: 0 0 1rem 0; color: #2d2d2d; display: flex; align-items: center; gap: 0.5rem;">
+          <elvt-icon icon="mdi:loading" style="color: #007bff; font-size: 1.25rem;"></elvt-icon>
+          Email Verification
+        </h4>
+        <elvt-progress value="75" max="100" variant="info" size="small" label="75% complete"></elvt-progress>
+        <div style="font-size: 0.75rem; color: #007bff; margin-top: 0.25rem;">⏳ In Progress</div>
+      </div>
+      
+      <div>
+        <h4 style="margin: 0 0 1rem 0; color: #6f6f6f; display: flex; align-items: center; gap: 0.5rem;">
+          <elvt-icon icon="mdi:circle-outline" style="color: #6f6f6f; font-size: 1.25rem;"></elvt-icon>
+          Security Setup
+        </h4>
+        <elvt-progress value="0" max="100" size="small" label="Not started"></elvt-progress>
+        <div style="font-size: 0.75rem; color: #6f6f6f; margin-top: 0.25rem;">○ Pending</div>
+      </div>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+      <elvt-button tone="secondary">Back</elvt-button>
+      <elvt-button tone="primary">Continue to Security</elvt-button>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Features
+
+**Screen reader support:**
+- Progress elements use proper ARIA roles and labels
+- Progress updates are announced to screen readers
+- Completion percentages are communicated clearly
+- Context and status information is properly associated
+
+**Keyboard accessibility:**
+- Progress controls (pause, cancel) are keyboard accessible
+- Focus management works properly during progress operations
+- Users can access progress information without mouse interaction
+- Tab order remains logical during progress updates
+
+**Visual accessibility:**
+- Progress bars meet minimum contrast requirements for all variants
+- Progress indication doesn't rely solely on color coding
+- Text labels provide clear status information
+- Visual progress is supported by textual progress indicators
+
+**Clear communication:**
+- Progress labels describe what operation is in progress
+- Time estimates or completion information is provided when possible
+- Error states are clearly communicated with specific error messages
+- Success states confirm completion with appropriate feedback
+
+## Changelog
+
+<ChangeLog component="progress" />

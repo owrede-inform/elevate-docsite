@@ -1,0 +1,35 @@
+.overlay {
+  // NUCLEAR APPROACH: Completely disable the overlay on mobile
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  
+  // Original styles commented out to prevent any overlay from appearing
+  /*
+  z-index: 8000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: $overlay-01;
+  transition: all 0.15s ease;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  */
+}
+
+.visible {
+  // NUCLEAR APPROACH: Even when marked as visible, keep it hidden
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  
+  // Original styles commented out
+  /*
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  */
+}

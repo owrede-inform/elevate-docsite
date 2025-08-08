@@ -1,0 +1,504 @@
+---
+title: Avatar
+description: Avatars represent users or entities with profile images, initials, or icons. They provide visual identification in interfaces and support various sizes and states.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+
+<PageDescription>
+
+Avatars are visual representations of users, teams, or entities within interfaces. The ELEVATE Avatar component helps designers and developers create consistent, accessible identity systems that enhance user recognition and provide clear visual identification across all interface contexts.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Avatars
+- **User identification**: Profile areas, user lists, comments sections, and author attribution
+- **Team representation**: Member lists, collaboration interfaces, and group displays
+- **Entity representation**: Organizations, projects, departments, or system accounts
+- **Navigation elements**: User menus, account switching, and profile access points
+- **Social features**: Comments, reviews, messaging, and activity feeds
+- **Contact lists**: Address books, directory listings, and people browsing
+
+### When NOT to Use Avatars
+- **Decorative images**: Use Image component for non-representative visuals or illustrations
+- **Large portraits**: Use dedicated image layouts for hero content or detailed profile photos
+- **Complex graphics**: Use appropriate media components for logos, diagrams, or artwork
+- **Brand representation**: Use dedicated logo or brand components for company identification
+- **Non-human entities**: Consider appropriate icon or image components for objects or concepts
+
+## Variations
+
+
+### Image Avatar
+
+Standard avatar displaying user's profile photo or uploaded image with automatic fallback to initials.
+
+<LiveExample 
+  title="Image Avatar with Fallback" 
+  height="120px"
+  htmlCode={`<div style="display: flex; align-items: center; gap: 1rem;">
+  <elvt-avatar 
+    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
+    alt="John Doe" 
+    initials="JD"
+    size="medium">
+  </elvt-avatar>
+  <elvt-avatar 
+    src="invalid-url.jpg" 
+    alt="Jane Smith" 
+    initials="JS"
+    size="medium">
+  </elvt-avatar>
+  <elvt-avatar 
+    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
+    alt="Sarah Wilson" 
+    initials="SW"
+    size="medium">
+  </elvt-avatar>
+</div>`}
+/>
+
+### Initials Avatar
+
+Fallback avatar displaying user's initials with customizable background colors for visual distinction.
+
+<LiveExample 
+  title="Initials Avatar Variations" 
+  height="120px"
+  htmlCode={`<div style="display: flex; align-items: center; gap: 1rem;">
+  <elvt-avatar 
+    initials="JD" 
+    name="John Doe"
+    size="medium">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="SW" 
+    name="Sarah Wilson"
+    size="medium"
+    tone="secondary">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="MJ" 
+    name="Michael Johnson"
+    size="medium"
+    tone="success">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="EL" 
+    name="Emily Lee"
+    size="medium"
+    tone="warning">
+  </elvt-avatar>
+</div>`}
+/>
+
+### Size Variations
+
+Multiple size options to match different interface contexts and space requirements.
+
+<LiveExample 
+  title="Avatar Size Options" 
+  height="140px"
+  htmlCode={`<div style="display: flex; align-items: center; gap: 1rem;">
+  <elvt-avatar 
+    initials="XS" 
+    size="xs"
+    title="Extra Small (16px)">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="SM" 
+    size="small"
+    title="Small (24px)">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="MD" 
+    size="medium"
+    title="Medium (32px)">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="LG" 
+    size="large"
+    title="Large (48px)">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="XL" 
+    size="xl"
+    title="Extra Large (64px)">
+  </elvt-avatar>
+</div>`}
+/>
+
+### Shape Variations
+
+Different shape options for various design contexts and branding requirements.
+
+<LiveExample 
+  title="Avatar Shape Options" 
+  height="140px"
+  htmlCode={`<div style="display: flex; align-items: center; gap: 1rem;">
+  <elvt-avatar 
+    initials="RD" 
+    variant="circular"
+    size="large"
+    title="Circular (default)">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="SQ" 
+    variant="square"
+    size="large"
+    title="Square">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="RN" 
+    variant="rounded"
+    size="large"
+    title="Rounded corners">
+  </elvt-avatar>
+</div>`}
+/>
+
+### Status Indicators
+
+Avatar with status indicators showing online, offline, or activity states for real-time communication.
+
+<LiveExample 
+  title="Avatar with Status Indicators" 
+  height="140px"
+  htmlCode={`<div style="display: flex; align-items: center; gap: 1rem;">
+  <elvt-avatar 
+    initials="ON" 
+    size="large"
+    status="online"
+    title="Online status">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="AW" 
+    size="large"
+    status="away"
+    title="Away status">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="BS" 
+    size="large"
+    status="busy"
+    title="Busy status">
+  </elvt-avatar>
+  <elvt-avatar 
+    initials="OF" 
+    size="large"
+    status="offline"
+    title="Offline status">
+  </elvt-avatar>
+</div>`}
+/>
+
+## Design Principles
+
+
+Understanding these core principles will help you create avatar systems that enhance user recognition and provide clear identity representation across your application.
+
+### Identity Clarity Principle
+**Avatars should immediately identify users or entities.** Users rely on avatars for quick recognition in lists, comments, and collaborative interfaces. Poor image quality or unclear initials slow down user identification and reduce interface efficiency.
+
+### Visual Consistency Principle  
+**Similar avatar contexts should use similar visual treatments.** Consistent sizing, spacing, and styling across similar interface areas helps users build familiarity with your avatar system and improves recognition speed.
+
+### Graceful Degradation Principle
+**Avatars should work well even when primary content fails to load.** Image loading can fail for various reasons, so initials and placeholder states should provide meaningful fallbacks that maintain user identification.
+
+### Inclusive Representation Principle
+**Avatar systems should work for all users regardless of names or image availability.** Some users may not have profile photos, and name-based initials should handle various naming conventions and character sets appropriately.
+
+## Best Practices
+
+
+### Creating Effective Initials Fallbacks
+
+**Why this matters:** Poor initials generation creates confusion when images fail to load. Users should be able to identify people by their initials even when profile photos aren't available.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Use clear, readable initials with sufficient contrast and logical derivation">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', gap: '0.75rem'}}>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#0066cc', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '1rem'}}>JD</div>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#28a745', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '1rem'}}>SW</div>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#dc3545', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '1rem'}}>MJ</div>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't use unclear initials or poor contrast that makes identification difficult">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', gap: '0.75rem'}}>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#f0f0f0', color: '#ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '400', fontSize: '0.75rem'}}>J</div>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#yellow', color: '#white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '400', fontSize: '1rem'}}>??</div>
+  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#808080', color: '#606060', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '400', fontSize: '0.75rem'}}>USER</div>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+### Maintaining Appropriate Sizing Context
+
+**Why this matters:** Wrong avatar sizing breaks visual hierarchy and makes interfaces feel unbalanced. Avatar size should match the importance and space constraints of its context.
+
+<DoDontRow>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="do" caption="Use appropriate sizes that match content hierarchy and available space">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexDirection: 'column', gap: '1rem'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem'}}>
+    <div style={{width: '24px', height: '24px', borderRadius: '50%', background: '#0066cc', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '0.75rem'}}>JS</div>
+    <span>Comment by Jane Smith</span>
+  </div>
+  <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem'}}>
+    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: '#28a745', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '1.125rem'}}>JD</div>
+    <span>John Doe - Profile Header</span>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={6}>
+<DoDontExample type="dont" caption="Don't use oversized or undersized avatars that break visual hierarchy">
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '110px', aspectRatio: '16/9', padding: '1rem', flexDirection: 'column', gap: '1rem'}}>
+  <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem'}}>
+    <div style={{width: '64px', height: '64px', borderRadius: '50%', background: '#0066cc', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '1.25rem'}}>JS</div>
+    <span>Small comment text</span>
+  </div>
+  <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1rem'}}>
+    <div style={{width: '16px', height: '16px', borderRadius: '50%', background: '#28a745', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '0.5rem'}}>JD</div>
+    <span>Main Profile Header</span>
+  </div>
+</div>
+
+</DoDontExample>
+</Column>
+</DoDontRow>
+
+## Implementation
+
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+### Basic Usage
+
+```html
+<elvt-avatar 
+  src="/path/to/image.jpg" 
+  alt="John Doe"
+  initials="JD">
+</elvt-avatar>
+```
+
+### With Fallback Initials
+
+```html
+<elvt-avatar 
+  initials="JD" 
+  name="John Doe">
+</elvt-avatar>
+```
+
+### With Status Indicator
+
+```html
+<elvt-avatar 
+  src="/path/to/image.jpg" 
+  alt="John Doe"
+  status="online">
+</elvt-avatar>
+```
+
+### Different Shapes
+
+```html
+<elvt-avatar 
+  initials="JS" 
+  variant="square"
+  size="large">
+</elvt-avatar>
+```
+
+### Key Properties
+
+The most commonly used properties for design and development:
+
+<PageTable>
+
+| Property | Options | Description |
+|----------|---------|-------------|
+| `src` | URL string | Avatar image source with automatic fallback |
+| `initials` | String (1-3 chars) | Fallback initials when image unavailable |
+| `name` | String | Full name for auto-generating initials |
+| `size` | `xs`, `small`, `medium`, `large`, `xl` | Avatar size for different contexts |
+| `variant` | `circular`, `rounded`, `square` | Shape treatment for design needs |
+| `status` | `online`, `offline`, `away`, `busy` | Status indicator for communication apps |
+| `alt` | String | Alternative text for accessibility |
+
+</PageTable>
+
+*For complete API reference including all properties, events, and methods, see the [Storybook documentation](https://elevate-core-ui.inform-cloud.io/?path=/docs/components-avatar--docs).*
+
+## Interactive Examples
+
+
+### Live Avatar Playground
+
+Experience how avatars behave in realistic contexts. All examples use actual ELEVATE components.
+
+<LiveExample 
+  title="Team Directory Interface" 
+  htmlCode={`<div style="max-width: 500px; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h3 style="margin-top: 0; margin-bottom: 1rem;">Development Team</h3>
+  
+  <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <!-- Team Lead -->
+    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; border-radius: 8px; background: #f8f9fa;">
+      <elvt-avatar 
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
+        alt="John Doe" 
+        initials="JD"
+        size="large"
+        status="online">
+      </elvt-avatar>
+      <div>
+        <h4 style="margin: 0; font-size: 1rem;">John Doe</h4>
+        <p style="margin: 0; color: #6f6f6f; font-size: 0.875rem;">Team Lead • Frontend</p>
+        <span style="color: #28a745; font-size: 0.75rem;">• Online</span>
+      </div>
+    </div>
+    
+    <!-- Team Members -->
+    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem;">
+      <elvt-avatar 
+        initials="SW" 
+        name="Sarah Wilson"
+        size="medium"
+        status="away">
+      </elvt-avatar>
+      <div>
+        <h4 style="margin: 0; font-size: 1rem;">Sarah Wilson</h4>
+        <p style="margin: 0; color: #6f6f6f; font-size: 0.875rem;">Senior Developer • Backend</p>
+        <span style="color: #ffc107; font-size: 0.75rem;">• Away</span>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem;">
+      <elvt-avatar 
+        initials="MJ" 
+        name="Michael Johnson"
+        size="medium"
+        status="busy">
+      </elvt-avatar>
+      <div>
+        <h4 style="margin: 0; font-size: 1rem;">Michael Johnson</h4>
+        <p style="margin: 0; color: #6f6f6f; font-size: 0.875rem;">UI/UX Designer</p>
+        <span style="color: #dc3545; font-size: 0.75rem;">• In Meeting</span>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem;">
+      <elvt-avatar 
+        initials="EL" 
+        name="Emily Lee"
+        size="medium"
+        status="offline">
+      </elvt-avatar>
+      <div>
+        <h4 style="margin: 0; font-size: 1rem;">Emily Lee</h4>
+        <p style="margin: 0; color: #6f6f6f; font-size: 0.875rem;">QA Engineer</p>
+        <span style="color: #6f6f6f; font-size: 0.75rem;">• Offline</span>
+      </div>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Proper image semantics are critical:**
+```html
+<!-- Good: Meaningful alt text and proper labeling -->
+<elvt-avatar 
+  src="/path/to/image.jpg"
+  alt="John Doe, Team Lead"
+  initials="JD">
+</elvt-avatar>
+
+<!-- Bad: Missing or generic alt text -->
+<elvt-avatar 
+  src="/path/to/image.jpg"
+  alt="Avatar"
+  initials="JD">
+</elvt-avatar>
+```
+
+**Screen reader support:**
+- Images announce the full user name from alt text
+- Initials avatars announce the name or derived identity
+- Status indicators are communicated through appropriate ARIA attributes
+- Failed image loads gracefully fall back to initials with proper announcements
+
+**Keyboard navigation:**
+- Tab moves focus to interactive avatars (when clickable)
+- Enter and Space activate clickable avatars
+- Focus indicators are clearly visible
+- Non-interactive avatars are not focusable
+
+**Visual accessibility:**
+- Initials have sufficient color contrast (4.5:1 minimum)
+- Status indicators don't rely solely on color
+- Focus indicators meet WCAG contrast requirements
+- Avatars work in high contrast mode
+
+**Inclusive naming:**
+- Initials generation handles various naming conventions
+- Non-Latin characters are supported appropriately
+- Missing names gracefully fall back to generic placeholders
+- Names are announced correctly by screen readers
+
+## Changelog
+
+
+### Version 0.0.26-alpha (July 16, 2025)
+- Current version in active development
+
+### Version 0.0.7-alpha (April 11, 2025)
+- **Fixed**: Fix Initials Size in Avatar
+
+### Version 0.0.4-alpha (March 28, 2025)
+- **New**: Add Square Avatar Shape
+
+### Version 0.0.1-alpha (March 14, 2025)
+- **New**: Add Avatar Component (initial implementation)

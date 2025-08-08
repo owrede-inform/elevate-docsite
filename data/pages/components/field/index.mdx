@@ -1,0 +1,365 @@
+---
+title: Field
+description: Field components provide form field functionality with label, validation, and help text support. The ELEVATE Field component simplifies form creation with consistent styling and behavior.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Field components provide the foundation for form inputs with consistent labeling, validation states, and help text. The ELEVATE Field component ensures accessible, well-structured form elements that integrate seamlessly with the design system.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Fields
+- **Form creation**: Wrap input elements with consistent labeling and help text
+- **Validation display**: Show error states and success feedback to users
+- **Required indicators**: Mark mandatory fields with visual indicators
+- **Help text**: Provide additional context and guidance for complex inputs
+- **Consistent spacing**: Maintain uniform field layout throughout forms
+
+### When NOT to Use Fields
+- **Simple inputs**: Basic inputs without labels or validation may not need field wrapper
+- **Custom layouts**: Highly specialized form layouts might require custom field structures
+- **Non-form elements**: Don't wrap non-input elements in field components
+
+## Variations
+
+### Basic Field Types
+
+**Standard Field** provides the most common form field pattern with label and input.
+
+<LiveExample 
+  title="Basic ELEVATE Field" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Email Address">
+    <elvt-input type="email" placeholder="your@email.com"></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Full Name">
+    <elvt-input type="text" placeholder="John Smith"></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Company">
+    <elvt-input type="text" placeholder="Your Company Name"></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+**Required Fields** show visual indicators for mandatory form inputs.
+
+<LiveExample 
+  title="Required Field Indicators" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Email Address" required>
+    <elvt-input type="email" placeholder="your@email.com" required></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Password" required>
+    <elvt-input type="password" placeholder="Enter secure password" required></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Phone Number">
+    <elvt-input type="tel" placeholder="(555) 123-4567"></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+**Field with Help Text** provides additional guidance and context for users.
+
+<LiveExample 
+  title="Field Help Text" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Username" help-text="Must be 3-20 characters, letters and numbers only">
+    <elvt-input type="text" placeholder="your_username"></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="API Key" help-text="Found in your account settings under Developer Tools">
+    <elvt-input type="password" placeholder="Enter your API key"></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Website URL" help-text="Include http:// or https://">
+    <elvt-input type="url" placeholder="https://example.com"></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+### Validation States
+
+**Error State** shows validation errors and provides helpful error messages.
+
+<LiveExample 
+  title="Field Error States" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Email Address" error="Please enter a valid email address">
+    <elvt-input type="email" value="invalid-email" error></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Password" error="Password must be at least 8 characters">
+    <elvt-input type="password" value="123" error></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Phone Number" error="Please use format: (555) 123-4567">
+    <elvt-input type="tel" value="555123456" error></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+**Success State** confirms valid input and provides positive feedback.
+
+<LiveExample 
+  title="Field Success States" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Email Address" success="Email address is valid">
+    <elvt-input type="email" value="user@example.com" success></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Password" success="Strong password">
+    <elvt-input type="password" value="SecurePass123!" success></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Username" success="Username is available">
+    <elvt-input type="text" value="john_smith_2024" success></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+**Disabled State** shows inactive fields that cannot be edited.
+
+<LiveExample 
+  title="Disabled Field State" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <elvt-field label="Account Type" help-text="This field cannot be changed">
+    <elvt-input type="text" value="Premium Account" disabled></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="User ID" help-text="System generated identifier">
+    <elvt-input type="text" value="USR-789-456-123" disabled></elvt-input>
+  </elvt-field>
+  
+  <elvt-field label="Registration Date">
+    <elvt-input type="date" value="2024-01-15" disabled></elvt-input>
+  </elvt-field>
+</div>`}
+/>
+
+## Design Principles
+
+### Consistency Principle
+**Form fields should maintain consistent layout, spacing, and visual hierarchy.** Consistent field patterns create predictable interfaces that users can navigate efficiently.
+
+### Clarity Principle  
+**Labels and help text should be clear, concise, and actionable.** Ambiguous field labels create confusion and increase form abandonment rates.
+
+### Feedback Principle
+**Validation states should provide immediate, helpful feedback to users.** Clear error messages guide users toward successful form completion.
+
+### Accessibility Principle
+**All form fields must be keyboard accessible and screen reader friendly.** Proper labeling and focus management ensure inclusive form experiences.
+
+## Best Practices
+
+### Writing Effective Labels
+
+**Why this matters:** Clear labels reduce cognitive load and help users complete forms successfully. Vague or technical labels increase abandonment rates and user frustration.
+
+### Providing Helpful Validation
+
+**Why this matters:** Good validation prevents errors before they happen and guides users toward success. Generic error messages frustrate users and don't help them fix problems.
+
+### Managing Field States
+
+**Why this matters:** Proper state management provides clear feedback about field status and helps users understand form progress and requirements.
+
+## Implementation
+
+### Getting Started
+
+```bash
+yarn add @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import ELEVATE components
+import '@inform-elevate/elevate-core-ui';
+```
+
+### Basic Field Usage
+
+```html
+<!-- Basic field with label -->
+<elvt-field label="Email Address">
+  <elvt-input type="email" placeholder="your@email.com"></elvt-input>
+</elvt-field>
+
+<!-- Required field -->
+<elvt-field label="Password" required>
+  <elvt-input type="password" required></elvt-input>
+</elvt-field>
+
+<!-- Field with help text -->
+<elvt-field label="Username" help-text="Must be 3-20 characters">
+  <elvt-input type="text" placeholder="your_username"></elvt-input>
+</elvt-field>
+
+<!-- Field with error state -->
+<elvt-field label="Email" error="Please enter a valid email">
+  <elvt-input type="email" error></elvt-input>
+</elvt-field>
+
+<!-- Field with success state -->
+<elvt-field label="Username" success="Username is available">
+  <elvt-input type="text" success></elvt-input>
+</elvt-field>
+```
+
+### Field Attributes
+
+<PageTable>
+
+| Attribute | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `label` | string | - | Field label text |
+| `required` | boolean | false | Shows required indicator |
+| `help-text` | string | - | Additional guidance text |
+| `error` | string | - | Error message to display |
+| `success` | string | - | Success message to display |
+| `disabled` | boolean | false | Disables the entire field |
+
+</PageTable>
+
+### Key Components Used
+
+Components commonly used with Field:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-input` | Text inputs | Standard text input field |
+| `elvt-textarea` | Multi-line text | Large text input areas |
+| `elvt-select` | Dropdown selection | Select from predefined options |
+| `elvt-checkbox` | Boolean choices | Single or multiple selections |
+| `elvt-radio` | Exclusive choices | Single selection from group |
+
+</PageTable>
+
+## Interactive Examples
+
+### Form Layout Pattern
+
+<LiveExample 
+  title="Complete Form with Multiple Field Types" 
+  htmlCode={`<div style="max-width: 500px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h2 style="margin: 0 0 2rem 0; color: #2d2d2d;">Create Account</h2>
+  
+  <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <elvt-field label="Full Name" required>
+      <elvt-input type="text" placeholder="John Smith" required></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Email Address" required help-text="We'll use this for your login">
+      <elvt-input type="email" placeholder="john@example.com" required></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Password" required help-text="Must be at least 8 characters with numbers">
+      <elvt-input type="password" placeholder="Create secure password" required></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Company" help-text="Optional - helps us customize your experience">
+      <elvt-input type="text" placeholder="Your Company Name"></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Phone Number" help-text="For account recovery and important updates">
+      <elvt-input type="tel" placeholder="(555) 123-4567"></elvt-input>
+    </elvt-field>
+    
+    <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+      <elvt-button type="button" tone="secondary">Cancel</elvt-button>
+      <elvt-button type="submit" tone="primary">Create Account</elvt-button>
+    </div>
+  </form>
+</div>`}
+/>
+
+### Validation Feedback Pattern
+
+<LiveExample 
+  title="Real-time Validation Example" 
+  htmlCode={`<div style="max-width: 450px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <h3 style="margin: 0 0 1.5rem 0; color: #2d2d2d;">Validation States Demo</h3>
+  
+  <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <elvt-field label="Valid Email" success="Email format is correct">
+      <elvt-input type="email" value="user@example.com" success></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Invalid Email" error="Please enter a valid email address">
+      <elvt-input type="email" value="invalid-email" error></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Strong Password" success="Password meets all requirements">
+      <elvt-input type="password" value="SecurePass123!" success></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Weak Password" error="Password must contain uppercase, lowercase, and numbers">
+      <elvt-input type="password" value="weak" error></elvt-input>
+    </elvt-field>
+    
+    <elvt-field label="Processing..." help-text="Checking username availability">
+      <elvt-input type="text" value="checking_username" disabled></elvt-input>
+    </elvt-field>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Features
+
+**Proper labeling:**
+- All fields have associated labels using proper semantic markup
+- Required fields are clearly indicated both visually and for screen readers
+- Help text is properly associated with inputs using aria-describedby
+- Error messages are announced when validation fails
+
+**Keyboard accessibility:**
+- All fields are fully keyboard accessible with logical tab order
+- Users can navigate between fields using Tab and Shift+Tab
+- Input focus is clearly visible with appropriate focus indicators
+- Submit and reset functions work with keyboard activation
+
+**Screen reader support:**
+- Field labels are properly announced when fields receive focus
+- Help text and error messages are read aloud when relevant
+- Field states (required, error, success) are communicated to assistive technology
+- Form structure is clear with proper heading hierarchy
+
+**Visual accessibility:**
+- All text meets minimum contrast requirements for readability
+- Error states don't rely solely on color to communicate issues
+- Focus indicators are visible and meet accessibility guidelines
+- Field sizing accommodates users who need larger text
+
+## Changelog
+
+<ChangeLog component="field" />

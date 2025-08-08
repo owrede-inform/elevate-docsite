@@ -1,0 +1,830 @@
+---
+title: Tooltip
+description: Tooltips provide contextual information on hover or focus without cluttering the interface. They offer helpful details and explanations for UI elements.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Tooltips reveal helpful information without overwhelming the interface. The ELEVATE Tooltip component helps designers and developers create consistent, accessible help systems that provide context-sensitive information exactly when users need it.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+
+### When to Use Tooltips
+- **Icon explanations**: Clarify the meaning of icon-only buttons and controls
+- **Form field help**: Provide formatting examples and validation requirements
+- **Feature descriptions**: Explain complex functionality without cluttering the UI
+- **Additional context**: Offer supplementary information about interface elements
+- **Keyboard shortcuts**: Display available shortcuts for power users
+
+### When NOT to Use Tooltips
+- **Essential information**: Critical information should not be hidden in tooltips
+- **Mobile interfaces**: Touch devices don't have hover states for tooltip activation
+- **Long content**: Use modals or expandable sections for substantial information
+- **Repeated interactions**: Information needed frequently should be always visible
+
+## Variations
+
+
+### Tooltip Types
+
+**Basic Tooltips** provide simple text information on hover or focus using HTML title attributes.
+
+<LiveExample 
+  title="Basic Tooltip with Title Attribute" 
+  htmlCode={`<div style="padding: 3rem; text-align: center; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+  <elvt-button title="Save your current work" style="position: relative;">
+    <elvt-icon slot="prefix" icon="mdi:content-save"></elvt-icon>
+    Save
+  </elvt-button>
+  
+  <elvt-button title="Undo your last action" style="position: relative;">
+    <elvt-icon slot="prefix" icon="mdi:undo"></elvt-icon>
+    Undo
+  </elvt-button>
+  
+  <elvt-button title="Copy to clipboard" tone="subtle" style="position: relative;">
+    <elvt-icon icon="mdi:content-copy"></elvt-icon>
+  </elvt-button>
+  
+  <elvt-button title="More options and settings" tone="subtle" style="position: relative;">
+    <elvt-icon icon="mdi:dots-vertical"></elvt-icon>
+  </elvt-button>
+</div>`}
+/>
+
+**CSS-based Tooltips** use custom styling for enhanced visual presentation.
+
+<LiveExample 
+  title="Custom CSS Tooltip Pattern" 
+  htmlCode={`<div style="padding: 3rem; text-align: center; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+  <style>
+    .tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .tooltip-content {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #2d2d2d;
+      color: white;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      white-space: nowrap;
+      z-index: 1000;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none;
+    }
+    
+    .tooltip-content::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #2d2d2d transparent transparent transparent;
+    }
+    
+    .tooltip-container:hover .tooltip-content,
+    .tooltip-container:focus-within .tooltip-content {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+
+  <div class="tooltip-container">
+    <elvt-button>
+      <elvt-icon slot="prefix" icon="mdi:download"></elvt-icon>
+      Download
+    </elvt-button>
+    <div class="tooltip-content">Download file to your device</div>
+  </div>
+  
+  <div class="tooltip-container">
+    <elvt-button tone="subtle">
+      <elvt-icon icon="mdi:share-variant"></elvt-icon>
+    </elvt-button>
+    <div class="tooltip-content">Share with others</div>
+  </div>
+  
+  <div class="tooltip-container">
+    <elvt-button tone="subtle">
+      <elvt-icon icon="mdi:help-circle-outline"></elvt-icon>
+    </elvt-button>
+    <div class="tooltip-content">Get help and support</div>
+  </div>
+</div>`}
+/>
+
+**Form Field Tooltips** provide helpful information for user inputs and validation requirements.
+
+<LiveExample 
+  title="Form Field Tooltip Pattern" 
+  htmlCode={`<div style="max-width: 400px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <style>
+    .form-field {
+      margin-bottom: 1.5rem;
+    }
+    
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    .help-icon {
+      position: relative;
+      cursor: help;
+    }
+    
+    .help-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #2d2d2d;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      max-width: 200px;
+      white-space: normal;
+      z-index: 1000;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none;
+    }
+    
+    .help-icon:hover .help-tooltip,
+    .help-icon:focus .help-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+  </style>
+
+  <form>
+    <div class="form-field">
+      <label class="field-label">
+        Email Address
+        <div class="help-icon" tabindex="0">
+          <elvt-icon icon="mdi:help-circle-outline" style="color: #6f6f6f; font-size: 1rem;"></elvt-icon>
+          <div class="help-tooltip">We'll never share your email with anyone else</div>
+        </div>
+      </label>
+      <input type="email" class="form-input" placeholder="your@email.com" />
+    </div>
+    
+    <div class="form-field">
+      <label class="field-label">
+        Password
+        <div class="help-icon" tabindex="0">
+          <elvt-icon icon="mdi:help-circle-outline" style="color: #6f6f6f; font-size: 1rem;"></elvt-icon>
+          <div class="help-tooltip">Must be at least 8 characters with numbers and symbols</div>
+        </div>
+      </label>
+      <input type="password" class="form-input" placeholder="••••••••" />
+    </div>
+    
+    <div class="form-field">
+      <label class="field-label">
+        Phone Number
+        <div class="help-icon" tabindex="0">
+          <elvt-icon icon="mdi:help-circle-outline" style="color: #6f6f6f; font-size: 1rem;"></elvt-icon>
+          <div class="help-tooltip">Format: (555) 123-4567</div>
+        </div>
+      </label>
+      <input type="tel" class="form-input" placeholder="(555) 123-4567" />
+    </div>
+    
+    <elvt-button tone="primary" type="submit" style="width: 100%;">Create Account</elvt-button>
+  </form>
+</div>`}
+/>
+
+**Help Tooltips** offer contextual assistance and feature explanations.
+
+### Positioning Options
+
+**Auto Positioning** automatically places tooltips in optimal positions based on available space.
+
+**Fixed Positioning** allows manual control over tooltip placement relative to trigger elements.
+
+**Smart Positioning** adjusts tooltip position to stay within viewport boundaries.
+
+### Trigger Behaviors
+
+**Hover Activation** shows tooltips on mouse hover with configurable delay.
+
+**Focus Activation** displays tooltips when elements receive keyboard focus.
+
+**Click Activation** toggles tooltips on click for touch-friendly interfaces.
+
+**Manual Control** allows programmatic tooltip display and hiding.
+
+## Design Principles
+
+
+### Discoverability Principle
+**Users should be able to find helpful information when they need it.** Tooltips should be available on elements that might benefit from explanation, but not so ubiquitous that they become annoying.
+
+### Timing Principle  
+**Tooltip appearance and disappearance should feel natural and responsive.** Too-fast activation creates accidental triggers while too-slow activation feels unresponsive to user intent.
+
+### Clarity Principle
+**Tooltip content should be immediately useful and clearly written.** Vague or redundant tooltip text wastes user attention and undermines the helpfulness of the tooltip system.
+
+### Non-Interference Principle
+**Tooltips should enhance rather than interrupt user workflows.** They should provide help without blocking content or interfering with ongoing tasks.
+
+## Best Practices
+
+
+### Writing Effective Tooltip Content
+
+**Why this matters:** Poor tooltip content provides no value and can annoy users. Good tooltips should be concise, informative, and genuinely helpful rather than stating the obvious.
+
+### Choosing Appropriate Triggers
+
+**Why this matters:** Wrong trigger methods can make tooltips inaccessible or annoying. Hover works well for desktop but not mobile, while click activation might interfere with primary element functions.
+
+### Managing Tooltip Positioning
+
+**Why this matters:** Poorly positioned tooltips can be cut off by viewport edges or cover important content. Smart positioning ensures tooltips remain readable and useful.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+```
+
+### Common Tooltip Patterns
+
+Tooltip interfaces can be created using HTML title attributes and CSS for enhanced tooltips:
+
+```html
+<!-- Basic tooltip with HTML title -->
+<elvt-button title="Save your current changes">
+  <elvt-icon slot="prefix" icon="mdi:content-save"></elvt-icon>
+  Save
+</elvt-button>
+
+<!-- CSS-based tooltip with custom styling -->
+<div class="tooltip-container">
+  <elvt-button>
+    <elvt-icon slot="prefix" icon="mdi:download"></elvt-icon>
+    Download
+  </elvt-button>
+  <div class="tooltip-content">Download file to your device</div>
+</div>
+
+<!-- Form field help tooltip -->
+<div class="form-field">
+  <label class="field-label">
+    Password
+    <div class="help-icon" tabindex="0">
+      <elvt-icon icon="mdi:help-circle-outline"></elvt-icon>
+      <div class="help-tooltip">Must be at least 8 characters with numbers and symbols</div>
+    </div>
+  </label>
+  <input type="password" class="form-input" />
+</div>
+
+<!-- Rich content tooltip -->
+<div class="tooltip-container tooltip-rich">
+  <elvt-button>
+    <elvt-icon slot="prefix" icon="mdi:keyboard"></elvt-icon>
+    Help
+  </elvt-button>
+  <div class="tooltip-content rich-content">
+    <h4>Keyboard Shortcuts</h4>
+    <ul>
+      <li><kbd>Ctrl+S</kbd> - Save</li>
+      <li><kbd>Ctrl+Z</kbd> - Undo</li>
+      <li><kbd>Ctrl+C</kbd> - Copy</li>
+    </ul>
+  </div>
+</div>
+```
+
+### CSS Styling
+
+```css
+/* Basic tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip content styling */
+.tooltip-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2d2d2d;
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  z-index: 1000;
+  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2d2d2d transparent transparent transparent;
+}
+
+/* Show tooltip on hover and focus */
+.tooltip-container:hover .tooltip-content,
+.tooltip-container:focus-within .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Rich content tooltips */
+.rich-content {
+  white-space: normal;
+  max-width: 200px;
+  text-align: left;
+}
+
+.rich-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.875rem;
+}
+
+.rich-content ul {
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+}
+
+.rich-content li {
+  margin: 4px 0;
+  font-size: 0.75rem;
+}
+
+.rich-content kbd {
+  background: #4d4d4d;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+}
+
+/* Help icon tooltips */
+.help-icon {
+  position: relative;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+}
+
+.help-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2d2d2d;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: normal;
+  max-width: 200px;
+  z-index: 1000;
+  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+}
+
+.help-icon:hover .help-tooltip,
+.help-icon:focus .help-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Positioning variants */
+.tooltip-bottom .tooltip-content {
+  bottom: auto;
+  top: 125%;
+}
+
+.tooltip-bottom .tooltip-content::after {
+  top: auto;
+  bottom: 100%;
+  border-color: transparent transparent #2d2d2d transparent;
+}
+
+.tooltip-left .tooltip-content {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: 125%;
+  transform: translateY(-50%);
+}
+
+.tooltip-right .tooltip-content {
+  bottom: auto;
+  top: 50%;
+  left: 125%;
+  right: auto;
+  transform: translateY(-50%);
+}
+```
+
+### Key Components Used
+
+Components commonly used to create tooltip interfaces:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-button` | Trigger elements | Interactive buttons that show tooltips on hover/focus |
+| `elvt-icon` | Visual indicators | MDI icons for help, information, and visual elements |  
+| HTML `title` attribute | Basic tooltips | Native browser tooltips for simple text information |
+| CSS positioning | Custom tooltips | Absolute positioning for enhanced tooltip styling |
+| CSS transitions | Animations | Smooth show/hide transitions for better UX |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### Rich Content Tooltip Pattern
+
+<LiveExample 
+  title="Rich Tooltip with Multiple Elements" 
+  htmlCode={`<div style="padding: 3rem; text-align: center; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+  <style>
+    .rich-tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .rich-tooltip-content {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #2d2d2d;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      white-space: normal;
+      max-width: 250px;
+      z-index: 1000;
+      transition: opacity 0.3s, visibility 0.3s;
+      pointer-events: none;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .rich-tooltip-content::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2d2d2d transparent transparent transparent;
+    }
+    
+    .rich-tooltip-container:hover .rich-tooltip-content,
+    .rich-tooltip-container:focus-within .rich-tooltip-content {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .rich-tooltip-content h4 {
+      margin: 0 0 8px 0;
+      font-size: 0.9rem;
+      color: #fff;
+      border-bottom: 1px solid #555;
+      padding-bottom: 4px;
+    }
+    
+    .rich-tooltip-content ul {
+      margin: 8px 0 0 0;
+      padding: 0 0 0 16px;
+      list-style: none;
+    }
+    
+    .rich-tooltip-content li {
+      margin: 4px 0;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .rich-tooltip-content kbd {
+      background: #4d4d4d;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-family: monospace;
+      border: 1px solid #666;
+    }
+    
+    .tooltip-divider {
+      border-top: 1px solid #555;
+      margin: 8px 0;
+    }
+  </style>
+
+  <div class="rich-tooltip-container">
+    <elvt-button tone="subtle">
+      <elvt-icon slot="prefix" icon="mdi:keyboard"></elvt-icon>
+      Shortcuts
+    </elvt-button>
+    <div class="rich-tooltip-content">
+      <h4>Keyboard Shortcuts</h4>
+      <ul>
+        <li>Save <kbd>Ctrl+S</kbd></li>
+        <li>Undo <kbd>Ctrl+Z</kbd></li>
+        <li>Copy <kbd>Ctrl+C</kbd></li>
+        <li>Paste <kbd>Ctrl+V</kbd></li>
+      </ul>
+      <div class="tooltip-divider"></div>
+      <div style="font-size: 0.75rem; color: #ccc; text-align: center;">
+        <elvt-icon icon="mdi:information-outline" style="font-size: 0.8rem; margin-right: 4px;"></elvt-icon>
+        Press F1 for more help
+      </div>
+    </div>
+  </div>
+  
+  <div class="rich-tooltip-container">
+    <elvt-button>
+      <elvt-icon slot="prefix" icon="mdi:account-circle"></elvt-icon>
+      Profile
+    </elvt-button>
+    <div class="rich-tooltip-content">
+      <h4>Account Status</h4>
+      <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0;">
+        <elvt-icon icon="mdi:check-circle" style="color: #28a745; font-size: 1rem;"></elvt-icon>
+        <span style="font-size: 0.8rem;">Verified Account</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0;">
+        <elvt-icon icon="mdi:shield-check" style="color: #007bff; font-size: 1rem;"></elvt-icon>
+        <span style="font-size: 0.8rem;">Premium Member</span>
+      </div>
+      <div class="tooltip-divider"></div>
+      <div style="font-size: 0.75rem; color: #ccc;">
+        Last login: 2 hours ago
+      </div>
+    </div>
+  </div>
+  
+  <div class="rich-tooltip-container">
+    <elvt-button tone="primary">
+      <elvt-icon slot="prefix" icon="mdi:cloud-upload"></elvt-icon>
+      Upload
+    </elvt-button>
+    <div class="rich-tooltip-content">
+      <h4>Upload Requirements</h4>
+      <ul style="list-style: disc; padding-left: 16px;">
+        <li style="display: list-item; margin: 4px 0; font-size: 0.8rem;">Max size: 10MB</li>
+        <li style="display: list-item; margin: 4px 0; font-size: 0.8rem;">Formats: PDF, DOC, JPG</li>
+        <li style="display: list-item; margin: 4px 0; font-size: 0.8rem;">No sensitive data</li>
+      </ul>
+      <div class="tooltip-divider"></div>
+      <div style="font-size: 0.75rem; color: #ffd700; display: flex; align-items: center; gap: 4px;">
+        <elvt-icon icon="mdi:lightning-bolt" style="font-size: 0.8rem;"></elvt-icon>
+        Fast upload enabled
+      </div>
+    </div>
+  </div>
+</div>`}
+/>
+
+### Contextual Help System Pattern
+
+<LiveExample 
+  title="Contextual Help Tooltip System" 
+  htmlCode={`<div style="max-width: 500px; padding: 2rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+  <style>
+    .help-system {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .help-section {
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 4px solid #007bff;
+    }
+    
+    .help-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .context-help {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: help;
+    }
+    
+    .context-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 125%;
+      right: 0;
+      background-color: #2d2d2d;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      white-space: normal;
+      width: 220px;
+      z-index: 1000;
+      transition: opacity 0.3s, visibility 0.3s;
+      pointer-events: none;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .context-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2d2d2d transparent transparent transparent;
+    }
+    
+    .context-help:hover .context-tooltip,
+    .context-help:focus .context-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+
+  <div class="help-system">
+    <div class="help-section">
+      <div class="help-header">
+        <h3 style="margin: 0; font-size: 1.125rem;">Project Settings</h3>
+        <div class="context-help" tabindex="0">
+          <elvt-icon icon="mdi:help-circle-outline" style="color: #6f6f6f; font-size: 1.2rem;"></elvt-icon>
+          <div class="context-tooltip">
+            Configure your project's basic information, visibility settings, and collaboration preferences. These settings affect how your project appears to team members and external collaborators.
+          </div>
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center;">
+        <div>
+          <label style="font-weight: 500; font-size: 0.875rem;">Project Name</label>
+          <input type="text" value="My Awesome Project" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-top: 0.25rem;" />
+        </div>
+        
+        <div class="context-help" tabindex="0" style="margin-top: 1.5rem;">
+          <elvt-icon icon="mdi:information-outline" style="color: #007bff; font-size: 1rem;"></elvt-icon>
+          <div class="context-tooltip" style="right: -100px;">
+            Choose a descriptive name that clearly identifies your project. This name will be visible to all team members and used in notifications.
+          </div>
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; margin-top: 1rem;">
+        <div>
+          <label style="font-weight: 500; font-size: 0.875rem;">Visibility</label>
+          <select style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin-top: 0.25rem;">
+            <option>Private</option>
+            <option selected>Team</option>
+            <option>Public</option>
+          </select>
+        </div>
+        
+        <div class="context-help" tabindex="0" style="margin-top: 1.5rem;">
+          <elvt-icon icon="mdi:eye-outline" style="color: #28a745; font-size: 1rem;"></elvt-icon>
+          <div class="context-tooltip" style="right: -100px;">
+            <strong>Private:</strong> Only you can see this project<br>
+            <strong>Team:</strong> Your team members can view and collaborate<br>
+            <strong>Public:</strong> Anyone can discover and view this project
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+      <elvt-button tone="subtle">Cancel</elvt-button>
+      <elvt-button tone="primary">Save Settings</elvt-button>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Accessibility
+
+
+### Essential Accessibility Practices
+
+**Keyboard accessibility:**
+- Tooltips should appear on focus for keyboard users
+- Escape key should dismiss active tooltips
+- Tab navigation should work predictably with tooltips
+- Interactive tooltip content needs proper focus management
+
+**Screen reader support:**
+- Use `aria-describedby` to associate tooltips with trigger elements
+- Ensure tooltip content is announced by screen readers
+- Don't use tooltips for critical information that screen readers might miss
+- Provide alternative ways to access tooltip information
+
+**Focus management:**
+- Don't trap focus within tooltips unless they contain interactive elements
+- Return focus appropriately when tooltips are dismissed
+- Ensure tooltips don't interfere with normal tab order
+- Provide clear focus indicators for tooltip triggers
+
+**Alternative access methods:**
+- Consider that mobile users can't hover to see tooltips
+- Provide alternative ways to access tooltip information on touch devices
+- Don't rely solely on tooltips for important help information
+- Test tooltip functionality with keyboard-only navigation
+
+## Changelog
+
+<ChangeLog component="tooltip" />

@@ -1,0 +1,127 @@
+---
+title: Design Principles
+description: Core principles that guide the ELEVATE Design System
+---
+
+<PageDescription>
+
+The ELEVATE Design System is built on four fundamental principles that guide every design decision, ensuring consistency, accessibility, and user-centricity across all INFORM software experiences. These principles reflect our commitment to creating enterprise-grade applications that serve our users' complex workflows with clarity and efficiency.
+
+</PageDescription>
+
+## 1. Accessibility First
+
+Accessibility isn't an afterthought—it's fundamental to how we design. Every component, pattern, and guideline is created with accessibility as a core requirement.
+
+<DoDontRow>
+  <DoDont type="do" aspectRatio="16:9" caption="Use semantic HTML and proper ARIA labels">
+  
+  ```html
+  <button aria-label="Close dialog">
+    <CloseIcon />
+  </button>
+  ```
+  
+  </DoDont>
+  <DoDont type="dont" aspectRatio="16:9" caption="Rely solely on visual cues for important information">
+  
+  ```html
+  <div class="red-text">Error occurred</div>
+  ```
+  
+  </DoDont>
+</DoDontRow>
+
+### Key Accessibility Standards
+
+- **WCAG 2.1 AA Compliance** – All components meet or exceed WCAG 2.1 AA standards
+- **Keyboard Navigation** – Every interactive element is keyboard accessible
+- **Screen Reader Support** – Proper semantic markup and ARIA labels throughout
+- **Color Contrast** – Minimum 4.5:1 contrast ratio for text and background colors
+
+## 2. Consistency
+
+Consistent experiences reduce cognitive load and build user confidence. Our design system provides standardized components, patterns, and guidelines that work harmoniously together.
+
+### Visual Consistency
+
+- **Typography Scale** – Consistent typographic hierarchy across all interfaces
+- **Color Palette** – Carefully curated colors with defined usage guidelines
+- **Spacing System** – Standardized spacing tokens for predictable layouts
+- **Component Library** – Reusable components that behave consistently
+
+### Behavioral Consistency
+
+- **Interaction Patterns** – Standard behaviors for common actions
+- **Navigation Models** – Consistent navigation paradigms
+- **Feedback Systems** – Uniform success, error, and loading states
+
+## 3. User-Centricity
+
+Every design decision prioritizes user needs and context. We design for real people solving real problems, considering their goals, constraints, and diverse abilities.
+
+### Human-Centered Approach
+
+- **Task-Oriented Design** – Components support complex enterprise workflows efficiently
+- **Context Awareness** – Interfaces adapt to different user roles and business contexts
+- **Inclusive Design** – Solutions work for users with diverse technical backgrounds and abilities
+- **Domain Expertise** – Designs respect the specialized knowledge of logistics and optimization professionals
+
+### Design for Enterprise Scale
+
+- **Progressive Disclosure** – Complex business data presented in manageable, hierarchical views
+- **Responsive Design** – Seamless experiences from mobile devices to large control room displays
+- **Performance Focus** – Optimized for data-intensive applications and real-time decision making
+- **Scalability** – Interfaces that handle thousands of data points without compromising usability
+
+## 4. Systematic Thinking
+
+ELEVATE is more than a collection of components—it's a cohesive system where every element relates to the whole.
+
+### Design Tokens
+
+Our design tokens ensure consistency at scale:
+
+```css
+/* INFORM Brand Colors */
+--elevate-primary: #0090a7;      /* INFORM Petrol */
+--elevate-secondary: #004759;    /* INFORM Dark Green */
+--elevate-success: #10b981;      /* Success Green */
+--elevate-error: #ef4444;        /* Error Red */
+--elevate-warning: #f59e0b;      /* Warning Amber */
+
+/* ELEVATE Spacing Scale (4px base) */
+--elvt-measures-spacing-2xs: 0.25rem;   /* 4px */
+--elvt-measures-spacing-xs: 0.5rem;     /* 8px */
+--elvt-measures-spacing-s: 0.75rem;     /* 12px */
+--elvt-measures-spacing-m: 1rem;        /* 16px */
+--elvt-measures-spacing-l: 1.5rem;      /* 24px */
+--elvt-measures-spacing-xl: 2rem;       /* 32px */
+
+/* Typography with Inter Variable Font */
+--elvt-primitives-font-family-default: 'Inter', sans-serif;
+--elvt-primitives-font-family-mono: 'Roboto Mono', monospace;
+```
+
+### Component Relationships
+
+- **3-Tier Architecture** – Primitive tokens → Semantic aliases → Component-specific implementations
+- **Composition Over Configuration** – Flexible Web Components that combine naturally
+- **Shared Dependencies** – Common design tokens and patterns reduce maintenance overhead
+- **Web Standards** – Built with Lit Element for framework-agnostic integration
+
+## Applying These Principles
+
+When creating new components or patterns for INFORM software:
+
+1. **Start with accessibility** – Consider all users, including those using assistive technologies in enterprise environments
+2. **Follow established patterns** – Use existing ELEVATE components and INFORM brand conventions
+3. **Test with domain experts** – Validate assumptions with logistics professionals and actual user workflows
+4. **Think systematically** – Consider how new elements fit the broader ELEVATE ecosystem and INFORM product suite
+5. **Design for data density** – Enterprise applications often require displaying complex information efficiently
+
+<InlineNotification>
+
+**Remember:** These principles work together to create exceptional enterprise software experiences. The best ELEVATE implementations are accessible, consistent, user-centered, and systematic—supporting the complex decision-making processes that drive global logistics and optimization.
+
+</InlineNotification>

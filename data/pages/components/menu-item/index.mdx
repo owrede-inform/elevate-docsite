@@ -1,0 +1,1099 @@
+---
+title: Menu Item
+description: Menu Item components represent individual options within menu structures. They provide consistent styling and interaction patterns for actionable menu content.
+---
+
+import LiveExample from '../../../gatsby-theme-carbon/components/LiveExample';
+import Code from 'gatsby-theme-carbon/src/components/Code';
+import PageTable from 'gatsby-theme-carbon/src/components/PageTable';
+import DoDontRow from 'gatsby-theme-carbon/src/components/DoDontRow';
+import DoDontExample from 'gatsby-theme-carbon/src/components/DoDontExample';
+import InlineNotification from 'gatsby-theme-carbon/src/components/InlineNotification';
+import ChangeLog from '../../../components/ChangeLog';
+
+<PageDescription>
+
+Menu Item components define the individual elements within menu structures, providing consistent visual treatment and interaction behaviors. The ELEVATE Menu Item patterns help designers and developers create cohesive menu experiences with proper accessibility, visual hierarchy, and responsive interactions.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Overview</AnchorLink>
+  <AnchorLink>Variations</AnchorLink>
+  <AnchorLink>Design Principles</AnchorLink>
+  <AnchorLink>Best Practices</AnchorLink>
+  <AnchorLink>Implementation</AnchorLink>
+  <AnchorLink>Interactive Examples</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Changelog</AnchorLink>
+</AnchorLinks>
+
+## Overview
+
+### When to Use Menu Items
+- **Menu lists**: Build consistent item styling within dropdown and navigation menus
+- **Action organization**: Group related actions with visual consistency
+- **Navigation options**: Provide uniform styling for menu-based navigation
+- **Context options**: Ensure consistent presentation of contextual actions
+- **Settings interfaces**: Organize configuration options with clear hierarchy
+
+### When NOT to Use Menu Items
+- **Standalone buttons**: Use regular buttons for single actions outside menus
+- **Form controls**: Use appropriate form elements for data input
+- **Primary navigation**: Consider navigation bars for main site navigation
+- **Card content**: Use card components for content display rather than menu items
+
+## Variations
+
+### Basic Menu Items
+
+**Standard Menu Items** provide the foundation for all menu-based interfaces with consistent styling and behavior.
+
+<LiveExample 
+  title="Basic Menu Item Patterns" 
+  htmlCode={`<div style="padding: 3rem; display: flex; flex-direction: column; gap: 2rem; max-width: 400px; margin: 0 auto;">
+  <style>
+    .menu-list {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.25rem;
+      color: #343a40;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid #f8f9fa;
+    }
+    
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    
+    .menu-item:hover {
+      background: #f8f9fa;
+      color: #007bff;
+    }
+    
+    .menu-item:focus {
+      background: #e9ecef;
+      outline: none;
+      box-shadow: inset 3px 0 0 #007bff;
+    }
+    
+    .menu-item.active {
+      background: #e3f2fd;
+      color: #1565c0;
+      font-weight: 500;
+    }
+    
+    .menu-item.disabled {
+      color: #6c757d;
+      cursor: not-allowed;
+      background: #f8f9fa;
+    }
+    
+    .menu-item.disabled:hover {
+      background: #f8f9fa;
+      color: #6c757d;
+    }
+    
+    .item-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .item-text {
+      flex: 1;
+    }
+    
+    .item-meta {
+      color: #6c757d;
+      font-size: 0.75rem;
+      margin-left: auto;
+    }
+  </style>
+
+  <!-- Basic menu items -->
+  <div class="menu-list">
+    <button class="menu-item active">
+      <elvt-icon icon="mdi:home-outline" class="item-icon"></elvt-icon>
+      <span class="item-text">Home</span>
+    </button>
+    <button class="menu-item">
+      <elvt-icon icon="mdi:account-outline" class="item-icon"></elvt-icon>
+      <span class="item-text">Profile</span>
+    </button>
+    <button class="menu-item">
+      <elvt-icon icon="mdi:cog-outline" class="item-icon"></elvt-icon>
+      <span class="item-text">Settings</span>
+      <span class="item-meta">⌘,</span>
+    </button>
+    <button class="menu-item">
+      <elvt-icon icon="mdi:help-circle-outline" class="item-icon"></elvt-icon>
+      <span class="item-text">Help & Support</span>
+    </button>
+    <button class="menu-item disabled">
+      <elvt-icon icon="mdi:star-outline" class="item-icon"></elvt-icon>
+      <span class="item-text">Premium Features</span>
+      <span class="item-meta">Soon</span>
+    </button>
+  </div>
+</div>`}
+/>
+
+### Menu Items with Metadata
+
+**Enhanced Menu Items** include additional information like badges, shortcuts, and secondary text.
+
+<LiveExample 
+  title="Menu Items with Enhanced Information" 
+  htmlCode={`<div style="padding: 3rem; display: flex; flex-direction: column; gap: 2rem; max-width: 450px; margin: 0 auto;">
+  <style>
+    .enhanced-menu {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .enhanced-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      color: #343a40;
+      text-decoration: none;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid #f8f9fa;
+    }
+    
+    .enhanced-item:last-child {
+      border-bottom: none;
+    }
+    
+    .enhanced-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .enhanced-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      color: #007bff;
+    }
+    
+    .item-content {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .item-title {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .item-description {
+      color: #6c757d;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+    
+    .item-badge {
+      background: #dc3545;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      min-width: 20px;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .item-badge.primary {
+      background: #007bff;
+    }
+    
+    .item-badge.success {
+      background: #28a745;
+    }
+    
+    .item-badge.warning {
+      background: #ffc107;
+      color: #212529;
+    }
+    
+    .item-shortcut {
+      background: #f8f9fa;
+      color: #495057;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-family: monospace;
+      border: 1px solid #e9ecef;
+    }
+  </style>
+
+  <!-- Enhanced menu items -->
+  <div class="enhanced-menu">
+    <button class="enhanced-item">
+      <elvt-icon icon="mdi:email-outline" class="enhanced-icon"></elvt-icon>
+      <div class="item-content">
+        <div class="item-title">Messages</div>
+        <div class="item-description">View and manage your conversations</div>
+      </div>
+      <div class="item-badge primary">5</div>
+    </button>
+    
+    <button class="enhanced-item">
+      <elvt-icon icon="mdi:bell-outline" class="enhanced-icon"></elvt-icon>
+      <div class="item-content">
+        <div class="item-title">Notifications</div>
+        <div class="item-description">System alerts and updates</div>
+      </div>
+      <div class="item-badge">12</div>
+    </button>
+    
+    <button class="enhanced-item">
+      <elvt-icon icon="mdi:calendar-outline" class="enhanced-icon"></elvt-icon>
+      <div class="item-content">
+        <div class="item-title">Calendar</div>
+        <div class="item-description">Upcoming events and meetings</div>
+      </div>
+      <div class="item-shortcut">⌘ K</div>
+    </button>
+    
+    <button class="enhanced-item">
+      <elvt-icon icon="mdi:check-circle-outline" class="enhanced-icon" style="color: #28a745;"></elvt-icon>
+      <div class="item-content">
+        <div class="item-title">Tasks</div>
+        <div class="item-description">Manage your to-do items</div>
+      </div>
+      <div class="item-badge success">3</div>
+    </button>
+    
+    <button class="enhanced-item">
+      <elvt-icon icon="mdi:alert-circle-outline" class="enhanced-icon" style="color: #ffc107;"></elvt-icon>
+      <div class="item-content">
+        <div class="item-title">Warnings</div>
+        <div class="item-description">Items requiring attention</div>
+      </div>
+      <div class="item-badge warning">2</div>
+    </button>
+  </div>
+</div>`}
+/>
+
+### Interactive Menu Items
+
+**Multi-Action Items** provide multiple interaction points within a single menu item structure.
+
+<LiveExample 
+  title="Interactive Menu Items with Multiple Actions" 
+  htmlCode={`<div style="padding: 3rem; display: flex; flex-direction: column; gap: 2rem; max-width: 500px; margin: 0 auto;">
+  <style>
+    .interactive-menu {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .interactive-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #f8f9fa;
+      transition: background 0.2s;
+    }
+    
+    .interactive-item:last-child {
+      border-bottom: none;
+    }
+    
+    .interactive-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .item-main {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      cursor: pointer;
+    }
+    
+    .item-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .item-details {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .item-name {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .item-status {
+      color: #6c757d;
+      font-size: 0.8rem;
+    }
+    
+    .item-actions {
+      display: flex;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .interactive-item:hover .item-actions {
+      opacity: 1;
+    }
+    
+    .action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 123, 255, 0.1);
+      color: #007bff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    
+    .action-btn:hover {
+      background: #007bff;
+      color: white;
+    }
+    
+    .action-btn.danger {
+      background: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+    }
+    
+    .action-btn.danger:hover {
+      background: #dc3545;
+      color: white;
+    }
+    
+    .online-indicator {
+      width: 8px;
+      height: 8px;
+      background: #28a745;
+      border-radius: 50%;
+      margin-left: 0.5rem;
+    }
+    
+    .away-indicator {
+      width: 8px;
+      height: 8px;
+      background: #ffc107;
+      border-radius: 50%;
+      margin-left: 0.5rem;
+    }
+  </style>
+
+  <!-- Interactive menu items -->
+  <div class="interactive-menu">
+    <div class="interactive-item">
+      <div class="item-main" onclick="selectUser('Sarah Johnson')">
+        <div class="item-avatar">SJ</div>
+        <div class="item-details">
+          <div class="item-name">
+            Sarah Johnson
+            <span class="online-indicator"></span>
+          </div>
+          <div class="item-status">Product Manager • Online</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="action-btn" onclick="messageUser('Sarah Johnson')" title="Send Message">
+          <elvt-icon icon="mdi:message-outline" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="callUser('Sarah Johnson')" title="Start Call">
+          <elvt-icon icon="mdi:phone" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="viewProfile('Sarah Johnson')" title="View Profile">
+          <elvt-icon icon="mdi:account-outline" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="interactive-item">
+      <div class="item-main" onclick="selectUser('Mike Chen')">
+        <div class="item-avatar">MC</div>
+        <div class="item-details">
+          <div class="item-name">
+            Mike Chen
+            <span class="away-indicator"></span>
+          </div>
+          <div class="item-status">Developer • Away</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="action-btn" onclick="messageUser('Mike Chen')" title="Send Message">
+          <elvt-icon icon="mdi:message-outline" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="scheduleCall('Mike Chen')" title="Schedule Call">
+          <elvt-icon icon="mdi:calendar" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="viewProfile('Mike Chen')" title="View Profile">
+          <elvt-icon icon="mdi:account-outline" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="interactive-item">
+      <div class="item-main" onclick="selectUser('Alex Rivera')">
+        <div class="item-avatar" style="background: linear-gradient(135deg, #28a745, #1e7e34);">AR</div>
+        <div class="item-details">
+          <div class="item-name">
+            Alex Rivera
+            <span class="online-indicator"></span>
+          </div>
+          <div class="item-status">Designer • Available for calls</div>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="action-btn" onclick="messageUser('Alex Rivera')" title="Send Message">
+          <elvt-icon icon="mdi:message-outline" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="callUser('Alex Rivera')" title="Start Call">
+          <elvt-icon icon="mdi:phone" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn" onclick="shareScreen('Alex Rivera')" title="Share Screen">
+          <elvt-icon icon="mdi:monitor-share" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+        <button class="action-btn danger" onclick="blockUser('Alex Rivera')" title="Block User">
+          <elvt-icon icon="mdi:block-helper" style="font-size: 0.9rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectUser(name) {
+      console.log('Selected user:', name);
+    }
+    
+    function messageUser(name) {
+      console.log('Messaging:', name);
+      event.stopPropagation();
+    }
+    
+    function callUser(name) {
+      console.log('Calling:', name);
+      event.stopPropagation();
+    }
+    
+    function scheduleCall(name) {
+      console.log('Scheduling call with:', name);
+      event.stopPropagation();
+    }
+    
+    function viewProfile(name) {
+      console.log('Viewing profile:', name);
+      event.stopPropagation();
+    }
+    
+    function shareScreen(name) {
+      console.log('Sharing screen with:', name);
+      event.stopPropagation();
+    }
+    
+    function blockUser(name) {
+      console.log('Blocking user:', name);
+      event.stopPropagation();
+    }
+  </script>
+</div>`}
+/>
+
+## Design Principles
+
+### Consistency Principle
+**All menu items within a system should follow consistent visual and interaction patterns.** Users should be able to predict how menu items will behave based on their appearance and context.
+
+### Hierarchy Principle  
+**Visual hierarchy should guide users to the most important actions first.** Use typography, color, and spacing to emphasize primary actions while keeping secondary options accessible.
+
+### Clarity Principle
+**Menu item labels and icons should immediately communicate their purpose.** Avoid ambiguous wording and ensure icons reinforce rather than replace clear text labels.
+
+### Efficiency Principle
+**Menu items should enable quick scanning and selection.** Optimize for both mouse and keyboard interactions, providing shortcuts and clear visual feedback for all interaction states.
+
+## Best Practices
+
+### Writing Effective Menu Labels
+
+**Why this matters:** Poor labeling leads to user confusion and inefficient task completion. Clear, action-oriented labels help users quickly identify and select the options they need.
+
+### Managing Menu Item States
+
+**Why this matters:** Consistent state management provides predictable user experiences. Users need clear feedback about item availability, selection, and interaction results.
+
+### Implementing Proper Interaction Areas
+
+**Why this matters:** Adequate touch targets and hover areas ensure accessibility across all devices and interaction methods. Small or unclear interaction areas frustrate users and reduce efficiency.
+
+### Organizing Menu Item Content
+
+**Why this matters:** Well-organized content helps users scan and process menu options quickly. Poor information architecture leads to cognitive overload and decision paralysis.
+
+## Implementation
+
+### Getting Started
+
+```bash
+npm install @inform-elevate/elevate-core-ui
+```
+
+```javascript
+// Import all components
+import '@inform-elevate/elevate-core-ui';
+
+// Or import specific components  
+import '@inform-elevate/elevate-core-ui/dist/components/button/button.js';
+import '@inform-elevate/elevate-core-ui/dist/components/icon/icon.js';
+```
+
+### Common Menu Item Patterns
+
+Menu item interfaces can be created using button elements with consistent styling:
+
+```html
+<!-- Basic menu item -->
+<button class="menu-item">
+  <elvt-icon icon="mdi:home-outline"></elvt-icon>
+  <span class="item-text">Home</span>
+</button>
+
+<!-- Menu item with metadata -->
+<button class="menu-item">
+  <elvt-icon icon="mdi:email-outline"></elvt-icon>
+  <div class="item-content">
+    <div class="item-title">Messages</div>
+    <div class="item-description">View conversations</div>
+  </div>
+  <div class="item-badge">5</div>
+</button>
+
+<!-- Interactive menu item -->
+<div class="interactive-item">
+  <div class="item-main" onclick="selectItem()">
+    <div class="item-avatar">SJ</div>
+    <div class="item-details">
+      <div class="item-name">Sarah Johnson</div>
+      <div class="item-status">Online</div>
+    </div>
+  </div>
+  <div class="item-actions">
+    <button class="action-btn" onclick="messageUser()">
+      <elvt-icon icon="mdi:message-outline"></elvt-icon>
+    </button>
+    <button class="action-btn" onclick="callUser()">
+      <elvt-icon icon="mdi:phone"></elvt-icon>
+    </button>
+  </div>
+</div>
+
+<!-- Menu item with shortcut -->
+<button class="menu-item">
+  <elvt-icon icon="mdi:cog-outline"></elvt-icon>
+  <span class="item-text">Settings</span>
+  <span class="item-shortcut">⌘,</span>
+</button>
+```
+
+### CSS Styling
+
+```css
+/* Basic menu item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  color: #343a40;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu-item:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+.menu-item:focus {
+  background: #e9ecef;
+  outline: none;
+  box-shadow: inset 3px 0 0 #007bff;
+}
+
+.menu-item.active {
+  background: #e3f2fd;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.menu-item.disabled {
+  color: #6c757d;
+  cursor: not-allowed;
+  background: #f8f9fa;
+}
+
+/* Menu item content */
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-title {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.item-description {
+  color: #6c757d;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+/* Menu item metadata */
+.item-badge {
+  background: #dc3545;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  min-width: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.item-shortcut {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: monospace;
+  border: 1px solid #e9ecef;
+}
+
+/* Interactive menu items */
+.interactive-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  transition: background 0.2s;
+}
+
+.interactive-item:hover {
+  background: #f8f9fa;
+}
+
+.item-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  cursor: pointer;
+}
+
+.item-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.interactive-item:hover .item-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.action-btn:hover {
+  background: #007bff;
+  color: white;
+}
+```
+
+### Key Components Used
+
+Components commonly used to create menu item interfaces:
+
+<PageTable>
+
+| Component | Usage | Description |
+|----------|---------|-------------|
+| `elvt-icon` | Visual indicators | Icons for menu items, status indicators, and actions |
+| Button elements | Interactive items | Clickable menu item containers with proper semantics |  
+| CSS flexbox | Layout structure | Consistent alignment and spacing for item content |
+| Transition effects | Smooth interactions | Hover and focus state transitions for better UX |
+| Badge elements | Status indicators | Count badges, status labels, and metadata display |
+
+</PageTable>
+
+*For complete examples and styling patterns, see the LiveExample demonstrations above.*
+
+## Interactive Examples
+
+### File Browser Menu Items
+
+<LiveExample 
+  title="File Browser with Contextual Menu Items" 
+  htmlCode={`<div style="padding: 3rem; max-width: 600px; margin: 0 auto;">
+  <style>
+    .file-browser {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .browser-header {
+      background: #f8f9fa;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #e9ecef;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #f8f9fa;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .file-item:last-child {
+      border-bottom: none;
+    }
+    
+    .file-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .file-item.selected {
+      background: #e3f2fd;
+      border-left: 3px solid #007bff;
+    }
+    
+    .file-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .file-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .file-name {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .file-meta {
+      color: #6c757d;
+      font-size: 0.8rem;
+    }
+    
+    .file-size {
+      color: #6c757d;
+      font-size: 0.8rem;
+      min-width: 70px;
+      text-align: right;
+    }
+    
+    .file-actions {
+      display: flex;
+      gap: 0.25rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .file-item:hover .file-actions {
+      opacity: 1;
+    }
+    
+    .quick-action {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: none;
+      background: rgba(0, 123, 255, 0.1);
+      color: #007bff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    
+    .quick-action:hover {
+      background: #007bff;
+      color: white;
+    }
+    
+    .folder-icon { color: #ffc107; }
+    .document-icon { color: #007bff; }
+    .image-icon { color: #28a745; }
+    .video-icon { color: #dc3545; }
+    .archive-icon { color: #6f42c1; }
+  </style>
+
+  <!-- File browser -->
+  <div class="file-browser">
+    <div class="browser-header">
+      <elvt-icon icon="mdi:folder-open" style="margin-right: 0.5rem;"></elvt-icon>
+      My Documents
+    </div>
+    
+    <div class="file-item" onclick="selectFile(this, 'Projects')">
+      <elvt-icon icon="mdi:folder" class="file-icon folder-icon"></elvt-icon>
+      <div class="file-info">
+        <div class="file-name">Projects</div>
+        <div class="file-meta">Modified 2 days ago</div>
+      </div>
+      <div class="file-size">—</div>
+      <div class="file-actions">
+        <button class="quick-action" onclick="openFolder(event, 'Projects')" title="Open">
+          <elvt-icon icon="mdi:folder-open-outline" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="renameFile(event, 'Projects')" title="Rename">
+          <elvt-icon icon="mdi:pencil-outline" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="file-item" onclick="selectFile(this, 'Report.pdf')">
+      <elvt-icon icon="mdi:file-pdf-box" class="file-icon document-icon"></elvt-icon>
+      <div class="file-info">
+        <div class="file-name">Report.pdf</div>
+        <div class="file-meta">Modified today</div>
+      </div>
+      <div class="file-size">2.3 MB</div>
+      <div class="file-actions">
+        <button class="quick-action" onclick="openFile(event, 'Report.pdf')" title="Open">
+          <elvt-icon icon="mdi:eye-outline" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="shareFile(event, 'Report.pdf')" title="Share">
+          <elvt-icon icon="mdi:share-variant" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="downloadFile(event, 'Report.pdf')" title="Download">
+          <elvt-icon icon="mdi:download" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="file-item selected" onclick="selectFile(this, 'Photo.jpg')">
+      <elvt-icon icon="mdi:image" class="file-icon image-icon"></elvt-icon>
+      <div class="file-info">
+        <div class="file-name">Photo.jpg</div>
+        <div class="file-meta">Modified yesterday</div>
+      </div>
+      <div class="file-size">1.8 MB</div>
+      <div class="file-actions">
+        <button class="quick-action" onclick="previewImage(event, 'Photo.jpg')" title="Preview">
+          <elvt-icon icon="mdi:magnify" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="editImage(event, 'Photo.jpg')" title="Edit">
+          <elvt-icon icon="mdi:image-edit" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="shareFile(event, 'Photo.jpg')" title="Share">
+          <elvt-icon icon="mdi:share-variant" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="file-item" onclick="selectFile(this, 'Archive.zip')">
+      <elvt-icon icon="mdi:zip-box" class="file-icon archive-icon"></elvt-icon>
+      <div class="file-info">
+        <div class="file-name">Archive.zip</div>
+        <div class="file-meta">Modified 1 week ago</div>
+      </div>
+      <div class="file-size">15.2 MB</div>
+      <div class="file-actions">
+        <button class="quick-action" onclick="extractArchive(event, 'Archive.zip')" title="Extract">
+          <elvt-icon icon="mdi:folder-zip-outline" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="downloadFile(event, 'Archive.zip')" title="Download">
+          <elvt-icon icon="mdi:download" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="file-item" onclick="selectFile(this, 'Video.mp4')">
+      <elvt-icon icon="mdi:video" class="file-icon video-icon"></elvt-icon>
+      <div class="file-info">
+        <div class="file-name">Video.mp4</div>
+        <div class="file-meta">Modified 3 days ago</div>
+      </div>
+      <div class="file-size">45.1 MB</div>
+      <div class="file-actions">
+        <button class="quick-action" onclick="playVideo(event, 'Video.mp4')" title="Play">
+          <elvt-icon icon="mdi:play" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+        <button class="quick-action" onclick="shareFile(event, 'Video.mp4')" title="Share">
+          <elvt-icon icon="mdi:share-variant" style="font-size: 0.8rem;"></elvt-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectFile(element, fileName) {
+      // Remove selection from all items
+      document.querySelectorAll('.file-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      
+      // Add selection to clicked item
+      element.classList.add('selected');
+      console.log('Selected file:', fileName);
+    }
+    
+    function openFolder(event, folderName) {
+      event.stopPropagation();
+      console.log('Opening folder:', folderName);
+    }
+    
+    function openFile(event, fileName) {
+      event.stopPropagation();
+      console.log('Opening file:', fileName);
+    }
+    
+    function renameFile(event, fileName) {
+      event.stopPropagation();
+      console.log('Renaming file:', fileName);
+    }
+    
+    function shareFile(event, fileName) {
+      event.stopPropagation();
+      console.log('Sharing file:', fileName);
+    }
+    
+    function downloadFile(event, fileName) {
+      event.stopPropagation();
+      console.log('Downloading file:', fileName);
+    }
+    
+    function previewImage(event, fileName) {
+      event.stopPropagation();
+      console.log('Previewing image:', fileName);
+    }
+    
+    function editImage(event, fileName) {
+      event.stopPropagation();
+      console.log('Editing image:', fileName);
+    }
+    
+    function extractArchive(event, fileName) {
+      event.stopPropagation();
+      console.log('Extracting archive:', fileName);
+    }
+    
+    function playVideo(event, fileName) {
+      event.stopPropagation();
+      console.log('Playing video:', fileName);
+    }
+  </script>
+</div>`}
+/>
+
+## Accessibility
+
+### Essential Accessibility Practices
+
+**Keyboard navigation:**
+- Support arrow keys for menu item navigation
+- Use Enter and Space to activate menu items
+- Provide clear focus indicators for all interactive elements
+- Ensure tab order follows logical menu structure
+
+**Screen reader support:**
+- Use appropriate ARIA roles (menuitem, option) based on context
+- Provide descriptive labels for all interactive elements
+- Announce item states (selected, disabled, expanded) clearly
+- Use live regions for dynamic content updates
+
+**Visual accessibility:**
+- Maintain sufficient color contrast for all text and icons
+- Don't rely solely on color to communicate item states
+- Provide clear hover and focus states with adequate visual feedback
+- Ensure touch targets meet minimum size requirements (44px)
+
+**Content structure:**
+- Use semantic HTML elements for proper document structure
+- Group related menu items with appropriate container elements
+- Provide consistent interaction patterns across all menu items
+- Ensure menu item labels are descriptive and actionable
+
+## Changelog
+
+<ChangeLog component="menu-item" />
