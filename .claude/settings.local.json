@@ -37,7 +37,10 @@
       "Bash(gh workflow run:*)",
       "Bash(gh run watch:*)",
       "Bash(npx playwright test:*)",
-      "Bash(del site-analysis.js github-pages-test.js detailed-github-test.js content-check.js js-error-check.js)"
+      "Bash(del site-analysis.js github-pages-test.js detailed-github-test.js content-check.js js-error-check.js)",
+      "Bash(timeout:*)",
+      "Bash(del:*)",
+      "Bash(npm ls:*)"
     ],
     "deny": []
   }
