@@ -14,6 +14,7 @@ export interface NavigationData {
   primary: NavigationItem[]
   secondary?: NavigationItem[]
   userRole?: 'designer' | 'developer' | 'product-manager'
+  homeHref?: string
 }
 
 /**
@@ -317,7 +318,7 @@ export class ESDSNavigation extends LitElement {
     
     return html`
       <nav class="primary-nav" role="navigation" aria-label="Main navigation">
-        <a href="/" class="nav-brand">ELEVATE</a>
+        <a href="${this.navigation.homeHref || '/'}" class="nav-brand">ELEVATE</a>
         
         <ul class="primary-links">
           ${filteredItems.map(item => html`

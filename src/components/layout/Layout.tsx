@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Navigation } from '@/components/react'
 import type { NavigationData } from '@/components/react'
+import { createPath } from '@/lib/path-utils'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -13,42 +14,43 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   // Navigation configuration
   const navigationData: NavigationData = {
+    homeHref: createPath('/'),
     primary: [
       {
         label: 'Components',
-        href: '/components',
+        href: createPath('/components'),
         icon: '🧩',
       },
       {
         label: 'Patterns',
-        href: '/patterns', 
+        href: createPath('/patterns'), 
         icon: '📐',
       },
       {
         label: 'Guides',
-        href: '/guides',
+        href: createPath('/guides'),
         icon: '📚',
       },
     ],
     secondary: [
       {
         label: 'Getting Started',
-        href: '/guides/getting-started',
+        href: createPath('/guides/getting-started'),
         role: ['designer', 'developer', 'product-manager'],
       },
       {
         label: 'Design Principles',
-        href: '/guides/design-principles',
+        href: createPath('/guides/design-principles'),
         role: ['designer'],
       },
       {
         label: 'Implementation',
-        href: '/guides/implementation',
+        href: createPath('/guides/implementation'),
         role: ['developer'],
       },
       {
         label: 'Best Practices',
-        href: '/guides/best-practices',
+        href: createPath('/guides/best-practices'),
         role: ['product-manager'],
       },
     ],
@@ -100,9 +102,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="footer-section">
               <h4>Resources</h4>
               <ul>
-                <li><a href="/components">Components</a></li>
-                <li><a href="/patterns">Patterns</a></li>
-                <li><a href="/guides">Guides</a></li>
+                <li><a href={createPath('/components')}>Components</a></li>
+                <li><a href={createPath('/patterns')}>Patterns</a></li>
+                <li><a href={createPath('/guides')}>Guides</a></li>
               </ul>
             </div>
             
@@ -133,9 +135,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="footer-section">
               <h4>Role-Based Guides</h4>
               <ul>
-                <li><a href="/guides/designers">For Designers</a></li>
-                <li><a href="/guides/developers">For Developers</a></li>
-                <li><a href="/guides/product-managers">For Product Managers</a></li>
+                <li><a href={createPath('/guides/designers')}>For Designers</a></li>
+                <li><a href={createPath('/guides/developers')}>For Developers</a></li>
+                <li><a href={createPath('/guides/product-managers')}>For Product Managers</a></li>
               </ul>
             </div>
           </div>
