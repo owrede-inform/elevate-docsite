@@ -85,4 +85,4 @@ export default defineConfig({
   
   // Base path for deployment (GitHub Pages)
   base: process.env.NODE_ENV === 'production' ? '/elevate-docsite/' : '/',
-}
+})
