@@ -7,8 +7,26 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeHighlight from 'rehype-highlight'
 
+// Plugin to suppress specific warnings
+const suppressWarningsPlugin = () => ({
+  name: 'suppress-warnings',
+  configureServer(server) {
+    const originalWarn = console.warn;
+    console.warn = (...args) => {
+      const message = args.join(' ');
+      // Skip qr-creator sourcemap warnings (from Shoelace dependency)
+      if (message.includes('qr-creator') && message.includes('points to missing source files')) {
+        return;
+      }
+      originalWarn.apply(console, args);
+    };
+  },
+})
+
 export default defineConfig({
   plugins: [
+    // Suppress annoying third-party sourcemap warnings
+    suppressWarningsPlugin(),
     // MDX support with enhanced processing
     mdx({
       remarkPlugins: [remarkGfm],
@@ -44,6 +62,12 @@ export default defineConfig({
     port: 3000,
     host: true,
     open: true,
+    fs: {
+      // Suppress warning about missing source files for third-party packages
+      strict: false,
+      // Deny access to sensitive files
+      deny: ['.env', '.env.*', '*.{pem,crt,key}'],
+    },
   },
   
   // Build configuration for GitHub Pages
@@ -71,7 +95,13 @@ export default defineConfig({
       'lit',
       '@mdx-js/react',
     ],
-    exclude: ['@inform-elevate/elevate-core-ui', '@inform-elevate/elevate-design-tokens', '@inform-elevate/elevate-icons', '@inform-elevate/elevate-cdk']
+    exclude: [
+      '@inform-elevate/elevate-core-ui', 
+      '@inform-elevate/elevate-design-tokens', 
+      '@inform-elevate/elevate-icons', 
+      '@inform-elevate/elevate-cdk',
+      'qr-creator'
+    ]
   },
   
   // CSS processing
