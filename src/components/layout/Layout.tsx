@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Navigation } from '@/components/react'
 import type { NavigationData } from '@/components/react'
 import { createPath } from '@/lib/path-utils'
+import { loadNavigationConfig } from '@/lib/navigation-config'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -12,50 +13,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation()
   const [userRole, setUserRole] = useState<'designer' | 'developer' | 'product-manager' | undefined>(undefined)
 
-  // Navigation configuration
-  const navigationData: NavigationData = {
-    homeHref: createPath('/'),
-    primary: [
-      {
-        label: 'Components',
-        href: createPath('/components'),
-        icon: '🧩',
-      },
-      {
-        label: 'Patterns',
-        href: createPath('/patterns'), 
-        icon: '📐',
-      },
-      {
-        label: 'Guides',
-        href: createPath('/guides'),
-        icon: '📚',
-      },
-    ],
-    secondary: [
-      {
-        label: 'Getting Started',
-        href: createPath('/guides/getting-started'),
-        role: ['designer', 'developer', 'product-manager'],
-      },
-      {
-        label: 'Design Principles',
-        href: createPath('/guides/design-principles'),
-        role: ['designer'],
-      },
-      {
-        label: 'Implementation',
-        href: createPath('/guides/implementation'),
-        role: ['developer'],
-      },
-      {
-        label: 'Best Practices',
-        href: createPath('/guides/best-practices'),
-        role: ['product-manager'],
-      },
-    ],
+  // Load navigation configuration from YAML-based config
+  const baseNavigationData = useMemo(() => loadNavigationConfig(), [])
+  
+  // Create final navigation data with user role
+  const navigationData: NavigationData = useMemo(() => ({
+    ...baseNavigationData,
     userRole
-  }
+  }), [baseNavigationData, userRole])
 
   const handleRoleChange = (role: string) => {
     const newRole = role === 'all' ? undefined : role as typeof userRole
