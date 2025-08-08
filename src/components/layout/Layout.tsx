@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Navigation } from '@/components/react'
+import { Navigation, Container } from '@/components/react'
 import type { NavigationData } from '@/components/react'
 import { createPath } from '@/lib/path-utils'
 import { loadNavigationConfig } from '@/lib/navigation-config'
@@ -51,11 +51,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       />
       
       <main className="main-content">
-        {children}
+        <Container size="xl">
+          {children}
+        </Container>
       </main>
       
       <footer className="site-footer">
-        <div className="container">
+        <Container size="xl">
           <div className="footer-content">
             <div className="footer-section">
               <h3>ELEVATE Design System</h3>
@@ -115,7 +117,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </small>
             </p>
           </div>
-        </div>
+        </Container>
       </footer>
       
       <style jsx>{`
@@ -127,48 +129,45 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         .main-content {
           flex: 1;
-          padding: 2rem 0;
+          padding: var(--elevate-spacing-xl, 2rem) 0;
           background: var(--elevate-color-background-primary, #ffffff);
         }
 
         .site-footer {
           background: var(--elevate-color-background-secondary, #f8f9fa);
           border-top: 1px solid var(--elevate-color-border-light, #e9ecef);
-          padding: 3rem 0 1rem 0;
+          padding: var(--elevate-spacing-2xl, 3rem) 0 var(--elevate-spacing-md, 1rem) 0;
           margin-top: auto;
-        }
-
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 1rem;
         }
 
         .footer-content {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-          margin-bottom: 2rem;
+          gap: var(--elevate-spacing-xl, 2rem);
+          margin-bottom: var(--elevate-spacing-xl, 2rem);
         }
 
         .footer-section h3 {
           color: var(--elevate-color-primary, #0066cc);
-          margin-bottom: 1rem;
-          font-size: 1.25rem;
-          font-weight: 600;
+          margin-bottom: var(--elevate-spacing-md, 1rem);
+          font-size: var(--elevate-font-size-xl, 1.25rem);
+          font-weight: var(--elevate-font-weight-semibold, 600);
+          font-family: var(--elevate-font-family-primary);
         }
 
         .footer-section h4 {
           color: var(--elevate-color-text-primary, #1a1a1a);
-          margin-bottom: 0.75rem;
-          font-size: 1rem;
-          font-weight: 600;
+          margin-bottom: var(--elevate-spacing-sm, 0.75rem);
+          font-size: var(--elevate-font-size-base, 1rem);
+          font-weight: var(--elevate-font-weight-semibold, 600);
+          font-family: var(--elevate-font-family-primary);
         }
 
         .footer-section p {
           color: var(--elevate-color-text-secondary, #4a4a4a);
-          line-height: 1.6;
-          margin-bottom: 1rem;
+          line-height: var(--elevate-line-height-relaxed, 1.6);
+          margin-bottom: var(--elevate-spacing-md, 1rem);
+          font-family: var(--elevate-font-family-primary);
         }
 
         .footer-section ul {
@@ -178,13 +177,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         }
 
         .footer-section ul li {
-          margin-bottom: 0.5rem;
+          margin-bottom: var(--elevate-spacing-sm, 0.5rem);
         }
 
         .footer-section ul li a {
           color: var(--elevate-color-text-secondary, #4a4a4a);
           text-decoration: none;
           transition: color 0.2s ease;
+          font-family: var(--elevate-font-family-primary);
         }
 
         .footer-section ul li a:hover {
@@ -193,36 +193,34 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         }
 
         .footer-bottom {
-          padding-top: 2rem;
+          padding-top: var(--elevate-spacing-xl, 2rem);
           border-top: 1px solid var(--elevate-color-border-light, #e9ecef);
           text-align: center;
           color: var(--elevate-color-text-secondary, #4a4a4a);
         }
 
         .footer-bottom p {
-          margin: 0.25rem 0;
+          margin: var(--elevate-spacing-xs, 0.25rem) 0;
+          font-family: var(--elevate-font-family-primary);
         }
 
         .footer-bottom small {
-          font-size: 0.875rem;
+          font-size: var(--elevate-font-size-sm, 0.875rem);
+          font-family: var(--elevate-font-family-primary);
         }
 
         @media (max-width: 768px) {
           .main-content {
-            padding: 1rem 0;
+            padding: var(--elevate-spacing-md, 1rem) 0;
           }
           
           .site-footer {
-            padding: 2rem 0 1rem 0;
+            padding: var(--elevate-spacing-xl, 2rem) 0 var(--elevate-spacing-md, 1rem) 0;
           }
           
           .footer-content {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-          }
-          
-          .container {
-            padding: 0 0.75rem;
+            gap: var(--elevate-spacing-lg, 1.5rem);
           }
         }
       `}</style>
