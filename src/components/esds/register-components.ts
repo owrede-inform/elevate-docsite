@@ -2,8 +2,14 @@
  * ESDS Component Registration
  * 
  * This file imports and registers all ESDS WebComponents.
+ * ESDS components are custom documentation site components that use
+ * ESDS design tokens which map to ELEVATE Alias and Primitive tokens.
+ * 
  * Import this file to ensure all components are available.
  */
+
+// Import ESDS design tokens
+import '@/styles/esds-design-tokens.css'
 
 // Import all ESDS components to register them
 import './component-preview'

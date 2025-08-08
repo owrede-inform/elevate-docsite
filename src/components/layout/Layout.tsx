@@ -9,7 +9,8 @@ import {
   ElvtIconButton 
 } from '@inform-elevate/elevate-core-ui/dist/react'
 import { Container } from '@/components/react'
-import TreeSidebar from '@/components/navigation/TreeSidebar'
+import EsdsTreeSidebar from '@/components/navigation/EsdsTreeSidebar'
+import EsdsThemeToggle from '@/components/esds/EsdsThemeToggle'
 import { createPath } from '@/lib/path-utils'
 import { loadSidebarNavigationConfig } from '@/lib/sidebar-navigation-config'
 
@@ -20,9 +21,33 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
   
   // Load sidebar navigation configuration
   const navigationSections = loadSidebarNavigationConfig()
+
+  // Listen for theme changes
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.documentElement.classList.contains('esds-theme-dark') ||
+                     document.querySelector('elvt-application')?.classList.contains('elvt-theme-dark')
+      setIsDarkMode(isDark)
+    }
+
+    // Initial check
+    checkTheme()
+
+    // Listen for class changes on document root and elvt-application
+    const observer = new MutationObserver(checkTheme)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    
+    const appElement = document.querySelector('elvt-application')
+    if (appElement) {
+      observer.observe(appElement, { attributes: true, attributeFilter: ['class'] })
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen)
@@ -38,15 +63,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Header with INFORM logo in top-left */}
       <ElvtToolbar slot="header" border="end">
         <ElvtStack slot="start" gap="0">
-          <img 
-            src="/data/images/inform-brand.svg" 
-            alt="INFORM" 
-            style={{height: '48px', display: 'inline-block'}}
-          />
-          <h2 style={{margin: 0, fontSize: '18px'}}>ELEVATE Design System</h2>
+          <Link to={createPath('/')} className="header-brand-link">
+            <img 
+              src={isDarkMode ? "/data/images/inform-brand-dark.svg" : "/data/images/inform-brand.svg"}
+              alt="INFORM" 
+              className="inform-logo"
+            />
+            <h2 className="brand-title">
+              <strong>ELEVATE</strong> Design System
+            </h2>
+          </Link>
         </ElvtStack>
         
-        <ElvtStack slot="end">
+        <ElvtStack slot="end" gap="sm">
+          <EsdsThemeToggle size="medium" />
           <ElvtIconButton 
             size="medium"
             label="GitHub Repository"
@@ -61,9 +91,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </ElvtStack>
       </ElvtToolbar>
 
-      {/* Sidebar Navigation */}
+      {/* ESDS Sidebar Navigation */}
       <div slot="side-start">
-        <TreeSidebar 
+        <EsdsTreeSidebar 
           sections={navigationSections}
           className={sidebarOpen ? 'sidebar-open' : ''}
         />
@@ -138,6 +168,33 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         /* ApplicationShell styling */
         elvt-application {
           min-height: 100vh;
+        }
+
+        /* Header Brand Styling */
+        .header-brand-link {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: var(--esds-color-text-primary);
+          transition: all var(--esds-transition-normal);
+        }
+
+        .header-brand-link:hover {
+          opacity: 0.8;
+        }
+
+        .inform-logo {
+          height: 1rem;
+          display: inline-block;
+          margin-right: 0.5rem;
+          transition: all var(--esds-transition-normal);
+        }
+
+        .brand-title {
+          margin: 0;
+          font-size: 18px;
+          color: var(--esds-color-text-primary);
+          transition: color var(--esds-transition-normal);
         }
 
         /* Header styling */
