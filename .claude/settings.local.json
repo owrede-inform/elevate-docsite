@@ -29,7 +29,9 @@
       "Bash(git filter-branch:*)",
       "Bash(npx vite:*)",
       "Bash(gh pr create:*)",
-      "Bash(gh pr list:*)"
+      "Bash(gh pr list:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr review:*)"
     ],
     "deny": []
   }
