@@ -31,7 +31,11 @@
       "Bash(gh pr create:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr merge:*)",
-      "Bash(gh pr review:*)"
+      "Bash(gh pr review:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(gh run watch:*)"
     ],
     "deny": []
   }
