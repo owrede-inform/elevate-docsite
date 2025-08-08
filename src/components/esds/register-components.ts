@@ -10,17 +10,26 @@ import './component-preview'
 import './pattern-card'
 import './navigation'
 import './github-link'
+import './button'
+import './card'
+import './container'
 
 // Export types for TypeScript support
 export type { PatternCardData } from './pattern-card'
 export type { NavigationItem, NavigationData } from './navigation'
+export type { ButtonVariant, ButtonSize } from './button'
+export type { CardVariant } from './card'
+export type { ContainerSize } from './container'
 
 // Component registration status
 const registeredComponents = [
   'esds-component-preview',
   'esds-pattern-card', 
   'esds-navigation',
-  'esds-github-link'
+  'esds-github-link',
+  'elevate-button',
+  'elevate-card',
+  'elevate-container'
 ] as const
 
 export type RegisteredComponent = typeof registeredComponents[number]
