@@ -149,7 +149,7 @@ npm install @inform-design/elevate-icons`}</code></pre>
         </section>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .home-page {
           padding: 0;
         }

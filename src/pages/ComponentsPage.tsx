@@ -40,7 +40,7 @@ const ComponentsPage: React.FC = () => {
           </div>
         </div>
         
-        <style jsx>{`
+        <style>{`
           .component-detail-page {
             padding: 2rem 0;
           }
@@ -166,7 +166,7 @@ const ComponentsPage: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .components-page {
           padding: 2rem 0;
         }

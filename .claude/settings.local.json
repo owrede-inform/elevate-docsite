@@ -41,7 +41,12 @@
       "Bash(timeout:*)",
       "Bash(del:*)",
       "Bash(npm ls:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(node:*)",
+      "Bash(playwright codegen:*)",
+      "Bash(npx playwright:*)",
+      "Bash(mv:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

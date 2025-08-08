@@ -222,7 +222,7 @@ const PatternsPage: React.FC = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .patterns-page {
           padding: 2rem 0;
         }

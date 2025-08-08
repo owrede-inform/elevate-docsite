@@ -1,0 +1,39 @@
+/* ELEVATE Design Tokens - Import the copied theme files */
+@import './elevate-tokens-light.css';
+
+/* Ensure ELEVATE tokens are available globally on :root */
+:root {
+  /* Primary theme class selector (from .elvt-theme-light) to global :root */
+  --elevate-color-primary: var(--elvt-primitives-color-blue-600, #0b5cdf);
+  --elevate-color-primary-hover: var(--elvt-primitives-color-blue-700, #1b50a6);
+  --elevate-color-secondary: var(--elvt-primitives-color-gray-600, #7b8299);
+  --elevate-color-text-primary: var(--elvt-primitives-color-gray-900, #33394d);
+  --elevate-color-text-secondary: var(--elvt-primitives-color-gray-700, #545972);
+  --elevate-color-background-primary: var(--elvt-primitives-color-white, #ffffff);
+  --elevate-color-background-secondary: var(--elvt-primitives-color-gray-50, #f3f4f7);
+  --elevate-color-border-light: var(--elvt-primitives-color-gray-200, #bec3cd);
+  --elevate-font-family-primary: var(--elvt-primitives-font-family-inter, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  --elevate-spacing-xs: 0.25rem;
+  --elevate-spacing-sm: 0.5rem;
+  --elevate-spacing-md: 1rem;
+  --elevate-spacing-lg: 1.5rem;
+  --elevate-spacing-xl: 2rem;
+  --elevate-spacing-2xl: 3rem;
+  --elevate-font-size-xs: 0.75rem;
+  --elevate-font-size-sm: 0.875rem;
+  --elevate-font-size-base: 1rem;
+  --elevate-font-size-lg: 1.125rem;
+  --elevate-font-size-xl: 1.25rem;
+  --elevate-font-size-2xl: 1.5rem;
+  --elevate-font-size-3xl: 2rem;
+  --elevate-font-weight-normal: 400;
+  --elevate-font-weight-medium: 500;
+  --elevate-font-weight-semibold: 600;
+  --elevate-font-weight-bold: 700;
+  --elevate-radius-sm: 0.25rem;
+  --elevate-radius-md: 0.375rem;
+  --elevate-radius-lg: 0.5rem;
+  --elevate-line-height-tight: 1.25;
+  --elevate-line-height-normal: 1.5;
+  --elevate-line-height-relaxed: 1.6;
+}
