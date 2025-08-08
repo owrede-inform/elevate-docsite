@@ -45,7 +45,7 @@ export class ESDSComponentPreview extends LitElement {
 
     .preview-header {
       display: flex;
-      justify-content: between;
+      justify-content: space-between;
       align-items: center;
       padding: 0.75rem 1rem;
       background: var(--elevate-color-background-secondary, #f8f9fa);
