@@ -40,7 +40,8 @@
       "Bash(del site-analysis.js github-pages-test.js detailed-github-test.js content-check.js js-error-check.js)",
       "Bash(timeout:*)",
       "Bash(del:*)",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

@@ -53,6 +53,7 @@ export default defineConfig({
       '@/styles': resolve(__dirname, 'src/styles'),
       '@/content': resolve(__dirname, 'src/content'),
       '@/assets': resolve(__dirname, 'src/assets'),
+      '@/config': resolve(__dirname, 'src/config'),
       '@inform-elevate/elevate-cdk': resolve(__dirname, 'src/lib/cdk-stub.ts'),
     },
   },

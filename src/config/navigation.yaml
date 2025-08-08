@@ -1,0 +1,139 @@
+- title: Getting started
+  pages:
+    - path: /getting-started
+- title: Design Guidelines
+  pages:
+    - title: Principles
+      path: /guidelines/principles
+    - title: Accessibility
+      path: /guidelines/accessibility
+    - title: Color
+      path: /guidelines/color
+    - title: Typography
+      path: /guidelines/typography
+    - title: Spacing
+      path: /guidelines/spacing
+    - title: Layout
+      path: /guidelines/layout
+- title: Design Tokens
+  pages:
+    - title: Overview
+      path: /tokens
+    - title: Color Tokens
+      path: /tokens/color
+    - title: Typography Tokens
+      path: /tokens/typography
+    - title: Spacing Tokens
+      path: /tokens/spacing
+- title: Patterns
+  pages:
+    - title: Forms
+      path: /patterns/forms
+    - title: Navigation
+      path: /patterns/navigation
+    - title: Data Display
+      path: /patterns/data-display
+- title: Resources
+  pages:
+    - title: Downloads
+      path: /resources/downloads
+    - title: Tools
+      path: /resources/tools
+    - title: Contributing
+      path: /contributions
+- title: Components
+  pages:
+    - title: Application
+      path: /components/application
+    - title: Avatar
+      path: /components/avatar
+    - title: Badge
+      path: /components/badge
+    - title: Breadcrumb
+      path: /components/breadcrumb
+    - title: Breadcrumb Item
+      path: /components/breadcrumb-item
+    - title: Button
+      path: /components/button
+    - title: Button Group
+      path: /components/button-group
+    - title: Card
+      path: /components/card
+    - title: Charts
+      path: /components/charts
+    - title: Checkbox
+      path: /components/checkbox
+    - title: Chip
+      path: /components/chip
+    - title: Date Picker
+      path: /components/date-picker
+    - title: Dialog
+      path: /components/dialog
+    - title: Divider
+      path: /components/divider
+    - title: Drawer
+      path: /components/drawer
+    - title: Dropdown
+      path: /components/dropdown
+    - title: Empty State
+      path: /components/empty-state
+    - title: Expansion Panel
+      path: /components/expansion-panel
+    - title: Expansion Panel Group
+      path: /components/expansion-panel-group
+    - title: Field
+      path: /components/field
+    - title: Icon
+      path: /components/icon
+    - title: Icon Button
+      path: /components/icon-button
+    - title: Indicator
+      path: /components/indicator
+    - title: Input
+      path: /components/input
+    - title: Lightbox
+      path: /components/lightbox
+    - title: Link
+      path: /components/link
+    - title: Menu
+      path: /components/menu
+    - title: Menu Item
+      path: /components/menu-item
+    - title: Notification
+      path: /components/notification
+    - title: Paginator
+      path: /components/paginator
+    - title: Progress
+      path: /components/progress
+    - title: Radio
+      path: /components/radio
+    - title: Radio Group
+      path: /components/radio-group
+    - title: Select
+      path: /components/select
+    - title: Skeleton
+      path: /components/skeleton
+    - title: Stack
+      path: /components/stack
+    - title: Switch
+      path: /components/switch
+    - title: Tab
+      path: /components/tab
+    - title: Tab Group
+      path: /components/tab-group
+    - title: Tab Panel
+      path: /components/tab-panel
+    - title: Table
+      path: /components/table
+    - title: Table Cell
+      path: /components/table-cell
+    - title: Table Column
+      path: /components/table-column
+    - title: Table Row
+      path: /components/table-row
+    - title: Textarea
+      path: /components/textarea
+    - title: Toolbar
+      path: /components/toolbar
+    - title: Tooltip
+      path: /components/tooltip
