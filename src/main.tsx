@@ -11,6 +11,9 @@ import './styles/globals.css'
 import './styles/elevate-tokens-light.css';
 import './styles/elevate-tokens-dark.css';
 
+// ESDS Design Tokens - Documentation site design system
+import './styles/esds-design-tokens.css';
+
 // ELEVATE package imports - exactly as specified in instructions
 import '@inform-elevate/elevate-core-ui';
 import '@inform-elevate/elevate-core-ui/dist/elevate.css';
