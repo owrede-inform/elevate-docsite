@@ -2,9 +2,9 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the default branch and content branches
   push:
-    branches: ["main"]
+    branches: ["main", "content-and-design-updates"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,10 +38,9 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
         env:
           NODE_AUTH_TOKEN: ${{ secrets.ELEVATE_DOCSITE }}
           ELEVATE_DOCSITE: ${{ secrets.ELEVATE_DOCSITE }}
