@@ -1,17 +1,13 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-// ELEVATE package imports
-import '@inform-elevate/elevate-core-ui'
-import '@inform-elevate/elevate-core-ui/dist/elevate.css'
-import '@inform-elevate/elevate-core-ui/dist/themes/light.css'
-import '@inform-elevate/elevate-core-ui/dist/themes/dark.css'
-
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import ComponentsPage from './pages/ComponentsPage'
 import PatternsPage from './pages/PatternsPage'
 import GuidesPage from './pages/GuidesPage'
+import TestPage from './pages/TestPage'
+import DesignTokensShowcase from './pages/DesignTokensShowcase'
 import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
@@ -19,6 +15,8 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/test" element={<TestPage />} />
+        <Route path="/tokens-showcase" element={<DesignTokensShowcase />} />
         <Route path="/components" element={<ComponentsPage />} />
         <Route path="/components/:componentName" element={<ComponentsPage />} />
         <Route path="/patterns" element={<PatternsPage />} />

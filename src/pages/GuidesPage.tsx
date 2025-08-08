@@ -235,7 +235,7 @@ const GuidesPage: React.FC = () => {
         </section>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .guides-page,
         .role-guides-page,
         .guide-detail-page {

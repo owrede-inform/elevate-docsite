@@ -1,6 +1,10 @@
 - title: Getting started
   pages:
     - path: /getting-started
+    - title: Component Test
+      path: /test
+    - title: Design Tokens Showcase
+      path: /tokens-showcase
 - title: Design Guidelines
   pages:
     - title: Principles

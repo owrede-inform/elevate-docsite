@@ -56,7 +56,7 @@ const NotFoundPage: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .not-found-page {
           padding: 4rem 0;
           min-height: 60vh;
