@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ElevateShowcase from '../components/examples/ElevateShowcase'
 import { 
   HeroActions, 
   PrimaryButton, 
@@ -99,9 +98,13 @@ npm install @inform-design/elevate-icons`}</code></pre>
           <Stat number="TypeScript" label="Support" />
         </StatsGrid>
 
-        {/* ELEVATE Integration Showcase */}
+        {/* ELEVATE Integration Note */}
         <section className="elevate-integration">
-          <ElevateShowcase />
+          <div style={{ textAlign: 'center', padding: '2rem' }}>
+            <h2>ELEVATE Components Ready</h2>
+            <p>ELEVATE components are now integrated and can be used throughout the documentation. 
+            Check out the Component Preview examples below to see them in action.</p>
+          </div>
         </section>
 
         {/* ComponentPreview Test */}
