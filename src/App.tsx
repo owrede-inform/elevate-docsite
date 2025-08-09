@@ -2,10 +2,8 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Layout from './components/layout/Layout'
+import MDXContentRenderer from './components/content/MDXContentRenderer'
 import HomePage from './pages/HomePage'
-import ComponentsPage from './pages/ComponentsPage'
-import PatternsPage from './pages/PatternsPage'
-import GuidesPage from './pages/GuidesPage'
 import TestPage from './pages/TestPage'
 import DesignTokensShowcase from './pages/DesignTokensShowcase'
 import NotFoundPage from './pages/NotFoundPage'
@@ -14,16 +12,25 @@ function App() {
   return (
     <Layout>
       <Routes>
+        {/* Home page uses the existing HomePage component with MDX components */}
         <Route path="/" element={<HomePage />} />
+        
+        {/* Test and showcase pages remain unchanged */}
         <Route path="/test" element={<TestPage />} />
         <Route path="/tokens-showcase" element={<DesignTokensShowcase />} />
-        <Route path="/components" element={<ComponentsPage />} />
-        <Route path="/components/:componentName" element={<ComponentsPage />} />
-        <Route path="/patterns" element={<PatternsPage />} />
-        <Route path="/patterns/:patternId" element={<PatternsPage />} />
-        <Route path="/guides" element={<GuidesPage />} />
-        <Route path="/guides/:role" element={<GuidesPage />} />
-        <Route path="/guides/:role/:guide" element={<GuidesPage />} />
+        
+        {/* Dynamic MDX routing - handles all content automatically */}
+        <Route path="/components" element={<MDXContentRenderer />} />
+        <Route path="/components/:componentName" element={<MDXContentRenderer />} />
+        
+        <Route path="/patterns" element={<MDXContentRenderer />} />
+        <Route path="/patterns/:patternId" element={<MDXContentRenderer />} />
+        
+        <Route path="/guides" element={<MDXContentRenderer />} />
+        <Route path="/guides/:role" element={<MDXContentRenderer />} />
+        <Route path="/guides/:role/:guide" element={<MDXContentRenderer />} />
+        
+        {/* 404 page remains unchanged */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { createPath } from '@/lib/path-utils'
 import { EsdsIcon, COMMON_ICONS } from '@/components/icons'
 
@@ -28,8 +28,28 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
   className = '' 
 }) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set())
   const [selectedItem, setSelectedItem] = useState<string>('')
+
+  // Map section titles to their index routes
+  const getSectionIndexRoute = (sectionTitle: string): string | null => {
+    const titleLower = sectionTitle.toLowerCase()
+    switch (titleLower) {
+      case 'getting started':
+        return '/guides'
+      case 'foundations':
+        return '/foundations'
+      case 'components':
+        return '/components'
+      case 'patterns':
+        return '/patterns'
+      case 'resources':
+        return '/resources'
+      default:
+        return null
+    }
+  }
 
   const isActivePath = (path: string): boolean => {
     return location.pathname === createPath(path) || 
@@ -58,7 +78,16 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
     }
   }, [location.pathname, sections])
 
-  const toggleSection = (sectionTitle: string) => {
+  const handleSectionClick = (sectionTitle: string, event: React.MouseEvent | React.KeyboardEvent) => {
+    // Get the index route for this section
+    const indexRoute = getSectionIndexRoute(sectionTitle)
+    
+    // If we have an index route, navigate to it
+    if (indexRoute) {
+      navigate(indexRoute)
+    }
+    
+    // Always toggle the expansion state regardless of navigation
     setExpandedSections(prev => {
       const newSet = new Set()
       if (!prev.has(sectionTitle)) {
@@ -91,17 +120,9 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
     />
   )
 
-  const PlusIcon = () => (
+  const ChevronIcon = ({ isExpanded }: { isExpanded: boolean }) => (
     <EsdsIcon 
-      icon={COMMON_ICONS.actions.add}
-      size={12}
-      decorative
-    />
-  )
-
-  const MinusIcon = () => (
-    <EsdsIcon 
-      icon={COMMON_ICONS.actions.remove}
+      icon={isExpanded ? COMMON_ICONS.navigation.down : COMMON_ICONS.navigation.right}
       size={12}
       decorative
     />
@@ -122,20 +143,21 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           <div key={section.title} className="tree-section">
             {/* Section Root Item */}
             <div 
-              className={`tree-item section-root ${isSectionExpanded(section.title) ? 'expanded' : ''}`}
-              onClick={() => toggleSection(section.title)}
+              className={`tree-item section-root ${isSectionExpanded(section.title) ? 'expanded' : ''} ${getSectionIndexRoute(section.title) ? 'has-index-page' : ''}`}
+              onClick={(e) => handleSectionClick(section.title, e)}
               role="button"
               tabIndex={0}
               aria-expanded={isSectionExpanded(section.title)}
+              aria-description={getSectionIndexRoute(section.title) ? `Navigate to ${section.title} overview page` : `Expand ${section.title} section`}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  toggleSection(section.title)
+                  handleSectionClick(section.title, e)
                 }
               }}
             >
               <span className="expand-icon">
-                {isSectionExpanded(section.title) ? <MinusIcon /> : <PlusIcon />}
+                <ChevronIcon isExpanded={isSectionExpanded(section.title)} />
               </span>
               <span className="item-icon">
                 <FolderIcon isOpen={isSectionExpanded(section.title)} />
@@ -181,14 +203,14 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
 
         /* Modern Tree Sidebar - Dribbble Design Recreation */
         .esds-modern-tree-sidebar {
-          background: var(--esds-alias-color-surface-primary, #ffffff);
-          border-right: 1px solid var(--esds-alias-color-border-default, #e9ecef);
+          background: var(--esds-alias-sidebar-background);
+          border-right: 1px solid var(--esds-alias-sidebar-border);
           width: 280px;
           min-width: 280px;
           height: 100%;
           display: flex;
           flex-direction: column;
-          font-family: var(--esds-alias-typography-body-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+          font-family: var(--esds-alias-font-family-primary);
           padding: 0.375rem;
         }
 
@@ -212,7 +234,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           cursor: pointer;
           transition: all 0.2s ease;
           text-decoration: none;
-          color: var(--esds-alias-color-text-primary, #1f2937);
+          color: var(--esds-alias-sidebar-text);
           font-size: 0.8125rem;
           line-height: 1.4;
           position: relative;
@@ -220,7 +242,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
         }
 
         .tree-item:hover {
-          background: var(--esds-alias-color-surface-hover, #f3f4f6);
+          background: var(--esds-alias-background-surface);
         }
 
         .tree-item:focus {
@@ -228,13 +250,31 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
         }
 
         .tree-item:focus-visible {
-          outline: 2px solid var(--esds-alias-color-interactive-primary, #3b82f6);
+          outline: 2px solid var(--esds-alias-color-brand-primary);
           outline-offset: 2px;
         }
 
         /* Section Root Items */
         .section-root {
           font-weight: 500;
+        }
+
+        /* Section items with index pages get special styling */
+        .section-root.has-index-page {
+          cursor: pointer;
+        }
+
+        .section-root.has-index-page:hover {
+          background: var(--esds-alias-background-surface);
+        }
+
+        .section-root.has-index-page .item-text {
+          color: var(--esds-alias-sidebar-text);
+          transition: color 0.2s ease;
+        }
+
+        .section-root.has-index-page:hover .item-text {
+          color: var(--esds-alias-color-brand-primary);
         }
 
         /* Page Items - Indented */
@@ -245,13 +285,13 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
 
         /* Selected State (Blue Highlight) */
         .tree-item.selected {
-          background: var(--esds-alias-color-surface-selected, #dbeafe);
-          color: var(--esds-alias-color-text-accent, #1d4ed8);
+          background: var(--esds-alias-background-surface);
+          color: var(--esds-alias-color-brand-primary);
           font-weight: 500;
         }
 
         .tree-item.selected:hover {
-          background: var(--esds-alias-color-surface-selected, #dbeafe);
+          background: var(--esds-alias-background-surface);
         }
 
         /* Icons */
@@ -261,7 +301,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--esds-alias-color-text-secondary, #6b7280);
+          color: var(--esds-alias-text-muted);
           flex-shrink: 0;
         }
 
@@ -271,7 +311,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--esds-alias-color-text-secondary, #6b7280);
+          color: var(--esds-alias-text-muted);
           flex-shrink: 0;
         }
 
@@ -285,17 +325,6 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           margin-top: 1px;
         }
 
-        /* Dark Theme Support */
-        :global(.esds-theme-dark) .esds-modern-tree-sidebar {
-          background: var(--esds-color-background-primary);
-          border-right-color: var(--esds-color-border-light);
-        }
-
-        :global(.esds-theme-dark) .tree-item.selected {
-          background: var(--esds-color-surface-selected);
-          color: var(--esds-color-text-accent);
-        }
-
         /* Custom Scrollbar */
         .tree-content::-webkit-scrollbar {
           width: 3px;
@@ -306,12 +335,12 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
         }
 
         .tree-content::-webkit-scrollbar-thumb {
-          background: var(--esds-color-border-medium);
+          background: var(--esds-alias-sidebar-border);
           border-radius: 2px;
         }
 
         .tree-content::-webkit-scrollbar-thumb:hover {
-          background: var(--esds-color-text-tertiary);
+          background: var(--esds-alias-text-muted);
         }
 
         /* Mobile Responsiveness */
@@ -324,8 +353,8 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
             left: 0;
             z-index: 1000;
             transform: translateX(-100%);
-            transition: transform var(--esds-transition-slow);
-            box-shadow: var(--esds-shadow-lg);
+            transition: transform var(--esds-alias-transition-sidebar);
+            box-shadow: var(--esds-alias-shadow-sidebar);
           }
 
           .esds-modern-tree-sidebar.sidebar-open {
@@ -333,7 +362,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           }
 
           .page-item {
-            margin-left: var(--esds-spacing-lg);
+            margin-left: var(--esds-alias-spacing-component);
           }
         }
 

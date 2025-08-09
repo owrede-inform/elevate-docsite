@@ -75,20 +75,110 @@
   
   /* ===== ESDS SEMANTIC TYPOGRAPHY ALIASES ===== */
   /* Font Families */
-  --esds-alias-font-family-primary: var(--elvt-alias-font-family-primary, var(--elvt-primitives-font-family-primary));
-  --esds-alias-font-family-code: var(--esds-primitives-font-family-code, var(--elvt-alias-font-family-mono, var(--elvt-primitives-font-family-mono)));
+  --esds-alias-font-family-primary: 'Inter', var(--elvt-alias-font-family-primary, var(--elvt-primitives-font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif));
+  --esds-alias-font-family-code: 'Roboto Mono', var(--esds-primitives-font-family-code, var(--elvt-alias-font-family-mono, var(--elvt-primitives-font-family-mono, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace)));
+
+  /* Display Typography - Large scale displays */
+  --esds-alias-display-1-font-size: 3.5rem;
+  --esds-alias-display-1-font-weight: 800;
+  --esds-alias-display-1-line-height: 1.1;
+  --esds-alias-display-1-letter-spacing: -0.02em;
+
+  --esds-alias-display-2-font-size: 2.875rem;
+  --esds-alias-display-2-font-weight: 700;
+  --esds-alias-display-2-line-height: 1.15;
+  --esds-alias-display-2-letter-spacing: -0.015em;
+
+  /* Heading Typography - Hierarchical headings */
+  --esds-alias-heading-1-font-size: 2.25rem;
+  --esds-alias-heading-1-font-weight: 700;
+  --esds-alias-heading-1-line-height: 1.2;
+  --esds-alias-heading-1-letter-spacing: -0.01em;
+
+  --esds-alias-heading-2-font-size: 1.875rem;
+  --esds-alias-heading-2-font-weight: 600;
+  --esds-alias-heading-2-line-height: 1.25;
+  --esds-alias-heading-2-letter-spacing: -0.008em;
+
+  --esds-alias-heading-3-font-size: 1.5rem;
+  --esds-alias-heading-3-font-weight: 600;
+  --esds-alias-heading-3-line-height: 1.3;
+  --esds-alias-heading-3-letter-spacing: -0.005em;
+
+  --esds-alias-heading-4-font-size: 1.25rem;
+  --esds-alias-heading-4-font-weight: 600;
+  --esds-alias-heading-4-line-height: 1.35;
+  --esds-alias-heading-4-letter-spacing: 0;
+
+  --esds-alias-heading-5-font-size: 1.125rem;
+  --esds-alias-heading-5-font-weight: 600;
+  --esds-alias-heading-5-line-height: 1.4;
+  --esds-alias-heading-5-letter-spacing: 0;
+
+  --esds-alias-heading-6-font-size: 1rem;
+  --esds-alias-heading-6-font-weight: 600;
+  --esds-alias-heading-6-line-height: 1.45;
+  --esds-alias-heading-6-letter-spacing: 0;
+
+  /* Body Typography - Content text */
+  --esds-alias-body-large-font-size: 1.125rem;
+  --esds-alias-body-large-font-weight: 400;
+  --esds-alias-body-large-line-height: 1.6;
+  --esds-alias-body-large-letter-spacing: 0;
+
+  --esds-alias-body-font-size: 1rem;
+  --esds-alias-body-font-weight: 400;
+  --esds-alias-body-line-height: 1.5;
+  --esds-alias-body-letter-spacing: 0;
+
+  --esds-alias-body-small-font-size: 0.875rem;
+  --esds-alias-body-small-font-weight: 400;
+  --esds-alias-body-small-line-height: 1.5;
+  --esds-alias-body-small-letter-spacing: 0;
+
+  --esds-alias-caption-font-size: 0.75rem;
+  --esds-alias-caption-font-weight: 400;
+  --esds-alias-caption-line-height: 1.4;
+  --esds-alias-caption-letter-spacing: 0.01em;
+
+  /* Label Typography - UI labels and controls */
+  --esds-alias-label-large-font-size: 1rem;
+  --esds-alias-label-large-font-weight: 500;
+  --esds-alias-label-large-line-height: 1.4;
+  --esds-alias-label-large-letter-spacing: 0;
+
+  --esds-alias-label-font-size: 0.875rem;
+  --esds-alias-label-font-weight: 500;
+  --esds-alias-label-line-height: 1.4;
+  --esds-alias-label-letter-spacing: 0;
+
+  --esds-alias-label-small-font-size: 0.75rem;
+  --esds-alias-label-small-font-weight: 500;
+  --esds-alias-label-small-line-height: 1.3;
+  --esds-alias-label-small-letter-spacing: 0.01em;
+
+  /* Code Typography - Source code and technical content */
+  --esds-alias-code-inline-font-size: 0.875rem;
+  --esds-alias-code-inline-font-weight: 400;
+  --esds-alias-code-inline-line-height: 1.4;
+  --esds-alias-code-inline-letter-spacing: 0;
+
+  --esds-alias-code-block-font-size: 0.875rem;
+  --esds-alias-code-block-font-weight: 400;
+  --esds-alias-code-block-line-height: 1.6;
+  --esds-alias-code-block-letter-spacing: 0;
   
-  /* Content Typography */
-  --esds-alias-heading-size: var(--elvt-alias-heading-primary-size, var(--elvt-primitives-font-size-3xl, 1.875rem));
-  --esds-alias-heading-weight: var(--elvt-alias-heading-primary-weight, var(--elvt-primitives-font-weight-bold, 700));
-  --esds-alias-heading-line-height: var(--elvt-alias-heading-primary-line-height, var(--elvt-primitives-line-height-tight, 1.25));
+  /* Legacy aliases for backward compatibility */
+  --esds-alias-heading-size: var(--esds-alias-heading-1-font-size);
+  --esds-alias-heading-weight: var(--esds-alias-heading-1-font-weight);
+  --esds-alias-heading-line-height: var(--esds-alias-heading-1-line-height);
   
-  --esds-alias-body-size: var(--elvt-alias-body-primary-size, var(--elvt-primitives-font-size-base, 1rem));
-  --esds-alias-body-weight: var(--elvt-alias-body-primary-weight, var(--elvt-primitives-font-weight-regular, 400));
-  --esds-alias-body-line-height: var(--elvt-alias-body-primary-line-height, var(--elvt-primitives-line-height-normal, 1.5));
+  --esds-alias-body-size: var(--esds-alias-body-font-size);
+  --esds-alias-body-weight: var(--esds-alias-body-font-weight);
+  --esds-alias-body-line-height: var(--esds-alias-body-line-height);
   
-  --esds-alias-code-size: var(--esds-primitives-font-size-code, var(--elvt-primitives-font-size-sm, 0.875rem));
-  --esds-alias-code-line-height: var(--esds-primitives-line-height-code, 1.6);
+  --esds-alias-code-size: var(--esds-alias-code-block-font-size);
+  --esds-alias-code-line-height: var(--esds-alias-code-block-line-height);
   
   /* ===== ESDS SEMANTIC LAYOUT ALIASES ===== */
   --esds-alias-navigation-width: var(--esds-primitives-width-sidebar, var(--elvt-alias-navigation-width, 280px));
@@ -106,4 +196,38 @@
   --esds-alias-transition-normal: var(--elvt-alias-transition-interactive, var(--elvt-primitives-transition-fast, 150ms ease));
   --esds-alias-transition-sidebar: var(--esds-primitives-transition-sidebar, 300ms cubic-bezier(0.4, 0, 0.2, 1));
   --esds-alias-transition-theme: var(--esds-primitives-transition-theme, 200ms ease-in-out);
+}
+
+/* Dark Theme - Apply dark mode tokens when data-theme="dark" */
+[data-theme="dark"] {
+  /* ===== ESDS DARK MODE OVERRIDES ===== */
+  /* Brand Colors */
+  --esds-alias-color-brand-primary: var(--esds-alias-color-brand-primary-dark);
+  --esds-alias-color-brand-secondary: var(--esds-alias-color-brand-secondary-dark);
+  
+  /* Backgrounds */
+  --esds-alias-background-page: var(--esds-alias-background-page-dark);
+  --esds-alias-background-surface: var(--esds-alias-background-surface-dark);
+  --esds-alias-background-elevated: var(--esds-alias-background-elevated-dark);
+  
+  /* Text Colors */
+  --esds-alias-text-heading: var(--esds-alias-text-heading-dark);
+  --esds-alias-text-body: var(--esds-alias-text-body-dark);
+  --esds-alias-text-muted: var(--esds-alias-text-muted-dark);
+  --esds-alias-text-subtle: var(--esds-alias-text-subtle-dark);
+  
+  /* Component-specific Colors */
+  --esds-alias-sidebar-background: var(--esds-alias-sidebar-background-dark);
+  --esds-alias-sidebar-border: var(--esds-alias-sidebar-border-dark);
+  --esds-alias-sidebar-text: var(--esds-alias-sidebar-text-dark);
+  
+  --esds-alias-header-background: var(--esds-alias-header-background-dark);
+  --esds-alias-header-border: var(--esds-alias-header-border-dark);
+  
+  --esds-alias-code-background: var(--esds-alias-code-background-dark);
+  --esds-alias-code-border: var(--esds-alias-code-border-dark);
+  --esds-alias-code-text: var(--esds-alias-code-text-dark);
+  
+  --esds-alias-example-background: var(--esds-alias-example-background-dark);
+  --esds-alias-example-border: var(--esds-alias-example-border-dark);
 }

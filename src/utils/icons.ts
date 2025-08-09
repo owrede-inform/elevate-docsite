@@ -42,6 +42,7 @@ export const MDI_ICON_REGISTRY: Record<string, string> = {
   'settings': mdiIcons.mdiCog,
   'search': mdiIcons.mdiMagnify,
   'filter': mdiIcons.mdiFilter,
+  'grid': mdiIcons.mdiApps,
   
   // Content
   'folder': mdiIcons.mdiFolder,

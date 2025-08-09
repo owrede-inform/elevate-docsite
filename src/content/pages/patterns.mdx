@@ -1,0 +1,67 @@
+---
+title: "Patterns"
+description: "Design patterns and templates built with ELEVATE components. Filter by tags, difficulty, and component usage."
+layout: "page"
+---
+
+# Patterns
+
+Design patterns and templates built with ELEVATE components. Filter by tags, difficulty, and component usage.
+
+<PatternFilters />
+
+<PatternGrid>
+  <PatternCard 
+    id="login-form"
+    title="Login Form"
+    description="Complete login form with validation, error handling, and accessibility features"
+    tags={["forms", "authentication", "validation"]}
+    difficulty="beginner"
+    components={["Input", "Button", "Checkbox"]}
+  />
+
+  <PatternCard 
+    id="dashboard-layout"
+    title="Dashboard Layout"
+    description="Responsive dashboard layout with sidebar navigation and content areas"
+    tags={["layout", "navigation", "responsive"]}
+    difficulty="intermediate"
+    components={["Navigation", "Card", "Grid"]}
+  />
+
+  <PatternCard 
+    id="data-table"
+    title="Data Table with Actions"
+    description="Advanced data table with sorting, filtering, and bulk actions"
+    tags={["tables", "data-display", "actions"]}
+    difficulty="advanced"
+    components={["Table", "Button", "Checkbox", "Dropdown"]}
+  />
+
+  <PatternCard 
+    id="modal-form"
+    title="Modal Form"
+    description="Form within a modal dialog with proper focus management"
+    tags={["forms", "modals", "accessibility"]}
+    difficulty="intermediate"
+    components={["Modal", "Input", "Button"]}
+  />
+
+  <PatternCard 
+    id="notification-system"
+    title="Notification System"
+    description="Toast notifications with different types and auto-dismiss functionality"
+    tags={["notifications", "feedback", "animations"]}
+    difficulty="intermediate"
+    components={["Alert", "Button"]}
+  />
+
+  <PatternCard 
+    id="search-interface"
+    title="Search Interface"
+    description="Advanced search with filters, suggestions, and result highlighting"
+    tags={["search", "filters", "autocomplete"]}
+    difficulty="advanced"
+    components={["Input", "Dropdown", "Badge", "Card"]}
+  />
+</PatternGrid>

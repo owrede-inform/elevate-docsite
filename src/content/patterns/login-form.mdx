@@ -1,0 +1,270 @@
+---
+title: "Login Form"
+description: "Complete login form with validation, error handling, and accessibility features"
+tags: ["forms", "authentication", "validation"]
+difficulty: "beginner"
+components: ["Input", "Button", "Checkbox"]
+---
+
+# Login Form
+
+A complete login form pattern that includes validation, error handling, and accessibility features. This pattern demonstrates best practices for authentication forms using ELEVATE components.
+
+<PatternPreview>
+  <LoginFormExample />
+</PatternPreview>
+
+## Overview
+
+This login form pattern provides a secure and accessible way for users to authenticate. It includes:
+
+- Email and password input fields with validation
+- "Remember me" functionality
+- Proper error handling and messaging
+- Accessibility features for screen readers
+- Responsive design for all device sizes
+
+## Components Used
+
+<ComponentList>
+  - [Input](/components/input) - For email and password fields
+  - [Button](/components/button) - For form submission
+  - [Checkbox](/components/checkbox) - For "remember me" option
+</ComponentList>
+
+## Implementation
+
+### Basic Structure
+
+```tsx
+import { Input, Button, Checkbox, Card } from '@inform-design/elevate-core-ui'
+import { useState } from 'react'
+
+function LoginForm() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    remember: false,
+  })
+  const [errors, setErrors] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  return (
+    <Card className="login-form">
+      <form onSubmit={handleSubmit}>
+        <h1>Sign In</h1>
+        
+        <Input
+          label="Email"
+          type="email"
+          value={formData.email}
+          onChange={(value) => setFormData({...formData, email: value})}
+          error={errors.email}
+          required
+        />
+        
+        <Input
+          label="Password"
+          type="password"
+          value={formData.password}
+          onChange={(value) => setFormData({...formData, password: value})}
+          error={errors.password}
+          required
+        />
+        
+        <Checkbox
+          label="Remember me"
+          checked={formData.remember}
+          onChange={(checked) => setFormData({...formData, remember: checked})}
+        />
+        
+        <Button
+          type="submit"
+          tone="primary"
+          loading={isLoading}
+          fullWidth
+        >
+          Sign In
+        </Button>
+      </form>
+    </Card>
+  )
+}
+```
+
+### Validation Logic
+
+Add client-side validation to improve user experience:
+
+```tsx
+const validateForm = (data) => {
+  const errors = {}
+  
+  if (!data.email) {
+    errors.email = 'Email is required'
+  } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+    errors.email = 'Please enter a valid email address'
+  }
+  
+  if (!data.password) {
+    errors.password = 'Password is required'
+  } else if (data.password.length < 8) {
+    errors.password = 'Password must be at least 8 characters'
+  }
+  
+  return errors
+}
+
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  
+  const validationErrors = validateForm(formData)
+  setErrors(validationErrors)
+  
+  if (Object.keys(validationErrors).length === 0) {
+    setIsLoading(true)
+    try {
+      await authenticateUser(formData)
+      // Handle success
+    } catch (error) {
+      setErrors({ general: 'Invalid email or password' })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+}
+```
+
+### Styling
+
+Apply consistent styling using ELEVATE design tokens:
+
+```css
+.login-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.login-form h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--esds-alias-text-heading);
+}
+
+.login-form .input-group {
+  margin-bottom: 1rem;
+}
+
+.login-form .remember-me {
+  margin: 1.5rem 0;
+}
+
+.login-form .submit-button {
+  margin-top: 1rem;
+}
+
+.login-form .forgot-password {
+  text-align: center;
+  margin-top: 1rem;
+}
+```
+
+## Accessibility Features
+
+This pattern includes several accessibility features:
+
+### Keyboard Navigation
+- All form elements are keyboard accessible
+- Proper tab order through the form
+- Enter key submits the form
+
+### Screen Reader Support
+- Proper form labels and descriptions
+- Error messages are announced
+- Loading states are communicated
+- Required fields are indicated
+
+### ARIA Attributes
+```tsx
+<form 
+  onSubmit={handleSubmit}
+  aria-label="Sign in form"
+  noValidate
+>
+  <Input
+    label="Email"
+    type="email"
+    required
+    aria-describedby={errors.email ? 'email-error' : undefined}
+    aria-invalid={!!errors.email}
+  />
+  
+  {errors.email && (
+    <div id="email-error" role="alert" className="error-message">
+      {errors.email}
+    </div>
+  )}
+</form>
+```
+
+## Variations
+
+### With Social Login
+
+Add social authentication options:
+
+```tsx
+<div className="social-login">
+  <Button tone="secondary" fullWidth iconLeft="google">
+    Continue with Google
+  </Button>
+  <Button tone="secondary" fullWidth iconLeft="github">
+    Continue with GitHub
+  </Button>
+</div>
+
+<div className="divider">
+  <span>or</span>
+</div>
+```
+
+### Two-Factor Authentication
+
+Extend the form for 2FA:
+
+```tsx
+{showTwoFactor && (
+  <Input
+    label="Verification Code"
+    placeholder="Enter 6-digit code"
+    maxLength={6}
+    aria-describedby="2fa-help"
+  />
+)}
+```
+
+## Best Practices
+
+### Security
+- Always validate input on both client and server
+- Use HTTPS for authentication requests
+- Implement proper password requirements
+- Add rate limiting to prevent brute force attacks
+
+### User Experience
+- Provide clear error messages
+- Show password strength indicators
+- Remember form data on errors (except passwords)
+- Provide "forgot password" functionality
+
+### Performance
+- Debounce validation to avoid excessive API calls
+- Use loading states for better perceived performance
+- Minimize form submission time
+
+## Related Patterns
+
+- [Registration Form](/patterns/registration-form)
+- [Password Reset](/patterns/password-reset)
+- [Two-Factor Authentication](/patterns/two-factor-auth)
