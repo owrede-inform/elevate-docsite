@@ -89,3 +89,7 @@ out/
 # Temporary folders
 tmp/
 temp/
+
+# Other folders
+data/
+screenshots/
