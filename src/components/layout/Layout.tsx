@@ -154,7 +154,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {/* INFORM + ELEVATE Logo */}
             <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <img
-                src={(import.meta as any).env?.BASE_URL ? `${(import.meta as any).env.BASE_URL}data/images/inform-brand${isDarkMode ? '-dark' : ''}.svg` : `/data/images/inform-brand${isDarkMode ? '-dark' : ''}.svg`}
+                src={`${import.meta.env.BASE_URL || '/'}assets/inform-brand${isDarkMode ? '-dark' : ''}.svg`}
                 alt="INFORM"
                 style={{ height: '1rem', width: 'auto' }}
               />
