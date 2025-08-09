@@ -1,0 +1,237 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/field';
+@use 'mixins/validation/form-component';
+
+:host {
+  display: inline-block;
+  position: relative;
+  min-height: 2rem;
+  height: auto;
+  border-radius: var(--theme-input--border-radius);
+
+  @include component.ix-component;
+
+  .display-none {
+    display: none;
+  }
+
+  .select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--theme-input--background);
+    border: var(--theme-input--border-thickness) solid
+      var(--theme-input--border-color);
+    border-radius: var(--theme-input--border-radius);
+    padding: 0 0 0 vars.$small-space;
+    box-shadow: var(--theme-inset-shadow-1) !important;
+
+    @include hover.hover {
+      background-color: var(--theme-input--background--hover);
+      border-color: var(--theme-input--border-color--hover);
+    }
+
+    &:focus-within {
+      background-color: var(--theme-input--background--focus);
+      border-color: var(--theme-input--border-color--focus);
+      outline: 1px solid #119fff;
+      outline-offset: var(--theme-input--focus--outline-offset);
+    }
+  }
+
+  .select.readonly,
+  .select.disabled {
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+
+    &,
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+    }
+
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      outline: none;
+    }
+
+    input:focus,
+    input:focus-visible {
+      outline: none;
+    }
+  }
+
+  .select.disabled {
+    border-bottom: var(--theme-input--border-thickness) solid
+      var(--theme-color-weak-bdr);
+
+    input {
+      color: var(--theme-color-weak-text);
+    }
+  }
+
+  .select.readonly {
+    border-bottom: var(--theme-input--border-thickness) solid
+      var(--theme-color-soft-bdr);
+
+    input {
+      color: var(--theme-color-std-text);
+    }
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  .input-container {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+
+    .chips {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      height: 100%;
+      max-height: 3.5rem;
+      flex-grow: 1;
+      overflow-y: auto;
+
+      > ix-filter-chip {
+        margin: 0.1rem;
+      }
+    }
+
+    ix-icon-button {
+      height: 1.875rem;
+      width: 1.875rem;
+      min-height: 1.875rem;
+      min-width: 1.875rem;
+    }
+
+    input {
+      background: transparent;
+      height: 1.75rem;
+      width: 100%;
+
+      @include text-truncation.ellipsis;
+      @include fonts.text-default;
+
+      &,
+      &:hover,
+      &:focus-visible {
+        border: none;
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--theme-input-select-icon--color);
+      }
+
+      &.hide-placeholder::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+
+  ix-dropdown {
+    max-width: 100%;
+  }
+
+  .dropdown-visible {
+    --ix-icon-button-color: var(--theme-color-std-text--hover);
+  }
+
+  .add-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .select-list-header {
+    display: flex;
+    align-items: center;
+    height: vars.$default-control-height;
+    color: var(--theme-select-list-item-hint--color);
+    margin: 0 vars.$small-space 0 1rem;
+
+    @include text-truncation.ellipsis;
+  }
+}
+
+
+
+@include form-component.host-valid;
+
+@include form-component.host-info {
+  .select {
+    border-color: var(--theme-input--border-color--info);
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--info--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--info--active) !important;
+  }
+}
+
+@include form-component.host-warning {
+  .select {
+    border-color: var(--theme-input--border-color--warning);
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--warning--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--warning--active) !important;
+  }
+}
+
+@include form-component.host-invalid {
+  .select {
+    border-color: var(--theme-input--border-color--invalid);
+    background-color: var(--theme-input--background--invalid);
+    box-shadow: none;
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--invalid--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--invalid--active) !important;
+  }
+}

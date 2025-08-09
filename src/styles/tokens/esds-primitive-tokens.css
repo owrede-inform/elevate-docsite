@@ -1,0 +1,101 @@
+/* ESDS PRIMITIVE TOKENS - TIER 3A */
+/* Documentation site specific primitive tokens */
+/* These tokens can extend or override ELEVATE primitives for documentation needs */
+
+:root {
+  /* ===== ESDS SPECIFIC COLOR PRIMITIVES ===== */
+  /* Additional colors for documentation UI */
+  --esds-primitives-color-code-background: #f8f9fa;
+  --esds-primitives-color-code-background-dark: #1e1e1e;
+  --esds-primitives-color-code-border: #e9ecef;
+  --esds-primitives-color-code-border-dark: #333333;
+  
+  --esds-primitives-color-example-background: #ffffff;
+  --esds-primitives-color-example-background-dark: #1a1a1a;
+  --esds-primitives-color-example-border: #e9ecef;
+  --esds-primitives-color-example-border-dark: #333333;
+  
+  --esds-primitives-color-sidebar-background: #fafbfc;
+  --esds-primitives-color-sidebar-background-dark: #161618;
+  --esds-primitives-color-sidebar-border: #e1e4e8;
+  --esds-primitives-color-sidebar-border-dark: #30363d;
+  
+  --esds-primitives-color-header-background: #ffffff;
+  --esds-primitives-color-header-background-dark: #0d1117;
+  --esds-primitives-color-header-border: #e1e4e8;
+  --esds-primitives-color-header-border-dark: #21262d;
+  
+  /* Syntax highlighting colors */
+  --esds-primitives-color-syntax-keyword: #d73a49;
+  --esds-primitives-color-syntax-keyword-dark: #ff7b72;
+  --esds-primitives-color-syntax-string: #032f62;
+  --esds-primitives-color-syntax-string-dark: #a5d6ff;
+  --esds-primitives-color-syntax-comment: #6a737d;
+  --esds-primitives-color-syntax-comment-dark: #8b949e;
+  --esds-primitives-color-syntax-function: #6f42c1;
+  --esds-primitives-color-syntax-function-dark: #d2a8ff;
+  --esds-primitives-color-syntax-variable: #e36209;
+  --esds-primitives-color-syntax-variable-dark: #ffa657;
+  
+  /* Status indicator colors for documentation */
+  --esds-primitives-color-status-stable: var(--elvt-primitives-color-teal-600);
+  --esds-primitives-color-status-beta: #f59e0b;
+  --esds-primitives-color-status-alpha: #8b5cf6;
+  --esds-primitives-color-status-deprecated: var(--elvt-primitives-color-red-600);
+  --esds-primitives-color-status-new: var(--elvt-primitives-color-blue-600);
+  
+  /* ===== ESDS SPECIFIC SPACING PRIMITIVES ===== */
+  /* Additional spacing for documentation layouts */
+  --esds-primitives-spacing-code-padding: 1rem;
+  --esds-primitives-spacing-example-padding: 1.5rem;
+  --esds-primitives-spacing-sidebar-padding: 1rem;
+  --esds-primitives-spacing-content-padding: 2rem;
+  --esds-primitives-spacing-section-gap: 3rem;
+  
+  /* ===== ESDS SPECIFIC TYPOGRAPHY PRIMITIVES ===== */
+  /* Code and monospace typography */
+  --esds-primitives-font-family-code: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", monospace;
+  --esds-primitives-font-size-code: 0.875rem;
+  --esds-primitives-line-height-code: 1.6;
+  
+  /* Documentation specific font sizes */
+  --esds-primitives-font-size-caption: 0.8rem;
+  --esds-primitives-font-size-overline: 0.75rem;
+  
+  /* ===== ESDS SPECIFIC LAYOUT PRIMITIVES ===== */
+  /* Documentation layout dimensions */
+  --esds-primitives-width-sidebar: 280px;
+  --esds-primitives-width-content-max: 800px;
+  --esds-primitives-width-example-max: 100%;
+  --esds-primitives-height-header: 64px;
+  --esds-primitives-height-code-block-max: 400px;
+  
+  /* Breakpoints for documentation responsive design */
+  --esds-primitives-breakpoint-mobile: 480px;
+  --esds-primitives-breakpoint-tablet: 768px;
+  --esds-primitives-breakpoint-desktop: 1024px;
+  --esds-primitives-breakpoint-wide: 1280px;
+  
+  /* ===== ESDS SPECIFIC EFFECTS PRIMITIVES ===== */
+  /* Documentation specific shadows and borders */
+  --esds-primitives-shadow-code-block: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --esds-primitives-shadow-example: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --esds-primitives-shadow-sidebar: 2px 0 8px rgba(0, 0, 0, 0.1);
+  
+  --esds-primitives-border-width-thin: 1px;
+  --esds-primitives-border-width-thick: 2px;
+  --esds-primitives-border-style-solid: solid;
+  --esds-primitives-border-style-dashed: dashed;
+  
+  /* ===== ESDS SPECIFIC TRANSITIONS ===== */
+  --esds-primitives-transition-sidebar: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --esds-primitives-transition-theme: 200ms ease-in-out;
+  --esds-primitives-transition-code-highlight: 150ms ease;
+  
+  /* ===== ESDS SPECIFIC Z-INDEX PRIMITIVES ===== */
+  --esds-primitives-z-sidebar: 100;
+  --esds-primitives-z-header: 200;
+  --esds-primitives-z-modal: 1000;
+  --esds-primitives-z-tooltip: 1100;
+  --esds-primitives-z-overlay: 900;
+}

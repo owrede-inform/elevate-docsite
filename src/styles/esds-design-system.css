@@ -1,0 +1,294 @@
+/* ESDS DESIGN SYSTEM - MASTER STYLESHEET */
+/* Three-Tier Token Architecture Implementation */
+/* 
+ * Token Inheritance Chain:
+ * ELEVATE Primitive → ELEVATE Alias → ESDS Primitive → ESDS Alias → ESDS Component
+ */
+
+/* ===== TIER 1: ELEVATE PRIMITIVE TOKENS ===== */
+/* Base design tokens from ELEVATE core system - Immutable */
+@import './tokens/elevate-primitive-tokens.css';
+
+/* ===== TIER 2: ELEVATE ALIAS TOKENS ===== */
+/* Semantic tokens that reference primitive tokens - Immutable */
+@import './tokens/elevate-alias-tokens.css';
+
+/* ===== TIER 3A: ESDS PRIMITIVE TOKENS ===== */  
+/* Documentation site specific primitive tokens - Can extend ELEVATE primitives */
+@import './tokens/esds-primitive-tokens.css';
+
+/* ===== TIER 3B: ESDS ALIAS TOKENS ===== */
+/* Documentation site semantic tokens - Can extend ELEVATE aliases */
+@import './tokens/esds-alias-tokens.css';
+
+/* ===== TIER 4: ESDS COMPONENT TOKENS ===== */
+/* Final component-specific tokens - Used directly by ESDS components */
+@import './tokens/esds-component-tokens.css';
+
+/* ===== BASE STYLES AND RESETS ===== */
+
+/* CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--esds-alias-font-family-primary);
+  font-size: var(--esds-alias-body-size);
+  font-weight: var(--esds-alias-body-weight);
+  line-height: var(--esds-alias-body-line-height);
+  color: var(--esds-typography-body-color);
+  background-color: var(--esds-application-background);
+  transition: color var(--esds-alias-transition-theme), 
+              background-color var(--esds-alias-transition-theme);
+}
+
+/* ===== TYPOGRAPHY STYLES ===== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--esds-typography-heading-font-family);
+  font-weight: var(--esds-typography-heading-font-weight);
+  line-height: var(--esds-typography-heading-line-height);
+  color: var(--esds-typography-heading-color);
+  margin: var(--esds-typography-heading-margin);
+}
+
+h1 { font-size: var(--elvt-primitives-font-size-3xl); }
+h2 { font-size: var(--elvt-primitives-font-size-2xl); }
+h3 { font-size: var(--elvt-primitives-font-size-xl); }
+h4 { font-size: var(--elvt-primitives-font-size-lg); }
+h5 { font-size: var(--elvt-primitives-font-size-base); }
+h6 { font-size: var(--elvt-primitives-font-size-sm); }
+
+p {
+  font-family: var(--esds-typography-body-font-family);
+  font-size: var(--esds-typography-body-font-size);
+  font-weight: var(--esds-typography-body-font-weight);
+  line-height: var(--esds-typography-body-line-height);
+  color: var(--esds-typography-body-color);
+  margin: var(--esds-typography-body-margin);
+}
+
+a {
+  color: var(--elvt-alias-text-accent);
+  text-decoration: underline;
+  transition: color var(--esds-alias-transition-normal);
+}
+
+a:hover {
+  color: var(--elvt-alias-color-primary-hover);
+}
+
+a:focus-visible {
+  outline: var(--esds-focus-width) var(--esds-focus-style) var(--esds-focus-color);
+  outline-offset: var(--esds-focus-offset);
+  border-radius: var(--elvt-primitives-radius-sm);
+}
+
+/* Code Typography */
+code {
+  font-family: var(--esds-code-inline-font-family);
+  font-size: var(--esds-code-inline-font-size);
+  background-color: var(--esds-code-inline-background);
+  color: var(--esds-code-inline-color);
+  padding: var(--esds-code-inline-padding);
+  border-radius: var(--esds-code-inline-radius);
+}
+
+pre {
+  font-family: var(--esds-alias-font-family-code);
+  font-size: var(--esds-alias-code-size);
+  line-height: var(--esds-alias-code-line-height);
+  background-color: var(--esds-code-block-background);
+  border: var(--esds-code-block-border-width) solid var(--esds-code-block-border-color);
+  border-radius: var(--esds-code-block-border-radius);
+  padding: var(--esds-code-block-padding);
+  margin: var(--esds-code-block-margin);
+  overflow-x: auto;
+  max-height: var(--esds-code-block-max-height);
+  overflow-y: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: var(--esds-code-block-color);
+}
+
+/* ===== LIST STYLES ===== */
+
+ul, ol {
+  margin: 0 0 var(--elvt-primitives-spacing-md) 0;
+  padding-left: var(--elvt-primitives-spacing-lg);
+}
+
+li {
+  margin-bottom: var(--elvt-primitives-spacing-xs);
+  line-height: var(--esds-alias-body-line-height);
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus Visible Utility */
+.focus-visible:focus-visible {
+  outline: var(--esds-focus-width) var(--esds-focus-style) var(--esds-focus-color);
+  outline-offset: var(--esds-focus-offset);
+}
+
+/* Theme Utilities */
+.theme-light {
+  color-scheme: light;
+}
+
+.theme-dark {
+  color-scheme: dark;
+}
+
+/* ===== COMPONENT ISOLATION UTILITIES ===== */
+
+/* ELEVATE Token Isolation Container */
+/* Used by EsdsLiveExample to create pure ELEVATE token environment */
+.elevate-token-isolation {
+  /* Reset all ESDS tokens to ELEVATE equivalents */
+  --esds-color-background-primary: var(--elvt-alias-background-primary, #ffffff);
+  --esds-color-text-primary: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900));
+  --esds-color-text-secondary: var(--elvt-alias-text-secondary, var(--elvt-primitives-color-gray-600));
+  --esds-color-border-light: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200));
+  --esds-color-surface-hover: var(--elvt-alias-surface-hover, var(--elvt-primitives-color-gray-50));
+  --esds-color-surface-selected: var(--elvt-alias-surface-selected, var(--elvt-primitives-color-blue-50));
+  
+  /* Spacing resets */
+  --esds-spacing-component: var(--elvt-alias-spacing-component, var(--elvt-primitives-spacing-md));
+  --esds-spacing-section: var(--elvt-alias-spacing-section, var(--elvt-primitives-spacing-xl));
+  
+  /* Typography resets */
+  --esds-font-family-primary: var(--elvt-alias-font-family-primary, var(--elvt-primitives-font-family-primary));
+  --esds-font-size-base: var(--elvt-alias-body-primary-size, var(--elvt-primitives-font-size-base));
+  
+  /* CSS Containment for style isolation */
+  contain: style;
+  
+  /* Remove ESDS-specific styling influences */
+  background: var(--elvt-alias-background-primary, #ffffff);
+  color: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900));
+  border-radius: var(--elvt-alias-radius-interactive, var(--elvt-primitives-radius-md));
+  padding: var(--elvt-alias-spacing-component, var(--elvt-primitives-spacing-md));
+}
+
+/* Dark mode isolation */
+.elevate-token-isolation.esds-theme-dark {
+  --esds-color-background-primary: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900));
+  --esds-color-text-primary: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100));
+  --esds-color-text-secondary: var(--elvt-alias-text-secondary-dark, var(--elvt-primitives-color-gray-300));
+  --esds-color-border-light: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700));
+  --esds-color-surface-hover: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800));
+  --esds-color-surface-selected: var(--elvt-alias-surface-selected-dark, var(--elvt-primitives-color-blue-900));
+  
+  background: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900));
+  color: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100));
+}
+
+/* ===== ACCESSIBILITY AND MOTION ===== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .focus-visible:focus-visible,
+  *:focus-visible {
+    outline: 3px solid;
+    outline-offset: 2px;
+  }
+  
+  .elevate-token-isolation {
+    border: 2px solid;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .esds-sidebar,
+  .esds-header,
+  .esds-theme-toggle {
+    display: none !important;
+  }
+  
+  .esds-live-example {
+    break-inside: avoid;
+  }
+  
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN FOUNDATION ===== */
+
+/* Mobile-first responsive breakpoints using ESDS primitives */
+@media (max-width: 480px) {
+  body {
+    font-size: var(--elvt-primitives-font-size-sm);
+  }
+  
+  .esds-content-padding {
+    padding: var(--elvt-primitives-spacing-md);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .esds-content-padding {
+    padding: var(--elvt-primitives-spacing-lg);
+  }
+}
+
+@media (min-width: 769px) {
+  .esds-content-padding {
+    padding: var(--esds-content-padding);
+  }
+}

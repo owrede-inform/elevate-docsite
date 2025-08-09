@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use './chip-mixin';
+
+:host {
+  display: inline-block;
+  position: relative;
+  height: 2rem;
+  max-height: 2rem;
+  margin-left: vars.$tiny-space;
+
+  @include component.ix-component;
+}
+
+:host(.inactive) {
+  pointer-events: none;
+}
+
+@include chip-mixin.chip-container;

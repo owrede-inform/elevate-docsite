@@ -1,0 +1,144 @@
+/* ELEVATE ALIAS TOKENS - TIER 2 */
+/* Semantic tokens that reference primitive tokens */
+/* These tokens are immutable and part of the ELEVATE core system */
+
+:root {
+  /* ===== SEMANTIC COLOR ALIASES ===== */
+  /* Brand Colors */
+  --elvt-alias-color-primary: var(--elvt-primitives-color-blue-600);
+  --elvt-alias-color-primary-hover: var(--elvt-primitives-color-blue-700);
+  --elvt-alias-color-primary-active: var(--elvt-primitives-color-blue-800);
+  --elvt-alias-color-primary-light: var(--elvt-primitives-color-blue-100);
+  
+  --elvt-alias-color-secondary: var(--elvt-primitives-color-teal-600);
+  --elvt-alias-color-secondary-hover: var(--elvt-primitives-color-teal-700);
+  --elvt-alias-color-secondary-active: var(--elvt-primitives-color-teal-800);
+  
+  /* Status Colors */
+  --elvt-alias-color-success: var(--elvt-primitives-color-teal-600);
+  --elvt-alias-color-success-light: var(--elvt-primitives-color-teal-50);
+  --elvt-alias-color-warning: #f59e0b;
+  --elvt-alias-color-warning-light: #fef3c7;
+  --elvt-alias-color-danger: var(--elvt-primitives-color-red-600);
+  --elvt-alias-color-danger-light: var(--elvt-primitives-color-red-50);
+  --elvt-alias-color-info: var(--elvt-primitives-color-blue-600);
+  --elvt-alias-color-info-light: var(--elvt-primitives-color-blue-50);
+  
+  /* Background Colors - Light Theme */
+  --elvt-alias-background-primary: #ffffff;
+  --elvt-alias-background-secondary: var(--elvt-primitives-color-gray-50);
+  --elvt-alias-background-tertiary: var(--elvt-primitives-color-gray-100);
+  --elvt-alias-background-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Background Colors - Dark Theme */
+  --elvt-alias-background-primary-dark: var(--elvt-primitives-color-gray-900);
+  --elvt-alias-background-secondary-dark: var(--elvt-primitives-color-gray-800);
+  --elvt-alias-background-tertiary-dark: var(--elvt-primitives-color-gray-700);
+  --elvt-alias-background-overlay-dark: rgba(0, 0, 0, 0.8);
+  
+  /* Text Colors - Light Theme */
+  --elvt-alias-text-primary: var(--elvt-primitives-color-gray-900);
+  --elvt-alias-text-secondary: var(--elvt-primitives-color-gray-600);
+  --elvt-alias-text-tertiary: var(--elvt-primitives-color-gray-500);
+  --elvt-alias-text-accent: var(--elvt-primitives-color-blue-600);
+  --elvt-alias-text-inverse: #ffffff;
+  
+  /* Text Colors - Dark Theme */
+  --elvt-alias-text-primary-dark: var(--elvt-primitives-color-gray-100);
+  --elvt-alias-text-secondary-dark: var(--elvt-primitives-color-gray-300);
+  --elvt-alias-text-tertiary-dark: var(--elvt-primitives-color-gray-400);
+  --elvt-alias-text-accent-dark: var(--elvt-primitives-color-blue-400);
+  --elvt-alias-text-inverse-dark: var(--elvt-primitives-color-gray-900);
+  
+  /* Border Colors - Light Theme */
+  --elvt-alias-border-light: var(--elvt-primitives-color-gray-200);
+  --elvt-alias-border-medium: var(--elvt-primitives-color-gray-300);
+  --elvt-alias-border-strong: var(--elvt-primitives-color-gray-400);
+  --elvt-alias-border-accent: var(--elvt-primitives-color-blue-300);
+  
+  /* Border Colors - Dark Theme */
+  --elvt-alias-border-light-dark: var(--elvt-primitives-color-gray-700);
+  --elvt-alias-border-medium-dark: var(--elvt-primitives-color-gray-600);
+  --elvt-alias-border-strong-dark: var(--elvt-primitives-color-gray-500);
+  --elvt-alias-border-accent-dark: var(--elvt-primitives-color-blue-500);
+  
+  /* Surface Colors - Light Theme */
+  --elvt-alias-surface-hover: var(--elvt-primitives-color-gray-50);
+  --elvt-alias-surface-active: var(--elvt-primitives-color-gray-100);
+  --elvt-alias-surface-selected: var(--elvt-primitives-color-blue-50);
+  --elvt-alias-surface-disabled: var(--elvt-primitives-color-gray-100);
+  
+  /* Surface Colors - Dark Theme */
+  --elvt-alias-surface-hover-dark: var(--elvt-primitives-color-gray-800);
+  --elvt-alias-surface-active-dark: var(--elvt-primitives-color-gray-700);
+  --elvt-alias-surface-selected-dark: var(--elvt-primitives-color-blue-900);
+  --elvt-alias-surface-disabled-dark: var(--elvt-primitives-color-gray-800);
+  
+  /* ===== SEMANTIC SPACING ALIASES ===== */
+  --elvt-alias-spacing-component: var(--elvt-primitives-spacing-md);
+  --elvt-alias-spacing-section: var(--elvt-primitives-spacing-xl);
+  --elvt-alias-spacing-page: var(--elvt-primitives-spacing-2xl);
+  --elvt-alias-spacing-gutter: var(--elvt-primitives-spacing-lg);
+  
+  /* ===== SEMANTIC TYPOGRAPHY ALIASES ===== */
+  /* Primary Font Stack */
+  --elvt-alias-font-family-primary: var(--elvt-primitives-font-family-primary);
+  --elvt-alias-font-family-mono: var(--elvt-primitives-font-family-mono);
+  
+  /* Heading Styles */
+  --elvt-alias-heading-primary-size: var(--elvt-primitives-font-size-3xl);
+  --elvt-alias-heading-primary-weight: var(--elvt-primitives-font-weight-bold);
+  --elvt-alias-heading-primary-line-height: var(--elvt-primitives-line-height-tight);
+  
+  --elvt-alias-heading-secondary-size: var(--elvt-primitives-font-size-2xl);
+  --elvt-alias-heading-secondary-weight: var(--elvt-primitives-font-weight-semibold);
+  --elvt-alias-heading-secondary-line-height: var(--elvt-primitives-line-height-tight);
+  
+  --elvt-alias-heading-tertiary-size: var(--elvt-primitives-font-size-xl);
+  --elvt-alias-heading-tertiary-weight: var(--elvt-primitives-font-weight-semibold);
+  --elvt-alias-heading-tertiary-line-height: var(--elvt-primitives-line-height-normal);
+  
+  /* Body Text Styles */
+  --elvt-alias-body-primary-size: var(--elvt-primitives-font-size-base);
+  --elvt-alias-body-primary-weight: var(--elvt-primitives-font-weight-regular);
+  --elvt-alias-body-primary-line-height: var(--elvt-primitives-line-height-normal);
+  
+  --elvt-alias-body-secondary-size: var(--elvt-primitives-font-size-sm);
+  --elvt-alias-body-secondary-weight: var(--elvt-primitives-font-weight-regular);
+  --elvt-alias-body-secondary-line-height: var(--elvt-primitives-line-height-normal);
+  
+  --elvt-alias-body-small-size: var(--elvt-primitives-font-size-xs);
+  --elvt-alias-body-small-weight: var(--elvt-primitives-font-weight-regular);
+  --elvt-alias-body-small-line-height: var(--elvt-primitives-line-height-normal);
+  
+  /* ===== SEMANTIC LAYOUT ALIASES ===== */
+  --elvt-alias-container-width-sm: 640px;
+  --elvt-alias-container-width-md: 768px;
+  --elvt-alias-container-width-lg: 1024px;
+  --elvt-alias-container-width-xl: 1280px;
+  --elvt-alias-container-width-2xl: 1536px;
+  
+  --elvt-alias-navigation-width: 280px;
+  --elvt-alias-header-height: 64px;
+  --elvt-alias-sidebar-width: 320px;
+  
+  /* ===== SEMANTIC EFFECT ALIASES ===== */
+  --elvt-alias-shadow-elevation-low: var(--elvt-primitives-shadow-sm);
+  --elvt-alias-shadow-elevation-medium: var(--elvt-primitives-shadow-md);
+  --elvt-alias-shadow-elevation-high: var(--elvt-primitives-shadow-lg);
+  --elvt-alias-shadow-elevation-highest: var(--elvt-primitives-shadow-xl);
+  
+  --elvt-alias-radius-interactive: var(--elvt-primitives-radius-md);
+  --elvt-alias-radius-container: var(--elvt-primitives-radius-lg);
+  --elvt-alias-radius-overlay: var(--elvt-primitives-radius-xl);
+  
+  --elvt-alias-transition-interactive: var(--elvt-primitives-transition-fast);
+  --elvt-alias-transition-layout: var(--elvt-primitives-transition-normal);
+  --elvt-alias-transition-content: var(--elvt-primitives-transition-slow);
+  
+  /* ===== FOCUS AND ACCESSIBILITY ===== */
+  --elvt-alias-focus-color: var(--elvt-primitives-color-blue-500);
+  --elvt-alias-focus-width: 2px;
+  --elvt-alias-focus-offset: 2px;
+  --elvt-alias-focus-style: solid;
+}

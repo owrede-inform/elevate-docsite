@@ -4,15 +4,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/react'
 
 import App from './App'
+// Import ESDS Design System - includes all token tiers and components
+import './styles/esds-design-system.css'
+// Import MDX components provider
 import { mdxComponents } from './lib/mdx-components'
-import './styles/globals.css'
-
-// ELEVATE Design Tokens - Import themes as documented
-import './styles/elevate-tokens-light.css';
-import './styles/elevate-tokens-dark.css';
-
-// ESDS Design Tokens - Documentation site design system
-import './styles/esds-design-tokens.css';
 
 // ELEVATE package imports - exactly as specified in instructions
 import '@inform-elevate/elevate-core-ui';

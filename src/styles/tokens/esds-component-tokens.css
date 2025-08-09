@@ -1,0 +1,199 @@
+/* ESDS COMPONENT TOKENS - TIER 4 (FINAL) */
+/* Final component-specific tokens for documentation UI components */
+/* These tokens are used directly by ESDS components and can reference any tier */
+
+:root {
+  /* ===== CORE LAYOUT COMPONENTS ===== */
+  
+  /* Application Shell */
+  --esds-application-background: var(--esds-alias-background-page, var(--elvt-alias-background-primary, #ffffff));
+  --esds-application-min-height: 100vh;
+  
+  /* Header Component */
+  --esds-header-background: var(--esds-alias-header-background, var(--elvt-alias-background-primary, #ffffff));
+  --esds-header-border-color: var(--esds-alias-header-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-header-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-header-height: var(--esds-alias-header-height, var(--elvt-alias-header-height, 64px));
+  --esds-header-padding: 0 var(--esds-alias-spacing-component, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-header-z-index: var(--esds-primitives-z-header, 200);
+  
+  /* Sidebar Navigation */
+  --esds-sidebar-background: var(--esds-alias-sidebar-background, var(--elvt-alias-background-secondary, var(--elvt-primitives-color-gray-50, #f9fafb)));
+  --esds-sidebar-border-color: var(--esds-alias-sidebar-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-sidebar-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-sidebar-width: var(--esds-alias-navigation-width, var(--elvt-alias-navigation-width, 280px));
+  --esds-sidebar-padding: var(--esds-alias-spacing-sidebar, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-sidebar-z-index: var(--esds-primitives-z-sidebar, 100);
+  --esds-sidebar-shadow: var(--esds-alias-shadow-sidebar, var(--elvt-alias-shadow-elevation-medium, var(--elvt-primitives-shadow-md)));
+  
+  /* Main Content Area */
+  --esds-content-background: var(--esds-alias-background-page, var(--elvt-alias-background-primary, #ffffff));
+  --esds-content-padding: var(--esds-alias-spacing-content, var(--elvt-alias-spacing-page, var(--elvt-primitives-spacing-2xl, 3rem)));
+  --esds-content-max-width: var(--esds-alias-content-max-width, 800px);
+  
+  /* ===== NAVIGATION COMPONENTS ===== */
+  
+  /* Tree Sidebar Navigation */
+  --esds-tree-item-padding: var(--elvt-primitives-spacing-xs, 0.25rem) var(--elvt-primitives-spacing-sm, 0.5rem);
+  --esds-tree-item-margin: 1px 0;
+  --esds-tree-item-radius: var(--esds-alias-radius-interactive, var(--elvt-primitives-radius-sm, 0.125rem));
+  --esds-tree-item-background-hover: var(--elvt-alias-surface-hover, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-tree-item-background-selected: var(--elvt-alias-surface-selected, var(--elvt-primitives-color-blue-50, #eff6ff));
+  --esds-tree-item-text-color: var(--esds-alias-text-body, var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-tree-item-text-selected: var(--elvt-alias-text-accent, var(--elvt-primitives-color-blue-600, #2563eb));
+  --esds-tree-item-font-size: var(--elvt-primitives-font-size-sm, 0.875rem);
+  --esds-tree-item-font-weight: var(--elvt-primitives-font-weight-regular, 400);
+  --esds-tree-item-font-weight-selected: var(--elvt-primitives-font-weight-medium, 500);
+  --esds-tree-item-transition: all var(--esds-alias-transition-normal, var(--elvt-primitives-transition-fast, 150ms ease));
+  
+  /* Tree Section Spacing */
+  --esds-tree-section-margin: var(--elvt-primitives-spacing-xs, 0.25rem) 0;
+  --esds-tree-children-margin: 1px 0 0 0;
+  --esds-tree-children-indent: var(--elvt-primitives-spacing-lg, 1.5rem);
+  
+  /* Tree Icons */
+  --esds-tree-icon-size: 16px;
+  --esds-tree-icon-expand-size: 12px;
+  --esds-tree-icon-color: var(--elvt-alias-text-secondary, var(--elvt-primitives-color-gray-600, #4b5563));
+  --esds-tree-icon-gap: var(--elvt-primitives-spacing-xs, 0.25rem);
+  
+  /* ===== CONTENT COMPONENTS ===== */
+  
+  /* Typography */
+  --esds-typography-heading-color: var(--esds-alias-text-heading, var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-typography-heading-font-family: var(--esds-alias-font-family-primary, var(--elvt-primitives-font-family-primary));
+  --esds-typography-heading-font-weight: var(--esds-alias-heading-weight, var(--elvt-primitives-font-weight-bold, 700));
+  --esds-typography-heading-line-height: var(--esds-alias-heading-line-height, var(--elvt-primitives-line-height-tight, 1.25));
+  --esds-typography-heading-margin: 0 0 var(--elvt-primitives-spacing-md, 1rem) 0;
+  
+  --esds-typography-body-color: var(--esds-alias-text-body, var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-typography-body-font-family: var(--esds-alias-font-family-primary, var(--elvt-primitives-font-family-primary));
+  --esds-typography-body-font-size: var(--esds-alias-body-size, var(--elvt-primitives-font-size-base, 1rem));
+  --esds-typography-body-font-weight: var(--esds-alias-body-weight, var(--elvt-primitives-font-weight-regular, 400));
+  --esds-typography-body-line-height: var(--esds-alias-body-line-height, var(--elvt-primitives-line-height-normal, 1.5));
+  --esds-typography-body-margin: 0 0 var(--elvt-primitives-spacing-md, 1rem) 0;
+  
+  /* ===== COMPONENT DISPLAY COMPONENTS ===== */
+  
+  /* Live Example Component */
+  --esds-live-example-background: var(--esds-alias-example-background, var(--elvt-alias-background-primary, #ffffff));
+  --esds-live-example-border-color: var(--esds-alias-example-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-live-example-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-live-example-border-radius: var(--esds-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  --esds-live-example-padding: var(--esds-alias-spacing-example, var(--elvt-primitives-spacing-lg, 1.5rem));
+  --esds-live-example-margin: var(--elvt-primitives-spacing-lg, 1.5rem) 0;
+  --esds-live-example-shadow: var(--esds-alias-shadow-example, var(--elvt-primitives-shadow-sm));
+  
+  /* Code Block Component */
+  --esds-code-block-background: var(--esds-alias-code-background, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-code-block-border-color: var(--esds-alias-code-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-code-block-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-code-block-border-radius: var(--esds-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  --esds-code-block-padding: var(--esds-alias-spacing-code, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-code-block-margin: var(--elvt-primitives-spacing-lg, 1.5rem) 0;
+  --esds-code-block-font-family: var(--esds-alias-font-family-code, var(--elvt-primitives-font-family-mono));
+  --esds-code-block-font-size: var(--esds-alias-code-size, var(--elvt-primitives-font-size-sm, 0.875rem));
+  --esds-code-block-line-height: var(--esds-alias-code-line-height, 1.6);
+  --esds-code-block-color: var(--esds-alias-code-text, var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-code-block-shadow: var(--esds-alias-shadow-code, var(--elvt-primitives-shadow-sm));
+  --esds-code-block-max-height: var(--esds-primitives-height-code-block-max, 400px);
+  
+  /* Inline Code */
+  --esds-code-inline-background: var(--elvt-primitives-color-gray-100, #f3f4f6);
+  --esds-code-inline-color: var(--elvt-primitives-color-gray-800, #1f2937);
+  --esds-code-inline-padding: 0.125rem 0.25rem;
+  --esds-code-inline-radius: var(--elvt-primitives-radius-sm, 0.125rem);
+  --esds-code-inline-font-family: var(--esds-alias-font-family-code, var(--elvt-primitives-font-family-mono));
+  --esds-code-inline-font-size: 0.9em;
+  
+  /* Token Table Component */
+  --esds-token-table-background: var(--elvt-alias-background-primary, #ffffff);
+  --esds-token-table-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  --esds-token-table-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-token-table-border-radius: var(--esds-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  --esds-token-table-header-background: var(--elvt-primitives-color-gray-50, #f9fafb);
+  --esds-token-table-header-color: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-token-table-header-font-weight: var(--elvt-primitives-font-weight-semibold, 600);
+  --esds-token-table-cell-padding: var(--elvt-primitives-spacing-sm, 0.5rem) var(--elvt-primitives-spacing-md, 1rem);
+  --esds-token-table-row-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  
+  /* ===== STATUS AND FEEDBACK COMPONENTS ===== */
+  
+  /* Status Badges */
+  --esds-status-stable-background: var(--esds-alias-status-stable, var(--elvt-primitives-color-teal-600, #0d9488));
+  --esds-status-stable-color: #ffffff;
+  --esds-status-beta-background: var(--esds-alias-status-beta, #f59e0b);
+  --esds-status-beta-color: #ffffff;
+  --esds-status-alpha-background: var(--esds-alias-status-alpha, #8b5cf6);
+  --esds-status-alpha-color: #ffffff;
+  --esds-status-deprecated-background: var(--esds-alias-status-deprecated, var(--elvt-primitives-color-red-600, #dc2626));
+  --esds-status-deprecated-color: #ffffff;
+  --esds-status-new-background: var(--esds-alias-status-new, var(--elvt-primitives-color-blue-600, #2563eb));
+  --esds-status-new-color: #ffffff;
+  
+  --esds-status-badge-padding: 0.125rem 0.5rem;
+  --esds-status-badge-font-size: var(--elvt-primitives-font-size-xs, 0.75rem);
+  --esds-status-badge-font-weight: var(--elvt-primitives-font-weight-medium, 500);
+  --esds-status-badge-radius: var(--elvt-primitives-radius-full, 9999px);
+  
+  /* ===== INTERACTIVE COMPONENTS ===== */
+  
+  /* Theme Toggle */
+  --esds-theme-toggle-size: 2.5rem;
+  --esds-theme-toggle-background: var(--elvt-alias-surface-hover, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-theme-toggle-background-hover: var(--elvt-alias-surface-active, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-theme-toggle-border-color: var(--elvt-alias-border-medium, var(--elvt-primitives-color-gray-300, #d1d5db));
+  --esds-theme-toggle-border-radius: var(--esds-alias-radius-interactive, var(--elvt-primitives-radius-md, 0.375rem));
+  --esds-theme-toggle-transition: all var(--esds-alias-transition-normal, var(--elvt-primitives-transition-fast, 150ms ease));
+  --esds-theme-toggle-icon-color: var(--elvt-alias-text-secondary, var(--elvt-primitives-color-gray-600, #4b5563));
+  
+  /* Focus States */
+  --esds-focus-color: var(--elvt-alias-focus-color, var(--elvt-primitives-color-blue-500, #3b82f6));
+  --esds-focus-width: var(--elvt-alias-focus-width, 2px);
+  --esds-focus-offset: var(--elvt-alias-focus-offset, 2px);
+  --esds-focus-style: var(--elvt-alias-focus-style, solid);
+  
+  /* ===== DARK THEME OVERRIDES ===== */
+}
+
+/* Dark Theme Component Token Overrides */
+:global(.esds-theme-dark) {
+  /* Application */
+  --esds-application-background: var(--esds-alias-background-page-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  
+  /* Header */
+  --esds-header-background: var(--esds-alias-header-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-header-border-color: var(--esds-alias-header-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* Sidebar */
+  --esds-sidebar-background: var(--esds-alias-sidebar-background-dark, var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-800, #1f2937)));
+  --esds-sidebar-border-color: var(--esds-alias-sidebar-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* Content */
+  --esds-content-background: var(--esds-alias-background-page-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  
+  /* Typography */
+  --esds-typography-heading-color: var(--esds-alias-text-heading-dark, var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6)));
+  --esds-typography-body-color: var(--esds-alias-text-body-dark, var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6)));
+  
+  /* Tree Navigation */
+  --esds-tree-item-background-hover: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-tree-item-background-selected: var(--elvt-alias-surface-selected-dark, var(--elvt-primitives-color-blue-900, #1e3a8a));
+  --esds-tree-item-text-color: var(--esds-alias-text-body-dark, var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6)));
+  --esds-tree-item-text-selected: var(--elvt-alias-text-accent-dark, var(--elvt-primitives-color-blue-400, #60a5fa));
+  
+  /* Code Blocks */
+  --esds-code-block-background: var(--esds-alias-code-background-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-code-block-border-color: var(--esds-alias-code-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  --esds-code-block-color: var(--esds-alias-code-text-dark, var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6)));
+  
+  /* Live Examples */
+  --esds-live-example-background: var(--esds-alias-example-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-live-example-border-color: var(--esds-alias-example-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* Theme Toggle */
+  --esds-theme-toggle-background: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-theme-toggle-background-hover: var(--elvt-alias-surface-active-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-theme-toggle-border-color: var(--elvt-alias-border-medium-dark, var(--elvt-primitives-color-gray-600, #4b5563));
+  --esds-theme-toggle-icon-color: var(--elvt-alias-text-secondary-dark, var(--elvt-primitives-color-gray-300, #d1d5db));
+}

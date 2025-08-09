@@ -70,6 +70,9 @@ export default defineConfig({
       deny: ['.env', '.env.*', '*.{pem,crt,key}'],
     },
   },
+
+  // Copy static files including config directory
+  publicDir: 'public',
   
   // Build configuration for GitHub Pages
   build: {

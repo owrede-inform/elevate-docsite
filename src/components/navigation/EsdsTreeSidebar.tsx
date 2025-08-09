@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { createPath } from '@/lib/path-utils'
+import { EsdsIcon, COMMON_ICONS } from '@/components/icons'
 
 export interface NavigationSection {
   title: string
@@ -71,50 +72,39 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
     return expandedSections.has(sectionTitle)
   }
 
-  // Icon components based on the Dribbble reference design
+  // Icon components using EsdsIcon with MDI support
   const FolderIcon = ({ isOpen }: { isOpen: boolean }) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M2 4a1 1 0 011-1h3.586a1 1 0 01.707.293L8.414 4.414A1 1 0 009.121 4.707L9.586 5H13a1 1 0 011 1v7a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" 
-        fill="currentColor" 
-        opacity={isOpen ? "1" : "0.7"}
-      />
-    </svg>
+    <EsdsIcon 
+      icon={isOpen ? COMMON_ICONS.content.folderOpen : COMMON_ICONS.content.folder}
+      size={16}
+      style={{ opacity: isOpen ? 1 : 0.7 }}
+      decorative
+    />
   )
 
   const DocumentIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M4 2a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5.414a1 1 0 00-.293-.707l-2.414-2.414A1 1 0 009.586 2H4z" 
-        fill="currentColor" 
-        opacity="0.7"
-      />
-      <path d="M5 6h6M5 8h6M5 10h4" stroke="currentColor" strokeWidth="0.5" opacity="0.5"/>
-    </svg>
+    <EsdsIcon 
+      icon={COMMON_ICONS.content.document}
+      size={16}
+      style={{ opacity: 0.7 }}
+      decorative
+    />
   )
 
   const PlusIcon = () => (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M6 2v8M2 6h8"
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      />
-    </svg>
+    <EsdsIcon 
+      icon={COMMON_ICONS.actions.add}
+      size={12}
+      decorative
+    />
   )
 
   const MinusIcon = () => (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M2 6h8"
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      />
-    </svg>
+    <EsdsIcon 
+      icon={COMMON_ICONS.actions.remove}
+      size={12}
+      decorative
+    />
   )
 
   return (
@@ -123,10 +113,8 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
       role="navigation" 
       aria-label="Documentation navigation"
     >
-      {/* Modern Tree Header */}
-      <div className="tree-header">
-        <h2 className="tree-title">Project & team structure</h2>
-      </div>
+      {/* Hidden title for screen readers */}
+      <h2 className="sr-only" aria-hidden="true">ELEVATE DS</h2>
       
       {/* Tree Content */}
       <div className="tree-content">
@@ -178,30 +166,30 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
       </div>
       
       <style>{`
+        /* Screen reader only class */
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
         /* Modern Tree Sidebar - Dribbble Design Recreation */
         .esds-modern-tree-sidebar {
-          background: var(--esds-color-background-primary);
-          border-right: 1px solid var(--esds-color-border-light);
-          width: var(--esds-navigation-width);
-          min-width: var(--esds-navigation-width);
-          height: 100vh;
+          background: var(--esds-alias-color-surface-primary, #ffffff);
+          border-right: 1px solid var(--esds-alias-color-border-default, #e9ecef);
+          width: 280px;
+          min-width: 280px;
+          height: 100%;
           display: flex;
           flex-direction: column;
-          font-family: var(--esds-font-family-primary);
-          padding: var(--esds-spacing-xl) var(--esds-spacing-lg);
-        }
-
-        /* Tree Header */
-        .tree-header {
-          margin-bottom: var(--esds-spacing-xl);
-        }
-
-        .tree-title {
-          margin: 0;
-          font-size: var(--esds-font-size-lg);
-          font-weight: var(--esds-font-weight-semibold);
-          color: var(--esds-color-text-primary);
-          line-height: var(--esds-line-height-tight);
+          font-family: var(--esds-alias-typography-body-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+          padding: 0.375rem;
         }
 
         /* Tree Content */
@@ -211,55 +199,59 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
         }
 
         .tree-section {
-          margin-bottom: var(--esds-spacing-sm);
+          margin-bottom: 0.125rem;
         }
 
         /* Tree Items - Base Style */
         .tree-item {
           display: flex;
           align-items: center;
-          gap: var(--esds-spacing-sm);
-          padding: var(--esds-spacing-sm);
-          border-radius: var(--esds-radius-sm);
+          gap: 0.375rem;
+          padding: 0.375rem 0.5rem;
+          border-radius: 0.25rem;
           cursor: pointer;
-          transition: all var(--esds-transition-normal);
+          transition: all 0.2s ease;
           text-decoration: none;
-          color: var(--esds-color-text-primary);
-          font-size: var(--esds-font-size-sm);
-          line-height: var(--esds-line-height-normal);
+          color: var(--esds-alias-color-text-primary, #1f2937);
+          font-size: 0.8125rem;
+          line-height: 1.4;
           position: relative;
-          margin-bottom: 2px;
+          margin-bottom: 1px;
         }
 
         .tree-item:hover {
-          background: var(--esds-color-surface-hover);
+          background: var(--esds-alias-color-surface-hover, #f3f4f6);
         }
 
         .tree-item:focus {
-          outline: var(--esds-focus-width) solid var(--esds-focus-color);
-          outline-offset: var(--esds-focus-offset);
+          outline: none;
+        }
+
+        .tree-item:focus-visible {
+          outline: 2px solid var(--esds-alias-color-interactive-primary, #3b82f6);
+          outline-offset: 2px;
         }
 
         /* Section Root Items */
         .section-root {
-          font-weight: var(--esds-font-weight-medium);
+          font-weight: 500;
         }
 
         /* Page Items - Indented */
         .page-item {
-          margin-left: var(--esds-spacing-xl);
-          font-weight: var(--esds-font-weight-regular);
+          margin-left: 1.25rem;
+          font-weight: 400;
         }
 
         /* Selected State (Blue Highlight) */
         .tree-item.selected {
-          background: var(--esds-color-surface-selected);
-          color: var(--esds-color-text-accent);
-          font-weight: var(--esds-font-weight-medium);
+          background: var(--esds-alias-color-surface-selected, #dbeafe);
+          color: var(--esds-alias-color-text-accent, #1d4ed8);
+          font-weight: 500;
         }
 
         .tree-item.selected:hover {
-          background: var(--esds-color-surface-selected);
+          background: var(--esds-alias-color-surface-selected, #dbeafe);
         }
 
         /* Icons */
@@ -269,7 +261,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--esds-color-text-secondary);
+          color: var(--esds-alias-color-text-secondary, #6b7280);
           flex-shrink: 0;
         }
 
@@ -279,7 +271,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--esds-color-text-secondary);
+          color: var(--esds-alias-color-text-secondary, #6b7280);
           flex-shrink: 0;
         }
 
@@ -290,7 +282,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
 
         /* Tree Children */
         .tree-children {
-          margin-top: 2px;
+          margin-top: 1px;
         }
 
         /* Dark Theme Support */
@@ -358,7 +350,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
             border-right: 2px solid;
           }
           
-          .tree-item:focus {
+          .tree-item:focus-visible {
             outline: 3px solid;
             outline-offset: 2px;
           }
