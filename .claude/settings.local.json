@@ -50,7 +50,8 @@
       "Bash(gh workflow:*)",
       "Bash(find:*)",
       "Bash(npx tsc:*)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Bash(dir:*)"
     ],
     "deny": []
   }
