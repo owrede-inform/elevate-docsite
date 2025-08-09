@@ -10,7 +10,7 @@ import rehypeHighlight from 'rehype-highlight'
 // Plugin to suppress specific warnings
 const suppressWarningsPlugin = () => ({
   name: 'suppress-warnings',
-  configureServer(server) {
+  configureServer(_server) {
     const originalWarn = console.warn;
     console.warn = (...args) => {
       const message = args.join(' ');

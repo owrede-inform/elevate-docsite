@@ -123,7 +123,9 @@ export function resolveIcon(icon: string): IconDetail {
       }
     }
     
-    console.warn(`MDI icon "${iconName}" not found in registry or direct import`)
+    if (import.meta.env.DEV) {
+      console.warn(`MDI icon "${iconName}" not found in registry or direct import`);
+    }
     return { path: '' }
   }
 

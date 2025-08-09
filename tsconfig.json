@@ -37,11 +37,16 @@
     "types": ["vite/client"]
   },
   "include": [
-    "src",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx"
+    "src/**/*",
+    "vite.config.ts"
   ],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules", 
+    "dist", 
+    "data/**/*",
+    "screenshots/**/*",
+    "test-results/**/*",
+    "analysis-screenshots/**/*",
+    "elevate-verification/**/*"
+  ]
 }

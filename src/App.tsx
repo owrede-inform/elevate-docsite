@@ -1,4 +1,4 @@
-import React from 'react'
+// React is automatically imported by JSX transform
 import { Routes, Route } from 'react-router-dom'
 
 import Layout from './components/layout/Layout'

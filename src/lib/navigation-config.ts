@@ -57,7 +57,9 @@ export function loadNavigationConfig(): NavigationData {
   try {
     return convertToNavigationData(navigationSections)
   } catch (error) {
-    console.error('Error loading navigation configuration:', error)
+    if (import.meta.env.DEV) {
+      console.error('Error loading navigation configuration:', error);
+    }
     
     // Fallback navigation
     return {

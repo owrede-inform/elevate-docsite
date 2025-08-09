@@ -32,7 +32,9 @@ export class Cache {
         })
       }
     } catch (error) {
-      console.warn('Failed to load cache:', error)
+      if (import.meta.env.DEV) {
+        console.warn('Failed to load cache:', error);
+      }
     }
 
     this.initialized = true
@@ -105,7 +107,9 @@ export class Cache {
       const data = Object.fromEntries(this.cache.entries())
       fs.writeFileSync(CACHE_FILE, JSON.stringify(data, null, 2))
     } catch (error) {
-      console.warn('Failed to persist cache:', error)
+      if (import.meta.env.DEV) {
+        console.warn('Failed to persist cache:', error);
+      }
     }
   }
 

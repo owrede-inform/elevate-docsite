@@ -80,7 +80,9 @@ const EsdsLiveExample: React.FC<EsdsLiveExampleProps> = ({
       setCopiedCode(true)
       setTimeout(() => setCopiedCode(false), 2000)
     } catch (err) {
-      console.error('Failed to copy code:', err)
+      if (import.meta.env.DEV) {
+        console.error('Failed to copy code:', err);
+      }
     }
   }
 

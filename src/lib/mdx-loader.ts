@@ -69,7 +69,9 @@ class MDXLoader {
 
       return content
     } catch (error) {
-      console.error(`Error loading MDX file: ${path}`, error)
+      if (import.meta.env.DEV) {
+        console.error(`Error loading MDX file: ${path}`, error);
+      }
       throw error
     }
   }
@@ -124,14 +126,18 @@ class MDXLoader {
           // Also cache individually
           this.contentCache.set(path, content)
         } catch (error) {
-          console.warn(`Failed to load content file: ${path}`, error)
+          if (import.meta.env.DEV) {
+            console.warn(`Failed to load content file: ${path}`, error);
+          }
         }
       }
 
       this.registryCache = registry
       return registry
     } catch (error) {
-      console.error('Error loading content registry:', error)
+      if (import.meta.env.DEV) {
+        console.error('Error loading content registry:', error);
+      }
       throw error
     }
   }

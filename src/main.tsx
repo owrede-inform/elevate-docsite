@@ -54,9 +54,11 @@ if (typeof window !== 'undefined') {
     }
   });
   
-  console.log('🔧 ELEVATE Components manually registered:', 
-    componentsToRegister.map(c => c.name).filter(name => customElements.get(name))
-  );
+  if (import.meta.env.DEV) {
+    console.log('🔧 ELEVATE Components manually registered:', 
+      componentsToRegister.map(c => c.name).filter(name => customElements.get(name))
+    );
+  }
 }
 
 // Initialize theme from localStorage or default to light
