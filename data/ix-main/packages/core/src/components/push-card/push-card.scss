@@ -1,0 +1,34 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+:host {
+  display: block;
+  position: relative;
+
+  ix-card {
+    cursor: default;
+  }
+
+  ix-card-accordion {
+    cursor: pointer;
+  }
+
+  .icon {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  ix-card-title {
+    height: 2.5rem;
+  }
+
+  ix-card-content {
+    height: 11rem;
+  }
+}

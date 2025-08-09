@@ -1,0 +1,207 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './common-variables' as vars;
+@use 'mixins/text-truncation';
+@use 'mixins/hover';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px vars.$large-space;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: var(--theme-tab--background);
+  color: var(--theme-tab--color);
+
+  @include component.ix-component;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--theme-tab-indicator--background);
+    width: 100%;
+    height: var(--theme-tab-indicator--height);
+    left: 0;
+  }
+
+  .text {
+    @include text-truncation.ellipsis;
+
+    span,
+    span::before {
+      pointer-events: none;
+    }
+
+    vertical-align: middle;
+  }
+
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--theme-animated-tab-indicator--background);
+    border-radius: 50%;
+    border: 2px solid var(--theme-animated-tab-circle--border-color);
+    color: var(--theme-an…icon--color);
+    cursor: pointer;
+
+    &.selected:not(.disabled) {
+      background-color: var(--theme-animated-tab-circle--background--selected);
+      color: var(--theme-animated-tab-icon--color--selected);
+      border-color: var(--theme-animated-tab-circle--border-color--selected);
+
+      &:hover {
+        background-color: var(
+          --theme-animated-tab-circle--background--selected
+        );
+      }
+    }
+
+    &:hover {
+      background-color: var(--theme-animated-tab-circle--background--hover);
+    }
+
+    &:active {
+      background-color: var(--theme-animated-tab-circle--background--active);
+    }
+
+    &:active {
+      background-color: var(--theme-animated-tab-circle--background--active);
+    }
+
+    &.disabled {
+      background-color: var(--theme-animated-tab-circle--background--disabled);
+      border-color: var(--theme-animated-tab-circle--border-color--disabled);
+    }
+  }
+
+  .counter {
+    position: absolute;
+    z-index: 1;
+    height: 16px;
+    width: auto;
+    background-color: var(--theme-pill-outline--background);
+    border: 1px solid var(--theme-tab-pill--border-color);
+    border-radius: 100px;
+    bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: vars.$tiny-space;
+    padding-right: vars.$tiny-space;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--theme-pill-outline--color);
+    cursor: pointer;
+
+    &.selected {
+      border-color: var(--theme-tab-pill--border-color--selected);
+    }
+
+    &.disabled {
+      border-color: var(--theme-tab-pill--border-color--disabled);
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+:host(.circle) {
+  height: 72px;
+}
+
+:host(.top) {
+  &::after {
+    top: 0;
+  }
+}
+
+:host(.bottom) {
+  &::after {
+    bottom: 0;
+  }
+}
+
+:host(.stretched) {
+  flex-basis: 100%;
+  width: 100%;
+  @include text-truncation.ellipsis;
+}
+
+:host(:hover:not(.circle)) {
+  background-color: var(--theme-tab--background--hover);
+  color: var(--theme-tab-color-hover);
+  cursor: pointer;
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--hover);
+  }
+}
+
+:host(:active:not(.circle)) {
+  background-color: var(--theme-tab--background--active);
+  color: var(--theme-tab-color--active);
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--active);
+  }
+}
+
+:host(:focus-visible) {
+  outline: 0px solid var(--focus--border-color);
+
+  .circle {
+    outline: 1px solid var(--focus--border-color);
+  }
+}
+
+:host(:focus-visible:not(.circle)) {
+  outline: 1px solid var(--focus--border-color);
+}
+
+:host(.disabled) {
+  pointer-events: none;
+  color: var(--theme-tab--color--disabled);
+  background-color: var(--theme-tab--background--disabled);
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--disabled);
+  }
+}
+
+:host(.selected:not(.disabled)) {
+  background-color: var(--theme-tab--background--selected);
+  color: var(--theme-tab--color--selected);
+
+  &::after {
+    background-color: var(--theme-tab-indicator--background--selected);
+  }
+}
+
+:host(.icon) {
+  padding: vars.$large-space vars.$small-space;
+}
+
+:host(.small-tab) {
+  height: 32px;
+  padding: vars.$default-space;
+}
+
+:host(.small-tab.icon) {
+  padding: vars.$default-space vars.$tiny-space;
+}

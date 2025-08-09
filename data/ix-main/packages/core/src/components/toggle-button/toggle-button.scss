@@ -1,0 +1,52 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './common-variables' as vars;
+@use 'legacy/components/buttons';
+@use 'mixins/shadow-dom/component';
+
+:host {
+  display: inline-block;
+  width: auto;
+  height: vars.$x-large-space;
+  vertical-align: middle;
+
+  @include component.ix-component;
+
+  .btn {
+    width: 100%;
+    height: 100%;
+  }
+
+  /**
+  * Overwrite the default button styles because toggle button looks different as primary variant
+  */
+  .btn.selected.btn-primary {
+    background: var(--theme-color-dynamic);
+    color: var(--theme-color-primary--contrast);
+  }
+
+  .btn.selected.btn-primary:hover {
+    background: var(--theme-color-dynamic--hover);
+    color: var(--theme-color-primary--contrast);
+  }
+
+  .btn.selected.btn-primary:active {
+    background: var(--theme-color-dynamic--active);
+    color: var(--theme-color-primary--contrast);
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+:host(.disabled) {
+  pointer-events: none;
+}

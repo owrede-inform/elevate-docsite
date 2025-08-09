@@ -1,0 +1,187 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'common-variables' as vars;
+@use 'legacy/mixins/fonts';
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+
+@mixin btn-base-variant($name, $enable-border: true) {
+  .btn-#{$name} {
+    border-top-left-radius: var(--ix-button-border-radius-left);
+    border-bottom-left-radius: var(--ix-button-border-radius-left);
+    border-top-right-radius: var(--ix-button-border-radius-right);
+    border-bottom-right-radius: var(--ix-button-border-radius-right);
+
+    &,
+    &.focus,
+    &:focus-visible {
+      background-color: var(--theme-btn-#{$name}--background);
+      color: var(--theme-btn-#{$name}--color);
+
+      --ix-button-color: var(--theme-btn-#{$name}--color);
+
+      @if $enable-border {
+        border-width: var(--theme-btn--border-thickness);
+        border-color: var(--theme-btn-#{$name}--border-color);
+        border-style: solid;
+      } @else {
+        border-color: transparent;
+      }
+    }
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-btn--focus--outline-offset);
+    }
+
+    &.selected {
+      background-color: var(--theme-color-ghost--selected);
+      color: var(--theme-color-dynamic);
+
+      @include hover.hover {
+        background-color: var(--theme-color-ghost--selected-hover);
+        color: var(--theme-color-dynamic);
+      }
+
+      @include hover.active {
+        background-color: var(--theme-color-ghost--selected-active);
+        color: var(--theme-color-dynamic);
+      }
+    }
+
+    @include hover.hover {
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--hover);
+      }
+
+      background-color: var(--theme-btn-#{$name}--background--hover);
+      color: var(--theme-btn-#{$name}--color--hover);
+    }
+
+    @include hover.active {
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--active);
+      }
+
+      background-color: var(--theme-btn-#{$name}--background--active);
+      color: var(--theme-btn-#{$name}--color--active);
+    }
+  }
+}
+
+@mixin btn-base-variant-disabled($name, $enable-border: true) {
+  .btn-#{$name} {
+    &.disabled,
+    &:disabled {
+      pointer-events: none;
+
+      @if $enable-border {
+        border-color: var(--theme-btn-#{$name}--border-color--disabled);
+      }
+
+      background-color: var(--theme-btn-#{$name}--background--disabled);
+      color: var(--theme-btn-#{$name}--color--disabled);
+      opacity: 1;
+
+      --ix-button-color: var(--theme-btn-#{$name}--color--disabled);
+    }
+  }
+}
+
+@mixin btn-variant($name, $enable-border: true) {
+  :host {
+    @include btn-base-variant($name, $enable-border);
+  }
+
+  :host(.disabled) {
+    pointer-events: none;
+
+    @include btn-base-variant-disabled($name, $enable-border);
+  }
+}
+
+@mixin btn-base {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  overflow: hidden;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 0.5rem;
+}
+
+@mixin btn {
+  :host {
+    --ix-button-border-radius-left: var(--theme-btn--border-radius);
+    --ix-button-border-radius-right: var(--theme-btn--border-radius);
+
+    display: inline-block;
+    height: 2rem;
+    vertical-align: middle;
+    cursor: pointer;
+
+    @include fonts.text-default-title;
+    @include component.ix-component;
+
+    button {
+      @include btn-base();
+    }
+
+    ix-spinner {
+      margin-right: 0.25rem;
+    }
+
+    .content {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .content-start {
+      width: 100%;
+    }
+
+    .icon {
+      // Prevents icon to show title tooltip
+      // if embedded in ix-icon-button or ix-button[icon]
+      pointer-events: none;
+      margin-right: 0.25rem;
+    }
+
+    .icon-right {
+      margin-left: 0.25rem;
+    }
+  }
+
+  :host(.disabled) {
+    cursor: default;
+  }
+}
+
+@mixin all-btn-variants {
+  $button-categories: (primary, secondary);
+
+  @include btn;
+  @each $category in $button-categories {
+    @include btn-variant($category);
+    @include btn-variant('outline-#{$category}');
+    @include btn-variant('invisible-#{$category}', false);
+  }
+}

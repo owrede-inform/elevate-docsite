@@ -1,0 +1,109 @@
+/* ESDS ALIAS TOKENS - TIER 3B */
+/* Documentation site semantic tokens that extend ELEVATE alias tokens */
+
+:root {
+  /* ===== ESDS SEMANTIC COLOR ALIASES ===== */
+  /* Documentation UI Colors - Light Theme */
+  --esds-alias-color-brand-primary: var(--elvt-alias-color-primary, var(--elvt-primitives-color-blue-600, #2563eb));
+  --esds-alias-color-brand-secondary: var(--elvt-alias-color-secondary, var(--elvt-primitives-color-teal-600, #0d9488));
+  
+  --esds-alias-background-page: var(--elvt-alias-background-primary, #ffffff);
+  --esds-alias-background-surface: var(--elvt-alias-background-secondary, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-alias-background-elevated: var(--elvt-alias-background-primary, #ffffff);
+  
+  --esds-alias-text-heading: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-text-body: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-text-muted: var(--elvt-alias-text-secondary, var(--elvt-primitives-color-gray-600, #4b5563));
+  --esds-alias-text-subtle: var(--elvt-alias-text-tertiary, var(--elvt-primitives-color-gray-500, #6b7280));
+  
+  /* Documentation UI Colors - Dark Theme */
+  --esds-alias-color-brand-primary-dark: var(--elvt-alias-color-primary-dark, var(--elvt-primitives-color-blue-400, #60a5fa));
+  --esds-alias-color-brand-secondary-dark: var(--elvt-alias-color-secondary-hover, var(--elvt-primitives-color-teal-500, #14b8a6));
+  
+  --esds-alias-background-page-dark: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-background-surface-dark: var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-alias-background-elevated-dark: var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  
+  --esds-alias-text-heading-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-alias-text-body-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-alias-text-muted-dark: var(--elvt-alias-text-secondary-dark, var(--elvt-primitives-color-gray-300, #d1d5db));
+  --esds-alias-text-subtle-dark: var(--elvt-alias-text-tertiary-dark, var(--elvt-primitives-color-gray-400, #9ca3af));
+  
+  /* ===== ESDS COMPONENT-SPECIFIC ALIASES ===== */
+  /* Sidebar Navigation */
+  --esds-alias-sidebar-background: var(--esds-primitives-color-sidebar-background, var(--elvt-alias-background-secondary, var(--elvt-primitives-color-gray-50, #f9fafb)));
+  --esds-alias-sidebar-background-dark: var(--esds-primitives-color-sidebar-background-dark, var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-800, #1f2937)));
+  --esds-alias-sidebar-border: var(--esds-primitives-color-sidebar-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-alias-sidebar-border-dark: var(--esds-primitives-color-sidebar-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  --esds-alias-sidebar-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-sidebar-text-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  
+  /* Header */
+  --esds-alias-header-background: var(--esds-primitives-color-header-background, var(--elvt-alias-background-primary, #ffffff));
+  --esds-alias-header-background-dark: var(--esds-primitives-color-header-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-alias-header-border: var(--esds-primitives-color-header-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-alias-header-border-dark: var(--esds-primitives-color-header-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* Code Blocks */
+  --esds-alias-code-background: var(--esds-primitives-color-code-background, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-alias-code-background-dark: var(--esds-primitives-color-code-background-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-alias-code-border: var(--esds-primitives-color-code-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-alias-code-border-dark: var(--esds-primitives-color-code-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  --esds-alias-code-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-code-text-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  
+  /* Live Examples */
+  --esds-alias-example-background: var(--esds-primitives-color-example-background, var(--elvt-alias-background-primary, #ffffff));
+  --esds-alias-example-background-dark: var(--esds-primitives-color-example-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-alias-example-border: var(--esds-primitives-color-example-border, var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb)));
+  --esds-alias-example-border-dark: var(--esds-primitives-color-example-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* Status Colors */
+  --esds-alias-status-stable: var(--esds-primitives-color-status-stable, var(--elvt-alias-color-success, var(--elvt-primitives-color-teal-600, #0d9488)));
+  --esds-alias-status-beta: var(--esds-primitives-color-status-beta, #f59e0b);
+  --esds-alias-status-alpha: var(--esds-primitives-color-status-alpha, #8b5cf6);
+  --esds-alias-status-deprecated: var(--esds-primitives-color-status-deprecated, var(--elvt-alias-color-danger, var(--elvt-primitives-color-red-600, #dc2626)));
+  --esds-alias-status-new: var(--esds-primitives-color-status-new, var(--elvt-alias-color-info, var(--elvt-primitives-color-blue-600, #2563eb)));
+  
+  /* ===== ESDS SEMANTIC SPACING ALIASES ===== */
+  --esds-alias-spacing-content: var(--esds-primitives-spacing-content-padding, var(--elvt-alias-spacing-page, var(--elvt-primitives-spacing-2xl, 3rem)));
+  --esds-alias-spacing-section: var(--esds-primitives-spacing-section-gap, var(--elvt-alias-spacing-section, var(--elvt-primitives-spacing-xl, 2rem)));
+  --esds-alias-spacing-component: var(--elvt-alias-spacing-component, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-alias-spacing-sidebar: var(--esds-primitives-spacing-sidebar-padding, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-alias-spacing-code: var(--esds-primitives-spacing-code-padding, var(--elvt-primitives-spacing-md, 1rem));
+  --esds-alias-spacing-example: var(--esds-primitives-spacing-example-padding, var(--elvt-primitives-spacing-lg, 1.5rem));
+  
+  /* ===== ESDS SEMANTIC TYPOGRAPHY ALIASES ===== */
+  /* Font Families */
+  --esds-alias-font-family-primary: var(--elvt-alias-font-family-primary, var(--elvt-primitives-font-family-primary));
+  --esds-alias-font-family-code: var(--esds-primitives-font-family-code, var(--elvt-alias-font-family-mono, var(--elvt-primitives-font-family-mono)));
+  
+  /* Content Typography */
+  --esds-alias-heading-size: var(--elvt-alias-heading-primary-size, var(--elvt-primitives-font-size-3xl, 1.875rem));
+  --esds-alias-heading-weight: var(--elvt-alias-heading-primary-weight, var(--elvt-primitives-font-weight-bold, 700));
+  --esds-alias-heading-line-height: var(--elvt-alias-heading-primary-line-height, var(--elvt-primitives-line-height-tight, 1.25));
+  
+  --esds-alias-body-size: var(--elvt-alias-body-primary-size, var(--elvt-primitives-font-size-base, 1rem));
+  --esds-alias-body-weight: var(--elvt-alias-body-primary-weight, var(--elvt-primitives-font-weight-regular, 400));
+  --esds-alias-body-line-height: var(--elvt-alias-body-primary-line-height, var(--elvt-primitives-line-height-normal, 1.5));
+  
+  --esds-alias-code-size: var(--esds-primitives-font-size-code, var(--elvt-primitives-font-size-sm, 0.875rem));
+  --esds-alias-code-line-height: var(--esds-primitives-line-height-code, 1.6);
+  
+  /* ===== ESDS SEMANTIC LAYOUT ALIASES ===== */
+  --esds-alias-navigation-width: var(--esds-primitives-width-sidebar, var(--elvt-alias-navigation-width, 280px));
+  --esds-alias-header-height: var(--esds-primitives-height-header, var(--elvt-alias-header-height, 64px));
+  --esds-alias-content-max-width: var(--esds-primitives-width-content-max, 800px);
+  
+  /* ===== ESDS SEMANTIC EFFECT ALIASES ===== */
+  --esds-alias-shadow-code: var(--esds-primitives-shadow-code-block, var(--elvt-alias-shadow-elevation-low, var(--elvt-primitives-shadow-sm)));
+  --esds-alias-shadow-example: var(--esds-primitives-shadow-example, var(--elvt-alias-shadow-elevation-medium, var(--elvt-primitives-shadow-md)));
+  --esds-alias-shadow-sidebar: var(--esds-primitives-shadow-sidebar, var(--elvt-alias-shadow-elevation-medium, var(--elvt-primitives-shadow-md)));
+  
+  --esds-alias-radius-interactive: var(--elvt-alias-radius-interactive, var(--elvt-primitives-radius-md, 0.375rem));
+  --esds-alias-radius-container: var(--elvt-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  
+  --esds-alias-transition-normal: var(--elvt-alias-transition-interactive, var(--elvt-primitives-transition-fast, 150ms ease));
+  --esds-alias-transition-sidebar: var(--esds-primitives-transition-sidebar, 300ms cubic-bezier(0.4, 0, 0.2, 1));
+  --esds-alias-transition-theme: var(--esds-primitives-transition-theme, 200ms ease-in-out);
+}

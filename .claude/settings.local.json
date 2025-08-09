@@ -46,7 +46,10 @@
       "Bash(playwright codegen:*)",
       "Bash(npx playwright:*)",
       "Bash(mv:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(gh workflow:*)",
+      "Bash(find:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": []
   }

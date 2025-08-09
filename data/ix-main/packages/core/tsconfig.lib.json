@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2017",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "preserveSymlinks": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "strict": true
+  },
+  "include": ["src", "../../testing/visual-regressions/tests/_test"],
+  "exclude": [
+    "node_modules",
+    "playwright.config.ts",
+    "playwright-ct.config.ts",
+    "src/**/*.ct.ts",
+    "src/**/*.e2e.ts"
+  ]
+}

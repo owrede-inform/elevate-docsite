@@ -1,0 +1,458 @@
+---
+title: "Color Tokens"
+description: "Comprehensive color palette and usage guidelines for the ELEVATE design system."
+category: "tokens"
+tags: ["design-tokens", "colors", "palette", "theming"]
+status: "stable" 
+version: "1.0.0"
+---
+
+import { EsdsLiveExample, EsdsCodeBlock, EsdsTokenTable, EsdsStatusBadge } from '@/components/esds'
+
+# Color Tokens
+
+<EsdsStatusBadge status="stable" />
+
+Colors are fundamental to creating effective user interfaces. The ELEVATE color system provides a systematic approach to color usage, ensuring accessibility, consistency, and visual hierarchy across your applications.
+
+## Color Architecture
+
+ELEVATE uses a three-tier color token architecture that provides both consistency and flexibility:
+
+1. **Primitive Tokens**: Base color values (immutable)
+2. **Alias Tokens**: Semantic color meanings (immutable)  
+3. **Component Tokens**: Context-specific usage (customizable)
+
+<EsdsCodeBlock language="css">
+```css
+/* Primitive: Base color value */
+--elvt-primitives-color-blue-500: #3b82f6;
+
+/* Alias: Semantic meaning */
+--elvt-alias-color-primary: var(--elvt-primitives-color-blue-500);
+
+/* Component: Specific usage */
+--esds-button-background: var(--elvt-alias-color-primary);
+```
+</EsdsCodeBlock>
+
+## Primary Colors
+
+Primary colors represent your brand and are used for the most important interactive elements.
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+    gap: '1rem',
+    marginBottom: '2rem'
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-primitives-color-blue-600)', 
+        height: '80px',
+        borderRadius: '8px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '600'
+      }}>
+        Primary
+      </div>
+      <div style={{ fontSize: '14px', fontFamily: 'monospace' }}>
+        --elvt-alias-color-primary<br/>
+        #2563eb
+      </div>
+    </div>
+    
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-primitives-color-teal-600)', 
+        height: '80px',
+        borderRadius: '8px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '600'
+      }}>
+        Secondary
+      </div>
+      <div style={{ fontSize: '14px', fontFamily: 'monospace' }}>
+        --elvt-alias-color-secondary<br/>
+        #0d9488
+      </div>
+    </div>
+  </div>
+</EsdsLiveExample>
+
+### Usage Guidelines
+
+- **Primary Blue**: Main brand color, use for primary actions and key interface elements
+- **Secondary Teal**: Supporting brand color, use for secondary actions and accents
+
+## Status Colors
+
+Status colors communicate different states and feedback to users.
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', 
+    gap: '1rem',
+    marginBottom: '2rem'
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-alias-color-success)', 
+        height: '60px',
+        borderRadius: '6px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '500',
+        fontSize: '14px'
+      }}>
+        Success
+      </div>
+      <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+        #0d9488
+      </div>
+    </div>
+    
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-alias-color-warning)', 
+        height: '60px',
+        borderRadius: '6px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '500',
+        fontSize: '14px'
+      }}>
+        Warning
+      </div>
+      <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+        #f59e0b
+      </div>
+    </div>
+    
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-alias-color-danger)', 
+        height: '60px',
+        borderRadius: '6px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '500',
+        fontSize: '14px'
+      }}>
+        Danger
+      </div>
+      <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+        #dc2626
+      </div>
+    </div>
+    
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-alias-color-info)', 
+        height: '60px',
+        borderRadius: '6px',
+        marginBottom: '0.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: '500',
+        fontSize: '14px'
+      }}>
+        Info
+      </div>
+      <div style={{ fontSize: '12px', fontFamily: 'monospace' }}>
+        #2563eb
+      </div>
+    </div>
+  </div>
+</EsdsLiveExample>
+
+### When to Use Status Colors
+
+- **Success (Green)**: Confirmation messages, successful actions, positive states
+- **Warning (Amber)**: Caution messages, non-critical warnings, attention needed
+- **Danger (Red)**: Error messages, destructive actions, critical warnings  
+- **Info (Blue)**: Informational messages, tips, neutral notifications
+
+## Gray Scale
+
+The gray scale provides neutral colors for text, backgrounds, and borders.
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+    gap: '0.5rem',
+    marginBottom: '2rem'
+  }}>
+    {[
+      { name: 'Gray 50', value: 'var(--elvt-primitives-color-gray-50)', text: 'dark' },
+      { name: 'Gray 100', value: 'var(--elvt-primitives-color-gray-100)', text: 'dark' },
+      { name: 'Gray 200', value: 'var(--elvt-primitives-color-gray-200)', text: 'dark' },
+      { name: 'Gray 300', value: 'var(--elvt-primitives-color-gray-300)', text: 'dark' },
+      { name: 'Gray 400', value: 'var(--elvt-primitives-color-gray-400)', text: 'dark' },
+      { name: 'Gray 500', value: 'var(--elvt-primitives-color-gray-500)', text: 'light' },
+      { name: 'Gray 600', value: 'var(--elvt-primitives-color-gray-600)', text: 'light' },
+      { name: 'Gray 700', value: 'var(--elvt-primitives-color-gray-700)', text: 'light' },
+      { name: 'Gray 800', value: 'var(--elvt-primitives-color-gray-800)', text: 'light' },
+      { name: 'Gray 900', value: 'var(--elvt-primitives-color-gray-900)', text: 'light' },
+    ].map((color, index) => (
+      <div key={index} style={{ textAlign: 'center' }}>
+        <div style={{ 
+          backgroundColor: color.value, 
+          height: '60px',
+          borderRadius: '4px',
+          marginBottom: '0.25rem',
+          border: index < 3 ? '1px solid var(--elvt-primitives-color-gray-200)' : 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: color.text === 'light' ? 'white' : 'var(--elvt-primitives-color-gray-700)',
+          fontSize: '12px',
+          fontWeight: '500'
+        }}>
+          {50 * (index + 1)}
+        </div>
+        <div style={{ fontSize: '10px', fontFamily: 'monospace' }}>
+          {color.name}
+        </div>
+      </div>
+    ))}
+  </div>
+</EsdsLiveExample>
+
+### Gray Scale Usage
+
+- **Gray 50-200**: Light backgrounds, subtle borders
+- **Gray 300-400**: Medium contrast borders, disabled states  
+- **Gray 500-600**: Secondary text, icons
+- **Gray 700-900**: Primary text, high contrast elements
+
+## Background Colors
+
+Background colors create the foundation for your interface layouts.
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '1rem',
+    marginBottom: '2rem'
+  }}>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-alias-background-primary)', 
+      border: '2px solid var(--elvt-alias-border-light)',
+      borderRadius: '8px',
+      padding: '1.5rem',
+      textAlign: 'center'
+    }}>
+      <h4 style={{ margin: '0 0 0.5rem 0' }}>Primary</h4>
+      <p style={{ margin: '0', fontSize: '14px', color: 'var(--elvt-alias-text-secondary)' }}>
+        Main page background
+      </p>
+    </div>
+    
+    <div style={{ 
+      backgroundColor: 'var(--elvt-alias-background-secondary)', 
+      border: '2px solid var(--elvt-alias-border-light)',
+      borderRadius: '8px',
+      padding: '1.5rem',
+      textAlign: 'center'
+    }}>
+      <h4 style={{ margin: '0 0 0.5rem 0' }}>Secondary</h4>
+      <p style={{ margin: '0', fontSize: '14px', color: 'var(--elvt-alias-text-secondary)' }}>
+        Cards, panels, surfaces
+      </p>
+    </div>
+    
+    <div style={{ 
+      backgroundColor: 'var(--elvt-alias-background-tertiary)', 
+      border: '2px solid var(--elvt-alias-border-light)',
+      borderRadius: '8px',
+      padding: '1.5rem',
+      textAlign: 'center'
+    }}>
+      <h4 style={{ margin: '0 0 0.5rem 0' }}>Tertiary</h4>
+      <p style={{ margin: '0', fontSize: '14px', color: 'var(--elvt-alias-text-secondary)' }}>
+        Subtle backgrounds, wells
+      </p>
+    </div>
+  </div>
+</EsdsLiveExample>
+
+## Text Colors
+
+Text colors ensure proper hierarchy and readability.
+
+<EsdsLiveExample>
+  <div style={{ 
+    backgroundColor: 'var(--elvt-alias-background-primary)',
+    padding: '2rem',
+    border: '1px solid var(--elvt-alias-border-light)',
+    borderRadius: '8px'
+  }}>
+    <h3 style={{ 
+      color: 'var(--elvt-alias-text-primary)',
+      margin: '0 0 1rem 0'
+    }}>
+      Primary Text - Main headings and body text
+    </h3>
+    <p style={{ 
+      color: 'var(--elvt-alias-text-secondary)',
+      margin: '0 0 1rem 0'
+    }}>
+      Secondary Text - Supporting text, captions, and metadata
+    </p>
+    <p style={{ 
+      color: 'var(--elvt-alias-text-tertiary)',
+      margin: '0 0 1rem 0'
+    }}>
+      Tertiary Text - Subtle text, placeholders, and hints
+    </p>
+    <p style={{ 
+      color: 'var(--elvt-alias-text-accent)',
+      margin: '0'
+    }}>
+      Accent Text - Links, highlighted text, and interactive elements
+    </p>
+  </div>
+</EsdsLiveExample>
+
+## Dark Theme Colors
+
+ELEVATE includes comprehensive dark theme support with automatically adjusted colors.
+
+<EsdsLiveExample>
+  <div style={{ 
+    backgroundColor: 'var(--elvt-primitives-color-gray-900)',
+    color: 'var(--elvt-primitives-color-gray-100)',
+    padding: '2rem',
+    borderRadius: '8px',
+    marginBottom: '2rem'
+  }}>
+    <h4 style={{ margin: '0 0 1rem 0', color: 'var(--elvt-primitives-color-gray-100)' }}>
+      Dark Theme Preview
+    </h4>
+    <p style={{ margin: '0 0 1rem 0', color: 'var(--elvt-primitives-color-gray-300)' }}>
+      Colors automatically adjust for dark themes while maintaining contrast ratios and accessibility standards.
+    </p>
+    <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-primitives-color-blue-600)',
+        padding: '0.5rem 1rem',
+        borderRadius: '6px',
+        color: 'white',
+        fontSize: '14px'
+      }}>
+        Primary Button
+      </div>
+      <div style={{ 
+        backgroundColor: 'var(--elvt-primitives-color-gray-700)',
+        padding: '0.5rem 1rem',
+        borderRadius: '6px',
+        color: 'var(--elvt-primitives-color-gray-200)',
+        fontSize: '14px'
+      }}>
+        Secondary Button
+      </div>
+    </div>
+  </div>
+</EsdsLiveExample>
+
+## Accessibility
+
+All color combinations in ELEVATE meet WCAG AA accessibility standards:
+
+- **Text contrast**: Minimum 4.5:1 ratio for normal text, 3:1 for large text
+- **Interactive elements**: All buttons and links meet contrast requirements
+- **Status colors**: Designed to be distinguishable for colorblind users
+- **Focus indicators**: High contrast focus rings for keyboard navigation
+
+<EsdsCodeBlock language="css">
+```css
+/* Good: High contrast text */
+color: var(--elvt-alias-text-primary);
+background: var(--elvt-alias-background-primary);
+
+/* Good: Accessible link color */
+color: var(--elvt-alias-text-accent);
+
+/* Avoid: Low contrast combinations */
+color: var(--elvt-primitives-color-gray-400);
+background: var(--elvt-primitives-color-gray-50);
+```
+</EsdsCodeBlock>
+
+## Implementation
+
+### Using Color Tokens
+
+<EsdsCodeBlock language="css">
+```css
+/* Use alias tokens for semantic meaning */
+.button-primary {
+  background-color: var(--elvt-alias-color-primary);
+  color: var(--elvt-alias-text-inverse);
+}
+
+/* Use primitive tokens for specific shades */
+.notification-background {
+  background-color: var(--elvt-primitives-color-blue-50);
+  border: 1px solid var(--elvt-primitives-color-blue-200);
+}
+```
+</EsdsCodeBlock>
+
+### Theme Customization
+
+<EsdsCodeBlock language="css">
+```css
+/* Override alias tokens for custom themes */
+:root {
+  --elvt-alias-color-primary: #6366f1; /* Custom purple primary */
+  --elvt-alias-color-secondary: #10b981; /* Custom green secondary */
+}
+```
+</EsdsCodeBlock>
+
+## Color Tokens Reference
+
+<EsdsTokenTable category="color" />
+
+## Best Practices
+
+### Do's
+- Use semantic alias tokens instead of primitive values when possible
+- Maintain consistent color usage across your application
+- Test color combinations for accessibility compliance
+- Use status colors appropriately to convey meaning
+
+### Don'ts  
+- Don't use primitive tokens directly for semantic purposes
+- Don't create custom colors without considering accessibility
+- Don't use color alone to convey important information
+- Don't mix different color systems within the same interface
+
+---
+
+*Color tokens are the foundation of consistent visual design. For implementation details, see the [ELEVATE Design Tokens documentation](https://github.com/owrede-inform/elevate-docsite).*

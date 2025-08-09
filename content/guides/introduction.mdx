@@ -1,0 +1,203 @@
+---
+title: "Introduction to ELEVATE Design System"
+description: "Welcome to the comprehensive documentation for the ELEVATE Design System, your guide to building exceptional user experiences."
+category: "guides"
+tags: ["getting-started", "overview", "design-system"]
+status: "stable"
+version: "1.0.0"
+---
+
+import { EsdsLiveExample, EsdsCodeBlock, EsdsStatusBadge } from '@/components/esds'
+
+# Introduction to ELEVATE Design System
+
+<EsdsStatusBadge status="stable" />
+
+Welcome to **ELEVATE**, a comprehensive design system built to empower teams in creating consistent, accessible, and beautiful user experiences. This documentation site serves as your complete guide to understanding, implementing, and contributing to the ELEVATE ecosystem.
+
+## What is ELEVATE?
+
+ELEVATE is more than just a component library—it's a complete design system that provides:
+
+- **Design Tokens**: A systematic approach to design decisions including colors, typography, spacing, and more
+- **Component Library**: Pre-built, accessible React components that implement ELEVATE design principles
+- **Design Patterns**: Proven UI patterns and layouts for common user interactions
+- **Documentation**: Comprehensive guides, examples, and best practices
+
+## Key Features
+
+### 🎨 **Design Tokens**
+A three-tier token architecture that provides flexibility while maintaining consistency:
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', 
+    gap: '1rem',
+    padding: '1rem'
+  }}>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-blue-500)', 
+      height: '60px',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+      fontSize: '12px'
+    }}>
+      Primary Blue
+    </div>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-teal-600)', 
+      height: '60px',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+      fontSize: '12px'
+    }}>
+      Secondary Teal
+    </div>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-gray-100)', 
+      height: '60px',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'var(--elvt-primitives-color-gray-800)',
+      fontSize: '12px'
+    }}>
+      Neutral Gray
+    </div>
+  </div>
+</EsdsLiveExample>
+
+### 🧩 **React Components**
+Production-ready components built with accessibility and flexibility in mind:
+
+<EsdsLiveExample>
+  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+    <elvt-button tone="primary">Primary Button</elvt-button>
+    <elvt-button tone="secondary">Secondary Button</elvt-button>
+    <elvt-button tone="tertiary">Tertiary Button</elvt-button>
+  </div>
+</EsdsLiveExample>
+
+### 📐 **Consistent Spacing**
+A systematic spacing scale that creates visual hierarchy and consistency:
+
+<EsdsLiveExample>
+  <div style={{ 
+    display: 'flex', 
+    flexDirection: 'column', 
+    gap: '0.5rem',
+    fontFamily: 'monospace',
+    fontSize: '14px'
+  }}>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-blue-100)',
+      padding: 'var(--elvt-primitives-spacing-xs)',
+      borderRadius: '4px'
+    }}>
+      XS Spacing (4px)
+    </div>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-blue-100)',
+      padding: 'var(--elvt-primitives-spacing-sm)',
+      borderRadius: '4px'
+    }}>
+      SM Spacing (8px)
+    </div>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-blue-100)',
+      padding: 'var(--elvt-primitives-spacing-md)',
+      borderRadius: '4px'
+    }}>
+      MD Spacing (16px)
+    </div>
+    <div style={{ 
+      backgroundColor: 'var(--elvt-primitives-color-blue-100)',
+      padding: 'var(--elvt-primitives-spacing-lg)',
+      borderRadius: '4px'
+    }}>
+      LG Spacing (24px)
+    </div>
+  </div>
+</EsdsLiveExample>
+
+### ♿ **Accessibility First**
+Every component and pattern is built with accessibility in mind, following WCAG 2.1 AA standards.
+
+## Getting Started
+
+Ready to start building with ELEVATE? Here's how to get started:
+
+1. **[Installation Guide](/guides/installation)** - Set up ELEVATE in your project
+2. **[Component Library](/components/button)** - Explore available components
+3. **[Design Tokens](/tokens/colors)** - Understand the token system
+4. **[Patterns](/patterns/form-layouts)** - Learn common UI patterns
+
+## Design Principles
+
+ELEVATE is built on five core design principles:
+
+### 1. **Consistency**
+Consistent visual language and interaction patterns across all touchpoints.
+
+### 2. **Accessibility**
+Inclusive design that works for everyone, regardless of ability.
+
+### 3. **Flexibility** 
+Components and tokens that adapt to different contexts and requirements.
+
+### 4. **Performance**
+Optimized for fast loading and smooth interactions.
+
+### 5. **Developer Experience**
+Tools and documentation that make implementation straightforward.
+
+## Architecture Overview
+
+ELEVATE uses a three-tier token architecture:
+
+<EsdsCodeBlock language="css">
+```css
+/* Tier 1: Primitive Tokens */
+--elvt-primitives-color-blue-500: #3b82f6;
+
+/* Tier 2: Alias Tokens */
+--elvt-alias-color-primary: var(--elvt-primitives-color-blue-500);
+
+/* Tier 3: Component Tokens */
+--esds-button-background: var(--elvt-alias-color-primary);
+```
+</EsdsCodeBlock>
+
+This architecture provides:
+- **Primitive tokens** for base design decisions
+- **Alias tokens** for semantic meaning
+- **Component tokens** for specific use cases
+
+## Community and Support
+
+ELEVATE is actively maintained and continuously improved. Join our community:
+
+- **GitHub Repository**: Contribute, report issues, and request features
+- **Documentation**: This comprehensive guide with examples and best practices
+- **Support**: Get help implementing ELEVATE in your projects
+
+## What's Next?
+
+Explore the documentation to learn more about ELEVATE's capabilities:
+
+- Start with the **[Installation Guide](/guides/installation)** to set up your environment
+- Browse the **[Component Library](/components)** to see what's available
+- Dive deep into **[Design Tokens](/tokens)** to understand the system
+- Learn **[Patterns](/patterns)** for common UI scenarios
+
+---
+
+*Built with ❤️ by INFORM for teams who care about design quality and user experience.*

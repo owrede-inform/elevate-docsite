@@ -1,0 +1,117 @@
+/* ELEVATE PRIMITIVE TOKENS - TIER 1 */
+/* Base design tokens from ELEVATE core system */
+/* These tokens are immutable and come from @inform-elevate/elevate-core-ui */
+
+:root {
+  /* ===== COLOR PRIMITIVES ===== */
+  /* Gray Scale */
+  --elvt-primitives-color-gray-50: #f9fafb;
+  --elvt-primitives-color-gray-100: #f3f4f6;
+  --elvt-primitives-color-gray-200: #e5e7eb;
+  --elvt-primitives-color-gray-300: #d1d5db;
+  --elvt-primitives-color-gray-400: #9ca3af;
+  --elvt-primitives-color-gray-500: #6b7280;
+  --elvt-primitives-color-gray-600: #4b5563;
+  --elvt-primitives-color-gray-700: #374151;
+  --elvt-primitives-color-gray-800: #1f2937;
+  --elvt-primitives-color-gray-900: #111827;
+  
+  /* Blue Scale */
+  --elvt-primitives-color-blue-50: #eff6ff;
+  --elvt-primitives-color-blue-100: #dbeafe;
+  --elvt-primitives-color-blue-200: #bfdbfe;
+  --elvt-primitives-color-blue-300: #93c5fd;
+  --elvt-primitives-color-blue-400: #60a5fa;
+  --elvt-primitives-color-blue-500: #3b82f6;
+  --elvt-primitives-color-blue-600: #2563eb;
+  --elvt-primitives-color-blue-700: #1d4ed8;
+  --elvt-primitives-color-blue-800: #1e40af;
+  --elvt-primitives-color-blue-900: #1e3a8a;
+  
+  /* Teal Scale (INFORM Brand) */
+  --elvt-primitives-color-teal-50: #f0fdfa;
+  --elvt-primitives-color-teal-100: #ccfbf1;
+  --elvt-primitives-color-teal-200: #99f6e4;
+  --elvt-primitives-color-teal-300: #5eead4;
+  --elvt-primitives-color-teal-400: #2dd4bf;
+  --elvt-primitives-color-teal-500: #14b8a6;
+  --elvt-primitives-color-teal-600: #0d9488;
+  --elvt-primitives-color-teal-700: #0f766e;
+  --elvt-primitives-color-teal-800: #115e59;
+  --elvt-primitives-color-teal-900: #134e4a;
+  
+  /* Red Scale */
+  --elvt-primitives-color-red-50: #fef2f2;
+  --elvt-primitives-color-red-100: #fee2e2;
+  --elvt-primitives-color-red-200: #fecaca;
+  --elvt-primitives-color-red-300: #fca5a5;
+  --elvt-primitives-color-red-400: #f87171;
+  --elvt-primitives-color-red-500: #ef4444;
+  --elvt-primitives-color-red-600: #dc2626;
+  --elvt-primitives-color-red-700: #b91c1c;
+  --elvt-primitives-color-red-800: #991b1b;
+  --elvt-primitives-color-red-900: #7f1d1d;
+  
+  /* ===== SPACING PRIMITIVES ===== */
+  --elvt-primitives-spacing-xs: 0.25rem;   /* 4px */
+  --elvt-primitives-spacing-sm: 0.5rem;    /* 8px */
+  --elvt-primitives-spacing-md: 1rem;      /* 16px */
+  --elvt-primitives-spacing-lg: 1.5rem;    /* 24px */
+  --elvt-primitives-spacing-xl: 2rem;      /* 32px */
+  --elvt-primitives-spacing-2xl: 3rem;     /* 48px */
+  --elvt-primitives-spacing-3xl: 4rem;     /* 64px */
+  
+  /* ===== TYPOGRAPHY PRIMITIVES ===== */
+  /* Font Families */
+  --elvt-primitives-font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --elvt-primitives-font-family-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  
+  /* Font Sizes */
+  --elvt-primitives-font-size-xs: 0.75rem;    /* 12px */
+  --elvt-primitives-font-size-sm: 0.875rem;   /* 14px */
+  --elvt-primitives-font-size-base: 1rem;     /* 16px */
+  --elvt-primitives-font-size-lg: 1.125rem;   /* 18px */
+  --elvt-primitives-font-size-xl: 1.25rem;    /* 20px */
+  --elvt-primitives-font-size-2xl: 1.5rem;    /* 24px */
+  --elvt-primitives-font-size-3xl: 1.875rem;  /* 30px */
+  --elvt-primitives-font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Font Weights */
+  --elvt-primitives-font-weight-light: 300;
+  --elvt-primitives-font-weight-regular: 400;
+  --elvt-primitives-font-weight-medium: 500;
+  --elvt-primitives-font-weight-semibold: 600;
+  --elvt-primitives-font-weight-bold: 700;
+  
+  /* Line Heights */
+  --elvt-primitives-line-height-tight: 1.25;
+  --elvt-primitives-line-height-normal: 1.5;
+  --elvt-primitives-line-height-relaxed: 1.75;
+  
+  /* ===== RADIUS PRIMITIVES ===== */
+  --elvt-primitives-radius-none: 0;
+  --elvt-primitives-radius-sm: 0.125rem;   /* 2px */
+  --elvt-primitives-radius-md: 0.375rem;   /* 6px */
+  --elvt-primitives-radius-lg: 0.5rem;     /* 8px */
+  --elvt-primitives-radius-xl: 0.75rem;    /* 12px */
+  --elvt-primitives-radius-full: 9999px;
+  
+  /* ===== SHADOW PRIMITIVES ===== */
+  --elvt-primitives-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --elvt-primitives-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --elvt-primitives-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --elvt-primitives-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* ===== TRANSITION PRIMITIVES ===== */
+  --elvt-primitives-transition-fast: 150ms ease;
+  --elvt-primitives-transition-normal: 300ms ease;
+  --elvt-primitives-transition-slow: 500ms ease;
+  
+  /* ===== Z-INDEX PRIMITIVES ===== */
+  --elvt-primitives-z-dropdown: 1000;
+  --elvt-primitives-z-sticky: 1020;
+  --elvt-primitives-z-fixed: 1030;
+  --elvt-primitives-z-modal: 1040;
+  --elvt-primitives-z-popover: 1050;
+  --elvt-primitives-z-tooltip: 1060;
+}
