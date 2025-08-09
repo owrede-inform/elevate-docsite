@@ -1,0 +1,180 @@
+---
+title: "Button"
+description: "Primary and secondary buttons for user interactions"
+category: "Actions"
+status: "stable"
+---
+
+# Button
+
+Buttons are interactive elements that users can click or tap to trigger actions. The ELEVATE Button component provides consistent styling and behavior across your application.
+
+<ComponentStatus status="stable" />
+
+## Overview
+
+Buttons communicate actions that users can take and are typically placed throughout your UI, in places like dialogs, modal windows, forms, cards, and toolbars.
+
+<ComponentPreview
+  code={`<elvt-button tone="neutral">Neutral Button</elvt-button>
+<elvt-button tone="primary">Primary Button</elvt-button>
+<elvt-button tone="emphasized">Emphasized Button</elvt-button>`}
+/>
+
+## Usage Guidelines
+
+### When to Use
+
+- **Primary actions**: Use primary tone for the most important action on a page
+- **Emphasized actions**: Use emphasized tone to highlight important actions
+- **Neutral actions**: Use neutral tone for standard actions (default)
+- **Subtle actions**: Use subtle tone for dismissive actions like cancel or skip
+- **Success/Warning/Danger**: Use contextual tones for feedback and critical actions
+
+### When Not to Use
+
+- **Navigation**: Use Link components instead of buttons for navigation
+- **Toggle states**: Use Toggle or Switch components for on/off states
+- **Multiple selections**: Use Checkbox components for multiple selections
+
+## Variants
+
+### Tone
+
+Buttons come in different tones to indicate their importance and context:
+
+<ComponentPreview
+  code={`<elvt-stack gap="m" direction="row" align="center" wrap="wrap">
+  <elvt-button tone="neutral">Neutral</elvt-button>
+  <elvt-button tone="primary">Primary</elvt-button>
+  <elvt-button tone="emphasized">Emphasized</elvt-button>
+  <elvt-button tone="subtle">Subtle</elvt-button>
+</elvt-stack>
+
+<elvt-stack gap="m" direction="row" align="center" wrap="wrap">
+  <elvt-button tone="success">Success</elvt-button>
+  <elvt-button tone="warning">Warning</elvt-button>
+  <elvt-button tone="danger">Danger</elvt-button>
+</elvt-stack>`}
+/>
+
+### Size
+
+Choose the appropriate size for your use case:
+
+<ComponentPreview
+  code={`<elvt-stack gap="m" direction="row" align="center">
+  <elvt-button size="small" tone="primary">Small</elvt-button>
+  <elvt-button size="medium" tone="primary">Medium</elvt-button>
+  <elvt-button size="large" tone="primary">Large</elvt-button>
+</elvt-stack>`}
+/>
+
+### States
+
+Buttons have different states to provide feedback to users:
+
+<ComponentPreview
+  code={`<elvt-stack gap="m" direction="row" align="center">
+  <elvt-button tone="primary">Default</elvt-button>
+  <elvt-button tone="primary" disabled>Disabled</elvt-button>
+  <elvt-button tone="primary" loading>Loading</elvt-button>
+</elvt-stack>`}
+/>
+
+## API Reference
+
+<ApiTable>
+  <ApiRow prop="tone" type="'neutral' | 'primary' | 'emphasized' | 'subtle' | 'success' | 'warning' | 'danger'" default="'neutral'">
+    Visual style and semantic meaning
+  </ApiRow>
+  
+  <ApiRow prop="size" type="'small' | 'medium' | 'large'" default="'medium'">
+    Size of the button
+  </ApiRow>
+  
+  <ApiRow prop="disabled" type="boolean" default="false">
+    Whether the button is disabled
+  </ApiRow>
+  
+  <ApiRow prop="loading" type="boolean" default="false">
+    Whether the button is in a loading state
+  </ApiRow>
+  
+  <ApiRow prop="children" type="ReactNode" default="">
+    Button label content
+  </ApiRow>
+  
+  <ApiRow prop="onClick" type="() => void" default="">
+    Callback fired when the button is clicked
+  </ApiRow>
+</ApiTable>
+
+## Examples
+
+### With Icons
+
+Buttons can include icons to provide additional context:
+
+<ComponentPreview
+  code={`<elvt-stack gap="m" direction="row" align="center">
+  <elvt-button>
+    <elvt-icon name="plus" slot="icon-left"></elvt-icon>
+    Add Item
+  </elvt-button>
+  <elvt-button>
+    Continue
+    <elvt-icon name="arrow-right" slot="icon-right"></elvt-icon>
+  </elvt-button>
+  <elvt-button tone="secondary">
+    <elvt-icon name="download" slot="icon-left"></elvt-icon>
+    Download
+  </elvt-button>
+</elvt-stack>`}
+/>
+
+### Full Width
+
+Buttons can span the full width of their container:
+
+<ComponentPreview
+  code={`<elvt-button full-width tone="primary">Full Width Button</elvt-button>`}
+/>
+
+### Loading State
+
+Show loading state during asynchronous operations:
+
+<ComponentPreview
+  code={`<elvt-stack gap="m" direction="row" align="center">
+  <elvt-button loading tone="primary">Saving...</elvt-button>
+  <elvt-button loading tone="secondary">Processing</elvt-button>
+</elvt-stack>`}
+/>
+
+## Accessibility
+
+### Keyboard Support
+
+- **Enter/Space**: Activates the button
+- **Tab**: Moves focus to the button
+- **Shift + Tab**: Moves focus away from the button
+
+### Screen Reader Support
+
+- Button has proper ARIA labels and roles
+- Loading and disabled states are announced
+- Icon-only buttons include accessible labels
+
+### Best Practices
+
+- Use descriptive button labels that clearly indicate the action
+- Ensure sufficient color contrast (4.5:1 minimum)
+- Provide focus indicators for keyboard navigation
+- Use loading states for long-running operations
+
+## Related Components
+
+- [Link](/components/link) - For navigation between pages
+- [Icon Button](/components/icon-button) - For buttons with only icons
+- [Toggle](/components/toggle) - For binary on/off controls

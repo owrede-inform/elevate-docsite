@@ -1,0 +1,189 @@
+---
+title: "Installation"
+description: "How to install and configure ELEVATE packages in your project"
+role: "developers"
+order: 1
+---
+
+# Installation
+
+Get started with ELEVATE by installing the core packages in your project.
+
+## Quick Start
+
+Install the main ELEVATE packages:
+
+```bash
+npm install @inform-design/elevate-core-ui
+npm install @inform-design/elevate-design-tokens
+npm install @inform-design/elevate-icons
+```
+
+## Package Overview
+
+### Core UI Components
+The main component library with all UI elements:
+
+```bash
+npm install @inform-design/elevate-core-ui
+```
+
+**Includes:**
+- 50+ React components
+- TypeScript definitions
+- Accessibility features built-in
+- Tree-shakeable ES modules
+
+### Design Tokens
+Design tokens for colors, typography, spacing, and more:
+
+```bash
+npm install @inform-design/elevate-design-tokens
+```
+
+**Includes:**
+- CSS custom properties
+- JSON token files
+- Sass variables
+- JavaScript/TypeScript exports
+
+### Icon Library
+SVG icon library with consistent styling:
+
+```bash
+npm install @inform-design/elevate-icons
+```
+
+**Includes:**
+- 200+ SVG icons
+- Multiple sizes and variants
+- Consistent styling
+- Accessible markup
+
+## Basic Setup
+
+### 1. Import Styles
+
+Import the ELEVATE CSS in your main application file:
+
+```css
+/* In your main CSS file */
+@import '@inform-design/elevate-design-tokens/css/tokens.css';
+@import '@inform-design/elevate-core-ui/css/components.css';
+```
+
+### 2. Use Components
+
+Start using ELEVATE components in your React application:
+
+```tsx
+import React from 'react'
+import { Button, Input, Card } from '@inform-design/elevate-core-ui'
+
+function App() {
+  return (
+    <Card>
+      <h1>Welcome to ELEVATE</h1>
+      <Input placeholder="Enter your name" />
+      <Button tone="primary">Get Started</Button>
+    </Card>
+  )
+}
+```
+
+### 3. Theme Configuration
+
+Configure your theme using design tokens:
+
+```tsx
+import { ThemeProvider } from '@inform-design/elevate-core-ui'
+
+const theme = {
+  colors: {
+    primary: '#0090A7',
+    secondary: '#6C63FF',
+  },
+  typography: {
+    fontFamily: 'Inter, sans-serif',
+  },
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      {/* Your app components */}
+    </ThemeProvider>
+  )
+}
+```
+
+## Framework Integration
+
+### Next.js
+
+Add ELEVATE to your Next.js project:
+
+```tsx
+// pages/_app.tsx
+import '@inform-design/elevate-design-tokens/css/tokens.css'
+import '@inform-design/elevate-core-ui/css/components.css'
+import type { AppProps } from 'next/app'
+
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
+```
+
+### Vite
+
+Configure Vite for optimal ELEVATE integration:
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  optimizeDeps: {
+    include: ['@inform-design/elevate-core-ui'],
+  },
+})
+```
+
+## TypeScript Configuration
+
+ELEVATE includes full TypeScript support. Update your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Module not found errors:**
+- Ensure you've installed all required peer dependencies
+- Check that your bundler supports ES modules
+
+**Style conflicts:**
+- Import ELEVATE styles before your custom CSS
+- Use CSS Modules or styled-components to scope styles
+
+**TypeScript errors:**
+- Update to the latest version of TypeScript (4.5+)
+- Ensure `esModuleInterop` is enabled in tsconfig.json
+
+## Next Steps
+
+<GuideNavigation role="developers">
+  <NextGuide to="api-reference">API Reference →</NextGuide>
+  <NextGuide to="theming">Theming Guide →</NextGuide>
+</GuideNavigation>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import EsdsTreeSidebar from '../navigation/EsdsTreeSidebar'
+import EsdsProductSwitcher from '../navigation/EsdsProductSwitcher'
+import { MDI_ICON_REGISTRY } from '@/utils/icons'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -70,14 +72,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const newDarkMode = !isDarkMode
     setIsDarkMode(newDarkMode)
     
-    // Apply theme to document
-    if (newDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark')
-      localStorage.setItem('elevate-theme', 'dark')
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light')
-      localStorage.setItem('elevate-theme', 'light')
-    }
+    const theme = newDarkMode ? 'dark' : 'light'
+    const oldTheme = newDarkMode ? 'light' : 'dark'
+    
+    // Apply ESDS data-theme attribute
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('elevate-theme', theme)
+    
+    // Update ELEVATE theme classes
+    document.documentElement.classList.remove(`elvt-theme-${oldTheme}`)
+    document.documentElement.classList.add(`elvt-theme-${theme}`)
+    document.body.classList.remove(`elvt-theme-${oldTheme}`)
+    document.body.classList.add(`elvt-theme-${theme}`)
   }
 
   // Load saved role preference and handle responsive behavior
@@ -88,14 +94,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
 
     // Load saved theme preference
-    const savedTheme = localStorage.getItem('elevate-theme')
-    if (savedTheme === 'dark') {
-      setIsDarkMode(true)
-      document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-      setIsDarkMode(false)
-      document.documentElement.setAttribute('data-theme', 'light')
-    }
+    const savedTheme = localStorage.getItem('elevate-theme') || 'light'
+    const isDark = savedTheme === 'dark'
+    setIsDarkMode(isDark)
+    
+    // Apply theme attributes and classes
+    document.documentElement.setAttribute('data-theme', savedTheme)
+    document.documentElement.classList.remove('elvt-theme-light', 'elvt-theme-dark')
+    document.documentElement.classList.add(`elvt-theme-${savedTheme}`)
+    document.body.classList.remove('elvt-theme-light', 'elvt-theme-dark')
+    document.body.classList.add(`elvt-theme-${savedTheme}`)
 
     // Handle responsive sidebar behavior
     const handleResize = () => {
@@ -142,18 +150,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="app-layout">
       <elvt-application>
         <elvt-toolbar slot="header" border="end">
-          <elvt-stack slot="start" gap="0">
+          <elvt-stack slot="start" gap="s">
             {/* INFORM + ELEVATE Logo */}
             <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <img
-                src={(import.meta as any).env?.BASE_URL ? `${(import.meta as any).env.BASE_URL}data/images/inform-brand.svg` : '/data/images/inform-brand.svg'}
+                src={(import.meta as any).env?.BASE_URL ? `${(import.meta as any).env.BASE_URL}data/images/inform-brand${isDarkMode ? '-dark' : ''}.svg` : `/data/images/inform-brand${isDarkMode ? '-dark' : ''}.svg`}
                 alt="INFORM"
                 style={{ height: '1rem', width: 'auto' }}
               />
-              <h2 style={{ margin: 0, fontSize: '18px', color: 'var(--elevate-color-text-primary)', fontWeight: 'normal' }}>
+              <h2 style={{ margin: 0, fontSize: '18px', color: 'var(--esds-alias-text-heading)', fontWeight: 'normal' }}>
                 <strong>ELEVATE</strong> Design System
               </h2>
             </Link>
+            
+            {/* Product Switcher */}
+            <EsdsProductSwitcher />
           </elvt-stack>
           
           {/* Navigation Menu for larger screens - removed per requirement */}
@@ -181,27 +192,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             />
             
             {/* Dark Mode Toggle */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <elvt-icon-button 
-                size="small" 
-                label="Light Mode"
-                icon="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"
-                style={{ opacity: isDarkMode ? '0.5' : '1' }}
-              />
-              <elvt-switch 
-                checked={isDarkMode}
-                size="small"
-                hideLabel={true}
-                onInput={(e: any) => toggleDarkMode()}
-                style={{ margin: '0' }}
-              />
-              <elvt-icon-button 
-                size="small" 
-                label="Dark Mode"
-                icon="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.4 6.35,17.41C9.37,20.43 14,20.54 17.33,17.97Z"
-                style={{ opacity: isDarkMode ? '1' : '0.5' }}
-              />
-            </div>
+            <elvt-icon-button 
+              size="medium" 
+              label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+              icon={isDarkMode ? MDI_ICON_REGISTRY.sun : MDI_ICON_REGISTRY.moon}
+              onClick={toggleDarkMode}
+            />
             
             {/* GitHub Link */}
             <elvt-icon-button 
@@ -226,8 +222,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     textDecoration: 'none',
                     padding: '12px 16px',
                     borderRadius: '8px',
-                    color: isActive(item.href) ? 'var(--elevate-color-primary)' : 'var(--elevate-color-text-primary)',
-                    backgroundColor: isActive(item.href) ? 'var(--elevate-color-primary-light)' : 'transparent',
+                    color: isActive(item.href) ? 'var(--esds-alias-color-brand-primary)' : 'var(--esds-alias-text-body)',
+                    backgroundColor: isActive(item.href) ? 'var(--esds-alias-background-surface)' : 'transparent',
                     fontWeight: isActive(item.href) ? '600' : '500',
                     display: 'block'
                   }}
@@ -247,11 +243,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <EsdsTreeSidebar 
               sections={[
                 {
-                  title: 'Getting Started',
+                  title: 'Getting started',
                   pages: [
                     { title: 'Introduction', path: '/guides/introduction' },
                     { title: 'Installation', path: '/guides/installation' },
                     { title: 'Quick Start', path: '/guides/quick-start' }
+                  ]
+                },
+                {
+                  title: 'Foundations',
+                  pages: [
+                    { title: 'Colors', path: '/tokens/colors' },
+                    { title: 'Typography', path: '/tokens/typography' },
+                    { title: 'Spacing', path: '/tokens/spacing' },
+                    { title: 'Design Principles', path: '/foundations/principles' },
+                    { title: 'Accessibility', path: '/foundations/accessibility' }
                   ]
                 },
                 {
@@ -263,18 +269,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   ]
                 },
                 {
-                  title: 'Design Tokens',
-                  pages: [
-                    { title: 'Colors', path: '/tokens/colors' },
-                    { title: 'Typography', path: '/tokens/typography' },
-                    { title: 'Spacing', path: '/tokens/spacing' }
-                  ]
-                },
-                {
                   title: 'Patterns',
                   pages: [
                     { title: 'Form Layouts', path: '/patterns/forms' },
                     { title: 'Navigation', path: '/patterns/navigation' }
+                  ]
+                },
+                {
+                  title: 'Resources',
+                  pages: [
+                    { title: 'Downloads', path: '/resources/downloads' },
+                    { title: 'Changelog', path: '/resources/changelog' },
+                    { title: 'GitHub', path: 'https://github.com/owrede-inform/elevate-docsite' },
+                    { title: 'Support', path: '/resources/support' }
                   ]
                 }
               ]}
@@ -385,8 +392,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           width: 280px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 100;
-          background: var(--elevate-color-background-primary, #ffffff);
-          border-right: 1px solid var(--elevate-color-border-light, #e9ecef);
+          background: var(--esds-alias-sidebar-background);
+          border-right: 1px solid var(--esds-alias-sidebar-border);
           height: 100%;
           overflow-y: auto;
         }
@@ -411,7 +418,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         .main-content {
           flex: 1;
           overflow-y: auto;
-          background: var(--elevate-color-background-primary);
+          background: var(--esds-alias-background-page);
           min-width: 0;
           height: 100%;
         }
@@ -440,8 +447,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             height: calc(100vh - 64px);
             z-index: 1000;
             transform: translateX(-100%);
-            box-shadow: var(--elevate-shadow-lg);
-            background: var(--elevate-color-background-primary);
+            box-shadow: var(--esds-alias-shadow-sidebar);
+            background: var(--esds-alias-sidebar-background);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           }
           
@@ -467,16 +474,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           top: 64px;
           left: 0;
           right: 0;
-          background: var(--elevate-color-background-primary);
-          border-bottom: 1px solid var(--elevate-color-border-light);
-          box-shadow: var(--elevate-shadow-lg);
+          background: var(--esds-alias-background-page);
+          border-bottom: 1px solid var(--esds-alias-sidebar-border);
+          box-shadow: var(--esds-alias-shadow-sidebar);
           z-index: 1000;
         }
 
         /* Footer */
         .site-footer {
-          background: var(--elevate-color-background-secondary);
-          border-top: 1px solid var(--elevate-color-border-light);
+          background: var(--esds-alias-background-surface);
+          border-top: 1px solid var(--esds-alias-sidebar-border);
           padding: 3rem 0 1rem 0;
           margin-top: auto;
         }
@@ -495,21 +502,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         }
 
         .footer-section h3 {
-          color: var(--elevate-color-primary);
+          color: var(--esds-alias-color-brand-primary);
           margin-bottom: 1rem;
           font-size: 1.25rem;
           font-weight: 600;
         }
 
         .footer-section h4 {
-          color: var(--elevate-color-text-primary);
+          color: var(--esds-alias-text-heading);
           margin-bottom: 0.75rem;
           font-size: 1rem;
           font-weight: 600;
         }
 
         .footer-section p {
-          color: var(--elevate-color-text-secondary);
+          color: var(--esds-alias-text-muted);
           line-height: 1.6;
           margin-bottom: 1rem;
         }
@@ -525,21 +532,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         }
 
         .footer-section ul li a {
-          color: var(--elevate-color-text-secondary);
+          color: var(--esds-alias-text-muted);
           text-decoration: none;
           transition: color 0.2s ease;
         }
 
         .footer-section ul li a:hover {
-          color: var(--elevate-color-primary);
+          color: var(--esds-alias-color-brand-primary);
           text-decoration: underline;
         }
 
         .footer-bottom {
           padding-top: 2rem;
-          border-top: 1px solid var(--elevate-color-border-light);
+          border-top: 1px solid var(--esds-alias-sidebar-border);
           text-align: center;
-          color: var(--elevate-color-text-secondary);
+          color: var(--esds-alias-text-muted);
         }
 
         .footer-bottom p {

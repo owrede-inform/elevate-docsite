@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDXComponents } from '@mdx-js/react'
 
-// Import all ESDS components
+// Import all ESDS components and ComponentPreview
 import {
   EsdsLiveExample,
   EsdsCodeBlock,
@@ -9,6 +9,108 @@ import {
   EsdsTokenTable,
   EsdsThemeToggle
 } from '../components/esds'
+
+// ComponentPreview web component wrapper for React
+const ComponentPreview: React.FC<{ code: string }> = ({ code }) => {
+  return React.createElement('esds-component-preview', { 
+    code,
+    preview: true,
+    'show-copy': true
+  })
+}
+
+// ComponentStatus badge
+const ComponentStatus: React.FC<{ status: 'stable' | 'beta' | 'alpha' | 'deprecated' }> = ({ status }) => {
+  const statusColors = {
+    stable: '#10b981',
+    beta: '#f59e0b', 
+    alpha: '#ef4444',
+    deprecated: '#6b7280'
+  }
+  
+  return (
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '0.25rem 0.75rem',
+        backgroundColor: statusColors[status] + '20',
+        color: statusColors[status],
+        borderRadius: '1rem',
+        fontSize: 'var(--esds-alias-label-small-font-size)',
+        fontWeight: 'var(--esds-alias-label-small-font-weight)',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        marginBottom: '1rem'
+      }}
+    >
+      {status}
+    </div>
+  )
+}
+
+// API Table components
+const ApiTable: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div style={{ overflowX: 'auto', marginBottom: '2rem' }}>
+    <table style={{
+      width: '100%',
+      borderCollapse: 'collapse',
+      border: '1px solid var(--esds-alias-sidebar-border)',
+      borderRadius: '0.5rem',
+      overflow: 'hidden'
+    }}>
+      <thead>
+        <tr style={{ backgroundColor: 'var(--esds-alias-background-surface)' }}>
+          <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 'var(--esds-alias-label-font-weight)' }}>Property</th>
+          <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 'var(--esds-alias-label-font-weight)' }}>Type</th>
+          <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 'var(--esds-alias-label-font-weight)' }}>Default</th>
+          <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 'var(--esds-alias-label-font-weight)' }}>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {children}
+      </tbody>
+    </table>
+  </div>
+)
+
+const ApiRow: React.FC<{ prop: string; type: string; default: string; children: React.ReactNode }> = ({ 
+  prop, type, default: defaultValue, children 
+}) => (
+  <tr>
+    <td style={{ 
+      padding: '1rem', 
+      borderBottom: '1px solid var(--esds-alias-sidebar-border)',
+      fontFamily: 'var(--esds-alias-font-family-code)',
+      fontSize: 'var(--esds-alias-code-inline-font-size)'
+    }}>
+      <code>{prop}</code>
+    </td>
+    <td style={{ 
+      padding: '1rem', 
+      borderBottom: '1px solid var(--esds-alias-sidebar-border)',
+      fontFamily: 'var(--esds-alias-font-family-code)',
+      fontSize: 'var(--esds-alias-code-inline-font-size)'
+    }}>
+      <code>{type}</code>
+    </td>
+    <td style={{ 
+      padding: '1rem', 
+      borderBottom: '1px solid var(--esds-alias-sidebar-border)',
+      fontFamily: 'var(--esds-alias-font-family-code)',
+      fontSize: 'var(--esds-alias-code-inline-font-size)'
+    }}>
+      <code>{defaultValue}</code>
+    </td>
+    <td style={{ 
+      padding: '1rem', 
+      borderBottom: '1px solid var(--esds-alias-sidebar-border)',
+      color: 'var(--esds-alias-text-muted)'
+    }}>
+      {children}
+    </td>
+  </tr>
+)
 
 /**
  * MDX Components Provider
@@ -337,6 +439,10 @@ const esdsComponents = {
   EsdsStatusBadge,  
   EsdsTokenTable,
   EsdsThemeToggle,
+  ComponentPreview,
+  ComponentStatus,
+  ApiTable,
+  ApiRow,
   
   // Aliases for easier use in MDX
   LiveExample: EsdsLiveExample,

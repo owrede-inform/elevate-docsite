@@ -59,9 +59,13 @@ if (typeof window !== 'undefined') {
   );
 }
 
-// Add ELEVATE theme class to document body and html
-document.documentElement.classList.add('elvt-theme-light')
-document.body.classList.add('elvt-theme-light')
+// Initialize theme from localStorage or default to light
+const savedTheme = localStorage.getItem('elevate-theme') || 'light'
+document.documentElement.setAttribute('data-theme', savedTheme)
+
+// Add ELEVATE theme classes
+document.documentElement.classList.add(`elvt-theme-${savedTheme}`)
+document.body.classList.add(`elvt-theme-${savedTheme}`)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -1,0 +1,11 @@
+- label: ELEVATE Design System
+  href: /
+  current: true
+- label: ELEVATE Core UI
+  href: https://github.com/inform-elevate/elevate-core-ui
+- label: Design Tokens
+  href: https://github.com/inform-elevate/elevate-design-tokens
+- label: Storybook
+  href: https://elevate-core-ui.inform-cloud.io/
+- label: INFORM Software
+  href: https://www.inform-software.com/
