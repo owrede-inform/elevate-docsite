@@ -16,6 +16,8 @@ export interface MDXFrontmatter {
   components?: string[]
   role?: string
   order?: number
+  technicalName?: string
+  version?: string
 }
 
 export interface MDXContent {
@@ -28,8 +30,9 @@ export interface MDXContent {
 
 export interface ContentIndex {
   pages: Record<string, MDXContent>
-  guides: Record<string, Record<string, MDXContent>>
+  guides: Record<string, MDXContent>
   components: Record<string, MDXContent>
+  tokens: Record<string, MDXContent>
   patterns: Record<string, MDXContent>
 }
 
@@ -91,6 +94,11 @@ function pathToUrl(filePath: string): string {
     url = url.replace('/pages', '')
   }
   
+  // Handle index files - map to their parent directory
+  if (url.endsWith('/index')) {
+    url = url.replace('/index', '')
+  }
+  
   // Ensure leading slash
   if (!url.startsWith('/')) {
     url = '/' + url
@@ -98,6 +106,11 @@ function pathToUrl(filePath: string): string {
   
   // Handle home page
   if (url === '/home') {
+    url = '/'
+  }
+  
+  // Handle root index
+  if (url === '') {
     url = '/'
   }
   
@@ -121,6 +134,7 @@ function buildContentIndex(): ContentIndex {
     pages: {},
     guides: {},
     components: {},
+    tokens: {},
     patterns: {}
   }
   
@@ -141,17 +155,11 @@ function buildContentIndex(): ContentIndex {
     if (filePath.includes('/pages/')) {
       index.pages[slug] = mdxContent
     } else if (filePath.includes('/guides/')) {
-      const pathParts = filePath.split('/')
-      const roleIndex = pathParts.findIndex(part => part === 'guides')
-      if (roleIndex >= 0 && pathParts[roleIndex + 1]) {
-        const role = pathParts[roleIndex + 1]
-        if (!index.guides[role]) {
-          index.guides[role] = {}
-        }
-        index.guides[role][slug] = mdxContent
-      }
+      index.guides[slug] = mdxContent
     } else if (filePath.includes('/components/')) {
       index.components[slug] = mdxContent
+    } else if (filePath.includes('/tokens/')) {
+      index.tokens[slug] = mdxContent
     } else if (filePath.includes('/patterns/')) {
       index.patterns[slug] = mdxContent
     }
@@ -178,8 +186,9 @@ export function getContentByUrl(url: string): MDXContent | null {
   // Find content by URL
   const allContent = [
     ...Object.values(contentIndex.pages),
-    ...Object.values(contentIndex.guides).flatMap(roleGuides => Object.values(roleGuides)),
+    ...Object.values(contentIndex.guides),
     ...Object.values(contentIndex.components),
+    ...Object.values(contentIndex.tokens),
     ...Object.values(contentIndex.patterns),
   ]
   
@@ -189,11 +198,7 @@ export function getContentByUrl(url: string): MDXContent | null {
 /**
  * Get content by type and slug
  */
-export function getContent(type: keyof ContentIndex, slug: string, role?: string): MDXContent | null {
-  if (type === 'guides' && role) {
-    return contentIndex.guides[role]?.[slug] || null
-  }
-  
+export function getContent(type: keyof ContentIndex, slug: string): MDXContent | null {
   const content = (contentIndex[type] as Record<string, MDXContent>)[slug]
   return content || null
 }
@@ -201,15 +206,7 @@ export function getContent(type: keyof ContentIndex, slug: string, role?: string
 /**
  * Get all content of a specific type
  */
-export function getAllContent(type: keyof ContentIndex, role?: string): MDXContent[] {
-  if (type === 'guides' && role) {
-    return Object.values(contentIndex.guides[role] || {})
-  }
-  
-  if (type === 'guides') {
-    return Object.values(contentIndex.guides).flatMap(roleGuides => Object.values(roleGuides))
-  }
-  
+export function getAllContent(type: keyof ContentIndex): MDXContent[] {
   return Object.values(contentIndex[type] as Record<string, MDXContent>)
 }
 
@@ -219,8 +216,9 @@ export function getAllContent(type: keyof ContentIndex, role?: string): MDXConte
 export function searchContent(query: string): MDXContent[] {
   const allContent = [
     ...Object.values(contentIndex.pages),
-    ...Object.values(contentIndex.guides).flatMap(roleGuides => Object.values(roleGuides)),
+    ...Object.values(contentIndex.guides),
     ...Object.values(contentIndex.components),
+    ...Object.values(contentIndex.tokens),
     ...Object.values(contentIndex.patterns),
   ]
   

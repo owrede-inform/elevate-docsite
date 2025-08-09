@@ -129,7 +129,7 @@ export class ElevateButton extends LitElement {
     }
 
     .button--danger:hover:not([disabled]) {
-      background: #c82333;
+      background: var(--elevate-color-danger-hover, #c82333);
       box-shadow: var(--elevate-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
 
@@ -140,7 +140,7 @@ export class ElevateButton extends LitElement {
     }
 
     .button--success:hover:not([disabled]) {
-      background: #218838;
+      background: var(--elevate-color-success-hover, #218838);
       box-shadow: var(--elevate-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
 

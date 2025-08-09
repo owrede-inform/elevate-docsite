@@ -26,6 +26,7 @@ if (typeof window !== 'undefined') {
   // Get all the components we need
   const { 
     ButtonComponent,
+    BadgeComponent,
     IconComponent,
     DividerComponent,
     MenuComponent,
@@ -38,6 +39,7 @@ if (typeof window !== 'undefined') {
   
   const componentsToRegister = [
     { name: 'elvt-button', component: ButtonComponent },
+    { name: 'elvt-badge', component: BadgeComponent },
     { name: 'elvt-icon', component: IconComponent },
     { name: 'elvt-divider', component: DividerComponent },
     { name: 'elvt-menu', component: MenuComponent },

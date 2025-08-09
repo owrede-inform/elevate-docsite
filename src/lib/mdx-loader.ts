@@ -93,7 +93,7 @@ class MDXLoader {
 
     try {
       // Use Vite's import.meta.glob to discover MDX files
-      const contentModules = import.meta.glob('/content/**/*.mdx', { eager: false })
+      const contentModules = import.meta.glob('/src/content/**/*.mdx', { eager: false })
 
       // Load each content file
       for (const [path, moduleLoader] of Object.entries(contentModules)) {
@@ -193,7 +193,7 @@ class MDXLoader {
    */
   private pathToSlug(path: string): string {
     return path
-      .replace(/^\/content\//, '')
+      .replace(/^\/src\/content\//, '')
       .replace(/\.mdx$/, '')
       .replace(/\//g, '-')
   }
@@ -202,7 +202,7 @@ class MDXLoader {
    * Extract category from file path
    */
   private getCategoryFromPath(path: string): string {
-    const match = path.match(/\/content\/([^/]+)\//)
+    const match = path.match(/\/src\/content\/([^/]+)\//)
     return match ? match[1] : 'misc'
   }
 

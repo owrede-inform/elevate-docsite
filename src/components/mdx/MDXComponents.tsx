@@ -250,7 +250,7 @@ export const CodeBlock: React.FC<{ title: string; children: React.ReactNode }> =
       }
 
       [data-theme="dark"] .code-header {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--esds-alias-background-overlay, rgba(255, 255, 255, 0.1));
         color: white;
       }
 
@@ -350,39 +350,39 @@ export const ComponentStatus: React.FC<{ status: 'stable' | 'beta' | 'alpha' | '
       }
 
       .status-stable {
-        background: #dcfce7;
-        color: #166534;
+        background: var(--esds-status-stable-background, #dcfce7);
+        color: var(--esds-status-stable-color, #166534);
       }
 
       .status-stable .status-indicator {
-        background: #22c55e;
+        background: var(--esds-status-stable-background, #22c55e);
       }
 
       .status-beta {
-        background: #fef3c7;
-        color: #92400e;
+        background: var(--esds-status-beta-background, #fef3c7);
+        color: var(--esds-status-beta-color, #92400e);
       }
 
       .status-beta .status-indicator {
-        background: #f59e0b;
+        background: var(--esds-status-beta-background, #f59e0b);
       }
 
       .status-alpha {
-        background: #e0e7ff;
-        color: #3730a3;
+        background: var(--esds-status-alpha-background, #e0e7ff);
+        color: var(--esds-status-alpha-color, #3730a3);
       }
 
       .status-alpha .status-indicator {
-        background: #6366f1;
+        background: var(--esds-status-alpha-background, #6366f1);
       }
 
       .status-deprecated {
-        background: #fee2e2;
-        color: #991b1b;
+        background: var(--esds-status-deprecated-background, #fee2e2);
+        color: var(--esds-status-deprecated-color, #991b1b);
       }
 
       .status-deprecated .status-indicator {
-        background: #ef4444;
+        background: var(--esds-status-deprecated-background, #ef4444);
       }
     `}</style>
   </div>

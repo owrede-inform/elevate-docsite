@@ -1,0 +1,49 @@
+---
+title: "Input"
+description: "Text input fields with validation support"
+category: "Forms"
+status: "preliminary"
+technicalName: "elvt-input"
+version: "0.0.1"
+layout: "component"
+---
+
+# Input
+
+Text input fields for user data entry with built-in validation support.
+
+<ComponentStatus status="stable" />
+
+## Overview
+
+Input components allow users to enter text, numbers, and other data. They provide consistent styling and validation across your application.
+
+<ComponentPreview
+  code={`<elvt-input placeholder="Enter your name" label="Name"></elvt-input>
+<elvt-input type="email" placeholder="Enter your email" label="Email"></elvt-input>
+<elvt-input type="password" placeholder="Enter password" label="Password"></elvt-input>`}
+/>
+
+## API Reference
+
+<ApiTable>
+  <ApiRow prop="type" type="'text' | 'email' | 'password' | 'number'" default="'text'">
+    Input field type
+  </ApiRow>
+  
+  <ApiRow prop="label" type="string" default="">
+    Input field label
+  </ApiRow>
+  
+  <ApiRow prop="placeholder" type="string" default="">
+    Placeholder text
+  </ApiRow>
+  
+  <ApiRow prop="disabled" type="boolean" default="false">
+    Whether the input is disabled
+  </ApiRow>
+  
+  <ApiRow prop="required" type="boolean" default="false">
+    Whether the input is required
+  </ApiRow>
+</ApiTable>

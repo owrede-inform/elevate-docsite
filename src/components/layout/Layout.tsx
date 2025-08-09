@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import EsdsTreeSidebar from '../navigation/EsdsTreeSidebar'
 import EsdsProductSwitcher from '../navigation/EsdsProductSwitcher'
 import { MDI_ICON_REGISTRY } from '@/utils/icons'
+import { getTreeSidebarSections } from '@/lib/navigation-yaml-loader'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -107,7 +108,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
     // Handle responsive sidebar behavior
     const handleResize = () => {
-      const mobile = window.innerWidth <= 768
+      const mobile = window.innerWidth <= 1024
       setIsMobile(mobile)
       
       if (mobile) {
@@ -133,11 +134,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
   }
 
-  // Toggle sidebar on mobile
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed)
-    setIsMobileMenuOpen(false)
-  }
 
   // Close sidebar when clicking overlay on mobile
   const closeSidebarOverlay = () => {
@@ -146,11 +142,27 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
   }
 
+  // Toggle sidebar on mobile/tablet
+  const toggleMobileSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed)
+  }
+
   return (
     <div className="app-layout">
       <elvt-application>
         <elvt-toolbar slot="header" border="end">
           <elvt-stack slot="start" gap="s">
+            {/* Mobile/Tablet Burger Menu */}
+            {isMobile && (
+              <elvt-icon-button 
+                className="mobile-burger-menu"
+                size="medium" 
+                label="Toggle Menu"
+                icon="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+                onClick={toggleMobileSidebar}
+              />
+            )}
+            
             {/* INFORM + ELEVATE Logo */}
             <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <img
@@ -159,26 +171,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 style={{ height: '1rem', width: 'auto' }}
               />
               <h2 style={{ margin: 0, fontSize: '18px', color: 'var(--esds-alias-text-heading)', fontWeight: 'normal' }}>
-                <strong>ELEVATE</strong> Design System
+                <strong>ELEVATE</strong>{isMobile ? '' : ' Design System'}
               </h2>
             </Link>
             
-            {/* Product Switcher */}
-            <EsdsProductSwitcher />
+            {/* Product Switcher - hide on mobile */}
+            {!isMobile && <EsdsProductSwitcher />}
           </elvt-stack>
           
           {/* Navigation Menu for larger screens - removed per requirement */}
           <div className="desktop-nav" style={{ display: 'none' }} />
           
           <elvt-stack slot="end" gap="s">
-            {/* Sidebar Toggle (Tablet/Mobile) */}
-            <elvt-icon-button 
-              className="sidebar-toggle-button"
-              size="medium" 
-              label="Toggle Sidebar"
-              icon="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-              onClick={toggleSidebar}
-            />
             
             {/* Role Selector */}
             <elvt-select 
@@ -199,13 +203,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               onClick={toggleDarkMode}
             />
             
-            {/* GitHub Link */}
-            <elvt-icon-button 
-              size="medium" 
-              label="View on GitHub"
-              icon="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
-              onClick={() => window.open('https://github.com/owrede-inform/elevate-docsite', '_blank')}
-            />
           </elvt-stack>
         </elvt-toolbar>
         
@@ -241,50 +238,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className={`sidebar-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
             {/* Use ESDS Tree Sidebar */}
             <EsdsTreeSidebar 
-              sections={[
-                {
-                  title: 'Getting started',
-                  pages: [
-                    { title: 'Introduction', path: '/guides/introduction' },
-                    { title: 'Installation', path: '/guides/installation' },
-                    { title: 'Quick Start', path: '/guides/quick-start' }
-                  ]
-                },
-                {
-                  title: 'Foundations',
-                  pages: [
-                    { title: 'Colors', path: '/tokens/colors' },
-                    { title: 'Typography', path: '/tokens/typography' },
-                    { title: 'Spacing', path: '/tokens/spacing' },
-                    { title: 'Design Principles', path: '/foundations/principles' },
-                    { title: 'Accessibility', path: '/foundations/accessibility' }
-                  ]
-                },
-                {
-                  title: 'Components',
-                  pages: [
-                    { title: 'Button', path: '/components/button' },
-                    { title: 'Input', path: '/components/input' },
-                    { title: 'Card', path: '/components/card' }
-                  ]
-                },
-                {
-                  title: 'Patterns',
-                  pages: [
-                    { title: 'Form Layouts', path: '/patterns/forms' },
-                    { title: 'Navigation', path: '/patterns/navigation' }
-                  ]
-                },
-                {
-                  title: 'Resources',
-                  pages: [
-                    { title: 'Downloads', path: '/resources/downloads' },
-                    { title: 'Changelog', path: '/resources/changelog' },
-                    { title: 'GitHub', path: 'https://github.com/owrede-inform/elevate-docsite' },
-                    { title: 'Support', path: '/resources/support' }
-                  ]
-                }
-              ]}
+              sections={getTreeSidebarSections()}
               className={sidebarCollapsed ? 'sidebar-collapsed' : ''}
             />
           </div>
@@ -392,8 +346,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           width: 280px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 100;
-          background: var(--esds-alias-sidebar-background);
-          border-right: 1px solid var(--esds-alias-sidebar-border);
+          background: var(--esds-sidebar-background);
+          border-right: 1px solid var(--esds-sidebar-border-color);
           height: 100%;
           overflow-y: auto;
         }
@@ -409,7 +363,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.5);
+          background: var(--esds-alias-background-overlay, rgba(0, 0, 0, 0.5));
           z-index: 99;
           opacity: 1;
           visibility: visible;
@@ -418,24 +372,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         .main-content {
           flex: 1;
           overflow-y: auto;
-          background: var(--esds-alias-background-page);
+          background: var(--esds-content-background);
           min-width: 0;
           height: 100%;
         }
 
-        /* Sidebar Toggle Button - only show on tablet and mobile */
-        .sidebar-toggle-button {
-          display: none !important;
-        }
         
+        /* Mobile/Tablet drawer behavior */
         @media (max-width: 1024px) {
-          .sidebar-toggle-button {
-            display: inline-flex !important;
-          }
-        }
-        
-        /* Hide desktop navigation on mobile */
-        @media (max-width: 768px) {
           .desktop-nav {
             display: none !important;
           }
@@ -457,16 +401,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           }
         }
         
-        /* Tablet adjustments */
-        @media (max-width: 1024px) and (min-width: 769px) {
-          .sidebar-container {
-            width: 240px;
-          }
-          
-          .sidebar-container.collapsed {
-            width: 0;
-          }
-        }
 
         /* Mobile navigation overlay */
         .mobile-nav-overlay {

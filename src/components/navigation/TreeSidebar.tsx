@@ -135,8 +135,8 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
           height: 100%;
           display: flex;
           flex-direction: column;
-          background: var(--elvt-primitives-color-white, #ffffff);
-          border-right: 1px solid var(--elvt-primitives-color-gray-200, #e1e4e8);
+          background: var(--esds-sidebar-background);
+          border-right: 1px solid var(--esds-sidebar-border-color);
           width: 280px;
           min-width: 280px;
           font-family: var(--elvt-primitives-font-family-inter, 'Inter', sans-serif);
@@ -146,7 +146,7 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
         .tree-header {
           padding: var(--elvt-primitives-spacing-md, 16px) var(--elvt-primitives-spacing-lg, 20px);
           border-bottom: 1px solid var(--elvt-primitives-color-gray-100, #f1f3f4);
-          background: var(--elvt-primitives-color-gray-50, #fafbfc);
+          background: var(--esds-alias-background-surface, var(--elvt-primitives-color-gray-50, #fafbfc));
         }
 
         .tree-logo {
@@ -196,7 +196,7 @@ const TreeSidebar: React.FC<TreeSidebarProps> = ({
         }
 
         .tree-section-header:hover {
-          background: var(--elvt-primitives-color-gray-50, #fafbfc);
+          background: var(--esds-alias-background-surface, var(--elvt-primitives-color-gray-50, #fafbfc));
         }
 
         .tree-section-header:focus {

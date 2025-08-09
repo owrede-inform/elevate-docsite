@@ -1,0 +1,39 @@
+---
+title: "Card"
+description: "Content containers with flexible layouts"
+category: "Layout"
+status: "unstable"
+technicalName: "elvt-card"
+version: "0.0.2"
+layout: "component"
+---
+
+# Card
+
+Flexible container components for organizing and displaying related content.
+
+<ComponentStatus status="beta" />
+
+## Overview
+
+Cards group related information and actions together in a contained area. They're useful for organizing content in a scannable format.
+
+<ComponentPreview
+  code={`<elvt-card>
+  <h3 slot="header">Card Title</h3>
+  <p>This is the card content area where you can place any content.</p>
+  <elvt-button slot="actions" tone="primary">Action</elvt-button>
+</elvt-card>`}
+/>
+
+## API Reference
+
+<ApiTable>
+  <ApiRow prop="elevated" type="boolean" default="false">
+    Whether the card has elevation shadow
+  </ApiRow>
+  
+  <ApiRow prop="clickable" type="boolean" default="false">
+    Whether the entire card is clickable
+  </ApiRow>
+</ApiTable>

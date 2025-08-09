@@ -1,0 +1,40 @@
+---
+title: "Modal"
+description: "Dialog boxes and modal windows"
+category: "Overlays"
+status: "alpha"
+technicalName: "elvt-modal"
+version: "0.9.1"
+layout: "component"
+---
+
+# Modal
+
+Modal dialogs for displaying content in a focused overlay window.
+
+<ComponentStatus status="alpha" />
+
+## Overview
+
+Modals are overlay windows that appear on top of the main content to focus user attention on a specific task or information.
+
+<ComponentPreview
+  code={`<elvt-modal open>
+  <h2 slot="header">Modal Title</h2>
+  <p>Modal content goes here.</p>
+  <elvt-button slot="actions" tone="primary">Confirm</elvt-button>
+  <elvt-button slot="actions">Cancel</elvt-button>
+</elvt-modal>`}
+/>
+
+## API Reference
+
+<ApiTable>
+  <ApiRow prop="open" type="boolean" default="false">
+    Whether the modal is visible
+  </ApiRow>
+  
+  <ApiRow prop="closable" type="boolean" default="true">
+    Whether the modal can be closed
+  </ApiRow>
+</ApiTable>

@@ -13,48 +13,33 @@ export interface NavigationSection {
 export const navigationSections: NavigationSection[] = [
   {
     title: 'Getting started',
-    pages: [{ path: '/getting-started' }]
-  },
-  {
-    title: 'Design Guidelines',
     pages: [
-      { title: 'Principles', path: '/guidelines/principles' },
-      { title: 'Accessibility', path: '/guidelines/accessibility' },
-      { title: 'Color', path: '/guidelines/color' },
-      { title: 'Typography', path: '/guidelines/typography' },
-      { title: 'Spacing', path: '/guidelines/spacing' },
-      { title: 'Layout', path: '/guidelines/layout' }
+      { title: 'Introduction', path: '/guides/introduction' },
+      { title: 'Getting Started (Designers)', path: '/guides/designers/getting-started' },
+      { title: 'Installation (Developers)', path: '/guides/developers/installation' }
     ]
   },
   {
-    title: 'Design Tokens',
+    title: 'Foundations',
     pages: [
-      { title: 'Overview', path: '/tokens' },
-      { title: 'Color Tokens', path: '/tokens/color' },
-      { title: 'Typography Tokens', path: '/tokens/typography' },
-      { title: 'Spacing Tokens', path: '/tokens/spacing' }
+      { title: 'Colors', path: '/tokens/colors' }
     ]
   },
   {
     title: 'Patterns',
     pages: [
-      { title: 'Forms', path: '/patterns/forms' },
-      { title: 'Navigation', path: '/patterns/navigation' },
-      { title: 'Data Display', path: '/patterns/data-display' }
+      { title: 'Login Form', path: '/patterns/login-form' }
     ]
   },
   {
     title: 'Resources',
     pages: [
-      { title: 'Downloads', path: '/resources/downloads' },
-      { title: 'Tools', path: '/resources/tools' },
       { title: 'Contributing', path: '/contributions' }
     ]
   },
   {
     title: 'Components',
     pages: [
-      { title: 'Application', path: '/components/application' },
       { title: 'Avatar', path: '/components/avatar' },
       { title: 'Badge', path: '/components/badge' },
       { title: 'Breadcrumb', path: '/components/breadcrumb' },
@@ -72,24 +57,45 @@ export const navigationSections: NavigationSection[] = [
       { title: 'Dropdown', path: '/components/dropdown' },
       { title: 'Empty State', path: '/components/empty-state' },
       { title: 'Expansion Panel', path: '/components/expansion-panel' },
-      { title: 'Expansion Panel Group', path: '/components/expansion-panel-group' },
-      { title: 'Field', path: '/components/field' },
+      { title: 'File Dropzone', path: '/components/file-dropzone' },
       { title: 'Icon', path: '/components/icon' },
       { title: 'Icon Button', path: '/components/icon-button' },
-      { title: 'Indicator', path: '/components/indicator' },
+      { title: 'Inline Notification', path: '/components/inline-notification' },
       { title: 'Input', path: '/components/input' },
       { title: 'Lightbox', path: '/components/lightbox' },
       { title: 'Link', path: '/components/link' },
+      { title: 'List', path: '/components/list' },
       { title: 'Menu', path: '/components/menu' },
       { title: 'Menu Item', path: '/components/menu-item' },
-      { title: 'Notification', path: '/components/notification' },
-      { title: 'Paginator', path: '/components/paginator' },
-      { title: 'Progress', path: '/components/progress' },
+      { title: 'Modal', path: '/components/modal' },
+      { title: 'Mutation Observer', path: '/components/mutation-observer' },
+      { title: 'Pagination', path: '/components/pagination' },
+      { title: 'Progress Bar', path: '/components/progress-bar' },
+      { title: 'Progress Stepper', path: '/components/progress-stepper' },
       { title: 'Radio', path: '/components/radio' },
+      { title: 'Radio Button', path: '/components/radio-button' },
+      { title: 'Radio Group', path: '/components/radio-group' },
+      { title: 'Range Input', path: '/components/range-input' },
+      { title: 'Resize Observer', path: '/components/resize-observer' },
+      { title: 'Segmented Control', path: '/components/segmented-control' },
       { title: 'Select', path: '/components/select' },
+      { title: 'Side Navigation', path: '/components/side-navigation' },
+      { title: 'Skeleton', path: '/components/skeleton' },
+      { title: 'Slider', path: '/components/slider' },
+      { title: 'Split Panel', path: '/components/split-panel' },
       { title: 'Switch', path: '/components/switch' },
+      { title: 'Tab', path: '/components/tab' },
+      { title: 'Tab Group', path: '/components/tab-group' },
       { title: 'Table', path: '/components/table' },
-      { title: 'Tooltip', path: '/components/tooltip' }
+      { title: 'Textarea', path: '/components/textarea' },
+      { title: 'Time Picker', path: '/components/time-picker' },
+      { title: 'Toast', path: '/components/toast' },
+      { title: 'Toolbar', path: '/components/toolbar' },
+      { title: 'Tooltip', path: '/components/tooltip' },
+      { title: 'Top Navigation', path: '/components/top-navigation' },
+      { title: 'Tree', path: '/components/tree' },
+      { title: 'Tree Item', path: '/components/tree-item' },
+      { title: 'Visually Hidden', path: '/components/visually-hidden' }
     ]
   }
 ]

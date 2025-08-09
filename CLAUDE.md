@@ -42,3 +42,4 @@ An action that the user should be careful with or information about potential pr
 
 Danger
 A destructive action or critical information.have all ong emre  style
+- Do not start new dev servers if there is one running at :3000 already

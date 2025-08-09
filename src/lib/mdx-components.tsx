@@ -10,6 +10,10 @@ import {
   EsdsThemeToggle
 } from '../components/esds'
 
+// Import ComponentsTable and ComponentVersionBadge
+import ComponentsTable from '../components/ComponentsTable'
+import ComponentVersionBadge from '../components/ComponentVersionBadge'
+
 // ComponentPreview web component wrapper for React
 const ComponentPreview: React.FC<{ code: string }> = ({ code }) => {
   return React.createElement('esds-component-preview', { 
@@ -441,6 +445,8 @@ const esdsComponents = {
   EsdsThemeToggle,
   ComponentPreview,
   ComponentStatus,
+  ComponentsTable,
+  ComponentVersionBadge,
   ApiTable,
   ApiRow,
   

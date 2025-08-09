@@ -23,12 +23,14 @@ function App() {
         <Route path="/components" element={<MDXContentRenderer />} />
         <Route path="/components/:componentName" element={<MDXContentRenderer />} />
         
+        <Route path="/tokens" element={<MDXContentRenderer />} />
+        <Route path="/tokens/:tokenName" element={<MDXContentRenderer />} />
+        
         <Route path="/patterns" element={<MDXContentRenderer />} />
         <Route path="/patterns/:patternId" element={<MDXContentRenderer />} />
         
         <Route path="/guides" element={<MDXContentRenderer />} />
-        <Route path="/guides/:role" element={<MDXContentRenderer />} />
-        <Route path="/guides/:role/:guide" element={<MDXContentRenderer />} />
+        <Route path="/guides/:guideName" element={<MDXContentRenderer />} />
         
         {/* 404 page remains unchanged */}
         <Route path="*" element={<NotFoundPage />} />

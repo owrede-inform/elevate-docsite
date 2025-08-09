@@ -196,6 +196,32 @@
   --esds-alias-transition-normal: var(--elvt-alias-transition-interactive, var(--elvt-primitives-transition-fast, 150ms ease));
   --esds-alias-transition-sidebar: var(--esds-primitives-transition-sidebar, 300ms cubic-bezier(0.4, 0, 0.2, 1));
   --esds-alias-transition-theme: var(--esds-primitives-transition-theme, 200ms ease-in-out);
+
+  /* ===== COMPONENTS TABLE ALIASES ===== */
+  /* Table Container */
+  --esds-alias-table-width: 100%;
+  --esds-alias-table-border: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  --esds-alias-table-border-dark: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-alias-table-border-radius: var(--elvt-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+
+  /* Table Header */
+  --esds-alias-table-header-height: 2rem;
+  --esds-alias-table-header-background: var(--elvt-alias-background-secondary, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-alias-table-header-background-dark: var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-alias-table-header-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-header-text-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+
+  /* Table Rows */
+  --esds-alias-table-row-height: 2rem;
+  --esds-alias-table-row-background: var(--elvt-alias-background-primary, #ffffff);
+  --esds-alias-table-row-background-dark: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-row-border: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  --esds-alias-table-row-border-dark: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
+
+  /* Table Cell Content */
+  --esds-alias-table-cell-padding: var(--elvt-primitives-spacing-sm, 0.75rem) var(--elvt-primitives-spacing-md, 1rem);
+  --esds-alias-table-cell-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-cell-text-dark: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
 }
 
 /* Dark Theme - Apply dark mode tokens when data-theme="dark" */
@@ -230,4 +256,12 @@
   
   --esds-alias-example-background: var(--esds-alias-example-background-dark);
   --esds-alias-example-border: var(--esds-alias-example-border-dark);
+  
+  /* Components Table Dark Mode */
+  --esds-alias-table-border: var(--esds-alias-table-border-dark);
+  --esds-alias-table-header-background: var(--esds-alias-table-header-background-dark);
+  --esds-alias-table-header-text: var(--esds-alias-table-header-text-dark);
+  --esds-alias-table-row-background: var(--esds-alias-table-row-background-dark);
+  --esds-alias-table-row-border: var(--esds-alias-table-row-border-dark);
+  --esds-alias-table-cell-text: var(--esds-alias-table-cell-text-dark);
 }

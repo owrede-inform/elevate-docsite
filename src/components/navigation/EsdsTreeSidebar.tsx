@@ -57,6 +57,7 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
   }
 
   const findActiveSectionTitle = (): string | null => {
+    // First, check if current path matches any page within sections
     for (const section of sections) {
       for (const page of section.pages) {
         if (isActivePath(page.path)) {
@@ -64,6 +65,15 @@ const EsdsTreeSidebar: React.FC<EsdsTreeSidebarProps> = ({
         }
       }
     }
+    
+    // Then check if current path matches any section index route
+    for (const section of sections) {
+      const sectionIndexRoute = getSectionIndexRoute(section.title)
+      if (sectionIndexRoute && isActivePath(sectionIndexRoute)) {
+        return section.title
+      }
+    }
+    
     return null
   }
 

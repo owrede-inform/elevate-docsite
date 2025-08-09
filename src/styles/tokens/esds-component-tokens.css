@@ -6,7 +6,7 @@
   /* ===== CORE LAYOUT COMPONENTS ===== */
   
   /* Application Shell */
-  --esds-application-background: var(--esds-alias-background-page, var(--elvt-alias-background-primary, #ffffff));
+  --esds-application-background: var(--elvt-alias-background-primary, var(--elvt-primitives-color-gray-50, rgb(243, 244, 247)));
   --esds-application-min-height: 100vh;
   
   /* Header Component */
@@ -117,6 +117,80 @@
   --esds-token-table-cell-padding: var(--elvt-primitives-spacing-sm, 0.5rem) var(--elvt-primitives-spacing-md, 1rem);
   --esds-token-table-row-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
   
+  /* ===== DATA DISPLAY COMPONENTS ===== */
+  
+  /* ComponentTable Component */
+  --esds-component-table-background: var(--elvt-alias-background-primary, #ffffff);
+  --esds-component-table-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  --esds-component-table-border-width: var(--esds-primitives-border-width-thin, 1px);
+  --esds-component-table-border-radius: var(--esds-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  --esds-component-table-shadow: var(--esds-alias-shadow-component, var(--elvt-primitives-shadow-sm));
+  --esds-component-table-margin: var(--elvt-primitives-spacing-lg, 1.5rem) 0;
+  
+  /* Table Layout */
+  --esds-alias-table-width: 100%;
+  --esds-alias-table-border-radius: var(--esds-alias-radius-container, var(--elvt-primitives-radius-lg, 0.5rem));
+  --esds-alias-table-border: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  --esds-alias-table-row-background: var(--elvt-alias-background-primary, #ffffff);
+  --esds-alias-table-header-background: var(--elvt-primitives-color-gray-50, #f9fafb);
+  --esds-alias-table-header-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-cell-text: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-row-border: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  
+  /* Table Heights - Set to 2.5rem */
+  --esds-alias-table-header-height: 2.5rem;
+  --esds-alias-table-row-height: 2.5rem;
+  
+  /* Table Header */
+  --esds-component-table-header-background: var(--elvt-primitives-color-gray-50, #f9fafb);
+  --esds-component-table-header-color: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-component-table-header-font-weight: var(--elvt-primitives-font-weight-semibold, 600);
+  --esds-component-table-header-font-size: var(--elvt-primitives-font-size-sm, 0.875rem);
+  --esds-component-table-header-padding: var(--elvt-primitives-spacing-md, 1rem);
+  --esds-component-table-header-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  
+  /* Table Cell */
+  --esds-component-table-cell-padding: var(--elvt-primitives-spacing-md, 1rem);
+  --esds-component-table-cell-font-size: var(--elvt-primitives-font-size-sm, 0.875rem);
+  --esds-component-table-cell-color: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-component-table-cell-border-color: var(--elvt-alias-border-light, var(--elvt-primitives-color-gray-200, #e5e7eb));
+  
+  /* Table Row */
+  --esds-component-table-row-background: var(--elvt-alias-background-primary, #ffffff);
+  --esds-component-table-row-background-hover: var(--elvt-alias-surface-hover, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-component-table-row-transition: background-color var(--elvt-primitives-transition-fast, 150ms ease);
+  
+  /* Table Sort Button */
+  --esds-component-table-sort-button-background: transparent;
+  --esds-component-table-sort-button-border: none;
+  --esds-component-table-sort-button-cursor: pointer;
+  --esds-component-table-sort-button-display: flex;
+  --esds-component-table-sort-button-align: center;
+  --esds-component-table-sort-button-gap: var(--elvt-primitives-spacing-xs, 0.25rem);
+  --esds-component-table-sort-button-font-weight: inherit;
+  --esds-component-table-sort-button-color: inherit;
+  --esds-component-table-sort-button-font-size: inherit;
+  --esds-component-table-sort-button-transition: all var(--elvt-primitives-transition-fast, 150ms ease);
+  --esds-component-table-sort-button-hover-background: var(--elvt-alias-surface-hover, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-component-table-sort-button-radius: var(--elvt-primitives-radius-sm, 0.125rem);
+  --esds-component-table-sort-button-padding: var(--elvt-primitives-spacing-xs, 0.25rem) var(--elvt-primitives-spacing-sm, 0.5rem);
+  
+  /* Table Link */
+  --esds-component-table-link-color: var(--elvt-alias-text-accent, var(--elvt-primitives-color-blue-600, #2563eb));
+  --esds-component-table-link-color-hover: var(--elvt-alias-text-accent-hover, var(--elvt-primitives-color-blue-700, #1d4ed8));
+  --esds-component-table-link-decoration: none;
+  --esds-component-table-link-font-weight: var(--elvt-primitives-font-weight-medium, 500);
+  --esds-component-table-link-transition: color var(--elvt-primitives-transition-fast, 150ms ease);
+  
+  /* Table Code */
+  --esds-component-table-code-background: var(--elvt-alias-background-secondary, var(--elvt-primitives-color-gray-50, #f9fafb));
+  --esds-component-table-code-color: var(--elvt-alias-text-primary, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-component-table-code-font-family: var(--elvt-primitives-font-family-mono);
+  --esds-component-table-code-font-size: var(--elvt-primitives-font-size-xs, 0.75rem);
+  --esds-component-table-code-padding: var(--elvt-primitives-spacing-xs, 0.25rem) var(--elvt-primitives-spacing-sm, 0.5rem);
+  --esds-component-table-code-radius: var(--elvt-primitives-radius-sm, 0.125rem);
+  --esds-component-table-code-border: none;
+  
   /* ===== STATUS AND FEEDBACK COMPONENTS ===== */
   
   /* Status Badges */
@@ -159,7 +233,7 @@
 /* Dark Theme Component Token Overrides */
 :global(.esds-theme-dark) {
   /* Application */
-  --esds-application-background: var(--esds-alias-background-page-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
+  --esds-application-background: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-black, rgb(0, 0, 0)));
   
   /* Header */
   --esds-header-background: var(--esds-alias-header-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
@@ -190,6 +264,30 @@
   /* Live Examples */
   --esds-live-example-background: var(--esds-alias-example-background-dark, var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827)));
   --esds-live-example-border-color: var(--esds-alias-example-border-dark, var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151)));
+  
+  /* ComponentTable */
+  --esds-component-table-background: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-component-table-border-color: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-component-table-header-background: var(--elvt-primitives-color-gray-800, #1f2937);
+  --esds-component-table-header-color: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-component-table-cell-color: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-component-table-cell-border-color: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-component-table-row-background: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-component-table-row-background-hover: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-component-table-sort-button-hover-background: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-component-table-link-color: var(--elvt-alias-text-accent-dark, var(--elvt-primitives-color-blue-400, #60a5fa));
+  --esds-component-table-link-color-hover: var(--elvt-alias-text-accent-hover-dark, var(--elvt-primitives-color-blue-300, #93c5fd));
+  --esds-component-table-code-background: var(--elvt-alias-background-secondary-dark, var(--elvt-primitives-color-gray-800, #1f2937));
+  --esds-component-table-code-color: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-component-table-code-border: none;
+  
+  /* Dark Theme Table Aliases */
+  --esds-alias-table-border: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
+  --esds-alias-table-row-background: var(--elvt-alias-background-primary-dark, var(--elvt-primitives-color-gray-900, #111827));
+  --esds-alias-table-header-background: var(--elvt-primitives-color-gray-800, #1f2937);
+  --esds-alias-table-header-text: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-alias-table-cell-text: var(--elvt-alias-text-primary-dark, var(--elvt-primitives-color-gray-100, #f3f4f6));
+  --esds-alias-table-row-border: var(--elvt-alias-border-light-dark, var(--elvt-primitives-color-gray-700, #374151));
   
   /* Theme Toggle */
   --esds-theme-toggle-background: var(--elvt-alias-surface-hover-dark, var(--elvt-primitives-color-gray-800, #1f2937));
