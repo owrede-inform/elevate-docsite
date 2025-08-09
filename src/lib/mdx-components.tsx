@@ -7,12 +7,10 @@ import {
   EsdsCodeBlock,
   EsdsStatusBadge,
   EsdsTokenTable,
-  EsdsThemeToggle
+  EsdsThemeToggle,
+  ComponentsTable,
+  ComponentVersionBadge
 } from '../components/esds'
-
-// Import ComponentsTable and ComponentVersionBadge
-import ComponentsTable from '../components/ComponentsTable'
-import ComponentVersionBadge from '../components/ComponentVersionBadge'
 
 // ComponentPreview web component wrapper for React
 const ComponentPreview: React.FC<{ code: string }> = ({ code }) => {

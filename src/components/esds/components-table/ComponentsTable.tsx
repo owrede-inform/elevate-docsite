@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { getAllContent } from '../utils/mdxLoader'
-import { getComponentVersionInfoAsync, preloadComponentInfo } from '../utils/componentVersionsClient'
-import ComponentVersionBadge from './ComponentVersionBadge'
+import { getAllContent } from '../../../utils/mdxLoader'
+import { getComponentVersionInfoAsync, preloadComponentInfo } from '../../../utils/componentVersionsClient'
+import ComponentVersionBadge from '../component-version-badge/ComponentVersionBadge'
 import './ComponentsTable.css'
 
 interface ComponentInfo {

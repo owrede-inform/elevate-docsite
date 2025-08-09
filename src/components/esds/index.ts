@@ -7,6 +7,8 @@ export { default as EsdsStatusBadge } from './EsdsStatusBadge'
 export { default as EsdsTokenTable } from './EsdsTokenTable'
 export { default as EsdsThemeToggle } from './EsdsThemeToggle'
 export { default as EsdsTreeSidebar } from '../navigation/EsdsTreeSidebar'
+export { default as ComponentsTable } from './components-table/ComponentsTable'
+export { default as ComponentVersionBadge } from './component-version-badge/ComponentVersionBadge'
 
 // Re-export types
 export type { default as EsdsLiveExampleProps } from './EsdsLiveExample'

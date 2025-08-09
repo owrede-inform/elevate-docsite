@@ -8,7 +8,7 @@ import React from 'react'
 import { MDXContent } from '../../utils/mdxLoader'
 import { PageTemplateProps } from './page'
 import { ComponentStatus } from '../../components/mdx/MDXComponents'
-import ComponentsTable from '../../components/ComponentsTable'
+import { ComponentsTable } from '../../components/esds'
 import '../../styles/templates/component.css'
 
 const ComponentTemplate: React.FC<PageTemplateProps> = ({ content, params, children }) => {

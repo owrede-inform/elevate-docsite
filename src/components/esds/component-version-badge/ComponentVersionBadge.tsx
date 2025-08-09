@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getComponentVersionInfoAsync } from '../utils/componentVersionsClient'
+import { getComponentVersionInfoAsync } from '../../../utils/componentVersionsClient'
 
 /**
  * ComponentVersionBadge displays version information for ELEVATE components
@@ -28,7 +28,7 @@ const ComponentVersionBadge: React.FC<ComponentVersionBadgeProps> = ({
     since: string // The elevate-core-ui version when component was first introduced
     status: string | null
     loading: boolean
-  }>({ version: '...', status: 'Loading...', loading: true })
+  }>({ since: '...', status: 'Loading...', loading: true })
 
   useEffect(() => {
     let isMounted = true

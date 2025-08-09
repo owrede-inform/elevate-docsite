@@ -54,7 +54,10 @@
       "Bash(dir:*)",
       "Bash(git remote:*)",
       "Bash(git checkout:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(move:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run:*)"
     ],
     "deny": []
   }
